@@ -1,0 +1,10 @@
+LandisData  "Biomass AgeClass"
+
+Timestep   5
+
+MapNames   output/spp-bio-age/{species}-{ageclass}-{timestep}.gis
+
+Species		querrubr ageclass1(50-100) ageclass2(>100)
+		pinubank ageclass1(75-150) ageclass2(>150)
+		pinustro ageclass1(75-150) ageclass2(150-250) ageclass3(>250)
+		acersacc ageclass1(50-200) << merchantable timber?
