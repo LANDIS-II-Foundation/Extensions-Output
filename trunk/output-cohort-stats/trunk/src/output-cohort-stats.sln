@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "output-cohort-stats", "output-cohort-stats.csproj", "{F1417BFD-0658-4F0A-88E7-A5AABBB788BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1417BFD-0658-4F0A-88E7-A5AABBB788BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1417BFD-0658-4F0A-88E7-A5AABBB788BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1417BFD-0658-4F0A-88E7-A5AABBB788BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1417BFD-0658-4F0A-88E7-A5AABBB788BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
