@@ -1,0 +1,10 @@
+LandisData   Extension
+
+Name         "Output Max Species Age"
+Version      2.0
+Type         output
+Assembly     Landis.Extension.Output.MaxSpeciesAge
+Class        Landis.Extension.Output.MaxSpeciesAge.PlugIn
+Description  "Maximum age output maps"
+UserGuide    "LANDIS-II Output Max Species Age v2.0 User Guide.pdf"
+CoreVersion  6.0
