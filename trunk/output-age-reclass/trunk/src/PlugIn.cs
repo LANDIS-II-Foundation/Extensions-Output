@@ -49,7 +49,7 @@ namespace Landis.Extension.Output.AgeReclass
 
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
             Timestep = parameters.Timestep;
             mapNameTemplate = parameters.MapFileNames;
