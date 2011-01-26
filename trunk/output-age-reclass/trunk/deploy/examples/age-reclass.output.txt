@@ -1,0 +1,43 @@
+LandisData  "Output Age Reclass"
+
+
+Timestep   15
+
+>>           Reclass
+>> Species   Coefficient
+>> --------  -----------
+   abiebals    0.5
+   acerrubr    0.2
+   acersacc    0.7
+   betualle    0.6
+   betupapy    0.2
+   fraxamer    0.5
+   piceglau    0.4
+   pinubank    0.3
+   pinuresi    0.5
+   pinustro    0.7
+   poputrem    0.2
+   querelli    0.4
+   querrubr    0.6
+   thujocci    0.6
+   tiliamer    0.5
+   tsugcana    0.8
+
+
+ReclassMaps
+
+>> Map Name    Forest Type    Species
+>> --------    -------------  -------
+   reclass1 -> MapleHardwood  acersacc betualle abiebals acerrubr fraxamer -pinubank
+               NorthernPines  pinubank pinuresi pinustro
+               Oaks           querelli querrubr
+               OtherConifers  piceglau thujocci tsugcana
+               Other	      poputrem betupapy
+
+   reclass2 -> MapleHardwood  acersacc betualle acerrubr fraxamer 
+               NorthernPines  pinubank pinuresi pinustro
+               OtherConifers  piceglau thujocci tsugcana abiebals
+               Other	      poputrem betupapy querelli querrubr
+
+
+MapFileNames   output/reclass/{reclass-map-name}-{timestep}.img

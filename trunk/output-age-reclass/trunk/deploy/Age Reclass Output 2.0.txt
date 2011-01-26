@@ -1,0 +1,10 @@
+LandisData   Extension
+
+Name         "Output Age Reclass"
+Version      2.0
+Type         output
+Assembly     Landis.Extension.Output.AgeReclass
+Class        Landis.Extension.Output.AgeReclass.PlugIn
+Description  "Output forest reclassification maps"
+UserGuide    "LANDIS-II Reclass Output v2.0 User Guide.pdf"
+CoreVersion  6.0

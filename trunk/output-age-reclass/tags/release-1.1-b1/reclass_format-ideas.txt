@@ -1,0 +1,72 @@
+LandisData  "Reclass Output"
+
+
+Timestep   20
+
+>>           Reclass
+>> Species   Coefficient
+>> --------  -----------
+   abiebals    0.5
+   tiliamer    0.1
+
+
+>>___ Map Idea 1 ______________________________________________________________
+
+ReclassMaps
+
+>> Map Name  Forest Type    Species
+>> --------  -------------  -------
+   reclass1
+             MapleHardwood  acersacc betualle -pinubank
+             Other	    pinustro poputrem popugran
+
+   reclass2
+             MapleHardwood  acersacc betualle tiliamer fraxamer
+             EarlySucc	    poputrem popugran pinubank
+             Other	    pinustro 
+
+
+MapFileNames   output/{reclass-map-name}-{timestep}.gis
+
+>>___ Map Idea 2 ______________________________________________________________
+
+ReclassMaps
+
+>> Map Name   Forest Type    Species
+>> --------   -------------  -------
+   reclass1 : MapleHardwood  acersacc betualle -pinubank
+              Other	     pinustro poputrem popugran
+
+   reclass2 : MapleHardwood  acersacc betualle tiliamer fraxamer
+              EarlySucc	     poputrem popugran pinubank
+              Other	     pinustro 
+
+
+>>___ Map Idea 3 ______________________________________________________________
+
+ReclassMaps
+
+>> Map Name    Forest Type    Species
+>> --------    -------------  -------
+   reclass1 -> MapleHardwood  acersacc betualle -pinubank
+               Other          pinustro poputrem popugran
+
+   reclass2 -> MapleHardwood  acersacc betualle tiliamer fraxamer
+               EarlySucc      poputrem popugran pinubank
+               Other          pinustro 
+
+
+>>___ Map Idea 4 ______________________________________________________________
+
+ReclassMaps
+
+>>       Map       Forest Type    Species
+>>       --------  -------------  -------
+MapName  reclass1
+                   MapleHardwood  acersacc betualle -pinubank
+                   Other          pinustro poputrem popugran
+
+MapName  reclass2
+                   MapleHardwood  acersacc betualle tiliamer fraxamer
+                   EarlySucc      poputrem popugran pinubank
+                   Other          pinustro 
