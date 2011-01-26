@@ -52,7 +52,7 @@ namespace Landis.Extension.Output.LeafBiomass
         }
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
 
             Timestep = parameters.Timestep;
@@ -95,7 +95,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     foreach (Site site in ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (int) ComputeBiomass(SiteVars.Cohorts[site][species]);
+                            pixel.MapCode.Value = (int) ComputeBiomass((Landis.Library.LeafBiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
                         else
                             pixel.MapCode.Value = 0;
                         
@@ -191,7 +191,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 int sppCnt = 0;
                 foreach (ISpecies species in selectedSpecies) 
                 {
-                    allSppEcos[ecoregion.Index, sppCnt] += ComputeBiomass(SiteVars.Cohorts[site][species]);
+                    allSppEcos[ecoregion.Index, sppCnt] += ComputeBiomass((Landis.Library.LeafBiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
                     sppCnt++;
                 }
                 
