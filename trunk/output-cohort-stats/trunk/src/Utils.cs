@@ -12,10 +12,10 @@ namespace Landis.Extension.Output.CohortStats
  
     public class CohortUtils
     {
-        public delegate ushort SiteCohortStatDelegate(SiteCohorts siteCohorts);
+        public delegate ushort SiteCohortStatDelegate(ISiteCohorts siteCohorts);
         public delegate ushort SpeciesCohortStatDelegate(ISpeciesCohorts speciesCohorts);
         
-        public static ushort GetMaxAge(SiteCohorts siteCohorts)
+        public static ushort GetMaxAge(ISiteCohorts siteCohorts)
         {
             if (siteCohorts == null)
                 return 0;

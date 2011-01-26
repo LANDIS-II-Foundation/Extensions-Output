@@ -50,13 +50,10 @@ namespace Landis.Extension.Output.CohortStats
             InputParameterParser parser = new InputParameterParser();
             parameters = mCore.Load<IInputParameters>(dataFile, parser);
             
-            if (parameters == null)
-                throw new ApplicationException("Error: Missing required parameters.  Check the input parameter file");
-
         }
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
 
             Timestep = parameters.Timestep;

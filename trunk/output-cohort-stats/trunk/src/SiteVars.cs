@@ -9,27 +9,18 @@ namespace Landis.Extension.Output.CohortStats
 {
     public static class SiteVars
     {
-        private static ISiteVar<SiteCohorts> cohorts;
+        private static ISiteVar<ISiteCohorts> cohorts;
 
         //---------------------------------------------------------------------
 
         public static void Initialize()
         {
-            cohorts = PlugIn.ModelCore.GetSiteVar<SiteCohorts>("Succession.BaseCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BaseCohorts");
             
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                // Test to make sure the cohort type is correct for this extension
-                if (site.Location.Row == 1 && site.Location.Column == 1 && !SiteVars.Cohorts[site].HasAge())
-                {
-                    throw new System.ApplicationException("Error in the Scenario file:  Incompatible extensions; Cohort age data required for this extension to operate.");
-                }
-            }
-
         }
 
         //---------------------------------------------------------------------
-        public static ISiteVar<SiteCohorts> Cohorts
+        public static ISiteVar<ISiteCohorts> Cohorts
         {
             get
             {
