@@ -53,7 +53,7 @@ namespace Landis.Extension.Output.Biomass
 
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
 
             Timestep = parameters.Timestep;
@@ -90,7 +90,7 @@ namespace Landis.Extension.Output.Biomass
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (ushort)Math.Round((double)ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]) / 100.0);
+                            pixel.MapCode.Value = (ushort)Math.Round((double)ComputeSpeciesBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]));
                         else
                             pixel.MapCode.Value = 0;
 
