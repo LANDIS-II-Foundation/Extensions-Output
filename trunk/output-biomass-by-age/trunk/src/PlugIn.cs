@@ -51,7 +51,7 @@ namespace Landis.Extension.Output.BiomassAgeClass
         }
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
             Timestep = parameters.Timestep;
             this.selectedSpecies = parameters.SelectedSpecies;
@@ -88,7 +88,7 @@ namespace Landis.Extension.Output.BiomassAgeClass
                         foreach (Site site in modelCore.Landscape.AllSites)
                         {
                             if (site.IsActive)
-                                pixel.MapCode.Value = (ushort)((float)Util.ComputeAgeClassBiomass(SiteVars.Cohorts[site][species], ageclass) / 100.0);
+                                pixel.MapCode.Value = (ushort)((float)Util.ComputeAgeClassBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species], ageclass));
                             else
                                 pixel.MapCode.Value = 0;
 

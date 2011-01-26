@@ -9,36 +9,18 @@ namespace Landis.Extension.Output.BiomassAgeClass
 {
     public static class SiteVars
     {
-        private static ISiteVar<SiteCohorts> cohorts;
+        private static ISiteVar<ISiteCohorts> cohorts;
 
         //---------------------------------------------------------------------
 
         public static void Initialize()
         {
-            cohorts = PlugIn.ModelCore.GetSiteVar<SiteCohorts>("Succession.BiomassCohorts");
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                // Test to make sure the cohort type is correct for this extension
-                if (site.Location.Row == 1 && site.Location.Column == 1 && !SiteVars.Cohorts[site].HasAge() && !SiteVars.Cohorts[site].HasBiomass())
-                {
-                    throw new System.ApplicationException("Error in the Scenario file:  Incompatible extensions; Cohort age AND biomass data required for this extension to operate.");
-                }
-            }
-
-            //Initialize TimeSinceLastFire to the maximum cohort age:
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                // Test to make sure the cohort type is correct for this extension
-                if (site.Location.Row == 1 && site.Location.Column == 1 && !SiteVars.Cohorts[site].HasAge())
-                {
-                    throw new System.ApplicationException("Error in the Scenario file:  Incompatible extensions; Cohort age data required for this extension to operate.");
-                }
-            }
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohorts");
 
         }
 
         //---------------------------------------------------------------------
-        public static ISiteVar<SiteCohorts> Cohorts
+        public static ISiteVar<ISiteCohorts> Cohorts
         {
             get
             {
