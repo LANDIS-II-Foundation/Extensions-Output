@@ -42,8 +42,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
 
         //---------------------------------------------------------------------
 
-        public override void LoadParameters(string dataFile,
-                                            ICore mCore)
+        public override void LoadParameters(string dataFile, ICore mCore)
         {
             modelCore = mCore;
 
@@ -55,7 +54,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
 
         //---------------------------------------------------------------------
 
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
             SiteVars.Initialize();
 
