@@ -4,24 +4,23 @@
 using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.BiomassCohorts;
-using Landis.Cohorts;
 
 namespace Landis.Extension.Output.BiomassReclass
 {
     public static class SiteVars
     {
-        private static ISiteVar<SiteCohorts> cohorts;
+        private static ISiteVar<ISiteCohorts> cohorts;
 
         //---------------------------------------------------------------------
 
         public static void Initialize()
         {
-            cohorts = PlugIn.ModelCore.GetSiteVar<SiteCohorts>("Succession.BiomassCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohorts");
             
         }
 
         //---------------------------------------------------------------------
-        public static ISiteVar<SiteCohorts> Cohorts
+        public static ISiteVar<ISiteCohorts> Cohorts
         {
             get
             {

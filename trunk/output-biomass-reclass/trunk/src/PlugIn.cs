@@ -56,14 +56,7 @@ namespace Landis.Extension.Output.BiomassReclass
         /// <summary>
         /// Initializes the component with a data file.
         /// </summary>
-        /// <param name="dataFile">
-        /// Path to the file with initialization data.
-        /// </param>
-        /// <param name="startTime">
-        /// Initial timestep (year): the timestep that will be passed to the
-        /// first call to the component's Run method.
-        /// </param>
-        public override void Initialize(string dataFile)
+        public override void Initialize()
         {
 
             Timestep = parameters.Timestep;
@@ -124,7 +117,7 @@ namespace Landis.Extension.Output.BiomassReclass
                 if (SiteVars.Cohorts[site] == null)
                     break;
 
-                sppValue = Util.ComputeBiomass(SiteVars.Cohorts[site][species]);
+                sppValue = Util.ComputeBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
 
                 forTypeCnt = 0;
                 foreach(IForestType ftype in forestTypes)
