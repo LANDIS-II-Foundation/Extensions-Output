@@ -80,7 +80,7 @@ namespace Landis.Extension.Output.AgeReclass
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = CalcForestType(site,forestTypes);
+                            pixel.MapCode.Value = CalcForestType(site, forestTypes);
                         else
                             pixel.MapCode.Value = 0;
 
@@ -105,7 +105,7 @@ namespace Landis.Extension.Output.AgeReclass
                 {
                     ushort maxSpeciesAge = 0;
                 double sppValue = 0.0;
-                maxSpeciesAge = Util.GetMaxAge(SiteVars.Cohorts[site][species]);
+                maxSpeciesAge = GetSppMaxAge(site, species);
 
                 if (maxSpeciesAge > 0)
                 {
@@ -144,6 +144,27 @@ namespace Landis.Extension.Output.AgeReclass
             }
             return (byte) finalForestType;
         }
+        public static ushort GetSppMaxAge(Site site, ISpecies spp)
+        {
+            if (!site.IsActive)
+                return 0;
 
+            if (SiteVars.Cohorts[site] == null)
+            {
+                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                return 0;
+            }
+            ushort max = 0;
+
+            foreach (ISpeciesCohorts sppCohorts in SiteVars.Cohorts[site])
+            {
+                if(sppCohorts.Species == spp)
+                    foreach (ICohort cohort in sppCohorts)
+                        if (cohort.Age > max)
+                            max = cohort.Age;
+                
+            }
+            return max;
+        }
     }
 }
