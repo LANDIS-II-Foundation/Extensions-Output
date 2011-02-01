@@ -4,7 +4,7 @@
 using Landis.Core;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassAgeClass
+namespace Landis.Extension.Output.BiomassByAge
 {
 	/// <summary>
 	/// The parameters for the plug-in.

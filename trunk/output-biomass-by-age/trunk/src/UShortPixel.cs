@@ -3,7 +3,7 @@
 
 using Landis.SpatialModeling;
 
-namespace Landis.Extension.Output.BiomassAgeClass
+namespace Landis.Extension.Output.BiomassByAge
 {
     public class UShortPixel : Pixel
     {

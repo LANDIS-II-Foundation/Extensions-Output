@@ -5,7 +5,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.BiomassCohorts;
 
-namespace Landis.Extension.Output.BiomassAgeClass
+namespace Landis.Extension.Output.BiomassByAge
 {
     public static class SiteVars
     {

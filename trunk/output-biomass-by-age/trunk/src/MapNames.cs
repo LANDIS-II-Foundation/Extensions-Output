@@ -5,7 +5,7 @@ using Edu.Wisc.Forest.Flel.Util;
 using Landis.Core;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassAgeClass
+namespace Landis.Extension.Output.BiomassByAge
 {
     /// <summary>
     /// Methods for working with the template for filenames of species biomass

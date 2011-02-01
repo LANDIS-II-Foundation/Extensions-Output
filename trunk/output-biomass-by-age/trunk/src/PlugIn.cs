@@ -8,7 +8,7 @@ using Landis.Core;
 using System;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassAgeClass
+namespace Landis.Extension.Output.BiomassByAge
 {
     public class PlugIn
         : ExtensionMain
@@ -63,8 +63,6 @@ namespace Landis.Extension.Output.BiomassAgeClass
 
         public override void Run()
         {
-            //FIXME!
-            //WriteMapForAllSpecies();
 
             if (selectedSpecies != null)
                 WriteSpeciesMaps();
@@ -88,7 +86,7 @@ namespace Landis.Extension.Output.BiomassAgeClass
                         foreach (Site site in modelCore.Landscape.AllSites)
                         {
                             if (site.IsActive)
-                                pixel.MapCode.Value = (ushort)((float)Util.ComputeAgeClassBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species], ageclass));
+                                pixel.MapCode.Value = (ushort)((float)Util.ComputeAgeClassBiomass(SiteVars.Cohorts[site][species], ageclass));
                             else
                                 pixel.MapCode.Value = 0;
 
