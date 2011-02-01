@@ -90,7 +90,7 @@ namespace Landis.Extension.Output.Biomass
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (ushort)Math.Round((double)ComputeSpeciesBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]));
+                            pixel.MapCode.Value = (ushort)Math.Round((double)ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]));
                         else
                             pixel.MapCode.Value = 0;
 
@@ -114,7 +114,7 @@ namespace Landis.Extension.Output.Biomass
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = (ushort) Math.Round((double) ComputeTotalBiomass(SiteVars.Cohorts[site]) / 100.0);
+                        pixel.MapCode.Value = (ushort) Math.Round((double) ComputeTotalBiomass(SiteVars.Cohorts[site]));
                     else
                         pixel.MapCode.Value = 0;
 
@@ -161,7 +161,7 @@ namespace Landis.Extension.Output.Biomass
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (ushort)((float)poolSiteVar[site].Mass / 100.0);
+                            pixel.MapCode.Value = (ushort)((float)poolSiteVar[site].Mass);
                         else
                             pixel.MapCode.Value = 0;
 

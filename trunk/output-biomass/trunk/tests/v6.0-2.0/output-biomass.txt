@@ -15,4 +15,4 @@ Species    abiebals
 	   tiliamer
 	   tsugcana
 
-MapNames  biomass/{species}-{timestep}.gis
+MapNames  biomass/{species}-{timestep}.img
