@@ -117,7 +117,7 @@ namespace Landis.Extension.Output.BiomassReclass
                 if (SiteVars.Cohorts[site] == null)
                     break;
 
-                sppValue = Util.ComputeBiomass((Landis.Library.BiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
+                sppValue = Util.ComputeBiomass(SiteVars.Cohorts[site][species]);
 
                 forTypeCnt = 0;
                 foreach(IForestType ftype in forestTypes)
