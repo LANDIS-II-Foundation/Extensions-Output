@@ -117,7 +117,7 @@ namespace Landis.Extension.Output.CohortStats
                             else
                             {
                                 //need to do a switch on statistic
-                                pixel.MapCode.Value = species_stat_func(SiteVars.Cohorts[site][species]);
+                                pixel.MapCode.Value = species_stat_func(species, (ActiveSite) site); //SiteVars.Cohorts[site][species]);
                             }
 
                             outputRaster.WriteBufferPixel();
@@ -173,7 +173,7 @@ namespace Landis.Extension.Output.CohortStats
                         if (!site.IsActive)
                             pixel.MapCode.Value = 0;
                         else
-                            pixel.MapCode.Value = site_stat_func(SiteVars.Cohorts[site]);
+                            pixel.MapCode.Value = site_stat_func((ActiveSite) site);
 
                         outputRaster.WriteBufferPixel();
                     }
@@ -207,7 +207,7 @@ namespace Landis.Extension.Output.CohortStats
                         if (!site.IsActive)
                             pixel.MapCode.Value = 0;
                         else
-                            pixel.MapCode.Value = site_stat_func(SiteVars.Cohorts[site]);
+                            pixel.MapCode.Value = site_stat_func((ActiveSite) site); //SiteVars.Cohorts[site]);
 
                         outputRaster.WriteBufferPixel();
                     }
