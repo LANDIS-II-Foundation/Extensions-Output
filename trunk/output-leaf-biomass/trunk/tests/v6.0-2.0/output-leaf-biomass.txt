@@ -2,6 +2,9 @@ LandisData  "Output Leaf Biomass"
 
 Timestep  5
 
+MakeMaps no
+MakeTable yes
+
 Species    abiebals
 	   acerrubr
 	   acersacc
@@ -15,4 +18,4 @@ Species    abiebals
 	   tiliamer
 	   tsugcana
 
-MapNames  biomass/{species}-{timestep}.img
+MapNames  output-leaf-biomass/{species}-{timestep}.img

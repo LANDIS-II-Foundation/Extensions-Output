@@ -56,6 +56,7 @@ namespace Landis.Extension.Output.LeafBiomass
         {
 
             Timestep = parameters.Timestep;
+            SiteVars.Initialize();
             this.selectedSpecies = parameters.SelectedSpecies;
             this.speciesMapNameTemplate = parameters.SpeciesMaps;
             this.makeMaps = parameters.MakeMaps;
@@ -95,7 +96,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     foreach (Site site in ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (int) ComputeBiomass((Landis.Library.LeafBiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
+                            pixel.MapCode.Value = (int) ComputeBiomass(SiteVars.Cohorts[site][species]);
                         else
                             pixel.MapCode.Value = 0;
                         
@@ -119,7 +120,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 foreach (Site site in ModelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = (int) ComputeBiomass(SiteVars.Cohorts[site]);
+                        pixel.MapCode.Value = (int) ComputeBiomass((ActiveSite) site);
                     else
                         pixel.MapCode.Value = 0;
 
@@ -191,7 +192,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 int sppCnt = 0;
                 foreach (ISpecies species in selectedSpecies) 
                 {
-                    allSppEcos[ecoregion.Index, sppCnt] += ComputeBiomass((Landis.Library.LeafBiomassCohorts.ISpeciesCohorts) SiteVars.Cohorts[site][species]);
+                    allSppEcos[ecoregion.Index, sppCnt] += ComputeBiomass(SiteVars.Cohorts[site][species]);
                     sppCnt++;
                 }
                 
@@ -240,11 +241,11 @@ namespace Landis.Extension.Output.LeafBiomass
 
         //---------------------------------------------------------------------
 
-        public static double ComputeBiomass(ISiteCohorts cohorts)
+        public static double ComputeBiomass(ActiveSite site) //ISiteCohorts cohorts)
         {
             double total = 0.0;
-            if (cohorts != null)
-                foreach (ISpeciesCohorts speciesCohorts in cohorts)
+            if (SiteVars.Cohorts[site] != null)
+                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
                     total += ComputeBiomass(speciesCohorts);
             return total;
         }
