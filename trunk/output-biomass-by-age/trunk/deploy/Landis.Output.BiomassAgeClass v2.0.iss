@@ -18,10 +18,10 @@
 Source: {#BuildDir}\Landis.Library.BiomassCohorts.dll; DestDir: {app}\bin; Flags: replacesameversion uninsneveruninstall
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.BiomassAgeClass.dll; DestDir: {app}\bin
+Source: {#BuildDir}\Landis.Extension.Output.BiomassByAge.dll; DestDir: {app}\bin
 
 ; All the example input-files for the in examples
-Source: examples\*; DestDir: {app}\examples\age-biomass-output; Flags: recursesubdirs
+Source: examples\*; DestDir: {app}\examples\biomass-age-output; Flags: recursesubdirs
 Source: docs\LANDIS-II Age Biomass Output v2.0 User Guide.pdf; DestDir: {app}\docs
 
 #define BioAgeclass "output-biomass-ageclass v2.0.txt"
