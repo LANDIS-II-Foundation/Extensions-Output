@@ -7,15 +7,11 @@
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section).iss"
-
-;#include "..\package (Setup section).iss"
-
+#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
 
 [Files]
 ; Cohort Libraries
 #define BuildDir "C:\Program Files\LANDIS-II\6.0\bin"
-Source: {#BuildDir}\Landis.Library.BiomassCohorts.dll; DestDir: {app}\bin; Flags: replacesameversion uninsneveruninstall
 
 ; Output Biomass Ageclass v1.0 plug-in
 Source: {#BuildDir}\Landis.Extension.Output.BiomassByAge.dll; DestDir: {app}\bin
@@ -32,13 +28,13 @@ Source: {#BioAgeclass}; DestDir: {#LandisPlugInDir}
 ;; Run plug-in admin tool to add entries for each plug-in
 #define PlugInAdminTool  CoreBinDir + "\Landis.PlugIns.Admin.exe"
 
-Filename: {#PlugInAdminTool}; Parameters: "remove ""Output Biomass AgeClass"" "; WorkingDir: {#LandisPlugInDir}
+Filename: {#PlugInAdminTool}; Parameters: "remove ""Output Biomass-by-Age"" "; WorkingDir: {#LandisPlugInDir}
 Filename: {#PlugInAdminTool}; Parameters: "add ""{#BioAgeclass}"" "; WorkingDir: {#LandisPlugInDir}
 
 [UninstallRun]
 
 [Code]
-#include AddBackslash(LandisDeployDir) + "package (Code section) v3.iss"
+#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 
