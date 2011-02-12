@@ -45,6 +45,6 @@ FireDamageTable
     100%                1
 
 
-MapNames  fire/severity-{timestep}.gis
+MapNames  fire/severity-{timestep}.img
 LogFile   fire-log.csv
 SummaryLogFile fire/summary-log.csv
