@@ -13,7 +13,7 @@
 
 Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.AgeReclass.dll; DestDir: {app}\bin; Flags: replacesameversion
 Source: docs\LANDIS-II Age Reclass Output v2.0 User Guide.pdf; DestDir: {app}\docs
-Source: examples\*; DestDir: {app}\age-reclass-output
+Source: examples\*; DestDir: {app}\examples\age-reclass-output
 
 #define AgeReclassOutput "Age Reclass Output 2.0.txt"
 Source: {#AgeReclassOutput}; DestDir: {#LandisPlugInDir}
