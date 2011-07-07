@@ -95,20 +95,5 @@ namespace Landis.Extension.Output.LeafBiomass
         public InputParameters()
         {
         }
-        //---------------------------------------------------------------------
-
-        /*public Parameters(int                   timestep,
-                          IEnumerable<ISpecies> selectedSpecies,
-                          string                speciesMapNames,
-                          bool makeMaps,
-                          bool makeTable
-                          )
-        {
-            this.timestep = timestep;
-            this.selectedSpecies = selectedSpecies;
-            this.speciesMapNames = speciesMapNames;
-            this.makeMaps = makeMaps;
-            this.makeTable = makeTable;
-        }*/
     }
 }
