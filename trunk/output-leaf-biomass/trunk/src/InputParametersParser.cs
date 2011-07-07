@@ -61,16 +61,16 @@ namespace Landis.Extension.Output.LeafBiomass
                 }
                 else {
                     ISpecies species = GetSpecies(speciesName.Value);
-                    List<ISpecies> selectedSpecies = new List<ISpecies>(); 
+                    List<ISpecies> selectedSpecies = new List<ISpecies>();
                     selectedSpecies.Add(species);
                     parameters.SelectedSpecies = selectedSpecies;
-    
+
                     Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
                     lineNumbers[species.Name] = lineNumber;
-    
+
                     while (! AtEndOfInput && CurrentName != mapNames.Name) {
                         StringReader currentLine = new StringReader(CurrentLine);
-    
+
                         ReadValue(speciesName, currentLine);
                         species = GetSpecies(speciesName.Value);
                         if (lineNumbers.TryGetValue(species.Name, out lineNumber))
@@ -78,7 +78,7 @@ namespace Landis.Extension.Output.LeafBiomass
                                                           "The species {0} was previously used on line {1}",
                                                           speciesName.Value.String, lineNumber);
                         lineNumbers[species.Name] = LineNumber;
-    
+
                         selectedSpecies.Add(species);
                         CheckNoDataAfter("the species name", currentLine);
                         GetNextLine();
@@ -89,27 +89,6 @@ namespace Landis.Extension.Output.LeafBiomass
                 parameters.SpeciesMaps = mapNames.Value;
             }
 
-            //  Check for optional pair of parameters for dead pools:
-            //      DeadPools
-            //      MapNames
-            //  Only optional if species parameters are present.
-            
-            /*InputVar<SelectedDeadPools> deadPools = new InputVar<SelectedDeadPools>(DeadPoolsName,
-                                                                                    SelectedDeadPoolsUtil.Parse);
-            bool deadPoolsPresent;
-            if (speciesParmPresent)
-                deadPoolsPresent = ReadOptionalVar(deadPools);
-            else {
-                ReadVar(deadPools);
-                deadPoolsPresent = true;
-            }
-            if (deadPoolsPresent) {
-                parameters.SelectedPools = deadPools.Value;
-                ReadVar(mapNames);
-                parameters.PoolMapNames = mapNames.Value;
-
-                CheckNoDataAfter("the " + mapNames.Name + " parameter");
-            }*/
 
             return parameters; //.GetComplete();
         }
