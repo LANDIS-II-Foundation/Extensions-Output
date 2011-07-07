@@ -13,7 +13,7 @@
 #define BuildDir "C:\Program Files\LANDIS-II\6.0\bin"
 
 ; Biomass Output v1.2 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.Biomass.dll; DestDir: {app}\bin
+Source: {#BuildDir}\Landis.Extension.Output.Biomass.dll; DestDir: {app}\bin; Flags: replacesameversion
 Source: docs\LANDIS-II Biomass Output v2.0 User Guide.pdf; DestDir: {app}\docs
 Source: examples\*; DestDir: {app}\examples\output-biomass
 

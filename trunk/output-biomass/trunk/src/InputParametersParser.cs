@@ -36,8 +36,10 @@ namespace Landis.Extension.Output.Biomass
             parameters.Timestep = timestep.Value;
 
             InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
-            ReadOptionalVar(makeTable);
-            parameters.MakeTable = makeTable.Value;
+            if (ReadOptionalVar(makeTable))
+                parameters.MakeTable = makeTable.Value;
+            else
+                parameters.MakeTable = false;
 
 
             //  Check for optional pair of parameters for species:
