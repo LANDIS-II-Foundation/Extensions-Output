@@ -15,15 +15,6 @@ namespace Landis.Extension.Output.BiomassReclass
     {
         public static ISpeciesDataset SpeciesDataset = null;
 
-        //---------------------------------------------------------------------
-
-        /*
-        public override string LandisDataValue
-        {
-            get {
-                return "Reclass Biomass Output";
-            }
-        }*/
 
         //---------------------------------------------------------------------
 
