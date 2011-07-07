@@ -18,6 +18,8 @@ namespace Landis.Extension.Output.Biomass
         private string speciesMapNames;
         private string selectedPools;
         private string poolMapNames;
+        private bool makeTable;
+
 
         //---------------------------------------------------------------------
 
@@ -90,14 +92,16 @@ namespace Landis.Extension.Output.Biomass
         }
         //---------------------------------------------------------------------
 
-        //private void VerifyPoolsAndMapNames(InputValue<SelectedDeadPools> pools,
-        //                                    InputValue<string>            mapNames)
-        //private void VerifyPoolsAndMapNames(SelectedDeadPools pools,
-        //                                    string            mapNames)
-        //{
-            //if (pools == null || mapNames == null)
-            //    return;
-        //    Biomass.PoolMapNames.CheckTemplateVars(mapNames, pools);
-        //}
+        public bool MakeTable
+        {
+            get
+            {
+                return makeTable;
+            }
+            set
+            {
+                makeTable = value;
+            }
+        }
     }
 }

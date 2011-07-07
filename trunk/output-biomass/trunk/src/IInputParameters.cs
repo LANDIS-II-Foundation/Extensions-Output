@@ -70,5 +70,6 @@ namespace Landis.Extension.Output.Biomass
 		{
 			get;
 		}
-	}
+        bool MakeTable { get; }
+    }
 }

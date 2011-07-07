@@ -9,6 +9,8 @@ using Landis.Extension.Succession.Biomass;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 
 namespace Landis.Extension.Output.Biomass
 {
@@ -24,7 +26,8 @@ namespace Landis.Extension.Output.Biomass
         private string poolMapNameTemplate;
         private IInputParameters parameters;
         private static ICore modelCore;
-
+        private bool makeTable;
+        private StreamWriter log;
 
         //---------------------------------------------------------------------
 
@@ -61,6 +64,11 @@ namespace Landis.Extension.Output.Biomass
             this.speciesMapNameTemplate = parameters.SpeciesMapNames;
             this.selectedPools = parameters.SelectedPools;
             this.poolMapNameTemplate = parameters.PoolMapNames;
+            this.makeTable = parameters.MakeTable;
+
+            if (makeTable)
+                InitializeLogFile();
+
             SiteVars.Initialize();
         }
 
@@ -71,8 +79,12 @@ namespace Landis.Extension.Output.Biomass
             WriteMapForAllSpecies();
 
             if (selectedSpecies != null)
+            {
                 WriteSpeciesMaps();
-
+                
+                if (makeTable)
+                    WriteLogFile();
+            }
             //if (selectedPools != SelectedDeadPools.None)
                 WritePoolMaps();
         }
@@ -168,6 +180,98 @@ namespace Landis.Extension.Output.Biomass
                         outputRaster.WriteBufferPixel();
                     }
                 }
+            }
+        }
+        //---------------------------------------------------------------------
+        public void InitializeLogFile()
+        {
+
+            string logFileName = "spp-biomass-log.csv";
+            PlugIn.ModelCore.Log.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
+            try
+            {
+                log = ModelCore.CreateTextFile(logFileName);
+            }
+            catch (Exception err)
+            {
+                string mesg = string.Format("{0}", err.Message);
+                throw new System.ApplicationException(mesg);
+            }
+
+            log.AutoFlush = true;
+            log.Write("Time, Ecoregion, NumSites,");
+
+            foreach (ISpecies species in selectedSpecies)
+                log.Write("{0},", species.Name);
+
+            log.WriteLine("");
+
+
+        }
+
+
+        //---------------------------------------------------------------------
+
+        private void WriteLogFile()
+        {
+
+            int numSpp = 0;
+            foreach (ISpecies species in selectedSpecies)
+                numSpp++;
+
+            double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, numSpp];
+
+            int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
+
+            //UI.WriteLine("Next, reset all values to zero.");
+
+            foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+            {
+                int sppCnt = 0;
+                foreach (ISpecies species in selectedSpecies)
+                {
+                    allSppEcos[ecoregion.Index, sppCnt] = 0.0;
+                    sppCnt++;
+                }
+
+                activeSiteCount[ecoregion.Index] = 0;
+            }
+
+            //UI.WriteLine("Next, accumulate data.");
+
+
+            foreach (ActiveSite site in ModelCore.Landscape)
+            {
+                IEcoregion ecoregion = ModelCore.Ecoregion[site];
+
+                int sppCnt = 0;
+                foreach (ISpecies species in selectedSpecies)
+                {
+                    allSppEcos[ecoregion.Index, sppCnt] += ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]);
+                    sppCnt++;
+                }
+
+                activeSiteCount[ecoregion.Index]++;
+            }
+
+            foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+            {
+                log.Write("{0}, {1}, {2}, ",
+                    ModelCore.CurrentTime,                 // 0
+                    ecoregion.Name,                         // 1
+                    activeSiteCount[ecoregion.Index]       // 2
+                    );
+                int sppCnt = 0;
+                foreach (ISpecies species in selectedSpecies)
+                {
+                    log.Write("{0}, ",
+                        (allSppEcos[ecoregion.Index, sppCnt] / (double)activeSiteCount[ecoregion.Index])
+                        );
+
+                    sppCnt++;
+                }
+
+                log.WriteLine("");
             }
         }
         //---------------------------------------------------------------------
