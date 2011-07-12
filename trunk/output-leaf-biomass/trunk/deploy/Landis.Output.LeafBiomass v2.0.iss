@@ -12,7 +12,7 @@
 [Files]
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.LeafBiomass.dll; DestDir: {app}\bin
+Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.LeafBiomass.dll; DestDir: {app}\bin; Flags: replacesameversion
 
 ; All the example input-files for the in examples
 Source: examples\*; DestDir: {app}\examples\leaf-biomass-output; Flags: recursesubdirs
