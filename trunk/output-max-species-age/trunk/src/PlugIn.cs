@@ -72,13 +72,13 @@ namespace Landis.Extension.Output.MaxSpeciesAge
             foreach (ISpecies species in selectedSpecies) {
                 string path = MapNameTemplates.ReplaceTemplateVars(mapNameTemplate, species.Name, modelCore.CurrentTime);
                 modelCore.Log.WriteLine("   Writing maximum age map for {0} to {1} ...", species.Name, path);
-                using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    UShortPixel pixel = outputRaster.BufferPixel;
+                    ShortPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = SiteVars.GetMaxAge(species, (ActiveSite) site);
+                            pixel.MapCode.Value = (byte) SiteVars.GetMaxAge(species, (ActiveSite) site);
                         else
                             pixel.MapCode.Value = 0;
 
@@ -97,13 +97,13 @@ namespace Landis.Extension.Output.MaxSpeciesAge
             //    Maximum age map for all species
             string path = MapNameTemplates.ReplaceTemplateVars(mapNameTemplate, "AllSppMaxAge", modelCore.CurrentTime);
             modelCore.Log.WriteLine("   Writing maximum age map for all species to {0} ...", path);
-            using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+            using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
             {
-                UShortPixel pixel = outputRaster.BufferPixel;
+                ShortPixel pixel = outputRaster.BufferPixel;
                 foreach (Site site in modelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = SiteVars.GetMaxAge((ActiveSite) site);
+                        pixel.MapCode.Value = (byte) SiteVars.GetMaxAge((ActiveSite) site);
                     else
                         pixel.MapCode.Value = 0;
 
