@@ -14,7 +14,7 @@
 
 ; Output Biomass Ageclass v1.0 plug-in
 ;
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.CohortStats.dll; DestDir: {app}\bin
+Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.CohortStats.dll; DestDir: {app}\bin; Flags: replacesameversion
 Source: docs\LANDIS-II Age Cohort Statistics v2.0 User Guide.pdf; DestDir: {app}\docs
 Source: examples\*; DestDir: {app}\examples\age-cohort-stats
 

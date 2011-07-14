@@ -107,9 +107,9 @@ namespace Landis.Extension.Output.CohortStats
                 {
                     string path = SpeciesMapNames.ReplaceTemplateVars(sppagestats_mapNames, species.Name, sppAgeStatIter.Key, modelCore.CurrentTime);
                     ModelCore.Log.WriteLine("   Writing {0} map for {1} to {2} ...", sppAgeStatIter.Key, species.Name, path);
-                    using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                     {
-                        UShortPixel pixel = outputRaster.BufferPixel;
+                        ShortPixel pixel = outputRaster.BufferPixel;
                         foreach (Site site in modelCore.Landscape.AllSites)
                         {
                             if (!site.IsActive) // and has the spp we want
@@ -165,9 +165,9 @@ namespace Landis.Extension.Output.CohortStats
 
                 string path = SiteMapNames.ReplaceTemplateVars(siteagestats_mapNames, ageStatIter, modelCore.CurrentTime);
                 ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", ageStatIter, path);
-                using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    UShortPixel pixel = outputRaster.BufferPixel;
+                    ShortPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (!site.IsActive)
@@ -199,9 +199,9 @@ namespace Landis.Extension.Output.CohortStats
 
                 string path = SiteMapNames.ReplaceTemplateVars(sitesppstats_mapNames, sppStatIter, modelCore.CurrentTime);
                 ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", sppStatIter, path);
-                using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    UShortPixel pixel = outputRaster.BufferPixel;
+                    ShortPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (!site.IsActive)

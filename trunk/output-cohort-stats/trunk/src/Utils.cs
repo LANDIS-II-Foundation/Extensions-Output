@@ -13,17 +13,17 @@ namespace Landis.Extension.Output.CohortStats
  
     public class CohortUtils
     {
-        public delegate ushort SiteCohortStatDelegate(ActiveSite site); 
-        public delegate ushort SpeciesCohortStatDelegate(ISpecies species, ActiveSite site);
+        public delegate short SiteCohortStatDelegate(ActiveSite site); 
+        public delegate short SpeciesCohortStatDelegate(ISpecies species, ActiveSite site);
         
-        public static ushort GetMaxAge(ActiveSite site) 
+        public static short GetMaxAge(ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort max = 0;
+            short max = 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
-                ushort maxSpeciesAge = GetMaxAge(speciesCohorts.Species, site);
+                short maxSpeciesAge = GetMaxAge(speciesCohorts.Species, site);
                 if (maxSpeciesAge > max)
                     max = maxSpeciesAge;
             }
@@ -31,14 +31,14 @@ namespace Landis.Extension.Output.CohortStats
         }
 
         //---------------------------------------------------------------------
-        public static ushort GetMaxAge(ISpecies species, ActiveSite site)
+        public static short GetMaxAge(ISpecies species, ActiveSite site)
         {
             if (SiteVars.Cohorts[site] == null)
             {
                 PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
                 return 0;
             }
-            ushort max = 0;
+            short max = 0;
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
@@ -46,7 +46,7 @@ namespace Landis.Extension.Output.CohortStats
                     foreach (ICohort cohort in speciesCohorts)
                     {
                         if (cohort.Age > max)
-                            max = cohort.Age;
+                            max = (short) cohort.Age;
                     }
             }
             return max;
@@ -67,28 +67,28 @@ namespace Landis.Extension.Output.CohortStats
 
         //---------------------------------------------------------------------
 
-        public static ushort GetMinAge(ActiveSite site) 
+        public static short GetMinAge(ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort min = 65535;//maxof ushort
+            short min = 32767;//maxof ushort
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
-                ushort minSpeciesAge = GetMinAge(speciesCohorts.Species, site); //Cohorts);
+                short minSpeciesAge = GetMinAge(speciesCohorts.Species, site); //Cohorts);
                 if (minSpeciesAge < min)
                     min = minSpeciesAge;
             }
             return min;
         }
         //---------------------------------------------------------------------
-        public static ushort GetMinAge(ISpecies species, ActiveSite site)
+        public static short GetMinAge(ISpecies species, ActiveSite site)
         {
             if (SiteVars.Cohorts[site] == null)
             {
                 PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
                 return 0;
             }
-            ushort min = 65535;//maxof ushort
+            short min = 32767;//maxof ushort
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
@@ -96,7 +96,7 @@ namespace Landis.Extension.Output.CohortStats
                     foreach (ICohort cohort in speciesCohorts)
                     {
                         if (cohort.Age < min)
-                            min = cohort.Age;
+                            min = (short) cohort.Age;
                     }
             }
             return min;
@@ -117,19 +117,19 @@ namespace Landis.Extension.Output.CohortStats
 
         //---------------------------------------------------------------------
 
-        public static ushort GetMedianAge(ActiveSite site) 
+        public static short GetMedianAge(ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort median = 0;
+            short median = 0;
             double dbl_median = 0.0;
 
-            List<ushort> cohort_ages = new List<ushort>();
+            List<short> cohort_ages = new List<short>();
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 foreach(ICohort cohort in speciesCohorts)
                 {
-                    cohort_ages.Add(cohort.Age);
+                    cohort_ages.Add((short) cohort.Age);
                 }
             }
             int count = cohort_ages.Count;
@@ -148,7 +148,7 @@ namespace Landis.Extension.Output.CohortStats
             if (count % 2 == 0)
             {
                 dbl_median = (cohort_ages[count / 2] + cohort_ages[(count / 2) - 1]) / 2.0;
-                median = (ushort)dbl_median;
+                median = (short)dbl_median;
             }
             else
             {
@@ -157,20 +157,20 @@ namespace Landis.Extension.Output.CohortStats
             return median;
         }
 
-        public static ushort GetMedianAge(ISpecies species, ActiveSite site) 
+        public static short GetMedianAge(ISpecies species, ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort median = 0;
+            short median = 0;
             double dbl_median = 0.0;
 
-            List<ushort> cohort_ages = new List<ushort>();
+            List<short> cohort_ages = new List<short>();
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 if(speciesCohorts.Species == species)
                     foreach (ICohort cohort in speciesCohorts)
                     {
-                        cohort_ages.Add(cohort.Age);
+                        cohort_ages.Add((short) cohort.Age);
                     }
             }
             int count = cohort_ages.Count;
@@ -190,7 +190,7 @@ namespace Landis.Extension.Output.CohortStats
             if (count % 2 == 0)
             {
                 dbl_median = (cohort_ages[count / 2] + cohort_ages[(count / 2) - 1]) / 2.0;
-                median = (ushort)dbl_median;
+                median = (short)dbl_median;
             }
             else
             {
@@ -201,13 +201,13 @@ namespace Landis.Extension.Output.CohortStats
 
         //---------------------------------------------------------------------
 
-        public static ushort GetAvgAge(ActiveSite site) 
+        public static short GetAvgAge(ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort avg = 0;
-            uint sum = 0;
-            ushort count = 0;
+            short avg = 0;
+            int sum = 0;
+            short count = 0;
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
@@ -223,17 +223,17 @@ namespace Landis.Extension.Output.CohortStats
                 return 0;
             }
 
-            avg = (ushort)(sum / count);
+            avg = (short)(sum / count);
             return avg;
         }
 
-        public static ushort GetAvgAge(ISpecies species, ActiveSite site) 
+        public static short GetAvgAge(ISpecies species, ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort avg = 0;
-            uint sum = 0;
-            ushort count = 0;
+            short avg = 0;
+            int sum = 0;
+            short count = 0;
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
@@ -250,7 +250,7 @@ namespace Landis.Extension.Output.CohortStats
                 return 0;
             }
 
-            avg = (ushort)(sum / count);
+            avg = (short)(sum / count);
             return avg;
         }
 
@@ -260,9 +260,9 @@ namespace Landis.Extension.Output.CohortStats
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort avg = GetAvgAge(site);
+            short avg = GetAvgAge(site);
             double sum = 0;
-            ushort count = 0;
+            short count = 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 foreach (ICohort cohort in speciesCohorts)
@@ -280,9 +280,9 @@ namespace Landis.Extension.Output.CohortStats
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort avg = GetAvgAge(species, site); //speciesCohorts);
+            short avg = GetAvgAge(species, site); //speciesCohorts);
             double sum = 0;
-            ushort count = 0;
+            short count = 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 if(speciesCohorts.Species == species)
@@ -299,27 +299,27 @@ namespace Landis.Extension.Output.CohortStats
 
         //---------------------------------------------------------------------
 
-        public static ushort GetStdDevAge(ActiveSite site) 
+        public static short GetStdDevAge(ActiveSite site) 
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort std_dev = (ushort)System.Math.Sqrt(GetVarAge(site));
+            short std_dev = (short)System.Math.Sqrt(GetVarAge(site));
             return std_dev;
         }
 
-        public static ushort GetStdDevAge(ISpecies species, ActiveSite site)
+        public static short GetStdDevAge(ISpecies species, ActiveSite site)
         {
             if (SiteVars.Cohorts[site] == null)
                 return 0;
-            ushort std_dev = (ushort)System.Math.Round(System.Math.Sqrt(GetVarAge(species, site)),0);         
+            short std_dev = (short)System.Math.Round(System.Math.Sqrt(GetVarAge(species, site)),0);         
             return std_dev;
         }
 
         //---------------------------------------------------------------------
 
-        public static ushort GetAgeRichness(ActiveSite site) 
+        public static short GetAgeRichness(ActiveSite site) 
         {//return total count of cohorts
-            ushort count = 0;
+            short count = 0;
             if (SiteVars.Cohorts[site] == null)
                 return 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
@@ -337,14 +337,14 @@ namespace Landis.Extension.Output.CohortStats
         //where Hprime = -sum (pI * ln(pI))   where pI is proportion of individuals found in Ith species
         //from Magurran, A.  1988.  Ecological diversity and its measurements.  Princeton, NJ: Princeton University Press.  Pp 35-37)
         //Return E * 100 to fit within ushort range
-        public static ushort GetAgeEvenness(ActiveSite site) 
+        public static short GetAgeEvenness(ActiveSite site) 
         {
             double E = 0;
             double Hprime = 0;
             double proportion=0;
-            ushort evenness = 0;
-            ushort total_count = 0;
-            Dictionary<ushort, ushort> cohort_counts = new Dictionary<ushort, ushort>();
+            short evenness = 0;
+            short total_count = 0;
+            Dictionary<short, short> cohort_counts = new Dictionary<short, short>();
             if (SiteVars.Cohorts[site] == null)
                 return 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
@@ -352,34 +352,34 @@ namespace Landis.Extension.Output.CohortStats
                 foreach (ICohort cohort in speciesCohorts)
                 {
                     total_count++;
-                    if (!cohort_counts.ContainsKey(cohort.Age))
+                    if (!cohort_counts.ContainsKey((short) cohort.Age))
                     {
-                        cohort_counts.Add(cohort.Age, 1);
+                        cohort_counts.Add((short) cohort.Age, 1);
                     }
                     else
                     {
-                        cohort_counts[cohort.Age]++;
+                        cohort_counts[(short) cohort.Age]++;
                     }
                 }
             }
 
-            foreach (KeyValuePair<ushort,ushort> cohortIter in cohort_counts)
+            foreach (KeyValuePair<short,short> cohortIter in cohort_counts)
             {
                 proportion = (double)cohortIter.Value / (double)total_count;
                 Hprime += proportion * System.Math.Log(proportion);
             }
             Hprime = - Hprime;
             E = Hprime / System.Math.Log(cohort_counts.Count);
-            evenness = (ushort)(E * 100.0);
+            evenness = (short)(E * 100.0);
 
             return evenness;
         }
 
         //---------------------------------------------------------------------
 
-        public static ushort GetSppRichness(ActiveSite site) 
+        public static short GetSppRichness(ActiveSite site) 
         {//return total count of species
-            ushort count = 0;
+            short count = 0;
             if (SiteVars.Cohorts[site] == null)
                 return 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
