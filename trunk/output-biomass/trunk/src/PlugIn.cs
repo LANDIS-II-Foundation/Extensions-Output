@@ -241,7 +241,7 @@ namespace Landis.Extension.Output.Biomass
             {
                 IEcoregion ecoregion = ModelCore.Ecoregion[site];
 
-                foreach (ISpecies species in selectedSpecies)
+                foreach (ISpecies species in ModelCore.Species)
                 {
                     allSppEcos[ecoregion.Index, species.Index] += ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]);
                 }
