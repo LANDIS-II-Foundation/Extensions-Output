@@ -78,15 +78,16 @@ namespace Landis.Extension.Output.Biomass
         {
             WriteMapForAllSpecies();
 
+            if (makeTable)
+                WriteLogFile();
+
+            WritePoolMaps();
+
             if (selectedSpecies != null)
             {
                 WriteSpeciesMaps();
                 
-                if (makeTable)
-                    WriteLogFile();
             }
-            //if (selectedPools != SelectedDeadPools.None)
-                WritePoolMaps();
         }
 
         //---------------------------------------------------------------------
@@ -96,6 +97,7 @@ namespace Landis.Extension.Output.Biomass
             foreach (ISpecies species in selectedSpecies) {
                 string path = MakeSpeciesMapName(species.Name);
                 PlugIn.ModelCore.Log.WriteLine("   Writing {0} biomass map to {1} ...", species.Name, path);
+
                 using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     UShortPixel pixel = outputRaster.BufferPixel;
@@ -215,11 +217,8 @@ namespace Landis.Extension.Output.Biomass
         private void WriteLogFile()
         {
 
-            int numSpp = 0;
-            foreach (ISpecies species in selectedSpecies)
-                numSpp++;
 
-            double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, numSpp];
+            double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, ModelCore.Species.Count];
 
             int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
 
@@ -227,11 +226,9 @@ namespace Landis.Extension.Output.Biomass
 
             foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
             {
-                int sppCnt = 0;
-                foreach (ISpecies species in selectedSpecies)
+                foreach (ISpecies species in ModelCore.Species)
                 {
-                    allSppEcos[ecoregion.Index, sppCnt] = 0.0;
-                    sppCnt++;
+                    allSppEcos[ecoregion.Index, species.Index] = 0.0;
                 }
 
                 activeSiteCount[ecoregion.Index] = 0;
@@ -244,11 +241,9 @@ namespace Landis.Extension.Output.Biomass
             {
                 IEcoregion ecoregion = ModelCore.Ecoregion[site];
 
-                int sppCnt = 0;
                 foreach (ISpecies species in selectedSpecies)
                 {
-                    allSppEcos[ecoregion.Index, sppCnt] += ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]);
-                    sppCnt++;
+                    allSppEcos[ecoregion.Index, species.Index] += ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]);
                 }
 
                 activeSiteCount[ecoregion.Index]++;
@@ -261,14 +256,12 @@ namespace Landis.Extension.Output.Biomass
                     ecoregion.Name,                         // 1
                     activeSiteCount[ecoregion.Index]       // 2
                     );
-                int sppCnt = 0;
-                foreach (ISpecies species in selectedSpecies)
+                foreach (ISpecies species in ModelCore.Species)
                 {
                     log.Write("{0}, ",
-                        (allSppEcos[ecoregion.Index, sppCnt] / (double)activeSiteCount[ecoregion.Index])
+                        (allSppEcos[ecoregion.Index, species.Index] / (double)activeSiteCount[ecoregion.Index])
                         );
 
-                    sppCnt++;
                 }
 
                 log.WriteLine("");
