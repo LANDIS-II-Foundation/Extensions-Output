@@ -203,7 +203,7 @@ namespace Landis.Extension.Output.Biomass
             log.AutoFlush = true;
             log.Write("Time, Ecoregion, NumSites,");
 
-            foreach (ISpecies species in selectedSpecies)
+            foreach (ISpecies species in ModelCore.Species)
                 log.Write("{0},", species.Name);
 
             log.WriteLine("");
