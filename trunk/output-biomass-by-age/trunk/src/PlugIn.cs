@@ -80,13 +80,13 @@ namespace Landis.Extension.Output.BiomassByAge
                 {
                     string path = MakeSpeciesMapName(species.Name, ageclass.Name);
                     ModelCore.Log.WriteLine("   Writing {0} and {1} map to {2} ...", species.Name, ageclass.Name, path);
-                    using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                     {
-                        UShortPixel pixel = outputRaster.BufferPixel;
+                        ShortPixel pixel = outputRaster.BufferPixel;
                         foreach (Site site in modelCore.Landscape.AllSites)
                         {
                             if (site.IsActive)
-                                pixel.MapCode.Value = (ushort)((float)Util.ComputeAgeClassBiomass(SiteVars.Cohorts[site][species], ageclass));
+                                pixel.MapCode.Value = (short)((float)Util.ComputeAgeClassBiomass(SiteVars.Cohorts[site][species], ageclass));
                             else
                                 pixel.MapCode.Value = 0;
 
