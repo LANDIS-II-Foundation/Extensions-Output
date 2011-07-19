@@ -81,7 +81,7 @@
     <Compile Include="PoolMapNames.cs" />
     <Compile Include="SiteVars.cs" />
     <Compile Include="SpeciesMapNames.cs" />
-    <Compile Include="UShortPixel.cs" />
+    <Compile Include="IntPixel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

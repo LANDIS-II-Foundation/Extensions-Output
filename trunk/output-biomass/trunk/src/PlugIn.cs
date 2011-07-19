@@ -98,13 +98,13 @@ namespace Landis.Extension.Output.Biomass
                 string path = MakeSpeciesMapName(species.Name);
                 PlugIn.ModelCore.Log.WriteLine("   Writing {0} biomass map to {1} ...", species.Name, path);
 
-                using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    UShortPixel pixel = outputRaster.BufferPixel;
+                    IntPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (ushort)Math.Round((double)ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]));
+                            pixel.MapCode.Value = (int)Math.Round((double)ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]));
                         else
                             pixel.MapCode.Value = 0;
 
@@ -122,13 +122,13 @@ namespace Landis.Extension.Output.Biomass
             // Biomass map for all species
             string path = MakeSpeciesMapName("TotalBiomass");
             PlugIn.ModelCore.Log.WriteLine("   Writing total biomass map to {0} ...", path);
-            using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+            using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
             {
-                UShortPixel pixel = outputRaster.BufferPixel;
+                IntPixel pixel = outputRaster.BufferPixel;
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = (ushort) Math.Round((double) ComputeTotalBiomass(SiteVars.Cohorts[site]));
+                        pixel.MapCode.Value = (int) Math.Round((double) ComputeTotalBiomass(SiteVars.Cohorts[site]));
                     else
                         pixel.MapCode.Value = 0;
 
@@ -169,13 +169,13 @@ namespace Landis.Extension.Output.Biomass
             if(poolSiteVar != null)
             {
                 PlugIn.ModelCore.Log.WriteLine("   Writing {0} biomass map to {1} ...", poolName, path);
-                using (IOutputRaster<UShortPixel> outputRaster = modelCore.CreateRaster<UShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    UShortPixel pixel = outputRaster.BufferPixel;
+                    IntPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (ushort)((float)poolSiteVar[site].Mass);
+                            pixel.MapCode.Value = (int)((float)poolSiteVar[site].Mass);
                         else
                             pixel.MapCode.Value = 0;
 
