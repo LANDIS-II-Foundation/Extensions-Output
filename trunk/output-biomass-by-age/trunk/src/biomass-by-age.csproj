@@ -68,7 +68,7 @@
     <Compile Include="MapNames.cs" />
     <Compile Include="PlugIn.cs" />
     <Compile Include="SiteVars.cs" />
-    <Compile Include="ShortPixel.cs" />
+    <Compile Include="IntPixel.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
