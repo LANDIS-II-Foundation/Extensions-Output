@@ -14,7 +14,7 @@
 #define BuildDir "C:\Program Files\LANDIS-II\6.0\bin"
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.BiomassByAge.dll; DestDir: {app}\bin
+Source: {#BuildDir}\Landis.Extension.Output.BiomassByAge.dll; DestDir: {app}\bin; Flags: replacesameversion
 
 ; All the example input-files for the in examples
 Source: examples\*; DestDir: {app}\examples\biomass-age-output; Flags: recursesubdirs
