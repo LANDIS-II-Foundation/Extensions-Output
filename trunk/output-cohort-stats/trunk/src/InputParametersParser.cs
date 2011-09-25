@@ -55,6 +55,7 @@ namespace Landis.Extension.Output.CohortStats
             spp_age_statsNames.Add("MED");
             spp_age_statsNames.Add("AVG");
             spp_age_statsNames.Add("SD");
+            //spp_age_statsNames.Add("RICH");
 
             List<string> site_age_statsNames = new List<string>();
             site_age_statsNames.Add("MAX");
@@ -64,6 +65,7 @@ namespace Landis.Extension.Output.CohortStats
             site_age_statsNames.Add("SD");
             site_age_statsNames.Add("RICH");
             site_age_statsNames.Add("EVEN");
+            site_age_statsNames.Add("COUNT");
 
             List<string> site_spp_statsNames = new List<string>();
             site_spp_statsNames.Add("RICH");

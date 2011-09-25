@@ -147,13 +147,13 @@ namespace Landis.Extension.Output.CohortStats
                     case "SD":
                         site_stat_func = new CohortUtils.SiteCohortStatDelegate(CohortUtils.GetStdDevAge);
                         break;
+                    case "COUNT":
+                        site_stat_func = new CohortUtils.SiteCohortStatDelegate(CohortUtils.GetCohortCount);
+                        break;
                     case "RICH":
-                        //FIXME
                         site_stat_func = new CohortUtils.SiteCohortStatDelegate(CohortUtils.GetAgeRichness);
                         break;
                     case "EVEN":
-
-                        //FIXME!
                         site_stat_func = new CohortUtils.SiteCohortStatDelegate(CohortUtils.GetAgeEvenness);
                         break;                        
 
@@ -218,29 +218,6 @@ namespace Landis.Extension.Output.CohortStats
 
         }
 
-        //---------------------------------------------------------------------
-/*
-        private IOutputRaster<AgePixel> CreateSppMap(string species,string statistic)
-        {
-            string path = SpeciesMapNames.ReplaceTemplateVars(sppagestats_mapNames, species, statistic,
-                                                       modelCore.CurrentTime);
-            ModelCore.Log.WriteLine("Writing age map to {0} ...", path);
-            return modelCore.CreateRaster<AgePixel>(path,
-                                                    modelCore.Landscape.Dimensions,
-                                                    modelCore.LandscapeMapMetadata);
-        }
-
-        //---------------------------------------------------------------------
-
-        private IOutputRaster<AgePixel> CreateSiteMap(string template, string statistic)
-        {
-            string path = SiteMapNames.ReplaceTemplateVars(template, statistic,
-                                                       modelCore.CurrentTime);
-            ModelCore.Log.WriteLine("Writing age map to {0} ...", path);
-            return modelCore.CreateRaster<AgePixel>(path,
-                                                    modelCore.Landscape.Dimensions,
-                                                    modelCore.LandscapeMapMetadata);
-        }*/
     }
 }
 

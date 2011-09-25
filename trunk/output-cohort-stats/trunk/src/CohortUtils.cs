@@ -317,7 +317,7 @@ namespace Landis.Extension.Output.CohortStats
 
         //---------------------------------------------------------------------
 
-        public static short GetAgeRichness(ActiveSite site) 
+        public static short GetCohortCount(ActiveSite site) 
         {//return total count of cohorts
             short count = 0;
             if (SiteVars.Cohorts[site] == null)
@@ -375,6 +375,28 @@ namespace Landis.Extension.Output.CohortStats
             return evenness;
         }
 
+        //---------------------------------------------------------------------
+        // Number of age classes, an indicator of structural complexity.
+        public static short GetAgeRichness(ActiveSite site)
+        {
+            short age_richness = 0;
+            List<int> ages = new List<int>();
+            if (SiteVars.Cohorts[site] == null)
+                return 0;
+            foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+            {
+                foreach (ICohort cohort in speciesCohorts)
+                {
+                    if (!ages.Contains(cohort.Age))
+                    {
+                        ages.Add(cohort.Age);
+                        age_richness++;
+                    }
+                }
+            }
+
+            return age_richness;
+        }
         //---------------------------------------------------------------------
 
         public static short GetSppRichness(ActiveSite site) 
