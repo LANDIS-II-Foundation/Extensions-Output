@@ -28,14 +28,14 @@ namespace Landis.Extension.Output.MaxSpeciesAge
         }
 
         //---------------------------------------------------------------------
-        public static ushort GetMaxAge(ISpecies species, ActiveSite site)
+        public static short GetMaxAge(ISpecies species, ActiveSite site)
         {
             if (SiteVars.Cohorts[site] == null)
             {
                 PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
                 return 0;
             }
-            ushort max = 0;
+            short max = 0;
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
@@ -43,27 +43,27 @@ namespace Landis.Extension.Output.MaxSpeciesAge
                     foreach (ICohort cohort in speciesCohorts)
                     {
                         if (cohort.Age > max)
-                            max = cohort.Age;
+                            max = (short) cohort.Age;
                     }
             }
             return max;
         }
         //---------------------------------------------------------------------
-        public static ushort GetMaxAge(ActiveSite site)
+        public static short GetMaxAge(ActiveSite site)
         {
             if (SiteVars.Cohorts[site] == null)
             {
                 PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
                 return 0;
             }
-            ushort max = 0;
+            short max = 0;
 
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 foreach (ICohort cohort in speciesCohorts)
                 {
                     if (cohort.Age > max)
-                        max = cohort.Age;
+                        max = (short) cohort.Age;
                 }
             }
             return max;

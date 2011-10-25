@@ -78,7 +78,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (byte) SiteVars.GetMaxAge(species, (ActiveSite) site);
+                            pixel.MapCode.Value = SiteVars.GetMaxAge(species, (ActiveSite) site);
                         else
                             pixel.MapCode.Value = 0;
 
@@ -103,7 +103,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
                 foreach (Site site in modelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = (byte) SiteVars.GetMaxAge((ActiveSite) site);
+                        pixel.MapCode.Value = SiteVars.GetMaxAge((ActiveSite) site);
                     else
                         pixel.MapCode.Value = 0;
 

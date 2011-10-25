@@ -1,6 +1,6 @@
 #define PackageName      "Output Max Species Age"
 #define PackageNameLong  "Output Max Species Age"
-#define Version          "2.0"
+#define Version          "2.0.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    ""
 
