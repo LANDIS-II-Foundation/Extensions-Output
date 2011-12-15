@@ -18,7 +18,7 @@ namespace Landis.Extension.Output.Biomass
         private static ISiteVar<Pool> litter;
         private static ISiteVar<ISiteCohorts> cohorts;
 
-        
+
         //---------------------------------------------------------------------
 
         /// <summary>
@@ -31,7 +31,12 @@ namespace Landis.Extension.Output.Biomass
             litter = PlugIn.ModelCore.GetSiteVar<Pool>("Succession.Litter");
 
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohorts");
-            
+
+            if (cohorts == null)
+            {
+                string mesg = string.Format("Cohorts are empty.  Please double-check that this extension is compatible with your chosen succession extension.");
+                throw new System.ApplicationException(mesg);
+            }
         }
 
         //---------------------------------------------------------------------
