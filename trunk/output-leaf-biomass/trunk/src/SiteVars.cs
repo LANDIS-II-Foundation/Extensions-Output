@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.LeafBiomass
     {
         private static ISiteVar<ISiteCohorts> cohorts;
 
-        
+
         //---------------------------------------------------------------------
 
         /// <summary>
@@ -25,7 +25,12 @@ namespace Landis.Extension.Output.LeafBiomass
         {
 
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.LeafBiomassCohorts");
-            
+            if (cohorts == null)
+            {
+                string mesg = string.Format("Cohorts are empty.  Please double-check that this extension is compatible with your chosen succession extension.");
+                throw new System.ApplicationException(mesg);
+            }
+
         }
 
         //---------------------------------------------------------------------
