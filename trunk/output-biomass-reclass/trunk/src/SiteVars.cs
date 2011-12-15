@@ -16,7 +16,12 @@ namespace Landis.Extension.Output.BiomassReclass
         public static void Initialize()
         {
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohorts");
-            
+
+            if (cohorts == null)
+            {
+                string mesg = string.Format("Cohorts are empty.  Please double-check that this extension is compatible with your chosen succession extension.");
+                throw new System.ApplicationException(mesg);
+            }
         }
 
         //---------------------------------------------------------------------
