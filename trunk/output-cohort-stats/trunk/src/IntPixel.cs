@@ -5,11 +5,11 @@ using Landis.SpatialModeling;
 
 namespace Landis.Extension.Output.CohortStats
 {
-    public class ShortPixel : Pixel
+    public class IntPixel : Pixel
     {
-        public Band<short> MapCode  = "The numeric code for each raster cell";
+        public Band<int> MapCode  = "The numeric code for each raster cell";
 
-        public ShortPixel()
+        public IntPixel()
         {
             SetBands(MapCode);
         }

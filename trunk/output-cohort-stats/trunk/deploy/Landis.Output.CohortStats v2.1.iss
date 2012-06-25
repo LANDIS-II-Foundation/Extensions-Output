@@ -1,6 +1,6 @@
 #define PackageName      "Output Cohort Statistics"
 #define PackageNameLong  "Output Cohort Statistics"
-#define Version          "2.1"
+#define Version          "2.1.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    ""
 

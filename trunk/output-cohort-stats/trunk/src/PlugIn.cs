@@ -107,9 +107,9 @@ namespace Landis.Extension.Output.CohortStats
                 {
                     string path = SpeciesMapNames.ReplaceTemplateVars(sppagestats_mapNames, species.Name, sppAgeStatIter.Key, modelCore.CurrentTime);
                     ModelCore.Log.WriteLine("   Writing {0} map for {1} to {2} ...", sppAgeStatIter.Key, species.Name, path);
-                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
+                    using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                     {
-                        ShortPixel pixel = outputRaster.BufferPixel;
+                        IntPixel pixel = outputRaster.BufferPixel;
                         foreach (Site site in modelCore.Landscape.AllSites)
                         {
                             if (!site.IsActive) // and has the spp we want
@@ -117,7 +117,7 @@ namespace Landis.Extension.Output.CohortStats
                             else
                             {
                                 //need to do a switch on statistic
-                                pixel.MapCode.Value = species_stat_func(species, (ActiveSite) site); //SiteVars.Cohorts[site][species]);
+                                pixel.MapCode.Value = (int) species_stat_func(species, site); 
                             }
 
                             outputRaster.WriteBufferPixel();
@@ -165,15 +165,15 @@ namespace Landis.Extension.Output.CohortStats
 
                 string path = SiteMapNames.ReplaceTemplateVars(siteagestats_mapNames, ageStatIter, modelCore.CurrentTime);
                 ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", ageStatIter, path);
-                using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    ShortPixel pixel = outputRaster.BufferPixel;
+                    IntPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (!site.IsActive)
                             pixel.MapCode.Value = 0;
                         else
-                            pixel.MapCode.Value = site_stat_func((ActiveSite) site);
+                            pixel.MapCode.Value = (int) site_stat_func(site);
 
                         outputRaster.WriteBufferPixel();
                     }
@@ -199,15 +199,15 @@ namespace Landis.Extension.Output.CohortStats
 
                 string path = SiteMapNames.ReplaceTemplateVars(sitesppstats_mapNames, sppStatIter, modelCore.CurrentTime);
                 ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", sppStatIter, path);
-                using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
+                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
-                    ShortPixel pixel = outputRaster.BufferPixel;
+                    IntPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (!site.IsActive)
                             pixel.MapCode.Value = 0;
                         else
-                            pixel.MapCode.Value = site_stat_func((ActiveSite) site); //SiteVars.Cohorts[site]);
+                            pixel.MapCode.Value = (int) site_stat_func(site); 
 
                         outputRaster.WriteBufferPixel();
                     }

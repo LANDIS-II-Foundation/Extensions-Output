@@ -1,7 +1,7 @@
 LandisData Extension
 
 Name		"Output Cohort Statistics"
-Version		"2.1"
+Version		"2.1.1"
 Type		output
 Assembly	Landis.Extension.Output.CohortStats
 Class		Landis.Extension.Output.CohortStats.PlugIn
