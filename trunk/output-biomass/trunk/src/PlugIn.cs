@@ -151,6 +151,8 @@ namespace Landis.Extension.Output.Biomass
 
         private void WritePoolMaps()
         {
+            PlugIn.ModelCore.Log.WriteLine("   Writing {0} dead pools map to  ...", selectedPools);
+
             if(selectedPools == "woody" || selectedPools == "both")
                 WritePoolMap("woody", SiteVars.WoodyDebris);
 
@@ -285,6 +287,8 @@ namespace Landis.Extension.Output.Biomass
             if (cohorts != null)
                 foreach (ISpeciesCohorts speciesCohorts in cohorts)
                 {
+                    //if (speciesCohorts == null)
+                    //    continue;
                     total += ComputeSpeciesBiomass(speciesCohorts);
                 }
             return total;

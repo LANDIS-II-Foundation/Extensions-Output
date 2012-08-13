@@ -82,7 +82,7 @@ namespace Landis.Extension.Output.Biomass
                 return poolMapNames;
             }
             set {
-                Biomass.PoolMapNames.CheckTemplateVars(value); //, selectedPools);
+                Biomass.PoolMapNames.CheckTemplateVars(value); 
                 poolMapNames = value;
             }
         }
