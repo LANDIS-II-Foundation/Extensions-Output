@@ -1,6 +1,6 @@
 #define PackageName      "Output Biomass Ageclass"
 #define PackageNameLong  "Output Biomass Ageclass"
-#define Version          "2.0"
+#define Version          "2.0.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    "2"
 
