@@ -1,11 +1,11 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin-Madison
-//  Authors:  Robert M. Scheller, Jimm Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
 using Landis.Core;
 using Landis.SpatialModeling;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.LeafBiomassCohorts;
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     public static class SiteVars
     {

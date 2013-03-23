@@ -1,7 +1,7 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin-Madison
-//  Authors:  Robert M. Scheller, Jimm Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     /// <summary>
     /// A forest type.

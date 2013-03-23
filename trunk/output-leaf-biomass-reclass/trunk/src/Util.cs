@@ -1,10 +1,9 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin-Madison
-//  Authors:  Robert M. Scheller, Jimm Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
-using Landis.Library.BiomassCohorts;
-//using Landis.Cohorts;
+using Landis.Library.LeafBiomassCohorts;
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     /// <summary>
     /// Methods for computing biomass for groups of cohorts.

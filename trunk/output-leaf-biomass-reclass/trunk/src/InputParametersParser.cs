@@ -1,11 +1,11 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin-Madison
-//  Authors:  Robert M. Scheller, Jimm Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Core;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     /// <summary>
     /// A parser that reads the plug-in's parameters from text input.
@@ -14,6 +14,13 @@ namespace Landis.Extension.Output.BiomassReclass
         : TextParser<IInputParameters>
     {
         public static ISpeciesDataset SpeciesDataset = null;
+        public override string LandisDataValue
+        {
+            get
+            {
+                return "Output Leaf Biomass Reclass";
+            }
+        }
 
 
         //---------------------------------------------------------------------
@@ -26,10 +33,10 @@ namespace Landis.Extension.Output.BiomassReclass
 
         protected override IInputParameters Parse()
         {
-            InputVar<string> landisData = new InputVar<string>("LandisData");
-            ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.PlugInName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.PlugInName);
+            //InputVar<string> landisData = new InputVar<string>("LandisData");
+            //ReadVar(landisData);
+            //if (landisData.Value.Actual != PlugIn.PlugInName)
+            //    throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.PlugInName);
 
             InputParameters parameters = new InputParameters(SpeciesDataset.Count);
 

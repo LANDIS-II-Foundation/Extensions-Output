@@ -2,7 +2,7 @@
 //  Authors:  Robert M. Scheller
 
 using Landis.Core;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.LeafBiomassCohorts;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
 using System;
@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         : ExtensionMain
     {
 
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly ExtensionType type = new ExtensionType("output");
         public static readonly string PlugInName = "Output Biomass Reclass";
 
         private string mapNameTemplate;
@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(PlugInName, Type)
+            : base(PlugInName, type)
         {
         }
 
@@ -47,7 +47,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             modelCore = mCore;
             InputParametersParser.SpeciesDataset = modelCore.Species;
             InputParametersParser parser = new InputParametersParser();
-            parameters = modelCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
 
         }
 
@@ -81,7 +81,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 List<IForestType> forestTypes = map.ForestTypes;
 
                 string path = MapFileNames.ReplaceTemplateVars(mapNameTemplate, map.Name, modelCore.CurrentTime);
-                modelCore.Log.WriteLine("   Writing Biomass Reclass map to {0} ...", path);
+                modelCore.UI.WriteLine("   Writing Biomass Reclass map to {0} ...", path);
                 using (IOutputRaster<BytePixel> outputRaster = modelCore.CreateRaster<BytePixel>(path, modelCore.Landscape.Dimensions))
                 {
                     BytePixel pixel = outputRaster.BufferPixel;

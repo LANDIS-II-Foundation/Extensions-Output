@@ -1,10 +1,10 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin-Madison
-//  Authors:  Robert M. Scheller, Jimm Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     /// <summary>
     /// The definition of a reclass map.

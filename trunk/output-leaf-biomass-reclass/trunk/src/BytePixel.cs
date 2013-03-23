@@ -1,9 +1,9 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
-//  Authors:  Srinivas S., Robert M. Scheller, James B. Domingo
+//  Copyright 2013 Portland State University
+//  Authors:  Robert M. Scheller
 
 using Landis.SpatialModeling;
 
-namespace Landis.Extension.Output.BiomassReclass
+namespace Landis.Extension.Output.LeafBiomassReclass
 {
     public class BytePixel : Pixel
     {
