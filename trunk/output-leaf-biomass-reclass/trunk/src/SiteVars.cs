@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
         public static void Initialize()
         {
-            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.LeafBiomassCohorts");
 
             if (cohorts == null)
             {
