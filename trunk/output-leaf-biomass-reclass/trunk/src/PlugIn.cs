@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
     {
 
         public static readonly ExtensionType type = new ExtensionType("output");
-        public static readonly string PlugInName = "Output Biomass Reclass";
+        public static readonly string ExtensionName = "Output Leaf Biomass Reclass";
 
         private string mapNameTemplate;
         private IEnumerable<IMapDefinition> mapDefs;
@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(PlugInName, type)
+            : base(ExtensionName, type)
         {
         }
 

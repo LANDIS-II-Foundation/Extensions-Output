@@ -1,4 +1,4 @@
-LandisData  "Output Biomass Reclass"
+LandisData  "Output Leaf Biomass Reclass"
 
 Timestep   15
 

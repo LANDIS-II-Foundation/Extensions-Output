@@ -18,11 +18,16 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         {
             get
             {
-                return "Output Leaf Biomass Reclass";
+                return PlugIn.ExtensionName;
             }
         }
 
 
+        //---------------------------------------------------------------------
+
+        static InputParametersParser()
+        {
+        }
         //---------------------------------------------------------------------
 
         public InputParametersParser()
@@ -37,6 +42,10 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             //ReadVar(landisData);
             //if (landisData.Value.Actual != PlugIn.PlugInName)
             //    throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.PlugInName);
+
+            //PlugIn.ModelCore.UI.WriteLine("   Reading Inputs...");
+
+            ReadLandisDataVar();
 
             InputParameters parameters = new InputParameters(SpeciesDataset.Count);
 
