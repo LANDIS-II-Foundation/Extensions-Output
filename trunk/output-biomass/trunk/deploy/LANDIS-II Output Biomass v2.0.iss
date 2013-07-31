@@ -1,21 +1,24 @@
 #define PackageName      "Biomass Ouput"
 #define PackageNameLong  "Biomass Output Extensions"
-#define Version          "2.0.1"
+#define Version          "2.0.2"
 #define ReleaseType      "official"
 #define ReleaseNumber    "2"
 
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6\"
+
 
 [Files]
 #define BuildDir "C:\Program Files\LANDIS-II\6.0\bin"
 
 ; Biomass Output v1.2 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.Biomass.dll; DestDir: {app}\bin; Flags: replacesameversion
-Source: docs\LANDIS-II Biomass Output v2.0 User Guide.pdf; DestDir: {app}\docs
-Source: examples\*; DestDir: {app}\examples\output-biomass
+Source: ..\src\bin\debug\Landis.Extension.Output.Biomass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: docs\LANDIS-II Biomass Output v2.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\*; DestDir: {#AppDir}\examples\output-biomass
 
 #define BiomassOutput "Output Biomass 2.0.txt"
 Source: {#BiomassOutput}; DestDir: {#LandisPlugInDir}

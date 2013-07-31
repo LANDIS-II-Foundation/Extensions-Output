@@ -14,6 +14,13 @@ namespace Landis.Extension.Output.Biomass
         : TextParser<IInputParameters>
     {
 
+        public override string LandisDataValue
+        {
+            get
+            {
+                return "Output Biomass";
+            }
+        }
         //---------------------------------------------------------------------
 
         public InputParametersParser()
@@ -24,10 +31,13 @@ namespace Landis.Extension.Output.Biomass
 
         protected override IInputParameters Parse()
         {
-            InputVar<string> landisData = new InputVar<string>("LandisData");
-            ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.ExtensionName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
+            //InputVar<string> landisData = new InputVar<string>("LandisData");
+            //ReadVar(landisData);
+            //if (landisData.Value.Actual != PlugIn.ExtensionName)
+            //    throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
+
+            ReadLandisDataVar();
+
 
             InputParameters parameters = new InputParameters();
 
@@ -47,10 +57,12 @@ namespace Landis.Extension.Output.Biomass
             //      MapNames
             InputVar<string> speciesName = new InputVar<string>("Species");
             InputVar<string> mapNames = new InputVar<string>("MapNames");
+
             const string DeadPoolsName = "DeadPools";
             int lineNumber = LineNumber;
-            bool speciesParmPresent = ReadOptionalVar(speciesName);
-            if (speciesParmPresent) {
+            //bool speciesParmPresent = ;
+            if (ReadOptionalVar(speciesName)) 
+            {
                 if (speciesName.Value.Actual == "all") {
                     parameters.SelectedSpecies = PlugIn.ModelCore.Species;
                 }
@@ -81,9 +93,11 @@ namespace Landis.Extension.Output.Biomass
                     }
                 }
 
-                ReadVar(mapNames);
-                parameters.SpeciesMapNames = mapNames.Value;
             }
+
+            ReadVar(mapNames);
+            parameters.SpeciesMapNames = mapNames.Value;
+
 
             //  Check for optional pair of parameters for dead pools:
             //      DeadPools
