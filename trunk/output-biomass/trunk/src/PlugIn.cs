@@ -257,20 +257,25 @@ namespace Landis.Extension.Output.Biomass
 
             foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
             {
-                log.Write("{0}, {1}, {2}, ",
-                    ModelCore.CurrentTime,                 // 0
-                    ecoregion.Name,                         // 1
-                    activeSiteCount[ecoregion.Index]       // 2
-                    );
-                foreach (ISpecies species in ModelCore.Species)
-                {
-                    log.Write("{0}, ",
-                        (allSppEcos[ecoregion.Index, species.Index] / (double)activeSiteCount[ecoregion.Index])
-                        );
 
+                if (ecoregion.Active)
+                {
+
+                    log.Write("{0}, {1}, {2}, ",
+                        ModelCore.CurrentTime,                 // 0
+                        ecoregion.Name,                         // 1
+                        activeSiteCount[ecoregion.Index]       // 2
+                        );
+                    foreach (ISpecies species in ModelCore.Species)
+                    {
+                        log.Write("{0}, ",
+                            (allSppEcos[ecoregion.Index, species.Index] / (double) activeSiteCount[ecoregion.Index])
+                            );
+
+                    }
+                    log.WriteLine("");
                 }
 
-                log.WriteLine("");
             }
         }
         //---------------------------------------------------------------------
