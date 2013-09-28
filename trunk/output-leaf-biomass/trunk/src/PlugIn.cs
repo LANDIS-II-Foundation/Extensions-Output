@@ -15,8 +15,8 @@ namespace Landis.Extension.Output.LeafBiomass
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
-        public static readonly string ExtensionName = "Output Leaf Biomass";
+        public static readonly ExtensionType type = new ExtensionType("output");
+        //public static readonly string ExtensionName = "Output Leaf Biomass";
         private static ICore modelCore;
         private IEnumerable<ISpecies> selectedSpecies;
         private string speciesMapNameTemplate;
@@ -28,7 +28,7 @@ namespace Landis.Extension.Output.LeafBiomass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(ExtensionName, Type)
+            : base("Output Leaf Biomass", type)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             modelCore = mCore;
             InputParametersParser parser = new InputParametersParser();
-            parameters = mCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
         //---------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ namespace Landis.Extension.Output.LeafBiomass
             foreach (ISpecies species in selectedSpecies)
             {
                 string path = MakeSpeciesMapName(species.Name);
-                PlugIn.ModelCore.Log.WriteLine("   Writing biomass map to {0} ...", path);
+                PlugIn.ModelCore.UI.WriteLine("   Writing biomass map to {0} ...", path);
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     IntPixel pixel = outputRaster.BufferPixel;
@@ -113,7 +113,7 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             // Biomass map for all species
             string path = MakeSpeciesMapName("TotalBiomass");
-            PlugIn.ModelCore.Log.WriteLine("   Writing TOTAL biomass map to {0} ...", path);
+            PlugIn.ModelCore.UI.WriteLine("   Writing TOTAL biomass map to {0} ...", path);
             using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
             {
                 IntPixel pixel = outputRaster.BufferPixel;
@@ -134,9 +134,9 @@ namespace Landis.Extension.Output.LeafBiomass
         {
         
             string logFileName   = "spp-biomass-log.csv"; 
-            PlugIn.ModelCore.Log.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
+            PlugIn.ModelCore.UI.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
             try {
-                log = ModelCore.CreateTextFile(logFileName);
+                log = Landis.Data.CreateTextFile(logFileName);
             }
             catch (Exception err) {
                 string mesg = string.Format("{0}", err.Message);
