@@ -5,6 +5,7 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.LeafBiomassCohorts;
 using Landis.SpatialModeling;
+using Landis.Library.Metadata;
 
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace Landis.Extension.Output.LeafBiomass
         : ExtensionMain
     {
         public static readonly ExtensionType type = new ExtensionType("output");
-        //public static readonly string ExtensionName = "Output Leaf Biomass";
+        public static MetadataTable<SppBiomassLog> sppBiomassLog = new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
         private static ICore modelCore;
         private IEnumerable<ISpecies> selectedSpecies;
-        private string speciesMapNameTemplate;
+        public static string speciesMapNameTemplate;
         private bool makeMaps;
-        private bool makeTable;
+        //private bool makeTable;
         private IInputParameters parameters;
-        private StreamWriter log;
+        //private StreamWriter log;
 
         //---------------------------------------------------------------------
 
@@ -58,12 +59,13 @@ namespace Landis.Extension.Output.LeafBiomass
             Timestep = parameters.Timestep;
             SiteVars.Initialize();
             this.selectedSpecies = parameters.SelectedSpecies;
-            this.speciesMapNameTemplate = parameters.SpeciesMaps;
+            speciesMapNameTemplate = parameters.SpeciesMaps;
             this.makeMaps = parameters.MakeMaps;
-            this.makeTable = parameters.MakeTable;
+            //this.makeTable = parameters.MakeTable;
+            MetadataHandler.InitializeMetadata(parameters.Timestep, parameters.SelectedSpecies); //, parameters.MapNamesTemplate);//, parameters.LogFileName);
             
-            if(makeTable)
-                InitializeLogFile();
+            //if(makeTable)
+            //    InitializeLogFile();
 
         }
 
@@ -77,9 +79,8 @@ namespace Landis.Extension.Output.LeafBiomass
             {
                 if(makeMaps)
                     WriteSpeciesMaps();
-                if(makeTable)
-                    WriteLogFile();
             }
+            WriteLogFile();
         }
 
         //---------------------------------------------------------------------
@@ -129,37 +130,39 @@ namespace Landis.Extension.Output.LeafBiomass
             }
         }
 
-        //---------------------------------------------------------------------
-        public void InitializeLogFile()
-        {
+        ////---------------------------------------------------------------------
+        //public void InitializeLogFile()
+        //{
         
-            string logFileName   = "spp-biomass-log.csv"; 
-            PlugIn.ModelCore.UI.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
-            try {
-                log = Landis.Data.CreateTextFile(logFileName);
-            }
-            catch (Exception err) {
-                string mesg = string.Format("{0}", err.Message);
-                throw new System.ApplicationException(mesg);
-            }
+        //    string logFileName   = "spp-biomass-log.csv"; 
+        //    PlugIn.ModelCore.UI.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
+        //    try {
+        //        log = Landis.Data.CreateTextFile(logFileName);
+        //    }
+        //    catch (Exception err) {
+        //        string mesg = string.Format("{0}", err.Message);
+        //        throw new System.ApplicationException(mesg);
+        //    }
             
-            log.AutoFlush = true;
-            log.Write("Time, Ecoregion, NumSites,");
+        //    log.AutoFlush = true;
+        //    log.Write("Time, Ecoregion, NumSites,");
             
-            foreach (ISpecies species in selectedSpecies) 
-                log.Write("{0},", species.Name);
+        //    foreach (ISpecies species in selectedSpecies) 
+        //        log.Write("{0},", species.Name);
             
-            log.WriteLine("");
+        //    log.WriteLine("");
 
 
-        }
+        //}
 
 
         //---------------------------------------------------------------------
 
         private void WriteLogFile()
         {
-            
+
+            sppBiomassLog.Clear();
+
             int numSpp = 0;
             foreach (ISpecies species in selectedSpecies) 
                 numSpp++;
@@ -201,27 +204,37 @@ namespace Landis.Extension.Output.LeafBiomass
             
             foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
             {
-                log.Write("{0}, {1}, {2}, ", 
-                    ModelCore.CurrentTime,                 // 0
-                    ecoregion.Name,                         // 1
-                    activeSiteCount[ecoregion.Index]       // 2
-                    );
+                //log.Write("{0}, {1}, {2}, ", 
+                //    ModelCore.CurrentTime,                 // 0
+                //    ecoregion.Name,                         // 1
+                //    activeSiteCount[ecoregion.Index]       // 2
+                //    );
                 int sppCnt = 0;
-                foreach (ISpecies species in selectedSpecies) 
+                foreach (ISpecies species in ModelCore.Species) 
                 {
-                    log.Write("{0}, ",
-                        (allSppEcos[ecoregion.Index, sppCnt] / (double) activeSiteCount[ecoregion.Index])
-                        );
+                    SppBiomassLog sbl = new SppBiomassLog();
+                    sbl.Time = ModelCore.CurrentTime;
+                    sbl.Ecoregion = ecoregion.Name;
+                    sbl.NumSites = activeSiteCount[ecoregion.Index];
+                    sbl.Species = species.Name;
+                    sbl.Biomass = allSppEcos[ecoregion.Index, sppCnt] / (double)activeSiteCount[ecoregion.Index];
+
+                    //log.Write("{0}, ",
+                    //    (allSppEcos[ecoregion.Index, sppCnt] / (double) activeSiteCount[ecoregion.Index])
+                    //    );
                     
-                    sppCnt++;
+                    //sppCnt++;
+                    sppBiomassLog.AddObject(sbl);
+                    sppBiomassLog.WriteToFile();
                 }
 
-                log.WriteLine("");
+                //log.WriteLine("");
+
             }
         }
         //---------------------------------------------------------------------
 
-        private string MakeSpeciesMapName(string species)
+        public static string MakeSpeciesMapName(string species)
         {
             return SpeciesMapNames.ReplaceTemplateVars(speciesMapNameTemplate,
                                                        species,

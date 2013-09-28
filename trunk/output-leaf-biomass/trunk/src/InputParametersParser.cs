@@ -51,9 +51,9 @@ namespace Landis.Extension.Output.LeafBiomass
             ReadVar(makeMaps);
             parameters.MakeMaps = makeMaps.Value;
 
-            InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
-            ReadVar(makeTable);
-            parameters.MakeTable = makeTable.Value;
+            //InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
+            //ReadVar(makeTable);
+            //parameters.MakeTable = makeTable.Value;
 
             //  Check for optional pair of parameters for species:
             //      Species
@@ -98,7 +98,7 @@ namespace Landis.Extension.Output.LeafBiomass
             }
 
 
-            return parameters; //.GetComplete();
+            return parameters; 
         }
 
         //---------------------------------------------------------------------

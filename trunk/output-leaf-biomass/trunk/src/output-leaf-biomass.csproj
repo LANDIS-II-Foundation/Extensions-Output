@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SppBiomassLog.cs" />
     <Compile Include="InputParameters.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -72,6 +73,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IntPixel.cs" />
+    <Compile Include="MetadataHandler.cs" />
     <Compile Include="PlugIn.cs">
       <SubType>Code</SubType>
     </Compile>
