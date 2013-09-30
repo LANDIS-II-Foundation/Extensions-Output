@@ -16,7 +16,7 @@ namespace Landis.Extension.Output.LeafBiomass
         IEnumerable<ISpecies> SelectedSpecies {get;}
         string SpeciesMaps {get;}
         bool MakeMaps {get;}
-        bool MakeTable {get;}
+        //bool MakeTable {get;}
     }
     /// <summary>
     /// The parameters for the plug-in.
@@ -28,7 +28,7 @@ namespace Landis.Extension.Output.LeafBiomass
         private IEnumerable<ISpecies> selectedSpecies;
         private string speciesMapNames;
         private bool makeMaps;
-        private bool makeTable;
+        //private bool makeTable;
         //---------------------------------------------------------------------
 
         public int Timestep
@@ -81,15 +81,15 @@ namespace Landis.Extension.Output.LeafBiomass
         }
         //---------------------------------------------------------------------
 
-        public bool MakeTable
-        {
-            get {
-                return makeTable;
-            }
-            set {
-                makeTable = value;
-            }
-        }
+        //public bool MakeTable
+        //{
+        //    get {
+        //        return makeTable;
+        //    }
+        //    set {
+        //        makeTable = value;
+        //    }
+        //}
         //---------------------------------------------------------------------
 
         public InputParameters()

@@ -1,4 +1,4 @@
-//  Copyright 2005-2010 Portland State University, University of Wisconsin
+//  Copyright 2005-2013 Portland State University
 //  Authors:  Robert M. Scheller, James B. Domingo
 
 using Landis.Core;
@@ -35,10 +35,6 @@ namespace Landis.Extension.Output.LeafBiomass
 
         protected override IInputParameters Parse()
         {
-            //InputVar<string> landisData = new InputVar<string>("LandisData");
-            //ReadVar(landisData);
-            //if (landisData.Value.Actual != PlugIn.ExtensionName)
-            //    throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
             ReadLandisDataVar();
 
             InputParameters parameters = new InputParameters();
@@ -51,8 +47,8 @@ namespace Landis.Extension.Output.LeafBiomass
             ReadVar(makeMaps);
             parameters.MakeMaps = makeMaps.Value;
 
-            //InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
-            //ReadVar(makeTable);
+            InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
+            ReadOptionalVar(makeTable);
             //parameters.MakeTable = makeTable.Value;
 
             //  Check for optional pair of parameters for species:
@@ -60,11 +56,12 @@ namespace Landis.Extension.Output.LeafBiomass
             //      MapNames
             InputVar<string> speciesName = new InputVar<string>("Species");
             InputVar<string> mapNames = new InputVar<string>("MapNames");
-            //const string DeadPoolsName = "DeadPools";
             int lineNumber = LineNumber;
-            bool speciesParmPresent = ReadOptionalVar(speciesName);
-            if (speciesParmPresent) {
-                if (speciesName.Value.Actual == "all") {
+            //bool speciesParmPresent = ;
+            if (ReadOptionalVar(speciesName)) 
+            {
+                if (speciesName.Value.Actual == "all") 
+                {
                     parameters.SelectedSpecies = PlugIn.ModelCore.Species;
                 }
                 else {
@@ -96,6 +93,10 @@ namespace Landis.Extension.Output.LeafBiomass
                 ReadVar(mapNames);
                 parameters.SpeciesMaps = mapNames.Value;
             }
+            //foreach (ISpecies species in parameters.SelectedSpecies)
+            //{
+            //    PlugIn.ModelCore.UI.WriteLine("   Selected species includes {0} ...", species.Name);
+            //}
 
 
             return parameters; 

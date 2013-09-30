@@ -1,24 +1,26 @@
 #define PackageName      "Output Leaf Biomass"
 #define PackageNameLong  "Output Leaf Biomass"
-#define Version          "2.0"
+#define Version          "2.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    "2"
 
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6\"
 
 [Files]
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.LeafBiomass.dll; DestDir: {app}\bin; Flags: replacesameversion
+Source: ..\src\bin\Debug\Landis.Extension.Output.LeafBiomass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; All the example input-files for the in examples
-Source: examples\*; DestDir: {app}\examples\leaf-biomass-output; Flags: recursesubdirs
-Source: docs\LANDIS-II Leaf Biomass Output v2.0 User Guide.pdf; DestDir: {app}\docs
+Source: examples\*; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
+Source: docs\LANDIS-II Leaf Biomass Output v2.1 User Guide.pdf; DestDir: {#AppDir}\docs
 
-#define BioLeaf "output-leafbiomass-install v2.0.txt"
+#define BioLeaf "output-leafbiomass-install v2.1.txt"
 Source: {#BioLeaf}; DestDir: {#LandisPlugInDir}
 
 
@@ -28,10 +30,6 @@ Source: {#BioLeaf}; DestDir: {#LandisPlugInDir}
 
 Filename: {#PlugInAdminTool}; Parameters: "remove ""Output Leaf Biomass"" "; WorkingDir: {#LandisPlugInDir}
 Filename: {#PlugInAdminTool}; Parameters: "add ""{#BioLeaf}"" "; WorkingDir: {#LandisPlugInDir}
-
-[UninstallRun]
-;; Run plug-in admin tool to remove entries for each plug-in
-; Filename: {#PlugInAdminTool}; Parameters: "remove ""Output Leaf Biomass"" "; WorkingDir: {#LandisPlugInDir}
 
 [Code]
 #include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"

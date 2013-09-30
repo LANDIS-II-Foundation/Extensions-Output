@@ -46,11 +46,13 @@ namespace Landis.Extension.Output.LeafBiomass
             };
             tblOut_events.RetriveFields(typeof(SppBiomassLog));
             Extension.OutputMetadatas.Add(tblOut_events);
+            
 
 
             //---------------------------------------            
             //          map outputs:         
             //---------------------------------------
+            //PlugIn.ModelCore.UI.WriteLine("   Writing biomass maps ...");
             foreach (ISpecies species in selectedSpecies)
             {
                 string sppMapPath = PlugIn.MakeSpeciesMapName(species.Name);
@@ -61,7 +63,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     Name = "spp-biomass",
                     FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Nominal,
-                    Map_Unit = "double",
+                    Map_Unit = FiledUnits.g_B_m_2
                 };
                 Extension.OutputMetadatas.Add(mapOut_Severity);
             }

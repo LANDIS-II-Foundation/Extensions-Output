@@ -62,7 +62,7 @@ namespace Landis.Extension.Output.LeafBiomass
             speciesMapNameTemplate = parameters.SpeciesMaps;
             this.makeMaps = parameters.MakeMaps;
             //this.makeTable = parameters.MakeTable;
-            MetadataHandler.InitializeMetadata(parameters.Timestep, parameters.SelectedSpecies); //, parameters.MapNamesTemplate);//, parameters.LogFileName);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies); //, parameters.MapNamesTemplate);//, parameters.LogFileName);
             
             //if(makeTable)
             //    InitializeLogFile();
