@@ -60,7 +60,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 OutputMetadata mapOut_Severity = new OutputMetadata()
                 {
                     Type = OutputType.Map,
-                    Name = "spp-biomass",
+                    Name = "Species Biomass Map",
                     FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Nominal,
                     Map_Unit = FiledUnits.g_B_m_2
