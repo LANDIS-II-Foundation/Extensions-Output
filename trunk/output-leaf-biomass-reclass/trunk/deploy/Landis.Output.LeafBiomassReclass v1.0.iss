@@ -18,7 +18,7 @@ Source: ..\src\bin\debug\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir
 
 ; All the example input-files for the in examples
 Source: examples\*; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
-Source: docs\LANDIS-II Leaf Biomass Reclass Output v1.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: docs\LANDIS-II Leaf Biomass Reclass Output v1.1 User Guide.pdf; DestDir: {#AppDir}\docs
 
 #define BioLeaf "Leaf Biomass Reclass v1.0.txt"
 Source: {#BioLeaf}; DestDir: {#LandisPlugInDir}
