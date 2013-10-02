@@ -1,6 +1,6 @@
 #define PackageName      "Output Leaf Biomass Reclass"
 #define PackageNameLong  "Output Leaf Biomass Reclass"
-#define Version          "1.0"
+#define Version          "1.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    "1"
 
@@ -14,7 +14,7 @@
 [Files]
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir: {#BuildDir}; Flags: replacesameversion
+Source: ..\src\bin\debug\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir: {#BuildDir}; Flags: replacesameversion
 
 ; All the example input-files for the in examples
 Source: examples\*; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs

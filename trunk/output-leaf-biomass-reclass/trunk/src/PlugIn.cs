@@ -1,9 +1,10 @@
-//  Copyright 2005-2010 Portland State University
+//  Copyright 2005-2013 Portland State University
 //  Authors:  Robert M. Scheller
 
 using Landis.Core;
 using Landis.Library.LeafBiomassCohorts;
 using Landis.SpatialModeling;
+using Landis.Library.Metadata;
 using System.Collections.Generic;
 using System;
 
@@ -63,6 +64,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             SiteVars.Initialize();
             this.mapNameTemplate = parameters.MapFileNames;
             this.mapDefs = parameters.ReclassMaps;
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, this.mapNameTemplate);
 
         }
 

@@ -46,5 +46,14 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             varValues[TimestepVar] = timestep.ToString();
             return OutputPath.ReplaceTemplateVars(template, varValues);
         }
+        //---------------------------------------------------------------------
+
+        public static string ReplaceTemplateVarsMetadata(string template,
+                                                 string reclassMapName)
+        {
+            varValues[MapNameVar] = reclassMapName;
+            varValues[TimestepVar] = "{timestep}";
+            return OutputPath.ReplaceTemplateVars(template, varValues);
+        }
     }
 }
