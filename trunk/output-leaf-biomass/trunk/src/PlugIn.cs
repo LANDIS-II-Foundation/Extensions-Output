@@ -16,15 +16,15 @@ namespace Landis.Extension.Output.LeafBiomass
     public class PlugIn
         : ExtensionMain
     {
+        public static readonly string ExtensionName = "Output Leaf Biomass";
         public static readonly ExtensionType type = new ExtensionType("output");
         public static MetadataTable<SppBiomassLog> sppBiomassLog = new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
+
         private static ICore modelCore;
         private IEnumerable<ISpecies> selectedSpecies;
-        public static string speciesMapNameTemplate;
+        private static string speciesMapNameTemplate;
         private bool makeMaps;
-        //private bool makeTable;
         private IInputParameters parameters;
-        //private StreamWriter log;
 
         //---------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ namespace Landis.Extension.Output.LeafBiomass
             speciesMapNameTemplate = parameters.SpeciesMaps;
             this.makeMaps = parameters.MakeMaps;
             //this.makeTable = parameters.MakeTable;
-            MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies); //, parameters.MapNamesTemplate);//, parameters.LogFileName);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies, parameters.SpeciesMaps);
             
             //if(makeTable)
             //    InitializeLogFile();
@@ -89,7 +89,7 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             foreach (ISpecies species in selectedSpecies)
             {
-                string path = MakeSpeciesMapName(species.Name);
+                string path = MapNames.ReplaceTemplateVars(speciesMapNameTemplate, species.Name, ModelCore.CurrentTime); //MakeSpeciesMapName(species.Name);
                 PlugIn.ModelCore.UI.WriteLine("   Writing biomass map to {0} ...", path);
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
@@ -113,7 +113,8 @@ namespace Landis.Extension.Output.LeafBiomass
         private void WriteMapForAllSpecies()
         {
             // Biomass map for all species
-            string path = MakeSpeciesMapName("TotalBiomass");
+            //string path = MakeSpeciesMapName("TotalBiomass");
+            string path = MapNames.ReplaceTemplateVars(speciesMapNameTemplate, "TotalBiomass", ModelCore.CurrentTime);
             PlugIn.ModelCore.UI.WriteLine("   Writing TOTAL biomass map to {0} ...", path);
             using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
             {
@@ -232,16 +233,16 @@ namespace Landis.Extension.Output.LeafBiomass
 
             }
         }
-        //---------------------------------------------------------------------
+        ////---------------------------------------------------------------------
 
-        public static string MakeSpeciesMapName(string species)
-        {
-            return SpeciesMapNames.ReplaceTemplateVars(speciesMapNameTemplate,
-                                                       species,
-                                                       ModelCore.CurrentTime);
-        }
+        //public static string MakeSpeciesMapName(string species)
+        //{
+        //    return SpeciesMapNames.ReplaceTemplateVars(speciesMapNameTemplate,
+        //                                               species,
+        //                                               ModelCore.CurrentTime);
+        //}
 
-        //---------------------------------------------------------------------
+    //--------------------------------------------------------------
 
         public static double ComputeBiomass(ISpeciesCohorts cohorts)
         {

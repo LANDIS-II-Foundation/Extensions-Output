@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.LeafBiomass
     /// Methods for working with the template for filenames of species biomass
     /// maps.
     /// </summary>
-    public static class SpeciesMapNames
+    public static class MapNames
     {
         public const string SpeciesVar = "species";
         public const string TimestepVar = "timestep";
@@ -24,7 +24,7 @@ namespace Landis.Extension.Output.LeafBiomass
 
         //---------------------------------------------------------------------
 
-        static SpeciesMapNames()
+        static MapNames()
         {
             knownVars = new Dictionary<string, bool>();
             knownVars[SpeciesVar] = true;
@@ -48,6 +48,15 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             varValues[SpeciesVar] = species;
             varValues[TimestepVar] = timestep.ToString();
+            return OutputPath.ReplaceTemplateVars(template, varValues);
+        }
+        //---------------------------------------------------------------------
+
+        public static string ReplaceTemplateVars(string template,
+                                                 string species)
+        {
+            varValues[SpeciesVar] = species;
+            varValues[TimestepVar] = "{timestep}";
             return OutputPath.ReplaceTemplateVars(template, varValues);
         }
     }

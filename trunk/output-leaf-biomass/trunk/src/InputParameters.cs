@@ -63,7 +63,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 return speciesMapNames;
             }
             set {
-                SpeciesMapNames.CheckTemplateVars(value);
+                MapNames.CheckTemplateVars(value);
                 speciesMapNames = value;
             }
         }

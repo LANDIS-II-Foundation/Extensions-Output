@@ -29,7 +29,7 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             get
             {
-                return "Output Leaf Biomass";
+                return PlugIn.ExtensionName;
             }
         }
 

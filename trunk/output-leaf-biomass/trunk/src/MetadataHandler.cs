@@ -13,10 +13,8 @@ namespace Landis.Extension.Output.LeafBiomass
     {
         
         public static ExtensionMetadata Extension {get; set;}
-        //private IEnumerable<ISpecies> selectedSpecies;
 
-
-        public static void InitializeMetadata(int Timestep, IEnumerable<ISpecies> selectedSpecies)
+        public static void InitializeMetadata(int Timestep, IEnumerable<ISpecies> selectedSpecies, string sppMapNames)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
@@ -28,7 +26,7 @@ namespace Landis.Extension.Output.LeafBiomass
             };
 
             Extension = new ExtensionMetadata(){
-                Name = "Output Leaf Biomass",
+                Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, 
                 ScenarioReplicationMetadata = scenRep
             };
@@ -55,12 +53,12 @@ namespace Landis.Extension.Output.LeafBiomass
             //PlugIn.ModelCore.UI.WriteLine("   Writing biomass maps ...");
             foreach (ISpecies species in selectedSpecies)
             {
-                string sppMapPath = PlugIn.MakeSpeciesMapName(species.Name);
+                string sppMapPath = MapNames.ReplaceTemplateVars(sppMapNames, species.Name);
 
                 OutputMetadata mapOut_Severity = new OutputMetadata()
                 {
                     Type = OutputType.Map,
-                    Name = "Species Biomass Map",
+                    Name = ("Species Biomass Map: " + species.Name),
                     FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Nominal,
                     Map_Unit = FiledUnits.g_B_m_2
