@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         
         public static ExtensionMetadata Extension {get; set;}
 
-        public static void InitializeMetadata(int Timestep, IEnumerable<IMapDefinition> mapDefs, string mapNameTemplate)
+        public static void InitializeMetadata(int Timestep, IEnumerable<IMapDefinition> mapDefs, string mapNameTemplate, ICore mCore)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
@@ -24,7 +24,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 ProjectionFilePath = "Projection.?" //How do we get projections???
             };
 
-            Extension = new ExtensionMetadata(){
+            Extension = new ExtensionMetadata(mCore){
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, 
                 ScenarioReplicationMetadata = scenRep
