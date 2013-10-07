@@ -15,6 +15,7 @@
 
 ; Output Biomass Ageclass v1.0 plug-in
 Source: ..\src\bin\Debug\Landis.Extension.Output.LeafBiomass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; All the example input-files for the in examples
 Source: examples\*; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs

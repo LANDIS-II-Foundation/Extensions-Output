@@ -18,7 +18,7 @@ namespace Landis.Extension.Output.LeafBiomass
     {
         public static readonly string ExtensionName = "Output Leaf Biomass";
         public static readonly ExtensionType type = new ExtensionType("output");
-        public static MetadataTable<SppBiomassLog> sppBiomassLog = new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
+        public static MetadataTable<SppBiomassLog> sppBiomassLog; //= new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
 
         private static ICore modelCore;
         private IEnumerable<ISpecies> selectedSpecies;
@@ -62,7 +62,7 @@ namespace Landis.Extension.Output.LeafBiomass
             speciesMapNameTemplate = parameters.SpeciesMaps;
             this.makeMaps = parameters.MakeMaps;
             //this.makeTable = parameters.MakeTable;
-            MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies, parameters.SpeciesMaps);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies, parameters.SpeciesMaps, modelCore);
             
             //if(makeTable)
             //    InitializeLogFile();
@@ -162,13 +162,12 @@ namespace Landis.Extension.Output.LeafBiomass
         private void WriteLogFile()
         {
 
-            sppBiomassLog.Clear();
 
-            int numSpp = 0;
-            foreach (ISpecies species in selectedSpecies) 
-                numSpp++;
+            //int numSpp = 0;
+            //foreach (ISpecies species in selectedSpecies) 
+            //    numSpp++;
             
-            double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, numSpp];
+            double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, ModelCore.Species.Count];
             
             int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
             
@@ -210,27 +209,29 @@ namespace Landis.Extension.Output.LeafBiomass
                 //    ecoregion.Name,                         // 1
                 //    activeSiteCount[ecoregion.Index]       // 2
                 //    );
-                int sppCnt = 0;
+                sppBiomassLog.Clear();
+                SppBiomassLog sbl = new SppBiomassLog();
+                double[] sppBiomass = new double[modelCore.Species.Count];
+
+                //int sppCnt = 0;
                 foreach (ISpecies species in ModelCore.Species) 
                 {
-                    SppBiomassLog sbl = new SppBiomassLog();
-                    sbl.Time = ModelCore.CurrentTime;
-                    sbl.Ecoregion = ecoregion.Name;
-                    sbl.NumSites = activeSiteCount[ecoregion.Index];
-                    sbl.Species = species.Name;
-                    sbl.Biomass = allSppEcos[ecoregion.Index, sppCnt] / (double)activeSiteCount[ecoregion.Index];
+                    sppBiomass[species.Index] = allSppEcos[ecoregion.Index, species.Index] / (double)activeSiteCount[ecoregion.Index];
+                    //sbl.Species = species.Name;
+                    //sbl.Biomass = allSppEcos[ecoregion.Index, sppCnt] / (double)activeSiteCount[ecoregion.Index];
 
                     //log.Write("{0}, ",
                     //    (allSppEcos[ecoregion.Index, sppCnt] / (double) activeSiteCount[ecoregion.Index])
                     //    );
                     
                     //sppCnt++;
-                    sppBiomassLog.AddObject(sbl);
-                    sppBiomassLog.WriteToFile();
                 }
-
-                //log.WriteLine("");
-
+                sbl.Time = ModelCore.CurrentTime;
+                sbl.Ecoregion = ecoregion.Name;
+                sbl.NumSites = activeSiteCount[ecoregion.Index];
+                sbl.SppBiomass_ = sppBiomass;
+                sppBiomassLog.AddObject(sbl);
+                sppBiomassLog.WriteToFile();
             }
         }
         ////---------------------------------------------------------------------

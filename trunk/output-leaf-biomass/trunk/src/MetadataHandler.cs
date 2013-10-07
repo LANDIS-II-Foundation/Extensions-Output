@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.LeafBiomass
         
         public static ExtensionMetadata Extension {get; set;}
 
-        public static void InitializeMetadata(int Timestep, IEnumerable<ISpecies> selectedSpecies, string sppMapNames)
+        public static void InitializeMetadata(int Timestep, IEnumerable<ISpecies> selectedSpecies, string sppMapNames, ICore mCore)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
@@ -25,7 +25,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 ProjectionFilePath = "Projection.?" //How do we get projections???
             };
 
-            Extension = new ExtensionMetadata(){
+            Extension = new ExtensionMetadata(mCore){
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, 
                 ScenarioReplicationMetadata = scenRep
@@ -34,6 +34,8 @@ namespace Landis.Extension.Output.LeafBiomass
             //---------------------------------------
             //          table outputs:   
             //---------------------------------------
+
+            PlugIn.sppBiomassLog = new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
 
             OutputMetadata tblOut_events = new OutputMetadata()
             {

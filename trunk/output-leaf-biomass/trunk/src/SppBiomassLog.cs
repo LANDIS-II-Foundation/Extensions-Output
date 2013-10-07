@@ -23,11 +23,14 @@ namespace Landis.Extension.Output.LeafBiomass
         [DataFieldAttribute(Unit = FiledUnits.None, Desc = "Number of Sites")]
         public int NumSites { set; get; }
 
-        [DataFieldAttribute(Unit = FiledUnits.None, Desc = "Species")]
-        public string Species { set; get; }
+        //[DataFieldAttribute(Unit = FiledUnits.None, Desc = "Species")]
+        //public string Species { set; get; }
 
-        [DataFieldAttribute(Unit = FiledUnits.g_C_m_2, Desc = "Species Biomass", Format="0.00")]
-        public double Biomass { set; get; }
+        //[DataFieldAttribute(Unit = FiledUnits.g_C_m_2, Desc = "Species Biomass", Format="0.00")]
+        //public double Biomass { set; get; }
+
+        [DataFieldAttribute(Unit = FiledUnits.Count, Desc = "Species Biomass", Format = "0.0", SppList=true)]
+        public double[] SppBiomass_ { set; get; }
 
     }
 }
