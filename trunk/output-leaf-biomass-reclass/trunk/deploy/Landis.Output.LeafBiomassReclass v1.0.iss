@@ -15,11 +15,13 @@
 
 ; Output Biomass Ageclass v1.0 plug-in
 Source: ..\src\bin\debug\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir: {#BuildDir}; Flags: replacesameversion
-Source: ..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#BuildDir}; Flags: replacesameversion
+Source: ..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#BuildDir}; Flags: replacesameversion uninsneveruninstall
 
 ; All the example input-files for the in examples
-Source: examples\*; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
 Source: docs\LANDIS-II Leaf Biomass Reclass Output v1.1 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\*.txt; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
+Source: examples\*.gis; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
+Source: examples\*.bat; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
 
 #define BioLeaf "Leaf Biomass Reclass v1.0.txt"
 Source: {#BioLeaf}; DestDir: {#LandisPlugInDir}
