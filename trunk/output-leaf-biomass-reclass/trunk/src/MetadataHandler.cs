@@ -16,12 +16,11 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         public static void InitializeMetadata(int Timestep, IEnumerable<IMapDefinition> mapDefs, string mapNameTemplate, ICore mCore)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
-                //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
-                FolderName = System.IO.Directory.GetCurrentDirectory().Split("\\".ToCharArray()).Last(),
+                //FolderName = System.IO.Directory.GetCurrentDirectory().Split("\\".ToCharArray()).Last(),
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
                 TimeMin = PlugIn.ModelCore.StartTime,
                 TimeMax = PlugIn.ModelCore.EndTime,
-                ProjectionFilePath = "Projection.?" //How do we get projections???
+                //ProjectionFilePath = "Projection.?" //How do we get projections???
             };
 
             Extension = new ExtensionMetadata(mCore){
@@ -38,15 +37,15 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             {
                 string mapTypePath = MapFileNames.ReplaceTemplateVarsMetadata(mapNameTemplate, map.Name);
 
-                OutputMetadata mapOut_Severity = new OutputMetadata()
+                OutputMetadata mapOut_ForestType = new OutputMetadata()
                 {
                     Type = OutputType.Map,
                     Name = (map.Name + " Forest Type Map"),
                     FilePath = @mapTypePath,
-                    Map_DataType = MapDataType.Ordinal,
-                    Map_Unit = FiledUnits.None
+                    Map_DataType = MapDataType.Nominal//,
+                    //Map_Unit = FiledUnits.None
                 };
-                Extension.OutputMetadatas.Add(mapOut_Severity);
+                Extension.OutputMetadatas.Add(mapOut_ForestType);
             }
             //---------------------------------------
             MetadataProvider mp = new MetadataProvider(Extension);
