@@ -228,6 +228,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 }
                 sbl.Time = ModelCore.CurrentTime;
                 sbl.Ecoregion = ecoregion.Name;
+                sbl.EcoregionIndex = ecoregion.Index;
                 sbl.NumSites = activeSiteCount[ecoregion.Index];
                 sbl.SppBiomass_ = sppBiomass;
                 sppBiomassLog.AddObject(sbl);

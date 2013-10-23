@@ -17,10 +17,13 @@ namespace Landis.Extension.Output.LeafBiomass
         [DataFieldAttribute(Unit = FiledUnits.Year, Desc = "...")]
         public int Time {set; get;}
 
-        [DataFieldAttribute(Unit = FiledUnits.None, Desc = "Ecoregion")]
+        [DataFieldAttribute(Desc = "Ecoregion Name")]
         public string Ecoregion { set; get; }
 
-        [DataFieldAttribute(Unit = FiledUnits.None, Desc = "Number of Sites")]
+        [DataFieldAttribute(Desc = "Ecoregion Index")]
+        public int EcoregionIndex { set; get; }
+
+        [DataFieldAttribute(Unit = FiledUnits.Count, Desc = "Number of Sites")]
         public int NumSites { set; get; }
 
         //[DataFieldAttribute(Unit = FiledUnits.None, Desc = "Species")]
@@ -29,7 +32,7 @@ namespace Landis.Extension.Output.LeafBiomass
         //[DataFieldAttribute(Unit = FiledUnits.g_C_m_2, Desc = "Species Biomass", Format="0.00")]
         //public double Biomass { set; get; }
 
-        [DataFieldAttribute(Unit = FiledUnits.Count, Desc = "Species Biomass", Format = "0.0", SppList=true)]
+        [DataFieldAttribute(Unit = FiledUnits.g_B_m_2, Desc = "Species Biomass", Format = "0.0", SppList=true)]
         public double[] SppBiomass_ { set; get; }
 
     }

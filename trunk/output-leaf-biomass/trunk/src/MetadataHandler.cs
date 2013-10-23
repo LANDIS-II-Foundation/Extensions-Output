@@ -18,11 +18,11 @@ namespace Landis.Extension.Output.LeafBiomass
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
-                FolderName = System.IO.Directory.GetCurrentDirectory().Split("\\".ToCharArray()).Last(),
+                //FolderName = System.IO.Directory.GetCurrentDirectory().Split("\\".ToCharArray()).Last(),
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
                 TimeMin = PlugIn.ModelCore.StartTime,
-                TimeMax = PlugIn.ModelCore.EndTime,
-                ProjectionFilePath = "Projection.?" //How do we get projections???
+                TimeMax = PlugIn.ModelCore.EndTime
+                //ProjectionFilePath = "Projection.?" //How do we get projections???
             };
 
             Extension = new ExtensionMetadata(mCore){
@@ -57,16 +57,29 @@ namespace Landis.Extension.Output.LeafBiomass
             {
                 string sppMapPath = MapNames.ReplaceTemplateVars(sppMapNames, species.Name);
 
-                OutputMetadata mapOut_Severity = new OutputMetadata()
+                OutputMetadata mapOut_SppBiomass = new OutputMetadata()
                 {
                     Type = OutputType.Map,
                     Name = ("Species Biomass Map: " + species.Name),
                     FilePath = @sppMapPath,
-                    Map_DataType = MapDataType.Nominal,
+                    Map_DataType = MapDataType.Continuous,
                     Map_Unit = FiledUnits.g_B_m_2
                 };
-                Extension.OutputMetadatas.Add(mapOut_Severity);
+                Extension.OutputMetadatas.Add(mapOut_SppBiomass);
             }
+
+            string totalBioMapPath = MapNames.ReplaceTemplateVars(sppMapNames, "TotalBiomass");
+
+            OutputMetadata mapOut_TotalBiomass = new OutputMetadata()
+            {
+                    Type = OutputType.Map,
+                    Name = ("Total Biomass Map"),
+                    FilePath = @totalBioMapPath,
+                    Map_DataType = MapDataType.Continuous,
+                    Map_Unit = FiledUnits.g_B_m_2
+            };
+            Extension.OutputMetadatas.Add(mapOut_TotalBiomass);
+            
             //---------------------------------------
             MetadataProvider mp = new MetadataProvider(Extension);
             mp.WriteMetadataToXMLFile("Metadata", Extension.Name, Extension.Name);
