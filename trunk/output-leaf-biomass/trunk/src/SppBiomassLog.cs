@@ -32,7 +32,7 @@ namespace Landis.Extension.Output.LeafBiomass
         //[DataFieldAttribute(Unit = FiledUnits.g_C_m_2, Desc = "Species Biomass", Format="0.00")]
         //public double Biomass { set; get; }
 
-        [DataFieldAttribute(Unit = FiledUnits.g_B_m_2, Desc = "Species Biomass", Format = "0.0", SppList=true)]
+        [DataFieldAttribute(Unit = FiledUnits.g_B_m2, Desc = "Species Biomass", Format = "0.0", SppList=true)]
         public double[] SppBiomass_ { set; get; }
 
     }

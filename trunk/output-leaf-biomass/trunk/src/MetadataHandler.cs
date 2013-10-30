@@ -63,7 +63,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     Name = ("Species Biomass Map: " + species.Name),
                     FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Continuous,
-                    Map_Unit = FiledUnits.g_B_m_2
+                    Map_Unit = FiledUnits.g_B_m2
                 };
                 Extension.OutputMetadatas.Add(mapOut_SppBiomass);
             }
@@ -76,7 +76,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     Name = ("Total Biomass Map"),
                     FilePath = @totalBioMapPath,
                     Map_DataType = MapDataType.Continuous,
-                    Map_Unit = FiledUnits.g_B_m_2
+                    Map_Unit = FiledUnits.g_B_m2
             };
             Extension.OutputMetadatas.Add(mapOut_TotalBiomass);
             
