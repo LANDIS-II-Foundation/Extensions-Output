@@ -9,7 +9,7 @@ using Landis.Core;
 
 namespace Landis.Extension.Output.LeafBiomass
 {
-    public static class MetadataHandler
+    public class MetadataHandler
     {
         
         public static ExtensionMetadata Extension {get; set;}
