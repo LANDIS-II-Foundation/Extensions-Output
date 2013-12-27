@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.LeafBiomass
     {
         //log.Write("Time, Ecoregion, NumSites,");
 
-        [DataFieldAttribute(Unit = FiledUnits.Year, Desc = "...")]
+        [DataFieldAttribute(Unit = FiledUnits.Year, Desc = "Simulation Year")]
         public int Time {set; get;}
 
         [DataFieldAttribute(Desc = "Ecoregion Name")]
