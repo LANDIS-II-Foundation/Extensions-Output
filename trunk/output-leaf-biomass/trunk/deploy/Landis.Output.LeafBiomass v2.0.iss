@@ -20,7 +20,8 @@ Source: ..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:
 ; All the example input-files for the in examples
 Source: docs\LANDIS-II Leaf Biomass Output v2.1 User Guide.pdf; DestDir: {#AppDir}\docs
 Source: examples\*.txt; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
-Source: examples\*.gis; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
 Source: examples\*.bat; DestDir: {#AppDir}\examples\leaf-biomass-output; Flags: recursesubdirs
 
 #define BioLeaf "output-leafbiomass-install v2.1.txt"
