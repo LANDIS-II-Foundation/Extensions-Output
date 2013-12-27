@@ -20,7 +20,8 @@ Source: ..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#BuildDir}; Flag
 ; All the example input-files for the in examples
 Source: docs\LANDIS-II Leaf Biomass Reclass Output v1.1 User Guide.pdf; DestDir: {#AppDir}\docs
 Source: examples\*.txt; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
-Source: examples\*.gis; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
 Source: examples\*.bat; DestDir: {#AppDir}\examples\output-leaf-biomass-reclass; Flags: recursesubdirs
 
 #define BioLeaf "Leaf Biomass Reclass v1.0.txt"
