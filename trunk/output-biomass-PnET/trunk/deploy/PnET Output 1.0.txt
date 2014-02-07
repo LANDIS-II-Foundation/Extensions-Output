@@ -1,0 +1,10 @@
+LandisData   Extension
+
+Name         "Output PnET"
+Version      "1"
+Type         output
+Assembly     Landis.Extension.Output.BiomassPnET
+Class        Landis.Extension.Output.BiomassPnET.PlugIn
+Description  "Output PnET"
+UserGuide    "gegdf"
+CoreVersion  6.0
