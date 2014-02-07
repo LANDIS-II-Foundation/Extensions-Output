@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.AgeReclass
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly ExtensionType ExtType = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Age Reclass";
 
         private string mapNameTemplate;
@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.AgeReclass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(ExtensionName, Type)
+            : base(ExtensionName, ExtType)
         {
         }
 
@@ -44,7 +44,7 @@ namespace Landis.Extension.Output.AgeReclass
         {
             modelCore = mCore;
             InputParametersParser parser = new InputParametersParser();
-            parameters = modelCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
 
         //---------------------------------------------------------------------
@@ -73,7 +73,7 @@ namespace Landis.Extension.Output.AgeReclass
                 List<IForestType> forestTypes = map.ForestTypes;
 
                 string path = MapFiles.ReplaceTemplateVars(mapNameTemplate, map.Name, modelCore.CurrentTime);
-                modelCore.Log.WriteLine("   Writing age reclass map {0} to {1} ...", map.Name, path);
+                modelCore.UI.WriteLine("   Writing age reclass map {0} to {1} ...", map.Name, path);
                 using (IOutputRaster<BytePixel> outputRaster = modelCore.CreateRaster<BytePixel>(path, modelCore.Landscape.Dimensions))
                 {
                     BytePixel pixel = outputRaster.BufferPixel;
@@ -104,28 +104,29 @@ namespace Landis.Extension.Output.AgeReclass
                 if (SiteVars.Cohorts[site] != null)
                 {
                     ushort maxSpeciesAge = 0;
-                double sppValue = 0.0;
-                maxSpeciesAge = GetSppMaxAge(site, species);
+                    double sppValue = 0.0;
+                    maxSpeciesAge = GetSppMaxAge(site, species);
 
-                if (maxSpeciesAge > 0)
-                {
-                    sppValue = (double)maxSpeciesAge /
-                        (double)species.Longevity *
-                        (double)reclassCoefs[species.Index];
 
-                    forTypeCnt = 0;
-                    foreach (IForestType ftype in forestTypes)
+                    if (maxSpeciesAge > 0)
                     {
-                        if (ftype[species.Index] != 0)
+                        sppValue = (double)maxSpeciesAge /
+                            (double)species.Longevity *
+                            (double)reclassCoefs[species.Index];
+
+                        forTypeCnt = 0;
+                        foreach (IForestType ftype in forestTypes)
                         {
-                            if (ftype[species.Index] == -1)
-                                forTypValue[forTypeCnt] -= sppValue;
-                            if (ftype[species.Index] == 1)
-                                forTypValue[forTypeCnt] += sppValue;
+                            if (ftype[species.Index] != 0)
+                            {
+                                if (ftype[species.Index] == -1)
+                                    forTypValue[forTypeCnt] -= sppValue;
+                                if (ftype[species.Index] == 1)
+                                    forTypValue[forTypeCnt] += sppValue;
+                            }
+                            forTypeCnt++;
                         }
-                        forTypeCnt++;
                     }
-                }
                 }
             }
 
@@ -135,15 +136,18 @@ namespace Landis.Extension.Output.AgeReclass
             foreach(IForestType ftype in forestTypes)
             {
                 //System.Console.WriteLine("ForestTypeNum={0}, Value={1}.",forTypeCnt,forTypValue[forTypeCnt]);
-                if(forTypValue[forTypeCnt]>maxValue)
+                if(forTypValue[forTypeCnt] > maxValue)
                 {
                     maxValue = forTypValue[forTypeCnt];
                     finalForestType = forTypeCnt+1;
                 }
+                ModelCore.UI.WriteLine("ftype={0}, value={1}.", ftype.Name, forTypValue[forTypeCnt]);
                 forTypeCnt++;
             }
             return (byte) finalForestType;
         }
+
+        //---------------------------------------------------------------------
         public static ushort GetSppMaxAge(Site site, ISpecies spp)
         {
             if (!site.IsActive)
@@ -151,18 +155,20 @@ namespace Landis.Extension.Output.AgeReclass
 
             if (SiteVars.Cohorts[site] == null)
             {
-                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                PlugIn.ModelCore.UI.WriteLine("Cohort are null.");
                 return 0;
             }
             ushort max = 0;
 
             foreach (ISpeciesCohorts sppCohorts in SiteVars.Cohorts[site])
             {
-                if(sppCohorts.Species == spp)
+                if (sppCohorts.Species == spp)
+                {
+                    //ModelCore.UI.WriteLine("cohort spp = {0}, compare species = {1}.", sppCohorts.Species.Name, spp.Name);
                     foreach (ICohort cohort in sppCohorts)
                         if (cohort.Age > max)
                             max = cohort.Age;
-                
+                }
             }
             return max;
         }

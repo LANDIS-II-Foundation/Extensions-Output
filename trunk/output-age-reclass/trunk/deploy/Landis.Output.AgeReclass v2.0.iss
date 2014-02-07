@@ -7,13 +7,18 @@
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6\"
+
 
 [Files]
 
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.AgeReclass.dll; DestDir: {app}\bin; Flags: replacesameversion
-Source: docs\LANDIS-II Age Reclass Output v2.0 User Guide.pdf; DestDir: {app}\docs
-Source: examples\*; DestDir: {app}\examples\age-reclass-output
+Source: ..\src\bin\debug\Landis.Extension.Output.AgeReclass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: docs\LANDIS-II Age Reclass Output v2.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\*.txt; DestDir: {#AppDir}\examples\age-reclass-output
+Source: examples\*.gis; DestDir: {#AppDir}\examples\age-reclass-output
+Source: examples\*.bat; DestDir: {#AppDir}\examples\age-reclass-output
 
 #define AgeReclassOutput "Age Reclass Output 2.0.txt"
 Source: {#AgeReclassOutput}; DestDir: {#LandisPlugInDir}
