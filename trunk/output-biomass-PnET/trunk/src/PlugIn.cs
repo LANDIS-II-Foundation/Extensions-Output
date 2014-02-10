@@ -19,12 +19,16 @@ namespace Landis.Extension.Output.BiomassPnET
         public static readonly ExtensionType Type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output PnET";
 
-        private string selectedPools;
-        private string poolMapNameTemplate;
         private IInputParameters parameters;
         private static ICore modelCore;
-        private bool makeTable;
+        private OverallOutputs overalloutputs;
+        private BiomassPerEcoregion biomassperecoregion;
+       
+        private SpeciesFrequency Establishments;
+        private SpeciesFrequency DeadCohorts;
 
+        private CohortFreq deadcohortfreq;
+        private CohortFreq agecohortfreq;
         //---------------------------------------------------------------------
 
         public PlugIn()
@@ -56,63 +60,59 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             Timestep = parameters.Timestep;
 
-            OutputVariables.Initialize(parameters.SelectedSpecies, parameters);
-
-            this.selectedPools = parameters.SelectedPools;
-            this.poolMapNameTemplate = parameters.PoolMapNames;
-            this.makeTable = parameters.MakeTable;
+            OutputVariables.Initialize(parameters);
 
             SiteVars.Initialize();
-        }
 
-        //---------------------------------------------------------------------
-
-        public override void Run()
-        {
-            OutputVariables.Update();
+            if (parameters.CohortBalanceFileName != null) overalloutputs = new OverallOutputs(parameters.CohortBalanceFileName);
+            if (parameters.BiomassPerEcoregionFileName != null) biomassperecoregion = new BiomassPerEcoregion(parameters.BiomassPerEcoregionFileName);
             
-            WritePoolMaps();
+            if (parameters.SpeciesSpecEstFileName != null) Establishments = new SpeciesFrequency(parameters.SpeciesSpecEstFileName);
+            if (parameters.CohortDeathFreqFileName != null) DeadCohorts = new SpeciesFrequency(parameters.CohortDeathFreqFileName);
 
-        }
-
-        
-        //---------------------------------------------------------------------
-
-        private void WritePoolMaps()
-        {
-            if(selectedPools == "woody" || selectedPools == "both")
-                WritePoolMap("woody", SiteVars.WoodyDebris);
-
-            if(selectedPools == "non-woody" || selectedPools == "both")
-                WritePoolMap("non-woody", SiteVars.Litter);
+            if (parameters.DeathAgeDistributionFileNames!=null) deadcohortfreq = new CohortFreq(parameters.Timestep, parameters.DeathAgeDistributionFileNames);
+            if (parameters.AgeDistributionFileNames != null) agecohortfreq = new CohortFreq(parameters.Timestep, parameters.AgeDistributionFileNames);
         }
 
         //---------------------------------------------------------------------
+        public ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> GetCohortAges()
+        { 
+            ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>  ages = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>();
 
-        private void WritePoolMap(string         poolName,
-                                  ISiteVar<Landis.Extension.Succession.Biomass.Pool> poolSiteVar)
-        {
-            string path = PoolMapNames.ReplaceTemplateVars(poolMapNameTemplate,
-                                                           poolName,
-                                                           PlugIn.ModelCore.CurrentTime);
-            if(poolSiteVar != null)
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
-                Console.WriteLine("   Writing {0} biomass map to {1} ...", poolName, path);
-                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
+                ages[site] = new Succession.Biomass.Species.AuxParm<List<int>>(PlugIn.ModelCore.Species);
+                foreach (ISpecies species in PlugIn.ModelCore.Species)
                 {
-                    IntPixel pixel = outputRaster.BufferPixel;
-                    foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                    {
-                        if (site.IsActive)
-                            pixel.MapCode.Value = (int)((float)poolSiteVar[site].Mass);
-                        else
-                            pixel.MapCode.Value = 0;
+                    ages[site][species] = new List<int>();
+                }
+            }
 
-                        outputRaster.WriteBufferPixel();
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                if (SiteVars.Cohorts[site] == null) continue;
+                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                {
+                    foreach (ICohort cohort in speciesCohorts)
+                    {
+                        ages[site][cohort.Species].Add(cohort.Age);
                     }
                 }
             }
+            return ages;
         }
+        public override void Run()
+        {
+            OutputVariables.Update();
+
+            if (biomassperecoregion != null) biomassperecoregion.Write();
+            if (overalloutputs  != null) OverallOutputs.WriteNrOfCohortsBalance();
+            if (Establishments!=null) Establishments.WriteUpdate(modelCore.CurrentTime, SiteVars.Establishments);
+            if (DeadCohorts != null) DeadCohorts.WriteUpdate(modelCore.CurrentTime, SiteVars.DeadCohorts);
+            if (deadcohortfreq != null) deadcohortfreq.Write(SiteVars.DeadCohortAges);
+            if (agecohortfreq != null) agecohortfreq.Write(GetCohortAges());
+        }
+
         
         
     }

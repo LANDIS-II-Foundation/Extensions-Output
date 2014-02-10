@@ -29,32 +29,58 @@ namespace Landis.Extension.Output.BiomassPnET
 		/// </remarks>
 		IEnumerable<ISpecies> SelectedSpecies
 		{
-			get;set;
+			get;
 		}
 
 		//---------------------------------------------------------------------
-
+        string AgeDistributionFileNames
+        {
+            get;
+        }
+        string CohortBalanceFileName
+        {
+            get;
+        }
+        string BiomassPerEcoregionFileName
+        {
+            get;
+        }  
+        string SpeciesSpecEstFileName
+        {
+            get;
+          
+        }
+        string CohortDeathFreqFileName
+        {
+            get;
+             
+        }
+        string DeathAgeDistributionFileNames
+        {
+            get;
+            set;
+        }
         string SpeciesEstMapNames
         {
-            get;set;
+            get; 
         }
         string WaterMapNameTemplate
         {
-            get;set;
+            get; 
         }
         string AnnualTranspirationMapNames
         {
-            get;set;
+            get; 
         }
 
         string SubCanopyPARMapNames
         {
-            get;set;
+            get; 
         }
         string SpeciesLAIMapNames
         {
             get;
-            set;
+         
         }
 
 		/// <summary>
@@ -65,12 +91,12 @@ namespace Landis.Extension.Output.BiomassPnET
 		/// </remarks>
 		string SpeciesBiomMapNames
 		{
-			get;set;
+			get; 
 		}
 
         string BelowgroundMapNames
 		{
-			get;set;
+			get; 
 		}
 		//---------------------------------------------------------------------
 
@@ -81,9 +107,14 @@ namespace Landis.Extension.Output.BiomassPnET
 		//{
 		//	get;
 		//}
-        string SelectedPools
+        string WoodyDebrisMapNames
         {
-            get;set;
+            get; 
+        }
+        string LitterMapNames
+        {
+            get;
+             
         }
 		//---------------------------------------------------------------------
 

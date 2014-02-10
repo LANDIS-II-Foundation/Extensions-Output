@@ -14,10 +14,16 @@ namespace Landis.Extension.Output.BiomassPnET
     /// </summary>
     public static class SiteVars
     {
+
         private static ISiteVar<Landis.Extension.Succession.Biomass.Pool> woodyDebris;
         private static ISiteVar<Landis.Extension.Succession.Biomass.Pool> litter;
+        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> deadcohorts;
+        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> deadcohortages;
+        
+        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> newcohorts;
+
         private static ISiteVar<ISiteCohorts> cohorts;
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<bool>> establishments;
+        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> establishments;
         
         private static ISiteVar<float> soilwater;
         private static ISiteVar<float> annualtranspiration;
@@ -32,10 +38,13 @@ namespace Landis.Extension.Output.BiomassPnET
         /// </summary>
         public static void Initialize()
         {
+            deadcohorts = PlugIn.ModelCore.GetSiteVar <Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.DeadCohorts");
+            deadcohortages = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>("Succession.DeadCohortAges");
+            newcohorts = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.NewCohorts");
 
             woodyDebris = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Pool>("Succession.WoodyDebris");
             litter = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Pool>("Succession.Litter");
-            establishments = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<bool>>("Succession.Establishments");
+            establishments = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.Establishments");
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohortsPnET");
             
             if (cohorts == null)
@@ -63,6 +72,30 @@ namespace Landis.Extension.Output.BiomassPnET
             }
         }
 
+        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> DeadCohorts
+        {
+            get
+            {
+                return deadcohorts;
+            }
+        }
+
+        
+        
+        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> DeadCohortAges
+        {
+            get
+            {
+                return deadcohortages ;
+            }
+        }
+        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> NewCohorts
+        {
+            get
+            {
+                return newcohorts;
+            }
+        }
         public static ISiteVar<float> SubCanopyPARmax
         {
             get
@@ -91,7 +124,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 return soilwater;
             }
         }
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<bool>> Establishments
+        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> Establishments
         {
             get
             {
@@ -109,7 +142,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 return woodyDebris;
             }
         }
-
+        
         //---------------------------------------------------------------------
         /// <summary>
         /// The dead non-woody pools for the landscape's sites.

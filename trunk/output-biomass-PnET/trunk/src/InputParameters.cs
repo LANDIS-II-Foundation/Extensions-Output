@@ -19,12 +19,21 @@ namespace Landis.Extension.Output.BiomassPnET
         private string speciesLAIMapNames;
         private string speciesEestMapNames;
         private string annualtranspirationmapNames;
+        private string woodydebrismapnames;
+        private string littermapnames;
+        private string agedistributionfilenames;
+        private string speciesspecestfilename;
+        private string cohortdeathfreqfilename;
+        private string deathagedistributionfileNames;
         private string belowgroundmapnames;
         private string subcanopyPARmapnames;
-        private string selectedPools;
         private string poolMapNames;
-        private bool makeTable;
+        private string cohortbalancefilename;
+        private string biomassperecoregionfilename;
 
+        
+        private bool makeTable;
+        string waterMapNameTemplate;
         
         //---------------------------------------------------------------------
 
@@ -40,18 +49,24 @@ namespace Landis.Extension.Output.BiomassPnET
             }
         }
 
-        //---------------------------------------------------------------------
-
-        public string BelowgroundMapNames
+        public string BiomassPerEcoregionFileName
         {
             get {
-                return belowgroundmapnames ;
+                return biomassperecoregionfilename;
             }
             set {
-                belowgroundmapnames = value;
+                biomassperecoregionfilename = value;
             }
         }
-
+        public string CohortBalanceFileName
+        {
+            get {
+                return cohortbalancefilename;
+            }
+            set {
+                cohortbalancefilename = value;
+            }
+        }
         public IEnumerable<ISpecies> SelectedSpecies
         {
             get {
@@ -61,9 +76,87 @@ namespace Landis.Extension.Output.BiomassPnET
                 selectedSpecies = value;
             }
         }
-
-        //---------------------------------------------------------------------
-
+        public string WoodyDebrisMapNames
+        {
+            get
+            {
+                return woodydebrismapnames;
+            }
+            set
+            {
+                woodydebrismapnames = value;
+            }
+        }
+        
+        public string DeathAgeDistributionFileNames
+        {
+            get
+            {
+                return deathagedistributionfileNames;
+            }
+            set
+            {
+                deathagedistributionfileNames = value;
+            }
+        }
+        public string AgeDistributionFileNames
+        {
+            get
+            {
+                return agedistributionfilenames;
+            }
+            set
+            {
+                agedistributionfilenames = value;
+            }
+        }
+        public string SpeciesSpecEstFileName
+        {
+            get
+            {
+                return speciesspecestfilename;
+            }
+            set
+            {
+                speciesspecestfilename = value;
+            }
+        }
+        
+        public string CohortDeathFreqFileName
+        {
+            get
+            {
+                return cohortdeathfreqfilename;
+            }
+            set
+            {
+                cohortdeathfreqfilename = value;
+            }
+        }
+          
+        public string LitterMapNames
+        {
+            get
+            {
+                return littermapnames;
+            }
+            set
+            {
+                littermapnames = value;
+            }
+        }
+        public string BelowgroundMapNames
+        {
+            get
+            {
+                return belowgroundmapnames;
+            }
+            set
+            {
+                belowgroundmapnames = value;
+            }
+        }
+        
         public string AnnualTranspirationMapNames
         {
             get {
@@ -103,7 +196,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 speciesLAIMapNames = value;
             }
         }
-        string waterMapNameTemplate;
+        
         public string WaterMapNameTemplate
         {
             get
@@ -122,25 +215,12 @@ namespace Landis.Extension.Output.BiomassPnET
                 return speciesBiomMapNames;
             }
             set {
-                BiomassPnET.SpeciesMapNames.CheckTemplateVars(value);
+                BiomassPnET.FileNames.CheckTemplateVars(value);
                 speciesBiomMapNames = value;
             }
         }
 
-        //---------------------------------------------------------------------
-
-        public string SelectedPools
-        {
-            get {
-                return selectedPools;
-            }
-            set {
-            	if(value != "woody" && value != "non-woody" && value != "both")
-                	throw new InputValueException(selectedPools, "The dead pools {0} must be either 'woody' or 'non-woody' or 'both'");
-                selectedPools = value;
-            }
-        }
-
+       
         //---------------------------------------------------------------------
 
         public string PoolMapNames
@@ -149,7 +229,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 return poolMapNames;
             }
             set {
-                BiomassPnET.PoolMapNames.CheckTemplateVars(value); //, selectedPools);
+                BiomassPnET.FileNames.CheckTemplateVars(value); //, selectedPools);
                 poolMapNames = value;
             }
         }

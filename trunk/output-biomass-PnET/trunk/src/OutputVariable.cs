@@ -23,9 +23,12 @@ namespace Landis.Extension.Output.BiomassPnET
             if (sitevarmap != null)
             {
                 sitevarmap.WriteMap();
-                sitevarmap.WriteValues();
+                //sitevarmap.WriteValues();
             }
-            if (SpeciesTotals != null) SpeciesTotals.Update();
+            if (SpeciesTotals != null)
+            {
+                SpeciesTotals.Update();
+            }
 
             foreach (ISpecies species in SelectedSpecies)
             {
@@ -40,11 +43,12 @@ namespace Landis.Extension.Output.BiomassPnET
                                 DelegateFunctions.GetValue GetSiteValue, 
                                 DelegateFunctions.GetSpeciesSpecificValue GetSpeciesSpecificValue,
                                 string MapNameTemplate, 
-                                string VarLabel)
+                                string VarLabel,
+                                string units)
         {
-            this.SelectedSpecies = SelectedSpecies;
-            if (getoverallaverage != null && GetAllSpeciesSpecific != null) SpeciesTotals = new MapTotalsFile(GetAllSpeciesSpecific, getoverallaverage, MapNameTemplate);
+            if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps for "+ VarLabel +" no template name available");
 
+            
             foreach (ISpecies species in SelectedSpecies)
             {
                 if (GetSpeciesSpecificValue != null)
@@ -53,9 +57,12 @@ namespace Landis.Extension.Output.BiomassPnET
                     speciesmap[species] = new SpeciesMap(GetSpeciesSpecificValue, species, MapNameTemplate);
                 }
             }
-              
 
-            if (GetSiteValue != null) sitevarmap = new SiteVarMap(GetSiteValue, MapNameTemplate, "TOTAL" + VarLabel);
+            this.SelectedSpecies = SelectedSpecies;
+            if (getoverallaverage != null && GetAllSpeciesSpecific != null) SpeciesTotals = new MapTotalsFile(GetAllSpeciesSpecific, getoverallaverage, MapNameTemplate, units);
+
+
+            if (GetSiteValue != null) sitevarmap = new SiteVarMap(GetSiteValue, MapNameTemplate, VarLabel);
         }
         
     }

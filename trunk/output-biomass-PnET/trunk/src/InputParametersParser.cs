@@ -46,105 +46,148 @@ namespace Landis.Extension.Output.BiomassPnET
             //      Species
             //      MapNames
             InputVar<string> speciesName = new InputVar<string>("Species");
-            InputVar<string> mapNames = new InputVar<string>("MapNames");
+            InputVar<string> biomassMapNames = new InputVar<string>("BiomassMapNames");
             InputVar<string> laiMapNames = new InputVar<string>("LaiMapNames");
             InputVar<string> EstMapNames = new InputVar<string>("EstMapNames");
             InputVar<string> WaterMapNames = new InputVar<string>("WaterMapNames");
             InputVar<string> AnnualTranspirationMapNames = new InputVar<string>("AnnualTranspirationMapNames");
             InputVar<string> SubCanopyPARMapNames = new InputVar<string>("SubCanopyPARMapNames");
             InputVar<string> BelowgroundMapNames = new InputVar<string>("BelowgroundMapNames");
-            
-             
-            const string DeadPoolsName = "DeadPools";
+            InputVar<string> WoodyDebrisMapNames = new InputVar<string>("WoodyDebrisMapNames");
+            InputVar<string> LitterMapNames = new InputVar<string>("LitterMapNames");
+            InputVar<string> AgeDistributionFileNames = new InputVar<string>("AgeDistributionFileNames");
+            InputVar<string> DeathAgeDistributionFileNames = new InputVar<string>("DeathAgeDistributionFileNames");
+            InputVar<string> SpeciesSpecEstFileName = new InputVar<string>("SpeciesSpecEstFileName");
+            InputVar<string> CohortDeathFreqFileName = new InputVar<string>("CohortDeathFreqFileName");
+            InputVar<string> CohortBalanceFilename = new InputVar<string>("CohortBalanceFileName");
+            InputVar<string> BiomassPerEcoregionFileName = new InputVar<string>("BiomassPerEcoregionFileName");
+           
             int lineNumber = LineNumber;
-            bool speciesParmPresent = ReadOptionalVar(speciesName);
-            if (speciesParmPresent) {
-                if (speciesName.Value.Actual == "all") {
-                    parameters.SelectedSpecies = PlugIn.ModelCore.Species;
-                }
-                else {
-                    ISpecies species = GetSpecies(speciesName.Value);
-                    List<ISpecies> selectedSpecies = new List<ISpecies>();
-                    selectedSpecies.Add(species);
-                    parameters.SelectedSpecies = selectedSpecies;
-
-                    Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
-                    lineNumbers[species.Name] = lineNumber;
-
-                    while (! AtEndOfInput && CurrentName != mapNames.Name
-                                          && CurrentName != DeadPoolsName) {
-                        StringReader currentLine = new StringReader(CurrentLine);
-
-                        ReadValue(speciesName, currentLine);
-                        species = GetSpecies(speciesName.Value);
-                        if (lineNumbers.TryGetValue(species.Name, out lineNumber))
-                            throw new InputValueException(speciesName.Value.String,
-                                                          "The species {0} was previously used on line {1}",
-                                                          speciesName.Value.String, lineNumber);
-                        lineNumbers[species.Name] = LineNumber;
-
-                        selectedSpecies.Add(species);
-                        CheckNoDataAfter("the species name", currentLine);
-                        GetNextLine();
-                    }
-                }
-
-                ReadVar(mapNames);
-                parameters.SpeciesBiomMapNames = mapNames.Value;
-
-                ReadVar(laiMapNames);
-                parameters.SpeciesLAIMapNames = laiMapNames.Value;
-
-                ReadVar(EstMapNames);
-                parameters.SpeciesEstMapNames  = EstMapNames.Value;
-
-                ReadVar(WaterMapNames);
-                parameters.WaterMapNameTemplate  = WaterMapNames.Value;
-
-                ReadVar(AnnualTranspirationMapNames);
-                parameters.AnnualTranspirationMapNames = AnnualTranspirationMapNames.Value;
-
-                ReadVar(SubCanopyPARMapNames);
-                parameters.SubCanopyPARMapNames = SubCanopyPARMapNames.Value;
-
-                ReadVar(BelowgroundMapNames);
-                parameters.BelowgroundMapNames = BelowgroundMapNames.Value;
-
-            }
-
-            //  Check for optional pair of parameters for dead pools:
-            //      DeadPools
-            //      MapNames
-            //  Only optional if species parameters are present.
-
-            //InputVar<SelectedDeadPools> deadPools = new InputVar<SelectedDeadPools>(DeadPoolsName,
-            //                                                                        SelectedDeadPoolsUtil.Parse);
-
-            InputVar<string> deadPools = new InputVar<string>("Pool");
-
-            bool deadPoolsPresent;
-            if (speciesParmPresent)
-                deadPoolsPresent = ReadOptionalVar(deadPools);
-            else {
-                ReadVar(deadPools);
-                deadPoolsPresent = true;
-            }
-
-
-
-            if (deadPoolsPresent)
+            ReadVar(speciesName);
+             
+            if (System.String.Compare(speciesName.Value.Actual, "all", System.StringComparison.OrdinalIgnoreCase) == 0) 
             {
-                parameters.SelectedPools = deadPools.Value;
+                parameters.SelectedSpecies = PlugIn.ModelCore.Species;
+            }
+            else if (System.String.Compare(speciesName.Value.Actual, "none", System.StringComparison.OrdinalIgnoreCase) == 0) 
+            {
+                parameters.SelectedSpecies = new List<ISpecies>();
+            }
+            else {
+                ISpecies species = GetSpecies(speciesName.Value);
+                List<ISpecies> selectedSpecies = new List<ISpecies>();
+                selectedSpecies.Add(species);
+                parameters.SelectedSpecies = selectedSpecies;
 
-            	ReadVar(mapNames);
-            	parameters.PoolMapNames = mapNames.Value;
+                Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
+                lineNumbers[species.Name] = lineNumber;
 
-            	CheckNoDataAfter("the " + mapNames.Name + " parameter");
+                while (!AtEndOfInput && CurrentName != biomassMapNames.Name)
+                {
+                    StringReader currentLine = new StringReader(CurrentLine);
+
+                    ReadValue(speciesName, currentLine);
+                    species = GetSpecies(speciesName.Value);
+                    if (lineNumbers.TryGetValue(species.Name, out lineNumber))
+                        throw new InputValueException(speciesName.Value.String,
+                                                      "The species {0} was previously used on line {1}",
+                                                      speciesName.Value.String, lineNumber);
+                    lineNumbers[species.Name] = LineNumber;
+
+                    selectedSpecies.Add(species);
+                    CheckNoDataAfter("the species name", currentLine);
+                    GetNextLine();
+                }
             }
 
-            //Biomass.PoolMapNames.CheckTemplateVars(parameters.PoolMapNames, parameters.SelectedPools);
+            while (!AtEndOfInput)
+            {
+                bool FoundVariable = false;
 
+                if (ReadOptionalVar(biomassMapNames))
+                {
+                    parameters.SpeciesBiomMapNames = biomassMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(laiMapNames))
+                {
+                    parameters.SpeciesLAIMapNames = laiMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(EstMapNames))
+                {
+                    parameters.SpeciesEstMapNames = EstMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(WaterMapNames))
+                {
+                    parameters.WaterMapNameTemplate = WaterMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(AnnualTranspirationMapNames))
+                {
+                    parameters.AnnualTranspirationMapNames = AnnualTranspirationMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(SubCanopyPARMapNames))
+                {
+                    parameters.SubCanopyPARMapNames = SubCanopyPARMapNames.Value;
+                   FoundVariable = true;
+                }
+                if (ReadOptionalVar(BelowgroundMapNames))
+                {
+                    parameters.BelowgroundMapNames = BelowgroundMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(WoodyDebrisMapNames))
+                {
+                    parameters.WoodyDebrisMapNames = WoodyDebrisMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(LitterMapNames))
+                {
+                    parameters.LitterMapNames = LitterMapNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(AgeDistributionFileNames))
+                {
+                    parameters.AgeDistributionFileNames = AgeDistributionFileNames.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(DeathAgeDistributionFileNames))
+                {
+                    parameters.DeathAgeDistributionFileNames = DeathAgeDistributionFileNames.Value;
+                    FoundVariable = true;
+                }
+                 
+                if (ReadOptionalVar(SpeciesSpecEstFileName))
+                {
+                    parameters.SpeciesSpecEstFileName = SpeciesSpecEstFileName.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(CohortDeathFreqFileName))
+                {
+                    parameters.CohortDeathFreqFileName = CohortDeathFreqFileName.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(CohortBalanceFilename))
+                {
+                    parameters.CohortBalanceFileName = CohortBalanceFilename.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(BiomassPerEcoregionFileName))
+                {
+                    parameters.BiomassPerEcoregionFileName = BiomassPerEcoregionFileName.Value;
+                    FoundVariable = true;
+                }
+                   
 
+                if (!FoundVariable)
+                {
+                    throw new System.Exception("Error in Output PnET");
+                }
+            }               
+             
             return parameters; //.GetComplete();
         }
 

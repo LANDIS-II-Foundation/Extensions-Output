@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.BiomassPnET
 
         public string MakeSpeciesMapName(string species)
         {
-            return SpeciesMapNames.ReplaceTemplateVars(MapNameTemplate, species, PlugIn.ModelCore.CurrentTime);
+            return FileNames.ReplaceTemplateVars(MapNameTemplate, species, PlugIn.ModelCore.CurrentTime);
         }
         public float SpeciesBiomass(Site site, ISpecies species, DelegateFunctions.GetSpeciesSpecificValue getvalue)
         {
@@ -50,7 +50,10 @@ namespace Landis.Extension.Output.BiomassPnET
                 IntPixel pixel = outputRaster.BufferPixel;
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
-                    if (site.IsActive) pixel.MapCode.Value = (int) getvalue(species, site);
+                    if (site.IsActive)
+                    {
+                        pixel.MapCode.Value = (int)getvalue(species, site);
+                    }
                     else pixel.MapCode.Value = 0;
                          
                     outputRaster.WriteBufferPixel();

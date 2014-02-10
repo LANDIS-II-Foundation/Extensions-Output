@@ -19,17 +19,18 @@ namespace Landis.Extension.Output.BiomassPnET
         string label;
         public SiteVarMap(DelegateFunctions.GetValue getvalue, string MapNameTemplate, string label)
         {
+            if (MapNameTemplate == null) throw new System.Exception("Cannot initialize maps with label " + MapNameTemplate + "for " + label);
             this.getvalue = getvalue;
             this.MapNameTemplate = MapNameTemplate;
             this.label = label;
         }
         private string MakeMapName(string label)
         {
-            return SpeciesMapNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
+            return FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
         }
         private string MakeValueTableName(string label)
         {
-            return  SpeciesMapNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime).Replace(".img",".txt");
+            return FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime).Replace(".img", ".txt");
         }
         public void WriteValues()
         {

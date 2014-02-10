@@ -66,7 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiomassPerEcoregion.cs" />
+    <Compile Include="CohortFreq.cs" />
     <Compile Include="DelegateFunctions.cs" />
+    <Compile Include="MakeFolders.cs" />
+    <Compile Include="SpeciesFrequency.cs" />
+    <Compile Include="FileProps.cs" />
     <Compile Include="IInputParameters.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,15 +84,21 @@
     <Compile Include="MapTotalsFile.cs" />
     <Compile Include="OutputVariable.cs" />
     <Compile Include="OutputVariables.cs" />
+    <Compile Include="OverallOutputs.cs" />
     <Compile Include="PlugIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PoolMapNames.cs" />
     <Compile Include="SiteVarMap.cs" />
     <Compile Include="SiteVars.cs" />
     <Compile Include="SpeciesMap.cs" />
     <Compile Include="IntPixel.cs" />
-    <Compile Include="SpeciesMapNames.cs" />
+    <Compile Include="FileNames.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\biomass-succession-PnET\biomass-succession-PnET.csproj">
+      <Project>{17896667-BAB5-4F18-9DDF-8761E06C55E0}</Project>
+      <Name>biomass-succession-PnET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -14,6 +14,10 @@ namespace Landis.Extension.Output.BiomassPnET
         static IEnumerable<ISpecies> SelectedSpecies;
 
         public static OutputVariable Biomass;
+        public static OutputVariable NonWoodyDebris;
+        
+        public static OutputVariable WoodyDebris;
+        
         public static OutputVariable BelowGround;
         public static OutputVariable LAI;
         public static OutputVariable SpeciesEstablishment;
@@ -76,6 +80,7 @@ namespace Landis.Extension.Output.BiomassPnET
             Landis.Extension.Succession.Biomass.Species.AuxParm<float> sum = new Landis.Extension.Succession.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
+                if (SiteVars.Cohorts[site] == null) continue;
                 foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
                 {
                    //System.Console.WriteLine("species " + speciesCohorts.Species.Name);
@@ -97,7 +102,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 //System.Console.WriteLine("species " + speciesCohorts.Species.Name);
                 foreach (ISpecies species in PlugIn.ModelCore.Species)
                 {
-                    if (SiteVars.Establishments[site][species] == true)
+                    if (SiteVars.Establishments[site][species] == 1)
                     {
                         est[species]++;
                     }
@@ -106,14 +111,15 @@ namespace Landis.Extension.Output.BiomassPnET
 
             return est;
         }
-        public static int GetSpeciesSpecificPest(ISpecies species, Site site)
+        public static int GetSpeciesSpecificEst(ISpecies species, Site site)
         {
-            if(SiteVars.Establishments[site][species])return 1;
-            else return 0;
+            return SiteVars.Establishments[site][species];
+        
         }
         public static int GetSpeciesSpecificBiomass(ISpecies species, Site site)
         {
             int sum = 0;
+            if (SiteVars.Cohorts[site] == null) return 0;
             foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
             {
                 //System.Console.WriteLine("species " + speciesCohorts.Species.Name);
@@ -138,7 +144,7 @@ namespace Landis.Extension.Output.BiomassPnET
             int est = 0;
             foreach (ISpecies species in SelectedSpecies)
             {
-                if(SiteVars.Establishments[site][species])est ++;
+                est += SiteVars.Establishments[site][species];
             }
             return est;
         }
@@ -181,6 +187,15 @@ namespace Landis.Extension.Output.BiomassPnET
             return SiteVars.SubCanopyPARmax[site];
         }
 
+        public static float GetSiteWoodyDebris(Site site)
+        {
+            return (float)SiteVars.WoodyDebris[site].Mass;
+        }
+        public static float GetSiteLitter(Site site)
+        {
+            return (float)SiteVars.Litter[site].Mass;
+        }
+
         // overall averages for the whole map
         public static float GetWater()
         {
@@ -216,27 +231,29 @@ namespace Landis.Extension.Output.BiomassPnET
         
         public static void Update()
         {
-            BelowGround.Update();
-            Biomass.Update();
-            LAI.Update();
-            SpeciesEstablishment.Update();
-            Water.Update();
-            AnnualTranspiration.Update();
-            SubCanopyPAR.Update();
+            if (BelowGround!= null) BelowGround.Update();
+            if (Biomass != null) Biomass.Update();
+            if (LAI != null) LAI.Update();
+            if (SpeciesEstablishment != null) SpeciesEstablishment.Update();
+            if (Water != null) Water.Update();
+            if (AnnualTranspiration != null) AnnualTranspiration.Update();
+            if (SubCanopyPAR != null) SubCanopyPAR.Update();
+            if (NonWoodyDebris != null) NonWoodyDebris.Update();
+            if (WoodyDebris != null) WoodyDebris.Update();
         }
-        public static void Initialize(IEnumerable<ISpecies> selectedSpecies, IInputParameters parameters)
+        public static void Initialize(IInputParameters parameters)
         {
-            SelectedSpecies = selectedSpecies;
+            SelectedSpecies = parameters.SelectedSpecies;
 
-            BelowGround = new OutputVariable(selectedSpecies, null, GetTotalBelowGroundBiomass, GetSiteBiomass, null, parameters.BelowgroundMapNames, "BelowGround");
-            Biomass = new OutputVariable(selectedSpecies, GetAllSpeciesAverageBiomass, GetTotalBiomass, GetSiteBiomass, GetSpeciesSpecificBiomass, parameters.SpeciesBiomMapNames, "Biomass");
-            LAI = new OutputVariable(selectedSpecies, null, null, GetSiteLAI, null, parameters.SpeciesLAIMapNames, "LAI");
-            SpeciesEstablishment = new OutputVariable(selectedSpecies, GetAllSpeciesPest, null, null, GetSpeciesSpecificPest, parameters.SpeciesEstMapNames, "SEP");
-            Water = new OutputVariable(selectedSpecies, null, null, GetSiteWater, null, parameters.WaterMapNameTemplate, "Water");
-            AnnualTranspiration = new OutputVariable(selectedSpecies, null, null, GetSiteAnnualTranspiration, null, parameters.AnnualTranspirationMapNames, "AnnualTranspiration");
-            SubCanopyPAR = new OutputVariable(selectedSpecies, null, null, GetSiteSubCanopyPAR, null, parameters.SubCanopyPARMapNames, "SubCanopyPAR");
-
-            
+            if (parameters.BelowgroundMapNames != null) BelowGround = new OutputVariable(SelectedSpecies, null, GetTotalBelowGroundBiomass, GetSiteBiomass, null, parameters.BelowgroundMapNames, "BelowGround", "kg/m2");
+            if (parameters.SpeciesBiomMapNames != null) Biomass = new OutputVariable(SelectedSpecies, GetAllSpeciesAverageBiomass, GetTotalBiomass, GetSiteBiomass, GetSpeciesSpecificBiomass, parameters.SpeciesBiomMapNames, "Biomass", "kg/m2");
+            if (parameters.SpeciesLAIMapNames != null) LAI = new OutputVariable(SelectedSpecies, null, null, GetSiteLAI, null, parameters.SpeciesLAIMapNames, "LAI", "m2");
+            if (parameters.SpeciesEstMapNames != null) SpeciesEstablishment = new OutputVariable(SelectedSpecies, GetAllSpeciesPest, null, null, GetSpeciesSpecificEst, parameters.SpeciesEstMapNames, "SEP", "");
+            if (parameters.WaterMapNameTemplate != null) Water = new OutputVariable(SelectedSpecies, null, null, GetSiteWater, null, parameters.WaterMapNameTemplate, "Water", "mm");
+            if (parameters.BelowgroundMapNames != null) AnnualTranspiration = new OutputVariable(SelectedSpecies, null, null, GetSiteAnnualTranspiration, null, parameters.AnnualTranspirationMapNames, "AnnualTranspiration", "mm");
+            if (parameters.SubCanopyPARMapNames != null) SubCanopyPAR = new OutputVariable(SelectedSpecies, null, null, GetSiteSubCanopyPAR, null, parameters.SubCanopyPARMapNames, "SubCanopyPAR", "W/m2");
+            if (parameters.LitterMapNames != null) NonWoodyDebris = new OutputVariable(SelectedSpecies, null, null, GetSiteLitter, null, parameters.LitterMapNames, "Litter", "kg/m2");
+            if (parameters.WoodyDebrisMapNames != null) WoodyDebris = new OutputVariable(SelectedSpecies, null, null, GetSiteWoodyDebris, null, parameters.WoodyDebrisMapNames, "WoodyDebris", "kg/m2");
            
         }
     }

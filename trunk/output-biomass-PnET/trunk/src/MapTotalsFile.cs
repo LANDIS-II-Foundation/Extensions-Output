@@ -21,10 +21,10 @@ namespace Landis.Extension.Output.BiomassPnET
         DelegateFunctions.GetAllSpeciesSpecific getallspeciesspecific;
         DelegateFunctions.GetOverallAverage getoverallaverage;
 
-        private void Initialize()
+        private void Initialize(string units)
         {
-            FileContent.Add("time\ttotal\t");
-            foreach (ISpecies species in PlugIn.ModelCore.Species) FileContent[0] += species.Name + "\t";
+            FileContent.Add("time\ttotal("+units+"\t");
+            foreach (ISpecies species in PlugIn.ModelCore.Species) FileContent[0] += species.Name +"("  + units +")" + "\t";
         }
         public float GetTotal(Landis.Extension.Succession.Biomass.Species.AuxParm<float> Values)
         { 
@@ -53,12 +53,12 @@ namespace Landis.Extension.Output.BiomassPnET
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
         }
 
-        public MapTotalsFile(DelegateFunctions.GetAllSpeciesSpecific getallspeciesspecific, DelegateFunctions.GetOverallAverage getoverallaverage, string MapNameTemplate)
+        public MapTotalsFile(DelegateFunctions.GetAllSpeciesSpecific getallspeciesspecific, DelegateFunctions.GetOverallAverage getoverallaverage, string MapNameTemplate, string units)
         {
-            FileName = SpeciesMapNames.ReplaceTemplateVars(MapNameTemplate,"").Replace(".img",".txt").Replace(".gis",".txt");
+            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate, "").Replace(".img", ".txt").Replace(".gis", ".txt");
             this.getallspeciesspecific = getallspeciesspecific;
             this.getoverallaverage = getoverallaverage;
-            Initialize();
+            Initialize(units);
            
         }
     }
