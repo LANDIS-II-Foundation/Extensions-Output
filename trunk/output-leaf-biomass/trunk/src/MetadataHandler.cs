@@ -41,8 +41,8 @@ namespace Landis.Extension.Output.LeafBiomass
             {
                 Type = OutputType.Table,
                 Name = "SppBiomassLog",
-                FilePath = PlugIn.sppBiomassLog.FilePath//,
-                //MetadataFilePath = @"Base-Wind\EventLog.xml"
+                FilePath = PlugIn.sppBiomassLog.FilePath,
+                Visualize = true
             };
             tblOut_events.RetriveFields(typeof(SppBiomassLog));
             Extension.OutputMetadatas.Add(tblOut_events);
@@ -63,7 +63,8 @@ namespace Landis.Extension.Output.LeafBiomass
                     Name = ("Species Biomass Map: " + species.Name),
                     FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Continuous,
-                    Map_Unit = FiledUnits.g_B_m2
+                    Map_Unit = FieldUnits.g_B_m2,
+                    Visualize = true
                 };
                 Extension.OutputMetadatas.Add(mapOut_SppBiomass);
             }
@@ -72,11 +73,12 @@ namespace Landis.Extension.Output.LeafBiomass
 
             OutputMetadata mapOut_TotalBiomass = new OutputMetadata()
             {
-                    Type = OutputType.Map,
-                    Name = ("Total Biomass Map"),
-                    FilePath = @totalBioMapPath,
-                    Map_DataType = MapDataType.Continuous,
-                    Map_Unit = FiledUnits.g_B_m2
+                Type = OutputType.Map,
+                Name = ("Total Biomass Map"),
+                FilePath = @totalBioMapPath,
+                Map_DataType = MapDataType.Continuous,
+                Map_Unit = FieldUnits.g_B_m2,
+                Visualize = true
             };
             Extension.OutputMetadatas.Add(mapOut_TotalBiomass);
             
