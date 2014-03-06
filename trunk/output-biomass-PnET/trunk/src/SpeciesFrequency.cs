@@ -21,10 +21,10 @@ namespace Landis.Extension.Output.BiomassPnET
             FileContent.Add(hdr);
         }
 
-        private static Landis.Extension.Succession.Biomass.Species.AuxParm<int> SumSiteSpcVar(ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> SiteSpcValue)
+        private static Landis.Library.Biomass.Species.AuxParm<int> SumSiteSpcVar(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> SiteSpcValue)
         {
              
-            Landis.Extension.Succession.Biomass.Species.AuxParm<int> SpcValue = new Succession.Biomass.Species.AuxParm<int>(PlugIn.ModelCore.Species);
+            Landis.Library.Biomass.Species.AuxParm<int> SpcValue = new Library.Biomass.Species.AuxParm<int>(PlugIn.ModelCore.Species);
 
             foreach (ISpecies species in PlugIn.ModelCore.Species)
             {
@@ -40,9 +40,9 @@ namespace Landis.Extension.Output.BiomassPnET
             return SpcValue;
         }
 
-        public void WriteUpdate(int year, ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> Var)
+        public void WriteUpdate(int year, ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Var)
         {
-            Landis.Extension.Succession.Biomass.Species.AuxParm<int> PerSpc = SumSiteSpcVar(Var);
+            Landis.Library.Biomass.Species.AuxParm<int> PerSpc = SumSiteSpcVar(Var);
             string line = year +"\t";
             foreach (ISpecies species in PlugIn.ModelCore.Species) line += PerSpc[species] + "\t";
             line += "\n";

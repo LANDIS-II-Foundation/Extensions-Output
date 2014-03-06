@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.BiomassPnET
     public class OutputVariable
     {
         MapTotalsFile SpeciesTotals = null;
-        Landis.Extension.Succession.Biomass.Species.AuxParm<SpeciesMap> speciesmap=null;
+        Landis.Library.Biomass.Species.AuxParm<SpeciesMap> speciesmap=null;
         SiteVarMap sitevarmap = null;
         IEnumerable<ISpecies> SelectedSpecies;
         
@@ -53,7 +53,7 @@ namespace Landis.Extension.Output.BiomassPnET
             {
                 if (GetSpeciesSpecificValue != null)
                 {
-                    if (speciesmap == null) speciesmap = new Succession.Biomass.Species.AuxParm<SpeciesMap>(PlugIn.ModelCore.Species);
+                    if (speciesmap == null) speciesmap = new Library.Biomass.Species.AuxParm<SpeciesMap> (PlugIn.ModelCore.Species);
                     speciesmap[species] = new SpeciesMap(GetSpeciesSpecificValue, species, MapNameTemplate);
                 }
             }

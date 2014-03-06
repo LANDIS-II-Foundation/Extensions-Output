@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.BiomassPnET
             FileContent.Add("time\ttotal("+units+"\t");
             foreach (ISpecies species in PlugIn.ModelCore.Species) FileContent[0] += species.Name +"("  + units +")" + "\t";
         }
-        public float GetTotal(Landis.Extension.Succession.Biomass.Species.AuxParm<float> Values)
+        public float GetTotal(Landis.Library.Biomass.Species.AuxParm<float> Values)
         { 
             float total =0;
             foreach (ISpecies species in PlugIn.ModelCore.Species)
@@ -37,7 +37,7 @@ namespace Landis.Extension.Output.BiomassPnET
         }
         public void Update()
         {
-            Landis.Extension.Succession.Biomass.Species.AuxParm<float> Values = new Landis.Extension.Succession.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
+            Landis.Library.Biomass.Species.AuxParm<float> Values = new Landis.Library.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
 
             Values = getallspeciesspecific();
 

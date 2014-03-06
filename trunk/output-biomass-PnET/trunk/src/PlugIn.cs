@@ -75,13 +75,13 @@ namespace Landis.Extension.Output.BiomassPnET
         }
 
         //---------------------------------------------------------------------
-        public ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> GetCohortAges()
+        public ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> GetCohortAges()
         { 
-            ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>  ages = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>();
+            ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>>  ages = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>>();
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
-                ages[site] = new Succession.Biomass.Species.AuxParm<List<int>>(PlugIn.ModelCore.Species);
+                ages[site] = new Library.Biomass.Species.AuxParm<List<int>>(PlugIn.ModelCore.Species);
                 foreach (ISpecies species in PlugIn.ModelCore.Species)
                 {
                     ages[site][species] = new List<int>();

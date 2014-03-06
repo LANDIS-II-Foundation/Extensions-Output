@@ -65,19 +65,19 @@ namespace Landis.Extension.Output.BiomassPnET
         }
 
         //----------------------------------
-        public static Landis.Extension.Succession.Biomass.Species.AuxParm<float> GetAllSpeciesAverageBiomass()
+        public static Landis.Library.Biomass.Species.AuxParm<float> GetAllSpeciesAverageBiomass()
         {
-            Landis.Extension.Succession.Biomass.Species.AuxParm<float> sum = GetAllSpeciesBiomass();
-            Landis.Extension.Succession.Biomass.Species.AuxParm<float> average = new Landis.Extension.Succession.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
+            Landis.Library.Biomass.Species.AuxParm<float> sum = GetAllSpeciesBiomass();
+            Landis.Library.Biomass.Species.AuxParm<float> average = new Landis.Library.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
             foreach (ISpecies species in PlugIn.ModelCore.Species)
             { 
                 average[species]= sum[species]/ PlugIn.ModelCore.Landscape.ActiveSiteCount;
             }
             return average;
         }
-        public static Landis.Extension.Succession.Biomass.Species.AuxParm<float> GetAllSpeciesBiomass()
+        public static Landis.Library.Biomass.Species.AuxParm<float> GetAllSpeciesBiomass()
         {
-            Landis.Extension.Succession.Biomass.Species.AuxParm<float> sum = new Landis.Extension.Succession.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
+            Landis.Library.Biomass.Species.AuxParm<float> sum = new Landis.Library.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 if (SiteVars.Cohorts[site] == null) continue;
@@ -93,9 +93,9 @@ namespace Landis.Extension.Output.BiomassPnET
              
             return sum;
         }
-        public static Landis.Extension.Succession.Biomass.Species.AuxParm<float> GetAllSpeciesPest()
+        public static Landis.Library.Biomass.Species.AuxParm<float> GetAllSpeciesPest()
         {
-            Landis.Extension.Succession.Biomass.Species.AuxParm<float> est = new Landis.Extension.Succession.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
+            Landis.Library.Biomass.Species.AuxParm<float> est = new Landis.Library.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
             
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {

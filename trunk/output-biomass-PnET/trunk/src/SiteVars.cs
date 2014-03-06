@@ -15,15 +15,15 @@ namespace Landis.Extension.Output.BiomassPnET
     public static class SiteVars
     {
 
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Pool> woodyDebris;
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Pool> litter;
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> deadcohorts;
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> deadcohortages;
+        private static ISiteVar<Landis.Library.Biomass.Pool> woodyDebris;
+        private static ISiteVar<Landis.Library.Biomass.Pool> litter;
+        private static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> deadcohorts;
+        private static ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> deadcohortages;
         
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> newcohorts;
+        private static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> newcohorts;
 
         private static ISiteVar<ISiteCohorts> cohorts;
-        private static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> establishments;
+        private static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> establishments;
         
         private static ISiteVar<float> soilwater;
         private static ISiteVar<float> annualtranspiration;
@@ -38,13 +38,13 @@ namespace Landis.Extension.Output.BiomassPnET
         /// </summary>
         public static void Initialize()
         {
-            deadcohorts = PlugIn.ModelCore.GetSiteVar <Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.DeadCohorts");
-            deadcohortages = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>>("Succession.DeadCohortAges");
-            newcohorts = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.NewCohorts");
+            deadcohorts = PlugIn.ModelCore.GetSiteVar <Landis.Library.Biomass.Species.AuxParm<int>>("Succession.DeadCohorts");
+            deadcohortages = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>>("Succession.DeadCohortAges");
+            newcohorts = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Species.AuxParm<int>>("Succession.NewCohorts");
 
-            woodyDebris = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Pool>("Succession.WoodyDebris");
-            litter = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Pool>("Succession.Litter");
-            establishments = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>>("Succession.Establishments");
+            woodyDebris = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Pool>("Succession.WoodyDebris");
+            litter = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Pool>("Succession.Litter");
+            establishments = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Species.AuxParm<int>>("Succession.Establishments");
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.BiomassCohortsPnET");
             
             if (cohorts == null)
@@ -72,7 +72,7 @@ namespace Landis.Extension.Output.BiomassPnET
             }
         }
 
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> DeadCohorts
+        public static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> DeadCohorts
         {
             get
             {
@@ -82,14 +82,14 @@ namespace Landis.Extension.Output.BiomassPnET
 
         
         
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> DeadCohortAges
+        public static ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> DeadCohortAges
         {
             get
             {
                 return deadcohortages ;
             }
         }
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> NewCohorts
+        public static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> NewCohorts
         {
             get
             {
@@ -124,7 +124,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 return soilwater;
             }
         }
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<int>> Establishments
+        public static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Establishments
         {
             get
             {
@@ -136,7 +136,7 @@ namespace Landis.Extension.Output.BiomassPnET
         /// <summary>
         /// The intact dead woody pools for the landscape's sites.
         /// </summary>
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Pool> WoodyDebris
+        public static ISiteVar<Landis.Library.Biomass.Pool> WoodyDebris
         {
             get {
                 return woodyDebris;
@@ -147,7 +147,7 @@ namespace Landis.Extension.Output.BiomassPnET
         /// <summary>
         /// The dead non-woody pools for the landscape's sites.
         /// </summary>
-        public static ISiteVar<Landis.Extension.Succession.Biomass.Pool> Litter
+        public static ISiteVar<Landis.Library.Biomass.Pool> Litter
         {
             get {
                 return litter;

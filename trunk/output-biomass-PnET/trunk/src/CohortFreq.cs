@@ -17,7 +17,7 @@ namespace Landis.Extension.Output.BiomassPnET
             this.filenametemplate = filenametemplate;
         }
 
-        private static int MaxAge(ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> variable)
+        private static int MaxAge(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> variable)
         {
             int maxage = int.MinValue;
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
@@ -47,7 +47,7 @@ namespace Landis.Extension.Output.BiomassPnET
             }
             return line;
         }
-        public void Write( ISiteVar<Landis.Extension.Succession.Biomass.Species.AuxParm<List<int>>> variable)
+        public void Write( ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> variable)
         {
             List<string> FileContent = new List<string>();
 

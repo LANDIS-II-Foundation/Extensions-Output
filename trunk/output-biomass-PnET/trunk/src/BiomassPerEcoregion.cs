@@ -31,8 +31,8 @@ namespace Landis.Extension.Output.BiomassPnET
         }
         public void Write()
         {
-            Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> Biomass = GetBiomass();
-            Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> NrOfSites = GetNrOfSites();
+            Landis.Library.Biomass.Ecoregions.AuxParm<float> Biomass = GetBiomass();
+            Landis.Library.Biomass.Ecoregions.AuxParm<float> NrOfSites = GetNrOfSites();
             
             string line= PlugIn.ModelCore.CurrentTime.ToString() +"\t";
             foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
@@ -44,15 +44,15 @@ namespace Landis.Extension.Output.BiomassPnET
 
             System.IO.File.WriteAllLines(FileName,FileContent.ToArray());
         }
-        private static Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> GetNrOfSites()
+        private static Landis.Library.Biomass.Ecoregions.AuxParm<float> GetNrOfSites()
         { 
-            Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> NrOfSites = new Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
+            Landis.Library.Biomass.Ecoregions.AuxParm<float> NrOfSites = new Landis.Library.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)NrOfSites[PlugIn.ModelCore.Ecoregion[site]]++;
             return NrOfSites;
         }
-        private static Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> GetBiomass()
+        private static Landis.Library.Biomass.Ecoregions.AuxParm<float> GetBiomass()
         {
-            Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float> Biomass =  new Landis.Extension.Succession.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
+            Landis.Library.Biomass.Ecoregions.AuxParm<float> Biomass =  new Landis.Library.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                
