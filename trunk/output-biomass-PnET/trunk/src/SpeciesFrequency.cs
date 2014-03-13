@@ -45,8 +45,7 @@ namespace Landis.Extension.Output.BiomassPnET
             Landis.Library.Biomass.Species.AuxParm<int> PerSpc = SumSiteSpcVar(Var);
             string line = year +"\t";
             foreach (ISpecies species in PlugIn.ModelCore.Species) line += PerSpc[species] + "\t";
-            line += "\n";
-
+            
             FileContent.Add(line);
 
 
