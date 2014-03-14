@@ -67,12 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiomassPerEcoregion.cs" />
-    <Compile Include="CohortFreq.cs" />
-    <Compile Include="DelegateFunctions.cs" />
-    <Compile Include="MakeFolders.cs" />
-    <Compile Include="SpeciesFrequency.cs" />
-    <Compile Include="FileProps.cs" />
+    <Compile Include="OutputHistogramCohort.cs" />
+    <Compile Include="OutputFilePerTStepPerSpecies.cs" />
+    <Compile Include="OutputTableSpecies.cs" />
     <Compile Include="IInputParameters.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,16 +79,14 @@
     <Compile Include="InputParametersParser.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MapTotalsFile.cs" />
     <Compile Include="OutputVariable.cs" />
-    <Compile Include="OutputVariables.cs" />
     <Compile Include="OverallOutputs.cs" />
     <Compile Include="PlugIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SiteVarMap.cs" />
+    <Compile Include="OutputMapSiteVar.cs" />
     <Compile Include="SiteVars.cs" />
-    <Compile Include="SpeciesMap.cs" />
+    <Compile Include="OutputMapSpecies.cs" />
     <Compile Include="IntPixel.cs" />
     <Compile Include="FileNames.cs" />
   </ItemGroup>

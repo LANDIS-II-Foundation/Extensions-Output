@@ -13,56 +13,59 @@ namespace Landis.Extension.Output.BiomassPnET
 {
     public class OutputVariable
     {
-        MapTotalsFile SpeciesTotals = null;
-        Landis.Library.Biomass.Species.AuxParm<SpeciesMap> speciesmap=null;
-        SiteVarMap sitevarmap = null;
-        IEnumerable<ISpecies> SelectedSpecies;
+        string MapNameTemplate;
+        string units;
+        OutputFilePerTStepPerSpecies pertstepperspecies;
         
-        public void Update()
+        public void UpdateVariable(ISiteVar<int> values)
         {
-            if (sitevarmap != null)
-            {
-                sitevarmap.WriteMap();
-                //sitevarmap.WriteValues();
-            }
-            if (SpeciesTotals != null)
-            {
-                SpeciesTotals.Update();
-            }
+            // Variable per site (map)
+            new OutputMapSiteVar(MapNameTemplate, values);
+        }
 
-            foreach (ISpecies species in SelectedSpecies)
-            {
-                if (speciesmap!=null) speciesmap[species].WriteMap(species);
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> Values, int NrOfHistogramCohorts)
+        {
+            new OutputHistogramCohort(MapNameTemplate, NrOfHistogramCohorts).Write(Values);
+        }
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, int NrOfHistogramCohorts)
+        {
+            new OutputHistogramCohort(MapNameTemplate, NrOfHistogramCohorts).Write(values);          
+        }
+        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<int> Values_spc, int NrOfHistogramCohorts)
+        {
+            // Histogram (overwritten each time step)
+            new OutputTableSpecies(Values_spc, MapNameTemplate);
+        }
 
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        {
+            // Variable per species and per site (multiple maps)
+            foreach (ISpecies spc in PlugIn.SelectedSpecies)
+            {
+                new OutputMapSpecies(values, spc, MapNameTemplate);
             }
+        }
+        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<int> Values_spc)
+        {
+            // Values per species each time step
+
+            pertstepperspecies.Update(PlugIn.ModelCore.CurrentTime, Values_spc);
+
             
         }
-        public OutputVariable(IEnumerable<ISpecies> SelectedSpecies, 
-                                DelegateFunctions.GetAllSpeciesSpecific GetAllSpeciesSpecific,
-                                DelegateFunctions.GetOverallAverage getoverallaverage, 
-                                DelegateFunctions.GetValue GetSiteValue, 
-                                DelegateFunctions.GetSpeciesSpecificValue GetSpeciesSpecificValue,
-                                string MapNameTemplate, 
-                                string VarLabel,
-                                string units)
+        public OutputVariable(string MapNameTemplate, 
+                              string units)
         {
-            if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps for "+ VarLabel +" no template name available");
+            if (!MapNameTemplate.Contains(".img")) throw new System.Exception("MapNameTemplate " + MapNameTemplate+" does not have an extension '.img'");
+
+            if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps, no template name available");
+            this.MapNameTemplate = MapNameTemplate;
+            
+            this.units = units;
+            pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate);
 
             
-            foreach (ISpecies species in SelectedSpecies)
-            {
-                if (GetSpeciesSpecificValue != null)
-                {
-                    if (speciesmap == null) speciesmap = new Library.Biomass.Species.AuxParm<SpeciesMap> (PlugIn.ModelCore.Species);
-                    speciesmap[species] = new SpeciesMap(GetSpeciesSpecificValue, species, MapNameTemplate);
-                }
-            }
-
-            this.SelectedSpecies = SelectedSpecies;
-            if (getoverallaverage != null && GetAllSpeciesSpecific != null) SpeciesTotals = new MapTotalsFile(GetAllSpeciesSpecific, getoverallaverage, MapNameTemplate, units);
-
-
-            if (GetSiteValue != null) sitevarmap = new SiteVarMap(GetSiteValue, MapNameTemplate, VarLabel);
+           
         }
         
     }

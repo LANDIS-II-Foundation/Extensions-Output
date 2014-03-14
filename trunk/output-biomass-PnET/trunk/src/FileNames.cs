@@ -20,7 +20,41 @@ namespace Landis.Extension.Output.BiomassPnET
         private static IDictionary<string, string> varValues;
 
         //---------------------------------------------------------------------
-
+        public static void MakeFolders(string fn)
+        {
+            string folder = "";
+            while (fn.IndexOf('/') > 0)
+            {
+                string subfolder = "";
+                for (int ch = 0; ch < fn.IndexOf('/') + 1; ch++)
+                {
+                    subfolder += fn[ch];
+                }
+                try
+                {
+                    folder += subfolder;
+                    System.IO.Directory.CreateDirectory(folder);
+                    fn = fn.Replace(subfolder, "");
+                }
+                catch (System.Exception e)
+                {
+                    throw e;
+                }
+            }
+         
+        }
+        public static string MakeValueTableName(string MapNameTemplate, string label)
+        {
+            return FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime).Replace(".img", ".txt");
+        }
+        public static string MakeMapName(string MapNameTemplate)
+        {
+            return ReplaceTemplateVars(MapNameTemplate, PlugIn.ModelCore.CurrentTime);
+        }
+        //public static string MakeMapName(string MapNameTemplate, string label)
+        //{
+        //    return ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
+        //}
         static FileNames()
         {
             knownVars = new Dictionary<string, bool>();
@@ -43,14 +77,36 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             varValues[SpeciesVar] = species;
             varValues[TimestepVar] = "";
-            return OutputPath.ReplaceTemplateVars(template, varValues);
+
+            string fn = OutputPath.ReplaceTemplateVars(template, varValues);
+            MakeFolders(fn);
+            return fn;
+        }
+        public static string OutputHistogramCohortName(string template)
+        {
+            return ReplaceTemplateVars(template, PlugIn.TStep).Replace(".img", "Histogram.txt");
+        }
+        public static string OutputTableSpeciesName(string template)
+        {
+            return ReplaceTemplateVars(template).Replace(".img", ".txt");
+        }
+        public static string ReplaceTemplateVars(string template)
+        {
+            varValues[SpeciesVar] = "";
+            varValues[TimestepVar] = "";
+
+            string fn = OutputPath.ReplaceTemplateVars(template, varValues);
+            MakeFolders(fn);
+            return fn;
         }
         public static string ReplaceTemplateVars(string template,
                                                  int timestep)
         {
             varValues[SpeciesVar] = "";
             varValues[TimestepVar] = timestep.ToString();
-            return OutputPath.ReplaceTemplateVars(template, varValues);
+            string fn = OutputPath.ReplaceTemplateVars(template, varValues);
+            MakeFolders(fn);
+            return fn;
         }
         public static string ReplaceTemplateVars(string template,
                                                  string species,
@@ -58,7 +114,10 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             varValues[SpeciesVar] = species;
             varValues[TimestepVar] = timestep.ToString();
-            return OutputPath.ReplaceTemplateVars(template, varValues);
+
+            string fn = OutputPath.ReplaceTemplateVars(template, varValues);
+            MakeFolders(fn);
+            return fn;
         }
     }
 }

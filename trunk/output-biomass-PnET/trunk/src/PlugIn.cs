@@ -19,16 +19,33 @@ namespace Landis.Extension.Output.BiomassPnET
         public static readonly ExtensionType Type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output PnET";
 
-        private IInputParameters parameters;
-        private static ICore modelCore;
-        private OverallOutputs overalloutputs;
-        private BiomassPerEcoregion biomassperecoregion;
-       
-        private SpeciesFrequency Establishments;
-        private SpeciesFrequency DeadCohorts;
+        private static int tstep;
+        public static int TStep
+        {
+            get
+            {
+                return tstep;
+            }
+        }
+        IInputParameters parameters;
+        static ICore modelCore;
+        static IEnumerable<ISpecies> selectedspecies;
+        static OutputVariable Biomass;
+        static OutputVariable CohortsPerSpc;
+        static OutputVariable NonWoodyDebris;
+        static OutputVariable WoodyDebris;
+        static OutputVariable DeadCohortNumbers;
+        static OutputVariable DeadCohortAges;
+        static OutputVariable AgeDistribution;
+        static OutputVariable BelowGround;
+        static OutputVariable LAI;
+        static OutputVariable SpeciesEstablishment;
+        static OutputVariable Water;
+        static OutputVariable AnnualTranspiration;
+        static OutputVariable SubCanopyPAR;
+        static OverallOutputs overalloutputs;
 
-        private CohortFreq deadcohortfreq;
-        private CohortFreq agecohortfreq;
+       
         //---------------------------------------------------------------------
 
         public PlugIn()
@@ -43,6 +60,13 @@ namespace Landis.Extension.Output.BiomassPnET
             get
             {
                 return modelCore;
+            }
+        }
+        public static IEnumerable<ISpecies> SelectedSpecies
+        {
+            get
+            {
+                return selectedspecies;
             }
         }
         //---------------------------------------------------------------------
@@ -60,60 +84,117 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             Timestep = parameters.Timestep;
 
-            OutputVariables.Initialize(parameters);
-
-            SiteVars.Initialize();
-
-            if (parameters.CohortBalanceFileName != null) overalloutputs = new OverallOutputs(parameters.CohortBalanceFileName);
-            if (parameters.BiomassPerEcoregionFileName != null) biomassperecoregion = new BiomassPerEcoregion(parameters.BiomassPerEcoregionFileName);
+            tstep = parameters.Timestep;
             
-            if (parameters.SpeciesSpecEstFileName != null) Establishments = new SpeciesFrequency(parameters.SpeciesSpecEstFileName);
-            if (parameters.CohortDeathFreqFileName != null) DeadCohorts = new SpeciesFrequency(parameters.CohortDeathFreqFileName);
+            SiteVars.Initialize();
+            
+            selectedspecies = parameters.SelectedSpecies;
 
-            if (parameters.DeathAgeDistributionFileNames!=null) deadcohortfreq = new CohortFreq(parameters.Timestep, parameters.DeathAgeDistributionFileNames);
-            if (parameters.AgeDistributionFileNames != null) agecohortfreq = new CohortFreq(parameters.Timestep, parameters.AgeDistributionFileNames);
+            if (parameters.CohortsPerSpecies != null) CohortsPerSpc = new OutputVariable(parameters.CohortsPerSpecies, "#");
+            if (parameters.SpeciesBiom != null) Biomass = new OutputVariable(parameters.SpeciesBiom, "kg/m2");
+            if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "kg/m2");
+            if (parameters.LeafAreaIndex != null) LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
+            if (parameters.SpeciesEst != null) SpeciesEstablishment = new OutputVariable(parameters.SpeciesEst, "");
+            if (parameters.Water != null) Water = new OutputVariable(parameters.Water, "mm");
+            if (parameters.AnnualTranspiration != null) AnnualTranspiration = new OutputVariable(parameters.AnnualTranspiration,  "mm");
+            if (parameters.SubCanopyPAR != null) SubCanopyPAR = new OutputVariable(parameters.SubCanopyPAR,  "W/m2");
+            if (parameters.Litter != null) NonWoodyDebris = new OutputVariable(parameters.Litter, "kg/m2");
+            if (parameters.WoodyDebris != null) WoodyDebris = new OutputVariable(parameters.WoodyDebris,  "kg/m2");
+            if (parameters.DeadCohortAges != null) DeadCohortAges = new OutputVariable(parameters.DeadCohortAges, "kg/m2");
+            if (parameters.DeadCohortNumbers != null) DeadCohortNumbers = new OutputVariable(parameters.DeadCohortNumbers, "kg/m2");
+            if (parameters.AgeDistribution != null) AgeDistribution = new OutputVariable(parameters.AgeDistribution,"yr");
+            if (parameters.CohortBalance != null) overalloutputs = new OverallOutputs(parameters.CohortBalance);
+            
         }
 
-        //---------------------------------------------------------------------
-        public ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> GetCohortAges()
-        { 
-            ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>>  ages = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>>();
-
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                ages[site] = new Library.Biomass.Species.AuxParm<List<int>>(PlugIn.ModelCore.Species);
-                foreach (ISpecies species in PlugIn.ModelCore.Species)
-                {
-                    ages[site][species] = new List<int>();
-                }
-            }
-
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                if (SiteVars.Cohorts[site] == null) continue;
-                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
-                {
-                    foreach (ICohort cohort in speciesCohorts)
-                    {
-                        ages[site][cohort.Species].Add(cohort.Age);
-                    }
-                }
-            }
-            return ages;
-        }
+       
         public override void Run()
         {
-            OutputVariables.Update();
+         
+            if (BelowGround != null)
+            {
+                // Sum bgb per site 
+                ISiteVar<int> bgb = SiteVars.GetBelowGroundBiomass();
+                BelowGround.UpdateVariable(bgb);
+            }
+            if (LAI != null)
+            {
+                // Total LAI per site 
 
-            if (biomassperecoregion != null) biomassperecoregion.Write();
-            if (overalloutputs  != null) OverallOutputs.WriteNrOfCohortsBalance();
-            if (Establishments!=null) Establishments.WriteUpdate(modelCore.CurrentTime, SiteVars.Establishments);
-            if (DeadCohorts != null) DeadCohorts.WriteUpdate(modelCore.CurrentTime, SiteVars.DeadCohorts);
-            if (deadcohortfreq != null) deadcohortfreq.Write(SiteVars.DeadCohortAges);
-            if (agecohortfreq != null) agecohortfreq.Write(GetCohortAges());
+                LAI.UpdateVariable(SiteVars.FloatToInt(SiteVars.CanopyLAImax));
+            }
+            if (Water != null)
+            {
+                Water.UpdateVariable(SiteVars.FloatToInt(SiteVars.SoilWater));
+            }
+            if (CohortsPerSpc != null)
+            {
+                // Nr of Cohorts per site and per species
+                ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Values = SiteVars.GetNrOfCohorts();
+                CohortsPerSpc.UpdateVariable(Values, SiteVars.GetMaxCohorts());
+
+                // Nr of cohorts per species
+                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(Values);
+                
+                CohortsPerSpc.UpdateVariable(Values_spc);
+            }
+            if (Biomass != null)
+            {
+                ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Values = SiteVars.GetBiomass();
+                Biomass.UpdateVariable(Values);
+
+                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(Values);
+                Biomass.UpdateVariable(Values_spc);
+            }
+            
+            if (SpeciesEstablishment != null)
+            {
+                //SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
+
+                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(SiteVars.Establishments);
+                SpeciesEstablishment.UpdateVariable(Values_spc);
+            }
+            
+            if (AnnualTranspiration != null)
+            {
+                AnnualTranspiration.UpdateVariable(SiteVars.FloatToInt(SiteVars.AnnualTranspiration));
+            }
+            if (SubCanopyPAR != null)
+            {
+                SubCanopyPAR.UpdateVariable(SiteVars.FloatToInt(SiteVars.SubCanopyPARmax));
+            }
+            if (NonWoodyDebris != null)
+            {
+
+                //NonWoodyDebris.UpdateVariable(SiteVars.PoolToInt(SiteVars.WoodyDebris ));
+            }
+            if (WoodyDebris != null)
+            {
+                WoodyDebris.UpdateVariable(SiteVars.PoolToInt(SiteVars.WoodyDebris));
+            }
+            if (DeadCohortAges != null)
+            {
+                DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, 10);
+            }
+            if (DeadCohortNumbers != null)
+            {
+                DeadCohortNumbers.UpdateVariable(SiteVars.DeadCohorts, SiteVars.GetMax(SiteVars.DeadCohorts));
+            }
+            if (AgeDistribution != null)
+            {
+                ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> Values = SiteVars.GetCohortAges();
+                AgeDistribution.UpdateVariable(Values, 10);
+            }
+            if (overalloutputs != null)
+            {
+                OverallOutputs.WriteNrOfCohortsBalance();
+            }
+
+          
         }
 
         
+       
         
     }
 }

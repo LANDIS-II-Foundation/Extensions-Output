@@ -15,25 +15,21 @@ namespace Landis.Extension.Output.BiomassPnET
     {
         private int timestep;
         private IEnumerable<ISpecies> selectedSpecies;
-        private string speciesBiomMapNames;
-        private string speciesLAIMapNames;
-        private string speciesEestMapNames;
-        private string annualtranspirationmapNames;
-        private string woodydebrismapnames;
-        private string littermapnames;
-        private string agedistributionfilenames;
-        private string speciesspecestfilename;
-        private string cohortdeathfreqfilename;
-        private string deathagedistributionfileNames;
-        private string belowgroundmapnames;
-        private string subcanopyPARmapnames;
-        private string poolMapNames;
-        private string cohortbalancefilename;
-        private string biomassperecoregionfilename;
-
-        
-        private bool makeTable;
-        string waterMapNameTemplate;
+        private string speciesBiom;
+        private string leafareaindex;
+        private string speciesEst;
+        private string annualtranspiration;
+        private string woodydebris;
+        private string litter;
+        private string agedistribution;
+        private string deadcohortages;
+        private string deadcohortnumbers;
+        private string belowgroundbiomass;
+        private string subcanopyPAR;
+       
+        private string cohortbalance;
+        private string cohortsperspecies;
+        string water;
         
         //---------------------------------------------------------------------
 
@@ -49,22 +45,23 @@ namespace Landis.Extension.Output.BiomassPnET
             }
         }
 
-        public string BiomassPerEcoregionFileName
+        public string CohortsPerSpecies
         {
             get {
-                return biomassperecoregionfilename;
+                return cohortsperspecies;
             }
             set {
-                biomassperecoregionfilename = value;
+                cohortsperspecies = value;
             }
         }
-        public string CohortBalanceFileName
+        
+        public string CohortBalance
         {
             get {
-                return cohortbalancefilename;
+                return cohortbalance;
             }
             set {
-                cohortbalancefilename = value;
+                cohortbalance = value;
             }
         }
         public IEnumerable<ISpecies> SelectedSpecies
@@ -76,179 +73,150 @@ namespace Landis.Extension.Output.BiomassPnET
                 selectedSpecies = value;
             }
         }
-        public string WoodyDebrisMapNames
+        public string WoodyDebris
         {
             get
             {
-                return woodydebrismapnames;
+                return woodydebris;
             }
             set
             {
-                woodydebrismapnames = value;
+                woodydebris = value;
             }
         }
-        
-        public string DeathAgeDistributionFileNames
+        public string DeadCohortNumbers
         {
             get
             {
-                return deathagedistributionfileNames;
+                return deadcohortnumbers;
             }
             set
             {
-                deathagedistributionfileNames = value;
+                deadcohortnumbers = value;
             }
+
         }
-        public string AgeDistributionFileNames
+        public string DeadCohortAges
         {
             get
             {
-                return agedistributionfilenames;
+                return deadcohortages;
             }
             set
             {
-                agedistributionfilenames = value;
+                deadcohortages = value;
             }
+
         }
-        public string SpeciesSpecEstFileName
+         
+        public string AgeDistribution
         {
             get
             {
-                return speciesspecestfilename;
+                return agedistribution;
             }
             set
             {
-                speciesspecestfilename = value;
+                agedistribution = value;
             }
         }
-        
-        public string CohortDeathFreqFileName
+       
+        public string Litter
         {
             get
             {
-                return cohortdeathfreqfilename;
+                return litter;
             }
             set
             {
-                cohortdeathfreqfilename = value;
+                litter = value;
             }
         }
-          
-        public string LitterMapNames
+        public string BelowgroundBiomass
         {
             get
             {
-                return littermapnames;
+                return belowgroundbiomass;
             }
             set
             {
-                littermapnames = value;
+                belowgroundbiomass = value;
             }
         }
-        public string BelowgroundMapNames
-        {
-            get
-            {
-                return belowgroundmapnames;
-            }
-            set
-            {
-                belowgroundmapnames = value;
-            }
-        }
-        
-        public string AnnualTranspirationMapNames
+
+        public string AnnualTranspiration
         {
             get {
-                return annualtranspirationmapNames;
+                return annualtranspiration;
             }
             set {
-                annualtranspirationmapNames = value;
+                annualtranspiration = value;
             }
         }
-        public string SubCanopyPARMapNames
+        public string SubCanopyPAR
         {
             get {
-                return subcanopyPARmapnames;
+                return subcanopyPAR;
             }
             set {
-                subcanopyPARmapnames = value;
+                subcanopyPAR = value;
             }
         }
 
 
-        public string SpeciesEstMapNames
+        public string SpeciesEst
         {
             get {
-                return speciesEestMapNames;
+                return speciesEst;
             }
             set {
-                speciesEestMapNames = value;
+                speciesEst = value;
             }
         }
-        public string SpeciesLAIMapNames
+        public string LeafAreaIndex
         {
             get {
-                return speciesLAIMapNames;
+                return leafareaindex;
             }
             set {
                 //Biomass.SpeciesMapNames.CheckTemplateVars(value);
-                speciesLAIMapNames = value;
+                leafareaindex = value;
             }
         }
         
-        public string WaterMapNameTemplate
+        public string Water
         {
             get
             {
-                return waterMapNameTemplate;
+                return water;
             }
             set 
             {
-                waterMapNameTemplate = value;
+                water = value;
             }
         }
 
-        public string SpeciesBiomMapNames
+        public string SpeciesBiom
         {
             get {
-                return speciesBiomMapNames;
+                return speciesBiom;
             }
             set {
-                BiomassPnET.FileNames.CheckTemplateVars(value);
-                speciesBiomMapNames = value;
+                FileNames.CheckTemplateVars(value);
+                speciesBiom = value;
             }
         }
 
        
         //---------------------------------------------------------------------
 
-        public string PoolMapNames
-        {
-            get {
-                return poolMapNames;
-            }
-            set {
-                BiomassPnET.FileNames.CheckTemplateVars(value); //, selectedPools);
-                poolMapNames = value;
-            }
-        }
+       
 
         public InputParameters()
         {
         }
         //---------------------------------------------------------------------
 
-        public bool MakeTable
-        {
-            get
-            {
-                return makeTable;
-            }
-            set
-            {
-                makeTable = value;
-            }
-        }
+      
     }
 }

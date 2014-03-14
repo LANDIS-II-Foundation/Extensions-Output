@@ -7,20 +7,37 @@ using Landis.SpatialModeling;
 
 namespace Landis.Extension.Output.BiomassPnET
 {
-    public class SpeciesFrequency
+
+    public class OutputTableSpecies
     {
         List<string> FileContent = new List<string>();
-        string outputfile;
+        string FileName;
 
-        public SpeciesFrequency(string filename)
+        public OutputTableSpecies(Landis.Library.Biomass.Species.AuxParm<int> SpeciesSpecificValues, string MapNameTemplate)
         {
-            outputfile= filename ;
+            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate);
+            FileNames.MakeFolders(FileName);
+
             string hdr = "time\t";
             foreach (ISpecies species in PlugIn.ModelCore.Species) hdr += species.Name + "\t";
 
             FileContent.Add(hdr);
         }
+        public void WriteUpdate(int year, Landis.Library.Biomass.Species.AuxParm<int> values)
+        {
+            string line = year + "\t";
+            foreach (ISpecies species in PlugIn.SelectedSpecies)
+            {
+                line += values[species] + "\t";
+            }
 
+            FileContent.Add(line);
+
+             
+            System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
+
+        }
+        /*
         private static Landis.Library.Biomass.Species.AuxParm<int> SumSiteSpcVar(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> SiteSpcValue)
         {
              
@@ -39,19 +56,7 @@ namespace Landis.Extension.Output.BiomassPnET
             }
             return SpcValue;
         }
-
-        public void WriteUpdate(int year, ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Var)
-        {
-            Landis.Library.Biomass.Species.AuxParm<int> PerSpc = SumSiteSpcVar(Var);
-            string line = year +"\t";
-            foreach (ISpecies species in PlugIn.ModelCore.Species) line += PerSpc[species] + "\t";
-            
-            FileContent.Add(line);
-
-
-            MakeFolders.Make(outputfile);
-            System.IO.File.WriteAllLines(outputfile, FileContent.ToArray());
-
-        }
+        */
+        
     }
 }

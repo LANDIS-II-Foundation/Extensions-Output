@@ -33,101 +33,67 @@ namespace Landis.Extension.Output.BiomassPnET
 		}
 
 		//---------------------------------------------------------------------
-        string AgeDistributionFileNames
+        string AgeDistribution
         {
             get;
         }
-        string CohortBalanceFileName
+        string CohortBalance
         {
             get;
         }
-        string BiomassPerEcoregionFileName
+
+        string DeadCohortNumbers
         {
             get;
-        }  
-        string SpeciesSpecEstFileName
-        {
-            get;
-          
+      
         }
-        string CohortDeathFreqFileName
+        string DeadCohortAges
+        {
+            get;
+      
+        }
+        string SpeciesEst
+        {
+            get; 
+        }
+        string Water
+        {
+            get; 
+        }
+        string AnnualTranspiration
+        {
+            get; 
+        }
+
+        string SubCanopyPAR
+        {
+            get; 
+        }
+        string LeafAreaIndex
+        {
+            get;
+        }
+		string SpeciesBiom
+		{
+			get; 
+		}
+        string CohortsPerSpecies
+        {
+            get;
+        }
+        string BelowgroundBiomass
+		{
+			get; 
+		}
+        string WoodyDebris
+        {
+            get; 
+        }
+        string Litter
         {
             get;
              
         }
-        string DeathAgeDistributionFileNames
-        {
-            get;
-            set;
-        }
-        string SpeciesEstMapNames
-        {
-            get; 
-        }
-        string WaterMapNameTemplate
-        {
-            get; 
-        }
-        string AnnualTranspirationMapNames
-        {
-            get; 
-        }
-
-        string SubCanopyPARMapNames
-        {
-            get; 
-        }
-        string SpeciesLAIMapNames
-        {
-            get;
-         
-        }
-
-		/// <summary>
-		/// Template for the filenames for species biomass maps.
-		/// </summary>
-		/// <remarks>
-		/// null if no species are selected.
-		/// </remarks>
-		string SpeciesBiomMapNames
-		{
-			get; 
-		}
-
-        string BelowgroundMapNames
-		{
-			get; 
-		}
-		//---------------------------------------------------------------------
-
-		/// <summary>
-		/// Dead pools for which biomass maps are generated.
-		/// </summary>
-		//SelectedDeadPools SelectedPools
-		//{
-		//	get;
-		//}
-        string WoodyDebrisMapNames
-        {
-            get; 
-        }
-        string LitterMapNames
-        {
-            get;
-             
-        }
-		//---------------------------------------------------------------------
-
-		/// <summary>
-		/// Template for the filenames for dead-pool biomass maps.
-		/// </summary>
-		/// <remarks>
-		/// null if no pools are selected.
-		/// </remarks>
-		string PoolMapNames
-		{
-			get;
-		}
-        bool MakeTable { get; }
+		
     }
 }

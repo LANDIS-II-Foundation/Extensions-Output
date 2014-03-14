@@ -7,127 +7,33 @@ using System.IO;
 using System;
 namespace Landis.Extension.Output.BiomassPnET
 {
+    
     class OverallOutputs
     {
         static List<string> FileContent = null;
-        private static FileProps f;
         private static string FileName;
 
-        public static double SumSiteVar(ISiteVar<Landis.Library.Biomass.Pool> sitevar)
+        public OverallOutputs(string Template)
         {
-            double total = 0;
+            FileName = FileNames.MakeValueTableName(Template,"Overall"); 
              
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape) total += sitevar[site].Mass;
-             
-            return total;
-        }
-        public static int SumSiteVar(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> sitevar)
-        {
-            int total = 0;
-            foreach (ISpecies species in PlugIn.ModelCore.Species)
-            {
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape) total += sitevar[site][species];
-            }
-            return total;
-        }
-        public static float SumSiteVar(ISiteVar<float> sitevar)
-        {
-            float total = 0;
-             
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape)
-            {
-                float v = sitevar[s];
-                total += v;
-            
-            }
-            return total;
-        }
-        public static int SumSiteVar(ISiteVar<int> sitevar)
-        {
-            int total = 0;
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape)
-            {
-                total += sitevar[s];
-            }
-            return total;
-        }
-        public static float AverageSiteVar(ISiteVar<float> sitevar)
-        {
-            float n = 0;
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape)n++;
-             
-            return SumSiteVar(sitevar) / n;
-        }
-        public static double AverageSiteVar(ISiteVar<Landis.Library.Biomass.Pool> sitevar)
-        {
-            double n = 0;
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape) n++;
-
-            return SumSiteVar(sitevar) / n;
-        }
-
-        public static float AverageB()
-        {
-            float totalB = 0;
-            int n = 0;
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape)
-            {
-                if (SiteVars.Cohorts[s] == null) continue;
-                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[s])
-                {
-                    foreach (ICohort cohort in speciesCohorts)
-                    {
-                        totalB += cohort.Biomass;
-                       
-                    }
-                }
-                n++;
-            }
-            return totalB / (float)n;
-
-
-        }
-        
-        public static int NumberOfCohorts()
-        {
-            int totalCohorts = 0;
-            foreach (ActiveSite s in PlugIn.ModelCore.Landscape)
-            {
-                if (SiteVars.Cohorts[s] == null) continue;
-                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[s])
-                {
-                    foreach (ICohort cohort in speciesCohorts)
-                    {
-                        //System.Console.WriteLine("cohort" + cohort.Species.Name +"\t"+s);
-                        totalCohorts++;
-                    }
-                }
-            }
-            return totalCohorts;
-        }
-        
-        public OverallOutputs(string filename)
-        {
-            FileName = filename;
-            f = new FileProps(FileProps.FileDelimiters.comma);
-
             FileContent = new List<string>();
-            FileContent.Add("Time" + f.Delim + "#Cohorts" + f.Delim + "#DeadCohorts" + f.Delim + "#NewCohorts" + f.Delim + "AverageB(kg/m2)" + f.Delim + "AverageLAI(m2)" + f.Delim + "AverageWater(mm)" + f.Delim + "SubCanopyPAR(W/m2)" + f.Delim + "litter");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "#DeadCohorts" + "\t"+ "#NewCohorts" + "\t"+ "AverageB(kg/m2)" + "\t"+ "AverageLAI(m2)" + "\t"+ "AverageWater(mm)" + "\t"+ "SubCanopyPAR(W/m2)" + "\t"+ "litter");
         }
         public static void WriteNrOfCohortsBalance()
         {
             try
             {
-                int newcohorts = SumSiteVar(SiteVars.NewCohorts);
-                int deadcohorts = SumSiteVar(SiteVars.DeadCohorts);
-                int noc = NumberOfCohorts() + deadcohorts;
-                float B = AverageB();
-                float W = AverageSiteVar(SiteVars.SoilWater);
-                float lai = AverageSiteVar(SiteVars.CanopyLAImax);
-                float scp = AverageSiteVar(SiteVars.SubCanopyPARmax);
-                double litter = AverageSiteVar(SiteVars.Litter);
+                int newcohorts = SiteVars.GetTotal(SiteVars.NewCohorts);
+                int deadcohorts = SiteVars.GetTotal(SiteVars.DeadCohorts);
+                int noc = SiteVars.GetTotal(SiteVars.GetNrOfCohorts()) + deadcohorts;
+                float B = SiteVars.GetAverage(SiteVars.GetBiomass());
+                float W = SiteVars.GetAverage(SiteVars.SoilWater);
+                float lai = SiteVars.GetAverage(SiteVars.CanopyLAImax);
+                float scp = SiteVars.GetAverage(SiteVars.SubCanopyPARmax);
+                double litter = SiteVars.GetAverage(SiteVars.Litter);
 
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + f.Delim + noc + f.Delim + deadcohorts + f.Delim + newcohorts + f.Delim + B + f.Delim + lai + f.Delim + W + f.Delim + scp + f.Delim + litter);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t"+ noc + "\t"+ deadcohorts + "\t"+ newcohorts + "\t"+ B + "\t"+ lai + "\t"+ W + "\t"+ scp + "\t"+ litter);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
@@ -140,4 +46,5 @@ namespace Landis.Extension.Output.BiomassPnET
 
         }
     }
+    
 }

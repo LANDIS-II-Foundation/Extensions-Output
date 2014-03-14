@@ -35,32 +35,27 @@ namespace Landis.Extension.Output.BiomassPnET
             ReadVar(timestep);
             parameters.Timestep = timestep.Value;
 
-            InputVar<bool> makeTable = new InputVar<bool>("MakeTable");
-            if (ReadOptionalVar(makeTable))
-                parameters.MakeTable = makeTable.Value;
-            else
-                parameters.MakeTable = false;
-
+          
 
             //  Check for optional pair of parameters for species:
             //      Species
             //      MapNames
             InputVar<string> speciesName = new InputVar<string>("Species");
-            InputVar<string> biomassMapNames = new InputVar<string>("BiomassMapNames");
-            InputVar<string> laiMapNames = new InputVar<string>("LaiMapNames");
-            InputVar<string> EstMapNames = new InputVar<string>("EstMapNames");
-            InputVar<string> WaterMapNames = new InputVar<string>("WaterMapNames");
-            InputVar<string> AnnualTranspirationMapNames = new InputVar<string>("AnnualTranspirationMapNames");
-            InputVar<string> SubCanopyPARMapNames = new InputVar<string>("SubCanopyPARMapNames");
-            InputVar<string> BelowgroundMapNames = new InputVar<string>("BelowgroundMapNames");
-            InputVar<string> WoodyDebrisMapNames = new InputVar<string>("WoodyDebrisMapNames");
-            InputVar<string> LitterMapNames = new InputVar<string>("LitterMapNames");
-            InputVar<string> AgeDistributionFileNames = new InputVar<string>("AgeDistributionFileNames");
-            InputVar<string> DeathAgeDistributionFileNames = new InputVar<string>("DeathAgeDistributionFileNames");
-            InputVar<string> SpeciesSpecEstFileName = new InputVar<string>("SpeciesSpecEstFileName");
-            InputVar<string> CohortDeathFreqFileName = new InputVar<string>("CohortDeathFreqFileName");
-            InputVar<string> CohortBalanceFilename = new InputVar<string>("CohortBalanceFileName");
-            InputVar<string> BiomassPerEcoregionFileName = new InputVar<string>("BiomassPerEcoregionFileName");
+            InputVar<string> biomass = new InputVar<string>("Biomass");
+            InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
+            InputVar<string> Establishment = new InputVar<string>("Establishment");
+            InputVar<string> Water = new InputVar<string>("Water");
+            InputVar<string> AnnualTranspiration= new InputVar<string>("AnnualTranspiration");
+            InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");
+            InputVar<string> BelowgroundBiomass = new InputVar<string>("BelowgroundBiomass");
+            InputVar<string> CohortsPerSpecies = new InputVar<string>("CohortsPerSpecies");
+            InputVar<string> WoodyDebris = new InputVar<string>("WoodyDebris");
+            InputVar<string> Litter = new InputVar<string>("Litter");
+            InputVar<string> AgeDistribution = new InputVar<string>("AgeDistribution");
+            InputVar<string> DeadCohortAges = new InputVar<string>("DeadCohortAges");
+            InputVar<string> DeadCohortNumbers = new InputVar<string>("DeadCohortNumbers");
+            InputVar<string> CohortBalance = new InputVar<string>("CohortBalance");
+           
            
             int lineNumber = LineNumber;
             ReadVar(speciesName);
@@ -82,7 +77,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
                 lineNumbers[species.Name] = lineNumber;
 
-                while (!AtEndOfInput && CurrentName != biomassMapNames.Name)
+                while (!AtEndOfInput && CurrentName != biomass.Name)
                 {
                     StringReader currentLine = new StringReader(CurrentLine);
 
@@ -104,87 +99,81 @@ namespace Landis.Extension.Output.BiomassPnET
             {
                 bool FoundVariable = false;
 
-                if (ReadOptionalVar(biomassMapNames))
+                if (ReadOptionalVar(biomass))
                 {
-                    parameters.SpeciesBiomMapNames = biomassMapNames.Value;
+                    parameters.SpeciesBiom = biomass.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(laiMapNames))
+                if (ReadOptionalVar(LeafAreaIndex))
                 {
-                    parameters.SpeciesLAIMapNames = laiMapNames.Value;
+                    parameters.LeafAreaIndex = LeafAreaIndex.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(EstMapNames))
+                if (ReadOptionalVar(Establishment))
                 {
-                    parameters.SpeciesEstMapNames = EstMapNames.Value;
+                    parameters.SpeciesEst = Establishment.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(WaterMapNames))
+                if (ReadOptionalVar(Water))
                 {
-                    parameters.WaterMapNameTemplate = WaterMapNames.Value;
+                    parameters.Water = Water.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(AnnualTranspirationMapNames))
+                if (ReadOptionalVar(AnnualTranspiration))
                 {
-                    parameters.AnnualTranspirationMapNames = AnnualTranspirationMapNames.Value;
+                    parameters.AnnualTranspiration = AnnualTranspiration.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(SubCanopyPARMapNames))
+                if (ReadOptionalVar(SubCanopyPAR))
                 {
-                    parameters.SubCanopyPARMapNames = SubCanopyPARMapNames.Value;
+                    parameters.SubCanopyPAR = SubCanopyPAR.Value;
                    FoundVariable = true;
                 }
-                if (ReadOptionalVar(BelowgroundMapNames))
+
+                if (ReadOptionalVar(CohortsPerSpecies))
                 {
-                    parameters.BelowgroundMapNames = BelowgroundMapNames.Value;
+                    parameters.CohortsPerSpecies = CohortsPerSpecies.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(WoodyDebrisMapNames))
+                if (ReadOptionalVar(BelowgroundBiomass))
                 {
-                    parameters.WoodyDebrisMapNames = WoodyDebrisMapNames.Value;
+                    parameters.BelowgroundBiomass = BelowgroundBiomass.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(LitterMapNames))
+                if (ReadOptionalVar(WoodyDebris))
                 {
-                    parameters.LitterMapNames = LitterMapNames.Value;
+                    parameters.WoodyDebris  = WoodyDebris.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(AgeDistributionFileNames))
+                if (ReadOptionalVar(Litter))
                 {
-                    parameters.AgeDistributionFileNames = AgeDistributionFileNames.Value;
+                    parameters.Litter = Litter.Value;
                     FoundVariable = true;
                 }
-                if (ReadOptionalVar(DeathAgeDistributionFileNames))
+                if (ReadOptionalVar(AgeDistribution))
                 {
-                    parameters.DeathAgeDistributionFileNames = DeathAgeDistributionFileNames.Value;
+                    parameters.AgeDistribution = AgeDistribution.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(DeadCohortAges))
+                {
+                    parameters.DeadCohortAges = DeadCohortAges.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(DeadCohortNumbers))
+                {
+                    parameters.DeadCohortNumbers = DeadCohortNumbers.Value;
+                    FoundVariable = true;
+                }
+                if (ReadOptionalVar(CohortBalance))
+                {
+                    parameters.CohortBalance = CohortBalance.Value;
                     FoundVariable = true;
                 }
                  
-                if (ReadOptionalVar(SpeciesSpecEstFileName))
-                {
-                    parameters.SpeciesSpecEstFileName = SpeciesSpecEstFileName.Value;
-                    FoundVariable = true;
-                }
-                if (ReadOptionalVar(CohortDeathFreqFileName))
-                {
-                    parameters.CohortDeathFreqFileName = CohortDeathFreqFileName.Value;
-                    FoundVariable = true;
-                }
-                if (ReadOptionalVar(CohortBalanceFilename))
-                {
-                    parameters.CohortBalanceFileName = CohortBalanceFilename.Value;
-                    FoundVariable = true;
-                }
-                if (ReadOptionalVar(BiomassPerEcoregionFileName))
-                {
-                    parameters.BiomassPerEcoregionFileName = BiomassPerEcoregionFileName.Value;
-                    FoundVariable = true;
-                }
-                   
-
                 if (!FoundVariable)
                 {
-                    throw new System.Exception("Error in Output PnET");
+                    throw new System.Exception("Error in Output PnET cannot assign variable");
                 }
             }               
              
