@@ -179,6 +179,9 @@ namespace Landis.Extension.Output.BiomassPnET
             if (DeadCohortNumbers != null)
             {
                 DeadCohortNumbers.UpdateVariable(SiteVars.DeadCohorts, SiteVars.GetMax(SiteVars.DeadCohorts));
+
+                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(SiteVars.DeadCohorts);
+                DeadCohortNumbers.UpdateVariable(Values_spc);
             }
             if (AgeDistribution != null)
             {

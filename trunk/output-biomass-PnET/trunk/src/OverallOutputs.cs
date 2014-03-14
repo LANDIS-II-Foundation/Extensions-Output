@@ -18,13 +18,14 @@ namespace Landis.Extension.Output.BiomassPnET
             FileName = FileNames.MakeValueTableName(Template,"Overall"); 
              
             FileContent = new List<string>();
-            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "#DeadCohorts" + "\t"+ "#NewCohorts" + "\t"+ "AverageB(kg/m2)" + "\t"+ "AverageLAI(m2)" + "\t"+ "AverageWater(mm)" + "\t"+ "SubCanopyPAR(W/m2)" + "\t"+ "litter");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "#DeadCohorts" + "\t"+ "#NewCohorts" + "\t"+ "combinedcohorts" +"\t"+ "AverageB(kg/m2)" + "\t"+ "AverageLAI(m2)" + "\t"+ "AverageWater(mm)" + "\t"+ "SubCanopyPAR(W/m2)" + "\t"+ "litter");
         }
         public static void WriteNrOfCohortsBalance()
         {
             try
             {
                 int newcohorts = SiteVars.GetTotal(SiteVars.NewCohorts);
+                int combinedcohorts = SiteVars.GetTotal(SiteVars.CombinedCohorts);
                 int deadcohorts = SiteVars.GetTotal(SiteVars.DeadCohorts);
                 int noc = SiteVars.GetTotal(SiteVars.GetNrOfCohorts()) + deadcohorts;
                 float B = SiteVars.GetAverage(SiteVars.GetBiomass());
@@ -33,7 +34,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 float scp = SiteVars.GetAverage(SiteVars.SubCanopyPARmax);
                 double litter = SiteVars.GetAverage(SiteVars.Litter);
 
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t"+ noc + "\t"+ deadcohorts + "\t"+ newcohorts + "\t"+ B + "\t"+ lai + "\t"+ W + "\t"+ scp + "\t"+ litter);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + noc + "\t" + deadcohorts + "\t" + newcohorts + "\t" + combinedcohorts + "\t" + B + "\t" + lai + "\t" + W + "\t" + scp + "\t" + litter);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
