@@ -120,15 +120,10 @@ namespace Landis.Extension.Output.BiomassPnET
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
                 LAI.UpdateVariable(SiteVars.Lai);
-            }
-            if (Water != null)
-            {
-                System.Console.WriteLine("Updating output variable: Water");
-                Water.UpdateVariable(SiteVars.Water);
 
-                //Library.Biomass.Ecoregions.AuxParm<float> AverageWater
-                Water.UpdateVariable(SiteVars.AverageWater);
+                LAI.UpdateVariable(SiteVars.AverageLAIperEcoRegion);
             }
+            
             if (CohortsPerSpc != null)
             {
                 System.Console.WriteLine("Updating output variable: CohortsPerSpc");
@@ -145,13 +140,21 @@ namespace Landis.Extension.Output.BiomassPnET
 
                 Biomass.UpdateVariable(SiteVars.Biomass_spc);
             }
-            
+            if (Water != null)
+            {
+                System.Console.WriteLine("Updating output variable: Water");
+                Water.UpdateVariable(SiteVars.Water);
+
+                Water.UpdateVariable(SiteVars.AverageWaterPerEcoregion);
+            }
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
                 SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
 
                 SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
+
+            
             }
             if (AnnualTranspiration != null)
             {

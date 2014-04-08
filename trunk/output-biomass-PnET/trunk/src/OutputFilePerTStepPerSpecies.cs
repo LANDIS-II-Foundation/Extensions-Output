@@ -39,7 +39,7 @@ namespace Landis.Extension.Output.BiomassPnET
             FileName = FileNames.OutputTableSpeciesName(MapNameTemplate);
             FileNames.MakeFolders(FileName);
             Content = new List<string>();
-            string hdr = "Time" + "\t" + "Sum" + "\t" + "Avg" + "\t";
+            string hdr = "Time" + "\t" + "Sum" + "\t" + "AvgPerSite" + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
                 hdr += spc.Name + "\t";

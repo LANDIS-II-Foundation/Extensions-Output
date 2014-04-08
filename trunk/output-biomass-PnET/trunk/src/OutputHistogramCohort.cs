@@ -78,6 +78,11 @@ namespace Landis.Extension.Output.BiomassPnET
         }
         public void SetCategorieBounds(float[] extremes)
         {
+            if (extremes[0] == extremes[1])
+            {
+                extremes[0] = 0.9F * extremes[0];
+                extremes[1] = 1.1F * extremes[1];
+            }
             float cat_min = extremes[0];
             float cohort_width = CohortWidth(extremes);
             while (cat_min < extremes[1])

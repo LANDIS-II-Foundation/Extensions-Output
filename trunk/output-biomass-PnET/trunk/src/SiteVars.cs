@@ -176,7 +176,34 @@ namespace Landis.Extension.Output.BiomassPnET
                 return annualtranspiration;
             }
         }
-        public static Library.Biomass.Ecoregions.AuxParm<float> AverageWater
+
+
+        public static Library.Biomass.Ecoregions.AuxParm<float> AverageLAIperEcoRegion
+        {
+            get
+            {
+                Library.Biomass.Ecoregions.AuxParm<double> SumLAI = new Library.Biomass.Ecoregions.AuxParm<double>(PlugIn.ModelCore.Ecoregions);
+                Library.Biomass.Ecoregions.AuxParm<float> n = new Library.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
+
+                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                {
+                    SumLAI[PlugIn.ModelCore.Ecoregion[site]] += (double)System.Math.Round(siteconditions[site].CanopyLAImax, 0);
+                    n[PlugIn.ModelCore.Ecoregion[site]]++;
+                }
+
+                Library.Biomass.Ecoregions.AuxParm<float> AverageLAI = new Library.Biomass.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
+
+                foreach (IEcoregion e in PlugIn.ModelCore.Ecoregions)
+                {
+                    AverageLAI[e] = (float)SumLAI[e] / n[e];
+                }
+                return AverageLAI;
+            }
+      
+        
+        
+        }
+        public static Library.Biomass.Ecoregions.AuxParm<float> AverageWaterPerEcoregion
         {
             get
             {
@@ -497,12 +524,12 @@ namespace Landis.Extension.Output.BiomassPnET
                 float n = 0;
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
+                    n++;
                     foreach (ISpeciesCohorts spc in siteconditions[site].Cohorts)
                     {
                         foreach (ICohort cohort in spc)
                         {
                             Cohorts_sum++;
-                            n++;
                         }
                     }
                 }
@@ -510,7 +537,6 @@ namespace Landis.Extension.Output.BiomassPnET
                 return Cohorts_sum / PlugIn.ModelCore.Landscape.ActiveSiteCount;
             }
         }
-        
         public static double Biomass_av
         {
             get
