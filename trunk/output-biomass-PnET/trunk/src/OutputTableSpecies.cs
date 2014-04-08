@@ -13,9 +13,9 @@ namespace Landis.Extension.Output.BiomassPnET
         List<string> FileContent = new List<string>();
         string FileName;
 
-        public OutputTableSpecies(Landis.Library.Biomass.Species.AuxParm<int> SpeciesSpecificValues, string MapNameTemplate)
+        public OutputTableSpecies(string MapNameTemplate)
         {
-            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate);
+            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt").Replace(".gis", ".txt");
             FileNames.MakeFolders(FileName);
 
             string hdr = "time\t";
@@ -37,26 +37,6 @@ namespace Landis.Extension.Output.BiomassPnET
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
 
         }
-        /*
-        private static Landis.Library.Biomass.Species.AuxParm<int> SumSiteSpcVar(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> SiteSpcValue)
-        {
-             
-            Landis.Library.Biomass.Species.AuxParm<int> SpcValue = new Library.Biomass.Species.AuxParm<int>(PlugIn.ModelCore.Species);
-
-            foreach (ISpecies species in PlugIn.ModelCore.Species)
-            {
-                SpcValue[species] = 0;
-            }
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                foreach (ISpecies species in PlugIn.ModelCore.Species) 
-                {
-                    SpcValue[species] += SiteSpcValue[site][species];
-                }
-            }
-            return SpcValue;
-        }
-        */
         
     }
 }

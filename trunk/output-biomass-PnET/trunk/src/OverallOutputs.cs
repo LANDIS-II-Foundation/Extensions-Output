@@ -18,23 +18,13 @@ namespace Landis.Extension.Output.BiomassPnET
             FileName = FileNames.MakeValueTableName(Template,"Overall"); 
              
             FileContent = new List<string>();
-            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "#DeadCohorts" + "\t"+ "#NewCohorts" + "\t"+ "combinedcohorts" +"\t"+ "AverageB(kg/m2)" + "\t"+ "AverageLAI(m2)" + "\t"+ "AverageWater(mm)" + "\t"+ "SubCanopyPAR(W/m2)" + "\t"+ "litter");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" +  "AverageAge"  +"\t" + "#DeadCohorts" + "\t" + "#NewCohorts" + "\t" +  "AverageB(kg/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "LAI/B(m2/kg)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "litter");
         }
         public static void WriteNrOfCohortsBalance()
         {
             try
             {
-                int newcohorts = SiteVars.GetTotal(SiteVars.NewCohorts);
-                int combinedcohorts = SiteVars.GetTotal(SiteVars.CombinedCohorts);
-                int deadcohorts = SiteVars.GetTotal(SiteVars.DeadCohorts);
-                int noc = SiteVars.GetTotal(SiteVars.GetNrOfCohorts()) + deadcohorts;
-                float B = SiteVars.GetAverage(SiteVars.GetBiomass());
-                float W = SiteVars.GetAverage(SiteVars.SoilWater);
-                float lai = SiteVars.GetAverage(SiteVars.CanopyLAImax);
-                float scp = SiteVars.GetAverage(SiteVars.SubCanopyPARmax);
-                double litter = SiteVars.GetAverage(SiteVars.Litter);
-
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + noc + "\t" + deadcohorts + "\t" + newcohorts + "\t" + combinedcohorts + "\t" + B + "\t" + lai + "\t" + W + "\t" + scp + "\t" + litter);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + Math.Round(SiteVars.CohortAge_av,1) + "\t" + SiteVars.Deadcohorts_sum + "\t" + SiteVars.NewCohorts_sum + "\t" +   Math.Round(SiteVars.Biomass_av, 1) + "\t" + SiteVars.Lai_av + "\t" + System.Math.Round(SiteVars.Lai_av / (0.001 * SiteVars.Biomass_av), 2) + "\t" + SiteVars.Water_av + "\t" + SiteVars.Subcanopypar_av + "\t" + SiteVars.LitterAv);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  

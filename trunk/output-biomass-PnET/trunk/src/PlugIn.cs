@@ -30,20 +30,20 @@ namespace Landis.Extension.Output.BiomassPnET
         IInputParameters parameters;
         static ICore modelCore;
         static IEnumerable<ISpecies> selectedspecies;
-        static OutputVariable Biomass;
-        static OutputVariable CohortsPerSpc;
-        static OutputVariable NonWoodyDebris;
-        static OutputVariable WoodyDebris;
-        static OutputVariable DeadCohortNumbers;
-        static OutputVariable DeadCohortAges;
-        static OutputVariable AgeDistribution;
-        static OutputVariable BelowGround;
-        static OutputVariable LAI;
-        static OutputVariable SpeciesEstablishment;
-        static OutputVariable Water;
-        static OutputVariable AnnualTranspiration;
-        static OutputVariable SubCanopyPAR;
-        static OverallOutputs overalloutputs;
+        static  OutputVariable Biomass;
+        static  OutputVariable CohortsPerSpc;
+        static  OutputVariable NonWoodyDebris;
+        static  OutputVariable WoodyDebris;
+        static  OutputVariable DeadCohortNumbers;
+        static  OutputVariable DeadCohortAges;
+        static  OutputVariable AgeDistribution;
+        static  OutputVariable BelowGround;
+        static  OutputVariable LAI;
+        static  OutputVariable SpeciesEstablishment;
+        static  OutputVariable Water;
+        static  OutputVariable AnnualTranspiration;
+        static  OutputVariable SubCanopyPAR;
+        static  OverallOutputs overalloutputs;
 
        
         //---------------------------------------------------------------------
@@ -110,86 +110,90 @@ namespace Landis.Extension.Output.BiomassPnET
        
         public override void Run()
         {
-         
             if (BelowGround != null)
             {
-                // Sum bgb per site 
-                ISiteVar<int> bgb = SiteVars.GetBelowGroundBiomass();
-                BelowGround.UpdateVariable(bgb);
+                System.Console.WriteLine("Updating output variable: BelowGround");
+                BelowGround.UpdateVariable(SiteVars.BelowGroundBiomass);
             }
             if (LAI != null)
             {
+                System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
-
-                LAI.UpdateVariable(SiteVars.FloatToInt(SiteVars.CanopyLAImax));
+                LAI.UpdateVariable(SiteVars.Lai);
             }
             if (Water != null)
             {
-                Water.UpdateVariable(SiteVars.FloatToInt(SiteVars.SoilWater));
+                System.Console.WriteLine("Updating output variable: Water");
+                Water.UpdateVariable(SiteVars.Water);
+
+                //Library.Biomass.Ecoregions.AuxParm<float> AverageWater
+                Water.UpdateVariable(SiteVars.AverageWater);
             }
             if (CohortsPerSpc != null)
             {
+                System.Console.WriteLine("Updating output variable: CohortsPerSpc");
                 // Nr of Cohorts per site and per species
-                ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Values = SiteVars.GetNrOfCohorts();
-                CohortsPerSpc.UpdateVariable(Values, SiteVars.GetMaxCohorts());
+                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, 10);
 
                 // Nr of cohorts per species
-                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(Values);
-                
-                CohortsPerSpc.UpdateVariable(Values_spc);
+                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg , 0));
             }
             if (Biomass != null)
             {
-                ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Values = SiteVars.GetBiomass();
-                Biomass.UpdateVariable(Values);
+                System.Console.WriteLine("Updating output variable: Biomass");
+                Biomass.UpdateVariable(SiteVars.Biomass);
 
-                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(Values);
-                Biomass.UpdateVariable(Values_spc);
+                Biomass.UpdateVariable(SiteVars.Biomass_spc);
             }
             
             if (SpeciesEstablishment != null)
             {
-                //SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
+                System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
+                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
 
-                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(SiteVars.Establishments);
-                SpeciesEstablishment.UpdateVariable(Values_spc);
+                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
             }
-            
             if (AnnualTranspiration != null)
             {
-                AnnualTranspiration.UpdateVariable(SiteVars.FloatToInt(SiteVars.AnnualTranspiration));
+                System.Console.WriteLine("Updating output variable: AnnualTranspiration");
+                 AnnualTranspiration.UpdateVariable(SiteVars.AnnualTranspiration);
             }
             if (SubCanopyPAR != null)
             {
-                SubCanopyPAR.UpdateVariable(SiteVars.FloatToInt(SiteVars.SubCanopyPARmax));
+                System.Console.WriteLine("Updating output variable: SubCanopyPAR");
+                SubCanopyPAR.UpdateVariable(SiteVars.SubCanopyPARmax);
             }
             if (NonWoodyDebris != null)
             {
-
-                //NonWoodyDebris.UpdateVariable(SiteVars.PoolToInt(SiteVars.WoodyDebris ));
+                System.Console.WriteLine("Updating output variable: NonWoodyDebris");
+                NonWoodyDebris.UpdateVariable(SiteVars.Litter);
             }
             if (WoodyDebris != null)
             {
-                WoodyDebris.UpdateVariable(SiteVars.PoolToInt(SiteVars.WoodyDebris));
+                System.Console.WriteLine("Updating output variable: WoodyDebris");
+                WoodyDebris.UpdateVariable(SiteVars.WoodyDebris);
             }
             if (DeadCohortAges != null)
             {
+                System.Console.WriteLine("Updating output variable: DeadCohortAges");
                 DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, 10);
             }
             if (DeadCohortNumbers != null)
             {
-                DeadCohortNumbers.UpdateVariable(SiteVars.DeadCohorts, SiteVars.GetMax(SiteVars.DeadCohorts));
-
-                Landis.Library.Biomass.Species.AuxParm<int> Values_spc = SiteVars.SpeciesPerSiteToSpecies(SiteVars.DeadCohorts);
-                DeadCohortNumbers.UpdateVariable(Values_spc);
+                System.Console.WriteLine("Updating output variable: DeadCohortNumbers");
+                DeadCohortNumbers.UpdateVariable(SiteVars.Deadcohorts_spc);
             }
             if (AgeDistribution != null)
             {
-                ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> Values = SiteVars.GetCohortAges();
-                AgeDistribution.UpdateVariable(Values, 10);
+                System.Console.WriteLine("Updating output variable: AgeDistribution");
+                AgeDistribution.UpdateVariable(SiteVars.CohortAges, 10);
+
+                System.Console.WriteLine("Updating output variable: MaxAges");
+                AgeDistribution.UpdateVariable(SiteVars.MaxAges);
             }
             if (overalloutputs != null)
             {
+                System.Console.WriteLine("Updating output variable: overalloutputs");
                 OverallOutputs.WriteNrOfCohortsBalance();
             }
 

@@ -95,10 +95,13 @@ namespace Landis.Extension.Output.BiomassPnET
                 }
             }
 
+            //System.Console.WriteLine("ASSIGNING KEYWORDS OUTPUT MODULE");
+
             while (!AtEndOfInput)
             {
                 bool FoundVariable = false;
 
+                
                 if (ReadOptionalVar(biomass))
                 {
                     parameters.SpeciesBiom = biomass.Value;
@@ -170,13 +173,17 @@ namespace Landis.Extension.Output.BiomassPnET
                     parameters.CohortBalance = CohortBalance.Value;
                     FoundVariable = true;
                 }
-                 
+
+                //System.Console.WriteLine("SUCCESSFULLY ASSIGNED KEYWORD OUTPUT MODULE:" + new StringReader(CurrentLine).ReadToEnd());
+
+
                 if (!FoundVariable)
                 {
-                    throw new System.Exception("Error in Output PnET cannot assign variable");
+                    throw new System.Exception("Error in Output PnET cannot assign variable" + new StringReader(CurrentLine).ReadToEnd());
                 }
-            }               
-             
+
+            }
+            //System.Console.WriteLine("READY ASSIGNING KEYWORDS OUTPUT MODULE");
             return parameters; //.GetComplete();
         }
 

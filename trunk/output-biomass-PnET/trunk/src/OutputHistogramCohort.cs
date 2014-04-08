@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.BiomassPnET
         List<float> running_cat_min = new List<float>();
         List<float> running_cat_max = new List<float>();
         List<int> cat_count = new List<int>();
-
+        List<int> cat_count_tot = new List<int>();
         public OutputHistogramCohort(string filenametemplate, int NrOfCohorts)
         {
             FileContent = new List<string>();
@@ -23,7 +23,7 @@ namespace Landis.Extension.Output.BiomassPnET
             FileName = FileNames.OutputHistogramCohortName(filenametemplate);
         }
 
-        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
+        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> values)
         {
             float[] extremes = new float[2];
             extremes[0] = float.MaxValue;
@@ -33,6 +33,7 @@ namespace Landis.Extension.Output.BiomassPnET
             {
                 foreach(ISpecies spc in PlugIn.ModelCore.Species)
                 {
+                    if (values[site][spc] == null) continue;
                     foreach (int var in values[site][spc])
                     {
                         if (var > extremes[1]) extremes[1] = var;
@@ -84,10 +85,11 @@ namespace Landis.Extension.Output.BiomassPnET
                 running_cat_min.Add(cat_min);
                 running_cat_max.Add(cat_min + cohort_width);
                 cat_count.Add(0);
+                cat_count_tot.Add(0);
                 cat_min += cohort_width;
             }
         }
-        public void Write(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> values)
         {
             float[] extremes = Extremes(values);
 
@@ -100,15 +102,16 @@ namespace Landis.Extension.Output.BiomassPnET
                 string line = species.Name + "\t";
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    List<int> lvar = values[site][species];
+                    if (values[site][species] == null) continue;
 
                     for (int c = 0; c < running_cat_max.Count; c++)
                     {
-                        foreach (int var in lvar)
+                        foreach (int var in values[site][species])
                         {
-                            if (var >= running_cat_min[c] && var < running_cat_max[c])
+                            if (var >= running_cat_min[c] && var < running_cat_max[c] || (var == running_cat_min[c] && var == running_cat_max[c]))
                             {
                                 cat_count[c]++;
+                                cat_count_tot[c]++;
                             }
                         }
                     }
@@ -122,18 +125,25 @@ namespace Landis.Extension.Output.BiomassPnET
 
                 FileContent.Add(line);
             }
+            string linetot = "Total\t";
+            for (int c = 0; c < cat_count.Count(); c++)
+            {
+                linetot += cat_count_tot[c].ToString() + "\t";
+                cat_count[c] = 0;
+            }
+            FileContent.Add(linetot);
+
+
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
         
         }
-        public void Write(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
         {
             float[] extremes = Extremes(values);
 
             SetCategorieBounds(extremes);
 
             FileContent.Add(hdr());
-
-            
 
             foreach (ISpecies species in PlugIn.ModelCore.Species)  
             {

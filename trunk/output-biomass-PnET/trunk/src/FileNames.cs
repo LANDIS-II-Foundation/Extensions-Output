@@ -84,7 +84,7 @@ namespace Landis.Extension.Output.BiomassPnET
         }
         public static string OutputHistogramCohortName(string template)
         {
-            return ReplaceTemplateVars(template, PlugIn.TStep).Replace(".img", "Histogram.txt");
+            return ReplaceTemplateVars(template, PlugIn.ModelCore.CurrentTime).Replace(".img", "Histogram.txt");
         }
         public static string OutputTableSpeciesName(string template)
         {

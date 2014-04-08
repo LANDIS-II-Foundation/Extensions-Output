@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="OutputHistogramCohort.cs" />
     <Compile Include="OutputFilePerTStepPerSpecies.cs" />
+    <Compile Include="OutputTableEcoregions.cs" />
     <Compile Include="OutputTableSpecies.cs" />
     <Compile Include="IInputParameters.cs">
       <SubType>Code</SubType>
