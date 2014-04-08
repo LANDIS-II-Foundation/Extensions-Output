@@ -16,11 +16,13 @@ namespace Landis.Extension.Output.BiomassPnET
         List<float> running_cat_max = new List<float>();
         List<int> cat_count = new List<int>();
         List<int> cat_count_tot = new List<int>();
-        public OutputHistogramCohort(string filenametemplate, int NrOfCohorts)
+        string label;
+        public OutputHistogramCohort(string filenametemplate, string label, int NrOfCohorts)
         {
             FileContent = new List<string>();
             this.NrOfCohorts = NrOfCohorts;
             FileName = FileNames.OutputHistogramCohortName(filenametemplate);
+            this.label = label;
         }
 
         private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> values)
@@ -66,9 +68,9 @@ namespace Landis.Extension.Output.BiomassPnET
             float cohort_width = 1F / (float)NrOfCohorts * (extremes[1] - extremes[0]);
             return cohort_width;
         }
-        private string hdr()
+        private string hdr(string HdrExplanation)
         {
-            string line="Species\t";
+            string line= HdrExplanation + "\t";
             for (int f = 0; f < running_cat_min.Count;f++ )
             {
                 line += "[" + running_cat_min[f] + "_" + running_cat_max[f] + "]\t";
@@ -100,8 +102,10 @@ namespace Landis.Extension.Output.BiomassPnET
 
             SetCategorieBounds(extremes);
 
-            FileContent.Add(hdr());
+            FileContent.Add(hdr(label));
 
+            if (cat_count_tot.Count() == 0)return;
+             
             foreach (ISpecies species in PlugIn.ModelCore.Species)
             {
                 string line = species.Name + "\t";
@@ -148,7 +152,10 @@ namespace Landis.Extension.Output.BiomassPnET
 
             SetCategorieBounds(extremes);
 
-            FileContent.Add(hdr());
+            if (cat_count_tot.Count() == 0) return;
+          
+
+            FileContent.Add(hdr(label));
 
             foreach (ISpecies species in PlugIn.ModelCore.Species)  
             {

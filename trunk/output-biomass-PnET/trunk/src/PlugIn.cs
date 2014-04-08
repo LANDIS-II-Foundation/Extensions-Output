@@ -128,7 +128,7 @@ namespace Landis.Extension.Output.BiomassPnET
             {
                 System.Console.WriteLine("Updating output variable: CohortsPerSpc");
                 // Nr of Cohorts per site and per species
-                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, 10);
+                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
 
                 // Nr of cohorts per species
                 CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg , 0));
@@ -179,7 +179,7 @@ namespace Landis.Extension.Output.BiomassPnET
             if (DeadCohortAges != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortAges");
-                DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, 10);
+                DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, "NrOfCohortsThatDiedAtAge"   , 10);
             }
             if (DeadCohortNumbers != null)
             {
@@ -189,7 +189,7 @@ namespace Landis.Extension.Output.BiomassPnET
             if (AgeDistribution != null)
             {
                 System.Console.WriteLine("Updating output variable: AgeDistribution");
-                AgeDistribution.UpdateVariable(SiteVars.CohortAges, 10);
+                AgeDistribution.UpdateVariable(SiteVars.CohortAges, "NrOfCohortsAtAge", 10);
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
                 AgeDistribution.UpdateVariable(SiteVars.MaxAges);

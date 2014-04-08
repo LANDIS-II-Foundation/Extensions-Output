@@ -25,13 +25,13 @@ namespace Landis.Extension.Output.BiomassPnET
             new OutputMapSiteVar(MapNameTemplate, values);
         }
 
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> Values, int NrOfHistogramCohorts)
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> Values, string label, int NrOfHistogramCohorts)
         {
-            new OutputHistogramCohort(MapNameTemplate, NrOfHistogramCohorts).WriteOutputHist(Values);
+            new OutputHistogramCohort(MapNameTemplate, label, NrOfHistogramCohorts).WriteOutputHist(Values);
         }
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, int NrOfHistogramCohorts)
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
         {
-            new OutputHistogramCohort(MapNameTemplate, NrOfHistogramCohorts).WriteOutputHist(values);          
+            new OutputHistogramCohort(MapNameTemplate, label,  NrOfHistogramCohorts).WriteOutputHist(values);          
         }
         public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<int> Values_spc)
         {
