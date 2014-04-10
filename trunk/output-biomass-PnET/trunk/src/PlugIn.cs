@@ -138,7 +138,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 System.Console.WriteLine("Updating output variable: Biomass");
                 Biomass.UpdateVariable(SiteVars.Biomass);
 
-                Biomass.UpdateVariable(SiteVars.Biomass_spc);
+                Biomass.UpdateVariable(SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
             }
             if (Water != null)
             {

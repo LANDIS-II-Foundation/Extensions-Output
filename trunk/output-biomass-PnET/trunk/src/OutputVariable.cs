@@ -46,11 +46,11 @@ namespace Landis.Extension.Output.BiomassPnET
                 new OutputMapSpecies(values, spc, MapNameTemplate);
             }
         }
-        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<float> Values_spc)
+        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<float> Values_spc, double sum, float avg)
         {
             // Values per species each time step
 
-            pertstepperspecies.Update(PlugIn.ModelCore.CurrentTime, Values_spc);
+            pertstepperspecies.Update(PlugIn.ModelCore.CurrentTime, Values_spc, sum, avg);
 
             
         }
@@ -80,7 +80,7 @@ namespace Landis.Extension.Output.BiomassPnET
             this.MapNameTemplate = MapNameTemplate;
             
             this.units = units;
-            pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate);
+            pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate, units);
 
             outputtable = new OutputTableSpecies(MapNameTemplate);
 

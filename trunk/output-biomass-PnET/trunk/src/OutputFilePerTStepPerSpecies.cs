@@ -14,9 +14,9 @@ namespace Landis.Extension.Output.BiomassPnET
     {
         string FileName;
         List<string> Content;
-        public void Update(int TStep, Landis.Library.Biomass.Species.AuxParm<float> Values_spc)
+        public void Update(int TStep, Landis.Library.Biomass.Species.AuxParm<float> Values_spc, double sum, float avg)
         {
-            string line = TStep + "\t" + SiteVars.Biomass_sum + "\t" + SiteVars.Biomass_av + "\t";
+            string line = TStep + "\t" + sum + "\t" + avg + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
                 line += Values_spc[spc] + "\t";
@@ -34,12 +34,12 @@ namespace Landis.Extension.Output.BiomassPnET
             Content.Add(line);
             System.IO.File.WriteAllLines(FileName, Content.ToArray());
         }
-        public OutputFilePerTStepPerSpecies(string MapNameTemplate)
+        public OutputFilePerTStepPerSpecies(string MapNameTemplate, string units)
         {
             FileName = FileNames.OutputTableSpeciesName(MapNameTemplate);
             FileNames.MakeFolders(FileName);
             Content = new List<string>();
-            string hdr = "Time" + "\t" + "Sum" + "\t" + "AvgPerSite" + "\t";
+            string hdr = "Time" + "\t" + "Sum" + '(' + units + ')' + "\t" + "AvgPerSite" + '(' + units + ')' + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
                 hdr += spc.Name + "\t";

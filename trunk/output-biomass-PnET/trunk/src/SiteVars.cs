@@ -541,7 +541,7 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             get
             {
-                float n = 0;
+                // Average total biomass (kg/m2) in the landscape
                 double biomass_sum =0;
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
@@ -550,17 +550,18 @@ namespace Landis.Extension.Output.BiomassPnET
                         foreach (ICohort cohort in spc)
                         {
                             biomass_sum += cohort.Biomass;
-                            n++;
+                             
                         }
                     }
                 }
-                return biomass_sum / n;
+                return biomass_sum / (float) PlugIn.ModelCore.Landscape.ActiveSiteCount;
             }
         }
         public static double Biomass_sum
         {
             get
             {
+                // total biomass in the landscape
                 double biomass_sum = 0;
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
@@ -579,6 +580,7 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             get
             {
+                // Average kg/m2 per species
                 ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> biomass = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.Biomass.Species.AuxParm<int>>();
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
@@ -598,7 +600,7 @@ namespace Landis.Extension.Output.BiomassPnET
         {
             get
             {
-               
+                // Average (kg/m2) per species
                 Landis.Library.Biomass.Species.AuxParm<float> biomass_spc = new Library.Biomass.Species.AuxParm<float>(PlugIn.ModelCore.Species);
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
@@ -610,7 +612,12 @@ namespace Landis.Extension.Output.BiomassPnET
                         }
                     }
                 }
-       
+
+                foreach (ISpecies spc in PlugIn.ModelCore.Species)
+                {
+                    biomass_spc[spc] *= (float)(1F / (float)PlugIn.ModelCore.Landscape.ActiveSiteCount);
+                }
+
                 return biomass_spc;
             }
         }
