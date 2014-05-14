@@ -17,7 +17,7 @@ namespace Landis.Extension.Output.BiomassPnET
         : ExtensionMain
     {
         public static readonly ExtensionType Type = new ExtensionType("output");
-        public static readonly string ExtensionName = "Output PnET";
+        public static readonly string ExtensionName = "Output Biomass PnET";
 
         private static int tstep;
         public static int TStep
