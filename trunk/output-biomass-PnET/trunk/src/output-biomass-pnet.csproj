@@ -92,7 +92,7 @@
     <Compile Include="FileNames.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\biomass-succession-PnET\trunk\src\biomass-succession-PnET.csproj">
+    <ProjectReference Include="..\..\..\PnET-Succession\src\biomass-succession-PnET.csproj">
       <Project>{17896667-BAB5-4F18-9DDF-8761E06C55E0}</Project>
       <Name>biomass-succession-PnET</Name>
     </ProjectReference>

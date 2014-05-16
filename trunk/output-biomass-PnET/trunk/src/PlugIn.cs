@@ -91,17 +91,17 @@ namespace Landis.Extension.Output.BiomassPnET
             selectedspecies = parameters.SelectedSpecies;
 
             if (parameters.CohortsPerSpecies != null) CohortsPerSpc = new OutputVariable(parameters.CohortsPerSpecies, "#");
-            if (parameters.SpeciesBiom != null) Biomass = new OutputVariable(parameters.SpeciesBiom, "kg/m2");
-            if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "kg/m2");
+            if (parameters.SpeciesBiom != null) Biomass = new OutputVariable(parameters.SpeciesBiom, "g/m2");
+            if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "g/m2");
             if (parameters.LeafAreaIndex != null) LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
             if (parameters.SpeciesEst != null) SpeciesEstablishment = new OutputVariable(parameters.SpeciesEst, "");
             if (parameters.Water != null) Water = new OutputVariable(parameters.Water, "mm");
             if (parameters.AnnualTranspiration != null) AnnualTranspiration = new OutputVariable(parameters.AnnualTranspiration,  "mm");
-            if (parameters.SubCanopyPAR != null) SubCanopyPAR = new OutputVariable(parameters.SubCanopyPAR,  "W/m2");
-            if (parameters.Litter != null) NonWoodyDebris = new OutputVariable(parameters.Litter, "kg/m2");
-            if (parameters.WoodyDebris != null) WoodyDebris = new OutputVariable(parameters.WoodyDebris,  "kg/m2");
-            if (parameters.DeadCohortAges != null) DeadCohortAges = new OutputVariable(parameters.DeadCohortAges, "kg/m2");
-            if (parameters.DeadCohortNumbers != null) DeadCohortNumbers = new OutputVariable(parameters.DeadCohortNumbers, "kg/m2");
+            if (parameters.SubCanopyPAR != null) SubCanopyPAR = new OutputVariable(parameters.SubCanopyPAR,  "W/m2 pr mmol/m2");
+            if (parameters.Litter != null) NonWoodyDebris = new OutputVariable(parameters.Litter, "g/m2");
+            if (parameters.WoodyDebris != null) WoodyDebris = new OutputVariable(parameters.WoodyDebris,  "g/m2");
+            if (parameters.DeadCohortAges != null) DeadCohortAges = new OutputVariable(parameters.DeadCohortAges, "");
+            if (parameters.DeadCohortNumbers != null) DeadCohortNumbers = new OutputVariable(parameters.DeadCohortNumbers, "");
             if (parameters.AgeDistribution != null) AgeDistribution = new OutputVariable(parameters.AgeDistribution,"yr");
             if (parameters.CohortBalance != null) overalloutputs = new OverallOutputs(parameters.CohortBalance);
             
@@ -136,8 +136,12 @@ namespace Landis.Extension.Output.BiomassPnET
             if (Biomass != null)
             {
                 System.Console.WriteLine("Updating output variable: Biomass");
+
+                // write maps biomass per species per pixel
                 Biomass.UpdateVariable(SiteVars.Biomass);
 
+                // overview table 
+                // Biomass_spc
                 Biomass.UpdateVariable(SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
             }
             if (Water != null)
