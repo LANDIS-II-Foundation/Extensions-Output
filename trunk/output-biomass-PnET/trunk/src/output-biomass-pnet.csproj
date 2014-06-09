@@ -91,12 +91,6 @@
     <Compile Include="IntPixel.cs" />
     <Compile Include="FileNames.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\PnET-Succession\src\biomass-succession-PnET.csproj">
-      <Project>{17896667-BAB5-4F18-9DDF-8761E06C55E0}</Project>
-      <Name>biomass-succession-PnET</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetName).* "C:\Program Files\LANDIS-II\v6\bin\extensions"</PostBuildEvent>

@@ -69,6 +69,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 parameters.SelectedSpecies = new List<ISpecies>();
             }
             else {
+                
                 ISpecies species = GetSpecies(speciesName.Value);
                 List<ISpecies> selectedSpecies = new List<ISpecies>();
                 selectedSpecies.Add(species);

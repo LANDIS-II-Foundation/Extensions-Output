@@ -171,7 +171,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 ISiteVar<int> annualtranspiration = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    annualtranspiration[site] = (int)System.Math.Round(siteconditions[site].WaterCycle.AnnualTranspiration, 0);
+                    annualtranspiration[site] = (int)System.Math.Round(siteconditions[site].hydrology.AnnualTranspiration, 0);
                 }
                 return annualtranspiration;
             }
@@ -212,7 +212,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    SumWater[PlugIn.ModelCore.Ecoregion[site]] += (double)System.Math.Round(siteconditions[site].WaterCycle.Water, 0);
+                    SumWater[PlugIn.ModelCore.Ecoregion[site]] += (double)System.Math.Round(siteconditions[site].hydrology.Water, 0);
                     n[PlugIn.ModelCore.Ecoregion[site]]++;
                 }
 
@@ -232,7 +232,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 ISiteVar<int> water = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    water[site] = (int)System.Math.Round(siteconditions[site].WaterCycle.Water, 0);
+                    water[site] = (int)System.Math.Round(siteconditions[site].hydrology.Water, 0);
                 }
                 return water;
             }
@@ -271,7 +271,7 @@ namespace Landis.Extension.Output.BiomassPnET
                 double water_sum = 0;
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    water_sum += siteconditions[site].WaterCycle.Water;
+                    water_sum += siteconditions[site].hydrology.Water;
                     n++;
                 }
                 return System.Math.Round(water_sum / n, 2);
