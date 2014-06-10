@@ -25,12 +25,30 @@ namespace Landis.Extension.Output.BiomassPnET
                 int deadcohorts_sum;
                 deadcohorts_sum = 0;
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                {
                     foreach (ISpecies spc in PlugIn.ModelCore.Species)
+                    {
                         deadcohorts_sum += siteconditions[site].DeadCohorts[spc];
+                    }
+                }
                 return deadcohorts_sum;
             }
         }
 
+        public static double WoodyDebrisAv
+        {
+            get
+            {
+                double litter_sum = 0;
+                float n = 0;
+                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                {
+                    litter_sum += siteconditions[site].forestfloor.WoodyDebris.Mass;
+                    n++;
+                }
+                return System.Math.Round(litter_sum / n, 2);;
+            }
+        }
         public static double LitterAv
         {
             get
