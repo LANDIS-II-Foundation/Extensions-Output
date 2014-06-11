@@ -1,58 +1,40 @@
-#define PackageName      "Output PnET"
-#define PackageNameLong  "Output PnET Extension"
-#define Version          "1.0"
-#define ReleaseType      "alpha"
-#define ReleaseNumber    "1"
+#include GetEnv("LANDIS_SDK") + '\packaging\initialize.iss'
 
-#define CoreVersion      "6.0"
-#define CoreReleaseAbbr  ""
+#define ExtInfoFile "PnET-Output.txt"
 
-#define DeployFolder AddBackslash("C:\Users\adebruij\Desktop\PnET_Succession\InstallerFolder\PnET_Output\deploy")
-#include DeployFolder + "package (Setup section) v6.0.iss"
+#include LandisSDK + '\packaging\read-ext-info.iss'
+#include LandisSDK + '\packaging\Landis-vars.iss'
 
-;#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
-
-#if ReleaseType != "official"
-  #define Configuration  "debug"
-#else
-  #define Configuration  "release"
-#endif
-
+[Setup]
+#include LandisSDK + '\packaging\Setup-directives.iss'
+LicenseFile={#LandisSDK}\licenses\LANDIS-II_Binary_license.rtf
 
 [Files]
- 
-Source: C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Extension.Output.BiomassPnET.dll; DestDir: {app}\bin; Flags: replacesameversion
+Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions
 
 
-#define Output_PnET "PnET Output 1.0.txt"
-Source: {#Output_PnET}; DestDir: {#LandisPlugInDir}
+#define UserGuideSrc "LANDIS-II " + ExtensionName + " vX.Y User Guide.pdf"
+#define UserGuide    StringChange(UserGuideSrc, "X.Y", MajorMinor)
+Source: docs\{#UserGuide}; DestDir: {app}\docs; DestName: {#UserGuide}
+
+Source: examples\*; DestDir: {app}\examples\{#ExtensionName}; Flags: recursesubdirs
+
+#define ExtensionInfo  ExtensionName + " " + MajorMinor + ".txt"
+Source: {#ExtInfoFile}; DestDir: {#LandisExtInfoDir}; DestName: {#ExtensionInfo}
 
 [Run]
-;; Run plug-in admin tool to add the entry for the plug-in
-#define PlugInAdminTool  CoreBinDir + "\Landis.PlugIns.Admin.exe"
+Filename: {#ExtAdminTool}; Parameters: "remove ""{#ExtensionName}"" "; WorkingDir: {#LandisExtInfoDir}
+Filename: {#ExtAdminTool}; Parameters: "add ""{#ExtensionInfo}"" "; WorkingDir: {#LandisExtInfoDir}
 
-Filename: {#PlugInAdminTool}; Parameters: "remove ""Output_PnET"" "; WorkingDir: {#LandisPlugInDir}
-Filename: {#PlugInAdminTool}; Parameters: "add ""{#Output_PnET}"" "; WorkingDir: {#LandisPlugInDir}
-
+[UninstallRun]
+Filename: {#ExtAdminTool}; Parameters: "remove ""{#ExtensionName}"" "; WorkingDir: {#LandisExtInfoDir}
 
 [Code]
-{ Check for other prerequisites during the setup initialization }
-
-#include DeployFolder + "package (Code section) v3.iss"
-
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-
-function CurrentVersion_PostUninstall(currentVersion: TInstalledVersion): Integer;
-begin
-end;
-
+#include LandisSDK + '\packaging\Pascal-code.iss'
 
 //-----------------------------------------------------------------------------
 
 function InitializeSetup_FirstPhase(): Boolean;
 begin
-  CurrVers_PostUninstall := @CurrentVersion_PostUninstall
   Result := True
 end;

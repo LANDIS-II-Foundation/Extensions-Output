@@ -1,0 +1,42 @@
+LandisData  Scenario
+	  
+Duration  200
+
+Species   species.txt
+
+Ecoregions      ecoregion.txt
+EcoregionsMap   ecoregion.img
+
+CellLength  30 << meters, so cell area = 900 m2
+
+
+
+>> Succession Extension     Initialization File
+>> --------------------     -------------------
+   "PnET Succession"    biosuccession.txt
+
+
+>> Disturbance Extensions   Initialization File
+>> ----------------------   -------------------
+   "Biomass Harvest"	    harvest.txt
+    "Biomass Insects"	    BiomassInsectsInput.txt
+>>      "Biomass Harvest"	    biomharvest.txt
+  "Base Fire"		    base-fire-6.0.txt
+>>     "Base Wind"	    wind_input.txt  
+   
+>>   DisturbancesRandomOrder  yes  << optional parameter; default = no
+
+
+>> Output Extensions        Initialization File
+>> -----------------        -------------------
+>>  "Output Max Species Age"      max-spp-age.output.txt
+  "Output Biomass Reclass"	reclass.txt
+  "Output PnET"		biomass.outputPnET.txt
+>>    "Output Biomass"		biomass.output.txt
+>>  "Output Cohort Statistics"    cohort-stats.output.txt
+
+
+
+
+>>  randomly generated in R. First 5 reps are: 2415, 3914, 2222, 3253, 985
+>>     RandomNumberSeed 2415

@@ -1,0 +1,3962 @@
+LandisData "Initial Communities"
+
+MapCode    0
+
+MapCode     1
+fraxamer   80 100
+acersacc   80 105
+nysssylv  100
+queralba   80 105
+querprin  100 105
+querrubr   80 105
+tiliamer   80 100 105
+
+MapCode     2
+acersacc   68
+fraxamer   45  68  70
+juglnigr   68  70
+prunsero   45  68
+queralba   45  68
+ulmuamer   45  68  70
+
+MapCode     3
+acersacc   78  80
+lirituli   80  85
+magnacum   80  85
+nysssylv   78
+queralba   80
+tiliamer   80  85
+
+MapCode     4
+pinurigi   24  28
+nysssylv   28
+prunsero   28
+
+MapCode     5
+pinupung   88
+pinustro   83
+pinuvirg   83
+queralba   83
+querprin   83  88
+querrubr   83  88
+
+MapCode     6
+pinupung   54
+pinustro   54  70  81
+pinuvirg   54  70
+tsugcana   54  70
+acerrubr   70
+nysssylv   70
+queralba   54  70  81
+quercocc   54  70
+querprin   54  70
+querrubr   54  70
+quervelu   70
+
+MapCode    10
+pinuvirg   64
+caryglab   63
+queralba   63  64
+quercocc   63  64
+
+MapCode    11
+pinuvirg   65
+queralba   65  74
+querrubr   74
+quervelu   64  65  74
+
+MapCode    12
+acersacc   78
+caryglab   78  81
+queralba   78  81
+quercocc   78  81  88
+querprin   81  88
+querrubr   81
+quervelu   81
+
+MapCode    13
+pinustro   95
+caryglab   95
+queralba   95
+quercocc   95
+querrubr   95
+quervelu   95
+
+MapCode    14
+juglnigr   45
+queralba   45
+querrubr   45
+quervelu   45
+robipseu   45
+
+MapCode    15
+pinuvirg   53  71
+acersacc   71
+caryglab   53
+fraxamer   71
+queralba   71 102
+querrubr   71 102
+
+MapCode    17
+pinuvirg   64  67
+acerrubr   64
+caryglab   64
+queralba   64  67
+quercocc   64  67
+querrubr   64  67
+quervelu   64
+
+MapCode    18
+pinustro   66
+caryglab   71
+queralba   66  71  73
+quercocc   71  73
+querprin   71
+querrubr   66  71
+
+MapCode    19
+pinustro   63
+pinuvirg   50  63  75
+acerrubr   63
+queralba   50  63
+quercocc   63
+
+MapCode    20
+pinustro   74  80  89
+pinuvirg   74  80
+acerrubr   74
+caryglab   74  80
+queralba   74  80
+
+MapCode    21
+pinupung   65
+pinuvirg   65
+queralba   65
+
+MapCode    22
+pinuvirg   93  97
+queralba   93  97
+
+MapCode    23
+pinustro   63  81
+pinuvirg   63  81
+caryglab   63
+queralba   63  81
+
+MapCode    24
+pinustro   63
+pinuvirg   78
+queralba   56  63  78
+quercocc   63  78
+querrubr   63  78
+
+MapCode    25
+pinuvirg   63  76
+caryglab   63
+queralba   63  76
+
+MapCode    26
+pinustro   56
+pinuvirg   64
+caryglab   58
+queralba   58  64
+quercocc   64
+
+MapCode    27
+pinustro   75
+pinuvirg   83
+caryglab   83
+queralba   75  83 106
+quercocc   83 106
+querprin   83 106
+querrubr   83
+quervelu   75 106
+
+MapCode    28
+caryglab   98 100
+queralba   98 100 108
+
+MapCode    29
+acersacc   67
+caryglab   65
+queralba   67  68
+quercocc   65  67  68
+querprin   67  68
+quervelu   67  68
+
+MapCode    30
+pinustro   90
+queralba   90 142
+querprin   87  90 142
+quervelu   90 142
+
+MapCode    32
+pinustro   92
+pinuvirg   91
+caryglab   91
+queralba   91  92 111
+quercocc   92 111
+querprin   91  92 111
+querrubr   92
+quervelu  111
+
+MapCode    33
+acersacc   70
+caryglab   70
+fraxamer   70  72
+prunsero   70
+queralba   66  70  72
+querrubr   70  72
+quervelu   70  72
+
+MapCode    34
+pinustro   89
+acerrubr   89
+acersacc   89
+caryglab   89
+queralba   89
+querprin   89
+querrubr   89
+ulmuamer   89
+
+MapCode    35
+pinustro   49
+queralba   49
+quercocc   49
+
+MapCode    36
+acerrubr   58
+acersacc   58
+queralba   58
+quercocc   58
+querrubr   58
+quervelu   58
+
+MapCode    37
+acersacc   66
+
+MapCode    38
+pinuvirg   66
+caryglab   66  67
+queralba   65  66  67
+quercocc   66  67
+quervelu   66  67
+
+MapCode    39
+pinuechi  170
+caryglab   74
+queralba   74 170
+querprin   65  74 170
+querrubr   74 170
+quervelu   74 170
+
+MapCode    40
+pinustro   50
+caryglab   50
+queralba   50
+querrubr   50
+
+MapCode    41
+pinustro   54
+pinuvirg   54
+caryglab   54
+queralba   54
+querrubr   54
+
+MapCode    43
+pinurigi   53
+pinustro   53
+pinuvirg   51  53
+queralba   51  53
+quercocc   51  53
+
+MapCode    44
+pinustro   69  72
+pinuvirg   69  72
+caryglab   69
+queralba   69  72
+
+MapCode    45
+acerrubr   80
+caryglab   80
+queralba   80  85
+querprin   80  85
+quervelu   80  85
+
+MapCode    46
+pinuvirg   64
+acerrubr   66
+caryglab   66
+queralba   66  70
+quercocc   64  70
+querprin   64  66  70
+querrubr   64  70
+quervelu   66  70
+ulmuamer   66  70
+
+MapCode    47
+pinuvirg   67
+acerrubr   78
+caryglab   78
+queralba   67  78
+quercocc   78 119
+querprin   78 119
+querrubr   78
+quervelu  119
+
+MapCode    48
+acerrubr   84  86
+nysssylv   84  86  88
+queralba   84  86  88
+querrubr   84  88
+quervelu   86  88
+
+MapCode    49
+pinurigi   43
+pinustro   60
+pinuvirg   43  60
+queralba   43
+quercocc   43  60
+
+MapCode    50
+pinurigi   50
+pinustro   59
+pinuvirg   50  59
+queralba   50  59
+quercocc   50  59
+querprin   50  59
+
+MapCode    51
+pinurigi   58
+pinuvirg   41  58
+queralba   41  58
+quercocc   41  58
+querprin   41  58
+querrubr   58
+quervelu   58
+
+MapCode    52
+pinuvirg   63
+queralba   62  63
+quercocc   62  63
+querprin   62
+
+MapCode    53
+acerrubr   57
+queralba   57  67
+quercocc   67  69
+
+MapCode    54
+caryglab  130 137 150
+queralba  130 137 150
+querprin  130 137
+
+MapCode    55
+pinurigi  110
+pinuvirg   74
+queralba   74 110
+querprin   74 110
+querrubr   74 110
+
+MapCode    56
+pinuvirg   71
+queralba   65  70  71
+querprin   70  71
+querrubr   70  71
+
+MapCode    57
+pinustro   62  63
+pinuvirg   62
+caryglab   62
+queralba   62  63
+
+MapCode    58
+juglnigr   75
+queralba   66  75
+querrubr   66  75
+
+MapCode    59
+acerrubr  107
+caryglab  100 107
+nysssylv  107
+queralba  107 143
+quercocc  107 143
+querprin  107 143
+
+MapCode    60
+pinustro   80
+queralba   80  81
+quercocc   81
+querprin   80  81
+quervelu   80  81
+
+MapCode    61
+caryglab   61
+queralba   61  62
+quercocc   61  62
+querprin   61  62
+querrubr   61  62
+
+MapCode    63
+pinustro   68  86
+acersacc   67  68
+prunsero   67  68
+queralba   68  86
+querrubr   68
+tiliamer   68
+
+MapCode    64
+pinuvirg   83
+acerrubr   75
+caryglab   83
+queralba   83  96
+querprin   83  96
+quervelu   96
+
+MapCode    65
+queralba   80
+quercocc   80
+querprin   80
+querrubr   80
+quervelu   80
+
+MapCode    66
+pinuvirg   55
+acersacc   45
+caryglab   55
+queralba   45  55  65
+querprin   55  65
+querrubr   45  55  65
+quervelu   55  65
+
+MapCode    67
+caryglab   61
+queralba   82  87
+quercocc   82  87
+querprin   61  82  87
+querrubr   82  87
+
+MapCode    68
+pinurigi  120
+pinustro  120
+pinuvirg  120
+acerrubr  110
+queralba  110 120 150
+quercocc  110 150
+querprin  120
+
+MapCode    69
+pinuvirg  103
+queralba  103
+quercocc  103 133
+querprin   95 103 133
+quervelu  103 133
+
+MapCode    70
+caryglab   80
+nysssylv   79
+queralba   79  80  90
+quercocc   79  80  90
+querprin   79  80  90
+quervelu   80  90
+
+MapCode    71
+acerrubr  102
+caryglab   74
+fraxamer  102
+queralba   83 102  74
+querprin   83 102  74
+querrubr   74
+quervelu   74
+
+MapCode    72
+pinuechi   50  63
+pinuvirg   50  63
+acerrubr   50
+caryglab   50
+querrubr   50  63  78
+robipseu   50  63
+ulmuamer   63
+
+MapCode    74
+acersacc   72
+caryglab   72
+fraxamer   72 121
+querprin   70  72
+querrubr  121
+ulmuamer   70  72 121
+
+MapCode    75
+caryglab   72  97 118
+fraxamer   72  97
+queralba   97
+querprin   72  97 118
+
+MapCode    76
+acerrubr   29
+acersacc   43
+fraxamer   29  43  58
+prunsero   29  43
+quercocc   29  43  58
+querrubr   29  43  58
+robipseu   29  43
+ulmuamer   29  43  58
+
+MapCode    77
+acerrubr   67
+caryglab   67
+queralba   67
+querprin   67  69  72
+querrubr   69  72
+
+MapCode    78
+acersacc   69  93
+caryglab   93  68
+queralba   69  93  68
+querprin   93
+querrubr   69  93  68
+quervelu   69  68
+robipseu   69  68
+
+MapCode    80
+pinustro   98 134
+acersacc   98
+caryglab   98 134
+querprin   98 134
+ulmuamer   98 134
+
+MapCode    81
+pinustro   57  71
+caryglab   57
+queralba   57
+quercocc   57
+querprin   57  71
+querrubr   57  71
+
+MapCode    82
+pinustro   80  82
+acerrubr   82
+acersacc   80
+caryglab   80
+queralba   82 117
+querprin   80  82 117
+tiliamer   80  82
+
+MapCode    83
+pinustro   41  45
+acersacc   41
+caryglab   41
+queralba   41
+querprin   41
+querrubr   41  45
+
+MapCode    84
+pinuvirg  115 120
+acersacc  120
+caryglab  115
+queralba  115 120 134
+querprin  115 120
+quervelu  120 134
+
+MapCode    86
+acerrubr   56
+acersacc   56
+queralba   56
+
+MapCode    88
+caryglab   82
+queralba   82
+querprin   82  83
+querrubr   82  83
+
+MapCode    89
+pinustro   67
+acerrubr   65
+caryglab   65
+nysssylv   67
+queralba   67
+querprin   65  67  47
+querrubr   67  47
+quervelu   65  67
+
+MapCode    91
+pinuvirg   73
+queralba   65  88
+quercocc   65  77
+querrubr   65  77
+quervelu   65  77
+
+MapCode    92
+acersacc   41
+caryglab   41
+querprin   41
+
+MapCode    93
+caryglab   61
+queralba   61  63
+quercocc   61  63
+querprin   61  63
+quervelu   63
+
+MapCode    94
+caryglab   85
+queralba   85
+querprin   85  87  90
+quervelu   85  87  90
+
+MapCode    95
+caryglab   49
+queralba   26
+quercocc   26  54
+querprin   26  49  54
+querrubr   49
+quervelu   49  54
+
+MapCode    96
+nysssylv   65
+queralba   72
+quercocc   72
+querprin   65
+querrubr   70  72
+quervelu   70  72
+
+MapCode    97
+acerrubr   65
+caryglab   65
+queralba   65  68
+quercocc   65  68
+querprin   65  68
+querrubr   65  68  80
+
+MapCode    98
+acerrubr   68
+queralba   68  81
+querrubr   68  81
+
+MapCode    99
+caryglab   47  77
+prunsero   77
+queralba   47  77  88
+querrubr   47  77
+
+MapCode   100
+caryglab   62
+queralba   62  70  74
+querrubr   62  70  74
+
+MapCode   101
+pinuvirg   51  53
+queralba   51
+querprin   51
+
+MapCode   102
+pinuvirg   48  53  64
+acerrubr   48
+acersacc   48  53
+queralba   48  53  64
+querrubr   48  64
+
+MapCode   103
+pinuvirg   72
+acersacc   72
+caryglab   72
+prunsero   72
+queralba   72  78
+quercocc   78
+querrubr   72  78
+quervelu   72  78
+
+MapCode   104
+pinupung   76
+pinustro   69
+pinuvirg   69  76
+queralba   69  76
+querprin   69  76
+querrubr   69
+quervelu   69  76
+
+MapCode   106
+pinurigi   66
+pinustro   35  84
+pinuvirg   66  84
+queralba   35  66  84
+querprin   35  66  84
+querrubr   35  66  84
+quervelu   35  66
+
+MapCode   107
+pinustro   71
+pinuvirg   71 114
+caryglab  114
+queralba   71 114 178
+querprin  114
+querrubr   71 114
+
+MapCode   108
+pinustro   71
+caryglab   71
+queralba   71
+querprin   71
+
+MapCode   109
+caryglab  116 125
+queralba  125
+querprin  116 125
+querrubr  109 116 125
+
+MapCode   110
+pinustro   70
+pinuvirg   70
+caryglab   70
+queralba   70
+querprin   70
+querrubr   70
+
+MapCode   111
+caryglab   64
+queralba   64  65
+quercocc   64  65
+querprin   64  65
+quervelu   64  65
+
+MapCode   112
+pinustro  103
+acerrubr  103
+acersacc  103
+caryglab  103
+prunsero  103
+queralba  103
+quercocc  103
+querrubr  103
+tiliamer  103
+
+MapCode   113
+pinuvirg   66
+acersacc   66
+caryglab   66
+queralba   66
+
+MapCode   114
+pinurigi   55
+acerrubr   55
+caryglab   55
+prunsero   55
+queralba   55
+quercocc   55
+querprin   55  72
+querrubr   55
+quervelu   55  72
+
+MapCode   115
+pinustro   64  77
+caryglab   64
+queralba   64  77
+querprin   64  77  84
+querrubr   64  77  84
+
+MapCode   116
+pinustro   56
+acerrubr   56
+acersacc   56
+caryglab   56
+fraxamer   56
+nysssylv   56
+prunsero   56
+queralba   56
+querrubr   56
+
+MapCode   117
+pinustro   66
+pinuvirg   66
+acerrubr   66
+acersacc   66
+caryglab   66
+nysssylv   66
+prunsero   66
+queralba   66
+robipseu   66
+
+MapCode   118
+acersacc   70
+caryglab   70
+magnacum   70
+queralba   70
+querrubr   70
+tiliamer   70
+
+MapCode   119
+pinuvirg  101
+acerrubr  101
+caryglab  101
+queralba  101
+quercocc  101
+quervelu  101
+
+MapCode   120
+pinustro   65
+pinuvirg   65
+queralba   65
+querprin   65
+
+MapCode   121
+acersacc   63  70
+queralba   63  81
+querprin   63  70
+querrubr   63  70  81
+tiliamer   63  70
+
+MapCode   122
+pinustro   72  77
+pinuvirg   72  77
+caryglab   72
+queralba   72  77
+querprin   72
+querrubr   72  77
+
+MapCode   123
+pinuvirg   64  67
+queralba   64  67
+querprin   64  67
+querrubr   64  67
+quervelu   64  67
+
+MapCode   124
+pinustro   92
+pinuvirg   85  92
+caryglab   85
+queralba   85  92 125
+quercocc   85  92 125
+querprin   85  92
+querrubr   85  92
+
+MapCode   125
+pinustro   60  67
+acerrubr   60
+acersacc   60
+caryglab   65
+fraxamer   60
+queralba   60  65
+querprin   60  65
+querrubr   60
+
+MapCode   126
+queralba   57  66
+quercocc   57  66
+querprin   57  66
+querrubr   57  66
+quervelu   49  57  66
+
+MapCode   127
+caryglab   59
+nysssylv   59
+queralba   73
+quercocc   59  79
+querprin   59  73
+quervelu   59  79
+
+MapCode   128
+pinustro   85
+acersacc   54
+caryglab   54
+queralba   54  85
+querprin   85
+querrubr   85  89
+
+MapCode   129
+caryglab   75  82
+fraxamer   75  82
+querprin   75  82  87
+querrubr   75  82
+quervelu   82
+
+MapCode   130
+pinustro   86
+caryglab   86
+queralba   86  89 142
+quercocc   86  89
+querprin   86
+querrubr   86  89
+quervelu   86  89
+
+MapCode   131
+pinustro   38 128 180
+pinuvirg   38 120
+queralba   38 128 180
+querrubr   38 180
+
+MapCode   132
+pinustro   79
+caryglab   79
+queralba   79  81
+quercocc   79  81
+
+MapCode   133
+pinuvirg   50  55  57
+acerrubr   55
+
+MapCode   134
+pinustro   66
+pinuvirg   53
+acerrubr   53
+caryglab   53
+queralba   53  66  75
+querprin   53  66  75
+querrubr   53  66  75
+quervelu   53  66  75
+
+MapCode   135
+pinustro  173
+pinuvirg  120
+queralba   69 173 186
+quercocc  173 186
+
+MapCode   136
+pinustro   75  76
+pinuvirg   75  76
+acerrubr   76
+acersacc   76
+caryglab   76
+fraxamer   76
+queralba   75  76  77
+querrubr   76  77
+
+MapCode   137
+pinustro   65  72
+acerrubr   65
+acersacc   65  68
+nysssylv   65  68
+queralba   65  72
+querrubr   68
+tiliamer   65  68
+
+MapCode   139
+acerrubr   71
+fraxamer   72  74
+queralba   71  72  74
+querrubr   74
+
+MapCode   140
+pinustro   58  62
+acerrubr   58  60
+caryglab   58
+nysssylv   58
+queralba   58  60  62
+robipseu   58  60
+
+MapCode   141
+pinustro   65
+acerrubr   65
+nysssylv   63  65
+queralba   63  65  82
+querprin   65  82
+quervelu   65  82
+ulmuamer   65  82
+
+MapCode   142
+pinuvirg   96
+acersacc   78
+caryglab   78
+queralba   85  96
+querprin   78  85  96
+
+MapCode   143
+pinustro   50
+pinuvirg   50  53
+caryglab   50
+queralba   50  53
+quercocc   50  53
+querrubr   50  53
+
+MapCode   144
+caryglab   72
+queralba   72  75
+querprin   72
+querrubr   72  75
+
+MapCode   145
+pinuvirg  120
+caryglab  127
+queralba   90 127 137
+quercocc  127 137
+querprin   90 127 137
+
+MapCode   146
+pinustro   86 107 125
+pinuvirg   86 107 120
+queralba  107 125
+querprin   86 107 125
+quervelu  107 125
+
+MapCode   148
+caryglab   72
+queralba   72  74
+querprin   72  74
+
+MapCode   149
+pinuvirg   61
+acerrubr   61
+queralba   61
+quercocc   61
+querprin   61
+quervelu   61
+
+MapCode   150
+pinuvirg   80
+queralba   77  80
+quercocc   77  80
+querrubr   77  80
+quervelu   77  80
+
+MapCode   151
+caryglab   33
+queralba   33
+querprin   33  35
+querrubr   33  35
+quervelu   33  35
+
+MapCode   152
+pinuechi   42
+acersacc   42
+caryglab   42  55
+fraxamer   42  55
+queralba   42  55
+querprin   42  55
+
+MapCode   153
+pinuvirg   76  91
+acerrubr   76
+caryglab   76
+queralba   74  76  91
+querprin   76
+querrubr   74  76  91
+
+MapCode   154
+pinurigi   70
+queralba   65  70
+quercocc   65  70
+querprin   64  65  70
+querrubr   65
+quervelu   65  70
+
+MapCode   155
+caryglab   67
+queralba   67  76
+quercocc   67  76
+querprin   67  76
+quervelu   67  76
+
+MapCode   156
+caryglab   84
+queralba   84  86
+quercocc   86
+querprin   84
+querrubr   84  86
+quervelu   84  86
+
+MapCode   157
+acerrubr   65
+queralba   65
+quercocc   65  69
+querprin   65  69
+
+MapCode   158
+pinustro   36
+pinuvirg   73
+tsugcana   45
+acersacc   36
+caryglab   36
+queralba   36  45
+quercocc   36  45
+querprin   36  45
+querrubr   36  45
+
+MapCode   159
+pinuechi   82
+queralba   66  81  82
+quercocc   66  81  82
+querprin   66  81  82
+querrubr   81  82
+
+MapCode   160
+caryglab   62
+nysssylv   62
+queralba   62
+quercocc   62
+querprin   62
+quervelu   62
+
+MapCode   161
+pinuvirg   70
+acersacc   70
+caryglab   70
+queralba   70
+quercocc   70
+querprin   70
+querrubr   70
+robipseu   70
+
+MapCode   162
+caryglab   65
+querprin   65  71
+quervelu   65  71
+
+MapCode   163
+pinustro   79
+acersacc   79
+caryglab   79
+queralba   79
+quercocc   79
+querprin   79
+querrubr   79
+
+MapCode   164
+pinustro  116 144 154
+acersacc  144
+caryglab  116 144
+queralba  116 144 154
+querprin  144
+
+MapCode   165
+pinustro   70
+pinuvirg   70
+caryglab   70
+queralba   70
+
+MapCode   166
+pinuvirg   29  
+caryglab   29
+queralba   29  
+quercocc   29
+
+MapCode   168
+pinuvirg   69  72
+acerrubr   69
+queralba   66  69  72
+quercocc   69  72
+querprin   69
+querrubr   69  72
+
+MapCode   169
+pinurigi   70
+caryglab   56
+queralba   56  64  70
+quercocc   64
+querprin   56  64  70
+querrubr   56  64
+quervelu   56  64
+
+MapCode   170
+pinustro   86
+pinuvirg   86
+queralba   86
+quercocc   86
+
+MapCode   171
+pinustro   64
+acerrubr   64
+queralba   64
+quercocc   64
+querrubr   64
+
+MapCode   172
+queralba   98
+quercocc   98
+querprin   98
+quervelu   98
+
+MapCode   173
+caryglab   68
+queralba   63  68  69
+quercocc   68  69
+quervelu   68  69
+
+MapCode   174
+caryglab   63
+querprin   63  64  66
+querrubr   63  64  66
+quervelu   64  66
+
+MapCode   175
+caryglab   50
+nysssylv   50
+queralba   50
+quercocc   50
+querprin   50
+quervelu   50
+
+MapCode   176
+pinuvirg   49
+queralba   60
+querprin   47  49  60
+querrubr   47  60
+quervelu   47  49  60
+
+MapCode   177
+caryglab   81
+queralba   81
+querprin   81
+querrubr   81
+quervelu   81
+
+MapCode   178
+acerrubr   52  79
+caryglab   52
+nysssylv   52
+queralba   52  79
+quercocc   52  79
+querprin   52  79
+querrubr   52  79  83
+
+MapCode   179
+pinuvirg   83
+nysssylv   83
+queralba   83
+quercocc   83
+querprin   83
+quervelu   83
+
+MapCode   180
+pinurigi   75
+pinuvirg   75
+acerrubr   75
+caryglab   75
+queralba   75
+quercocc   75
+querprin   75
+
+MapCode   181
+pinurigi   58  65
+pinuvirg   65
+queralba   58  65
+quercocc   58  65
+querprin   58  65
+quervelu   58
+
+MapCode   185
+pinupung   90
+pinuvirg   84  90
+queralba   84  90
+quercocc   84  90
+querprin   84  90
+querrubr   84  90
+quervelu   84  90
+
+MapCode   186
+caryglab   67
+juglnigr   67
+queralba   67
+quercocc   67
+querrubr   67
+quervelu   67
+
+MapCode   187
+acerrubr  108
+acersacc  108
+nysssylv  108
+queralba  108
+
+MapCode   188
+pinurigi   83
+pinuvirg   83 107
+queralba   83 107
+querprin   83 107
+querrubr   83 107
+quervelu   83 107
+
+MapCode   189
+pinustro   80
+acersacc   88
+queralba   84  88
+querrubr   84  88
+
+MapCode   190
+pinuechi   75
+pinurigi   75
+pinuvirg   75
+
+MapCode   191
+pinustro   44  51
+acerrubr   44
+fraxamer   44
+prunsero   44
+quercocc   44
+robipseu   44
+
+MapCode   192
+acersacc  153
+caryglab  112
+juglnigr  153
+nysssylv  153
+queralba  153 185
+quercocc  153 185
+querprin  112 153
+quervelu  112 153 185
+
+MapCode   194
+acersacc   63
+caryglab   63
+fraxamer   63  68
+queralba   63  68
+querrubr   68  69
+quervelu   63  69
+ulmuamer   63  69
+
+MapCode   195
+pinupung   65
+pinustro   65
+pinuvirg   65  73
+caryglab   73
+queralba   73
+querprin   65
+querrubr   65  73
+
+MapCode   196
+pinustro   63
+pinuvirg   63
+caryglab   58
+queralba   63  68
+quercocc   63
+querprin   63  68
+querrubr   63  68
+
+MapCode   197
+queralba   32  62
+quercocc   32  62
+querprin   32  62
+querrubr   62  68
+quervelu   32  68
+
+MapCode   198
+pinustro   68
+pinuvirg   68  75
+caryglab   75
+queralba   68  75  81
+querprin   68  75  81
+querrubr   68
+
+MapCode   199
+acerrubr   63
+nysssylv   63
+queralba   63
+quercocc   63  64
+querprin   63
+querrubr   63
+quervelu   64
+sassalbi   63  64
+
+MapCode   200
+pinuvirg   67
+acersacc   67
+queralba   67  70
+quercocc   67  70
+querprin   67  70
+querrubr   67  70
+quervelu   67  70
+
+MapCode   201
+acersacc   67
+caryglab   67
+fraxamer   67
+prunsero   67
+queralba   67
+querrubr   67
+quervelu   67
+robipseu   67
+ulmuamer   67
+
+MapCode   202
+acerrubr   81
+caryglab   81
+quercocc   81
+querprin   81
+querrubr   81
+quervelu   81
+
+MapCode   203
+caryglab   70
+queralba   70
+querprin   70
+
+MapCode   205
+acersacc   76
+caryglab   86
+querprin   86 118
+querrubr   86 118
+quervelu   86 118
+
+MapCode   206
+pinuvirg   85
+caryglab   85
+quercocc   85
+querprin   85
+querrubr   85
+
+MapCode   207
+acerrubr   82
+caryglab   82
+querprin   82
+querrubr   82
+quervelu   82
+
+MapCode   208
+acerrubr   79
+acersacc   79
+caryglab   79
+queralba   79
+querrubr   79
+quervelu   79
+robipseu   79
+
+MapCode   209
+pinustro   87 102
+acerrubr   87
+caryglab   87
+nysssylv   87 102
+queralba   87 102 130
+querprin   87 102
+
+MapCode   210
+pinustro   48
+acerrubr   48
+prunsero   48
+queralba   48
+querprin   48
+querrubr   48
+quervelu   48
+robipseu   48
+
+MapCode   211
+acerrubr   74
+acersacc   74
+caryglab   74  75
+lirituli   74  75
+queralba   53  74  75
+querprin   53  74
+quervelu   53  75
+robipseu   53  74
+ulmuamer   74
+
+MapCode   213
+pinuechi   73
+pinustro   73
+acersacc   73
+caryglab   73
+queralba   73
+querrubr   73
+tiliamer   73
+
+MapCode   215
+acersacc   96
+caryglab   75  96 102
+queralba   96 102
+querprin   96 102
+querrubr   75  96 102
+quervelu   75 102
+
+MapCode   217
+pinuvirg   80
+acerrubr   80
+caryglab   80
+prunsero   80
+quercocc   80
+sassalbi   80
+
+MapCode   218
+acerrubr   57
+caryglab   57
+queralba   57
+querprin   57
+
+MapCode   219
+pinurigi  118 125
+queralba  118 125
+quercocc   98 118 125
+querprin   98 118
+quervelu  118
+
+MapCode   220
+acerrubr   84  98
+caryglab   84  98
+queralba   84  98 104
+querprin   84  98 104
+querrubr   98 104
+quervelu   98 104
+
+MapCode   221
+pinupung   60  68
+pinuvirg   38  60  68
+acerrubr   60
+caryglab   60
+prunsero   60
+quercocc   68
+quervelu   60
+sassalbi   60
+
+MapCode   222
+pinupung   84 105
+queralba   84 105
+querprin   84 105
+quervelu   84 105
+
+MapCode   224
+caryglab   62
+queralba   73
+quercocc   62  73  76
+querprin   73
+querrubr   73  76
+quervelu   73  76
+
+MapCode   226
+pinuvirg   82
+queralba   64
+querprin   64  82
+querrubr   64  82
+
+MapCode   227
+acerrubr   68
+nysssylv   68
+queralba   66  68
+quercocc   66  68  74
+querprin   66  68  74
+querrubr   68  74
+quervelu   66  74
+
+MapCode   228
+pinuvirg   51
+caryglab   51
+querprin   51
+querrubr   51
+quervelu   51
+
+MapCode   230
+pinuvirg   63  79
+queralba   63  79
+quercocc   63  79
+querprin   63  79
+querrubr   63  79
+
+MapCode   231
+pinuvirg   97
+acersacc   97
+caryglab   97
+queralba   97
+quercocc   97 120
+querprin   97 120
+quervelu   97 120
+
+MapCode   232
+pinurigi   65
+queralba   60
+quercocc   60  65
+querprin   60  65
+quervelu   60  65
+
+MapCode   233
+caryglab   56
+queralba   56
+quercocc   56
+querprin   56
+querrubr   56
+quervelu   56
+
+MapCode   234
+pinuvirg   72 100
+caryglab   67  72 100
+querprin   67  72 100
+
+MapCode   235
+pinustro  100 101
+acerrubr  100
+acersacc  101
+queralba  100 101 102
+querprin  100 101
+querrubr  100 101
+quervelu  100 101
+
+MapCode   236
+pinuvirg   58
+acerrubr   58
+quercocc   58
+quervelu   58
+
+MapCode   237
+pinustro  110 120
+acersacc  120
+caryglab  104
+nysssylv  110
+queralba  104 110 120
+querprin  110 120
+querrubr  110 120
+
+MapCode   238
+acersacc   95
+caryglab   95  98
+fraxamer   95  98
+queralba   98 102
+querprin   95  98 102
+querrubr   95  98 102
+
+MapCode   239
+acersacc   91
+caryglab   91
+lirituli   91
+queralba   72  91 109
+querprin   72  91
+querrubr   91 109
+
+MapCode   240
+fraxamer   60
+juglnigr   60
+prunsero   60  67
+ulmuamer   60
+
+MapCode   241
+pinuvirg   54
+acerrubr   54
+quercocc   54
+querrubr   54
+quervelu   54
+
+MapCode   242
+pinustro   63
+acersacc   63  74
+caryglab   63
+fraxamer   63  74
+queralba   63  74
+
+MapCode   243
+pinustro   59
+pinuvirg   59
+acerrubr   59
+queralba   59  61
+quercocc   59  61
+querprin   59  61
+querrubr   61
+quervelu   59  61
+
+MapCode   244
+pinustro  117 118
+acerrubr  117
+caryglab  117
+nysssylv  117
+queralba  118
+
+MapCode   247
+acersacc   76
+caryglab   76
+nysssylv   76
+querprin   76
+querrubr   76
+quervelu   76
+
+MapCode   248
+pinuvirg   76  84
+acerrubr   75
+caryglab   75  76
+queralba   75  76  84
+querprin   75  76
+sassalbi   76  84
+
+MapCode   249
+pinuechi   89
+caryglab   89
+nysssylv   89
+queralba   89
+quercocc   89
+querprin   89
+quervelu   89
+
+MapCode   250
+acerrubr   53
+caryglab   53
+queralba   53
+querprin   53
+querrubr   53
+quervelu   53
+sassalbi   53
+
+MapCode   251
+acerrubr   78
+caryglab   78
+queralba   76  78  85
+querprin   78  85
+querrubr   78  85
+quervelu   78  85
+sassalbi   78
+
+MapCode   252
+pinuechi   90
+
+MapCode   253
+pinuechi  101
+queralba   90
+quercocc  101
+querprin   89  90 101
+querrubr   89  90 101
+
+MapCode   254
+queralba   53
+querprin   53
+quervelu   53
+robipseu   53
+
+MapCode   255
+pinuechi   67
+pinustro   67
+acerrubr   67
+caryglab   67
+nysssylv   67
+queralba   67
+quercocc   67
+querprin   67
+querrubr   67
+quervelu   67
+
+MapCode   256
+pinustro  105
+tsugcana   50 105 128
+acersacc  105
+caryglab   50
+queralba   50 105 128
+querprin   50 105 128
+quervelu  105
+
+MapCode   257
+pinustro   84
+pinuvirg   74
+acerrubr   74
+queralba   84  56
+quercocc   56
+querprin   74  84  56
+querrubr   56
+quervelu   84  56
+
+MapCode   258
+acerrubr   71
+caryglab   67
+queralba   67
+quercocc   67
+querprin   67  71  77
+querrubr   71  77
+quervelu   71  77
+
+MapCode   259
+pinurigi   64
+pinuvirg   64  71
+caryglab   64
+quercocc   64  71
+querprin   64  71
+querrubr   64  71
+
+MapCode   260
+pinuvirg   67  78
+caryglab   67
+queralba   67
+quercocc   67  78
+querprin   67  78
+querrubr   67
+quervelu   67  78
+
+MapCode   261
+pinupung   75
+pinustro   77
+pinuvirg   75  77
+caryglab   75
+queralba   75  77
+querprin   75  77
+querrubr   75  77
+quervelu   75  77
+
+MapCode   262
+caryglab   63
+juglnigr   67
+prunsero   67
+queralba   67
+querrubr   67  68
+quervelu   67  68
+
+MapCode   263
+pinustro   80
+caryglab   68
+querprin   68  80
+querrubr   68  80
+
+MapCode   264
+pinustro   81
+pinuvirg   81
+acerrubr   81
+acersacc   81
+caryglab   81
+queralba   76  81  88
+quercocc   81
+querrubr   81  88
+quervelu   81  88
+
+MapCode   265
+tsugcana   65  75  85
+acersacc   65  75
+lirituli   65  75  85
+magnacum   65  75
+nysssylv   65  75  85
+querrubr   65  75
+tiliamer   75
+
+MapCode   266
+pinuvirg   62
+caryglab   62
+queralba   51  62
+querprin   51  62 131
+quervelu   62 131
+
+MapCode   267
+pinuvirg  104
+caryglab   67 104
+queralba  104 135
+querprin   67 104 135
+querrubr  104
+quervelu   67 104
+
+MapCode   268
+pinurigi   89
+queralba   89 102
+quercocc   89 102
+querprin   87  89 102
+
+MapCode   269
+pinuvirg   68
+queralba   68
+querprin   58  68  74
+querrubr   68
+quervelu   68  74
+
+MapCode   270
+pinustro   63
+acersacc   63
+caryglab   63
+queralba   63
+querprin   63
+
+MapCode   271
+pinuvirg   98
+caryglab   94  98
+queralba   94  98
+querrubr   94  98 119
+
+MapCode   272
+caryglab   58
+
+MapCode   273
+pinustro   78
+pinuvirg   78
+acerrubr   78
+acersacc   78
+caryglab   78
+queralba   78  80
+querprin   78
+querrubr   78  80
+tiliamer   78
+
+MapCode   275
+pinustro   55  62
+pinuvirg   55  62
+acerrubr   53  55
+fraxamer   55
+quervelu   55  62
+sassalbi   55
+ulmuamer   55  62
+
+MapCode   276
+acerrubr   61
+caryglab   61
+nysssylv   50
+queralba   61
+querprin   61  72
+robipseu   61
+
+MapCode   277
+pinupung   86  87
+pinuvirg   86  87
+nysssylv   86
+queralba   86  87
+quercocc   77  87
+querprin   86  87
+quervelu   86  87
+
+MapCode   278
+pinurigi   57
+pinuvirg   57  70
+quercocc   57  70
+querprin   57  70
+robipseu   57  70
+
+MapCode   279
+queralba   78
+quercocc   77  78  80
+querprin   77  78  80
+quervelu   78
+
+MapCode   280
+acerrubr   60
+caryglab   60  85
+querprin   60  85  92
+querrubr   60  92
+quervelu   85  92
+
+MapCode   281
+queralba   65
+querprin   65  66
+querrubr   65  66
+quervelu   65  66
+
+MapCode   282
+querprin   97
+querrubr   97
+
+MapCode   283
+acerrubr   56
+caryglab   56
+nysssylv   56
+queralba   56
+querprin   56  67
+querrubr   56  67
+quervelu   56  67
+
+MapCode   284
+pinurigi   75
+pinuvirg   75
+acerrubr   75
+queralba   75  79
+quercocc   75  79
+querprin   75  79
+quervelu   75  79
+
+MapCode   285
+lirituli   90
+nysssylv   82
+querprin   82
+querrubr   82  85  90
+robipseu   85
+tiliamer   85
+
+MapCode   286
+caryglab   60
+prunsero   60  65
+querprin   58  60  65
+querrubr   60  65
+quervelu   60  65
+
+MapCode   287
+acerrubr   49
+caryglab   49
+queralba   49
+quercocc   49
+querprin   49
+quervelu   49
+
+MapCode   288
+acersacc   90
+nysssylv   90
+queralba   90
+querprin   90
+quervelu   90
+
+MapCode   289
+acerrubr   60
+caryglab   60
+queralba   63
+quercocc   63  68
+querprin   63  68
+querrubr   63  68
+quervelu   63
+
+MapCode   291
+pinustro   97
+pinuvirg   97
+caryglab   97
+magnacum   97
+queralba   97
+quercocc   97
+querprin   97
+querrubr   97
+
+MapCode   292
+querprin   87
+querrubr   87
+quervelu   87
+
+MapCode   293
+pinustro   81  95
+caryglab   67
+queralba   67  81  95
+querrubr   81
+
+MapCode   294
+pinustro   88
+acersacc   88
+caryglab   88
+nysssylv   88
+queralba   88
+querprin   88
+querrubr   88
+
+MapCode   295
+pinuvirg   66
+acerrubr   66
+caryglab   66
+queralba   66  75
+quercocc   66  75
+querprin   66  75
+quervelu   66  75
+
+MapCode   296
+pinurigi   88
+acerrubr   88
+queralba   88
+quercocc   88
+querprin   88
+querrubr   88
+quervelu   88
+
+MapCode   298
+pinuvirg   55
+acerrubr   55
+nysssylv   43
+queralba   43  55  66
+quercocc   55  66
+quervelu   55  66
+
+MapCode   299
+acerrubr   77  81
+nysssylv   77
+quercocc   75  77  81
+querprin   77  81
+querrubr   77  81
+quervelu   75  77  81
+sassalbi   75  81
+
+MapCode   300
+pinurigi   57
+pinuvirg   75
+acerrubr   75
+nysssylv   64
+queralba   64  75
+quercocc   64  75
+querprin   64  75
+querrubr   64
+quervelu   64  75
+
+MapCode   301
+nysssylv   67
+querprin   67  69  73
+querrubr   69  73
+sassalbi   69  73
+
+MapCode   302
+queralba   74  79
+querrubr   70  74  79
+quervelu   74  79
+
+MapCode   303
+acerrubr   79
+caryglab   79
+nysssylv   79
+queralba   79  84  85
+quercocc   79  85
+querprin   79  84
+quervelu   79  84
+sassalbi   79  84
+
+MapCode   304
+pinurigi   89
+nysssylv   89
+queralba   89
+quercocc   89 107
+querprin   89 107
+quervelu   89 107
+
+MapCode   305
+acerrubr   69
+caryglab   65
+queralba   65
+querrubr   69  72
+quervelu   69  72
+sassalbi   65  72
+
+MapCode   306
+caryglab  103
+querprin  103
+querrubr  103
+
+MapCode   307
+acerrubr   75
+querprin   69
+querrubr   75  78
+quervelu   75  78
+sassalbi   69  75
+
+MapCode   308
+caryglab   83
+querprin   57  83  84
+querrubr   57  83  84
+
+MapCode   309
+acerrubr   65
+caryglab   65  66
+fraxamer   65  66
+quervelu   65
+
+MapCode   310
+caryglab   60
+prunsero   60
+querprin   60
+
+MapCode   312
+acerrubr   87
+nysssylv   87
+queralba   87  96
+quercocc   79  96
+querprin   87  96
+quervelu   87  96
+
+MapCode   313
+nysssylv   79
+querprin   79  96 115
+quervelu   79  96
+
+MapCode   314
+caryglab   76
+queralba   76
+querprin   76
+querrubr   76
+quervelu   76
+
+MapCode   315
+pinurigi   54  60  65
+pinuvirg   60  65
+acerrubr   60
+quervelu   54  60
+sassalbi   54  60
+
+MapCode   316
+pinurigi   61  66
+pinuvirg   61  66
+acerrubr   66
+fraxamer   61  66
+prunsero   61
+queralba   61
+quervelu   61  66
+
+MapCode   317
+caryglab   76  80
+nysssylv   76
+queralba   76  80
+querrubr   76  80  83
+
+MapCode   318
+acerrubr   55
+caryglab   56  62
+queralba   56  62
+querprin   56
+quervelu   55  56  62
+robipseu   55  56
+sassalbi   55  56
+
+MapCode   319
+acerrubr   71
+nysssylv   71
+queralba   71
+quercocc   71
+querprin   71
+querrubr   71
+quervelu   71
+sassalbi   71
+
+MapCode   320
+pinuvirg   36  38
+acerrubr   36  38
+nysssylv   36
+prunsero   36
+queralba   36
+quercocc   36  38
+querprin   36  38
+quervelu   36  38
+
+MapCode   321
+acerrubr   88
+caryglab   75
+fraxamer   88
+prunsero   75  88
+queralba   88 106
+querprin   88 106
+ulmuamer   75  88
+
+MapCode   322
+pinustro   90
+acerrubr   90
+nysssylv   92
+queralba   92
+quercocc   90 105
+querprin   90 105
+querrubr   92 105
+
+MapCode   324
+pinustro   77
+pinuvirg   77
+acersacc   77
+caryglab   77
+queralba   77
+querprin   74  77  97
+querrubr   77  97
+
+MapCode   325
+caryglab   73  80
+queralba   73  80  81
+querprin   80  81
+quervelu   80  81
+
+MapCode   326
+pinuvirg   77  80
+caryglab   74
+queralba   77
+quercocc   74  77
+querprin   74  77
+
+MapCode   327
+pinustro   82
+pinuvirg   66  82
+caryglab   82
+fraxamer   82  88
+prunsero   66  88
+queralba   82  88
+quercocc   82
+querrubr   82
+ulmuamer   82  88
+
+MapCode   328
+pinupung  152
+pinustro  152
+pinuvirg  100 120
+queralba  152 192
+querprin  144 152 192
+
+MapCode   329
+pinustro   99 122
+pinuvirg   78  99 120
+caryglab   78
+queralba   78  99 122
+querprin   99 122
+
+MapCode   330
+pinustro   83
+pinuvirg   63  83
+acerrubr   63
+acersacc   83
+caryglab   63  83
+fraxamer   83  56
+queralba   63  83  56
+querprin   63  83
+querrubr   83
+quervelu   83
+
+MapCode   331
+pinustro   91  93
+acersacc   91
+caryglab  124
+queralba   91  93 124
+querprin   91  93 124
+querrubr   91  93
+
+MapCode   332
+acerrubr  104
+caryglab  104
+lirituli  104
+nysssylv  104
+queralba  104
+quercocc  104
+querprin  104
+querrubr  104
+quervelu  104
+sassalbi  104
+
+MapCode   333
+pinurigi   70
+pinuvirg   70
+nysssylv   70
+queralba   70
+quercocc   70  72
+querprin   70  72
+querrubr   70  72
+quervelu   70  72
+
+MapCode   335
+pinustro  103
+tsugcana  103
+acerrubr  103
+acersacc  103
+queralba  103
+querprin  103
+
+MapCode   337
+pinuvirg   60
+acersacc   66
+fraxamer   60
+queralba   60  66  92
+querprin   60  66  92
+querrubr   60  66  92
+
+MapCode   338
+pinuvirg   62
+querprin   62
+querrubr   62
+
+MapCode   339
+acerrubr   90
+caryglab   90
+juglnigr  100 133
+querprin   90 100 133
+querrubr   90 100
+
+MapCode   340
+pinurigi   62
+pinuvirg   62  63
+queralba   62  63
+quercocc   62
+querprin   62  63
+
+MapCode   341
+pinuvirg   68  76
+acerrubr   68
+caryglab   68
+nysssylv   68
+queralba   68  76
+quercocc   68  76
+querprin   68
+querrubr   68
+quervelu   68  76
+
+MapCode   342
+pinuvirg   58  61
+queralba   58  61
+querprin   58  61
+quervelu   58  61
+
+MapCode   343
+acersacc   50  55
+lirituli   44  50  55
+querprin   44  50
+querrubr   50  55
+robipseu   50  55
+
+MapCode   344
+queralba   72  75
+quercocc   69  72  75
+querprin   72
+querrubr   72  75
+quervelu   69  72  75
+
+MapCode   345
+acerrubr   33
+caryglab   33
+fraxamer   33
+queralba   33
+quercocc   33  36
+querrubr   33
+quervelu   33  36
+robipseu   33
+sassalbi   33
+
+MapCode   347
+pinustro   98 101 103
+pinuvirg  101 103
+queralba   98 101 103
+querrubr  101 103
+
+MapCode   348
+pinustro   96
+pinuvirg   96
+queralba   96
+quercocc   96
+
+MapCode   349
+caryglab   79
+querprin   79  80
+querrubr   79  80
+
+MapCode   350
+caryglab   72
+queralba   72
+quercocc   72
+querprin   72
+querrubr   72
+quervelu   72
+
+MapCode   352
+caryglab   61
+fraxamer   61
+queralba   61
+querprin   61
+querrubr   61
+quervelu   61
+
+MapCode   353
+pinuvirg   58
+acerrubr   58
+nysssylv   58
+quercocc   58  60
+querprin   58  60
+querrubr   58  60
+
+MapCode   354
+pinuvirg   69
+caryglab   69
+queralba   69  74
+querprin   69  74
+querrubr   69  74
+quervelu   74
+
+MapCode   355
+pinuvirg   71
+nysssylv   71
+quervelu   71
+
+MapCode   356
+pinupung   68
+pinuvirg   68  72
+nysssylv   68
+queralba   68
+quercocc   68
+querprin   68  72
+robipseu   68  72
+
+MapCode   357
+pinuvirg   71
+queralba   71
+quercocc   71
+querprin   71
+quervelu   71
+
+MapCode   358
+pinustro   81
+tsugcana   81
+acersacc   81
+fraxamer   81
+querprin   81
+querrubr   81
+tiliamer   81
+
+MapCode   361
+caryglab   44
+nysssylv   44
+queralba   44
+querprin   44
+quervelu   44
+
+MapCode   362
+acerrubr   43
+acersacc   43
+caryglab   43
+prunsero   43
+querprin   43
+querrubr   43
+robipseu   43
+sassalbi   43
+
+MapCode   363
+caryglab   49  64
+fraxamer   49  64
+prunsero   49
+querprin   49  64
+querrubr   49  67
+quervelu   49  64  67
+
+MapCode   364
+caryglab   90
+queralba   90
+quercocc   90
+querprin   90
+querrubr   90
+quervelu   90
+
+MapCode   365
+acerrubr   54
+nysssylv   88  54
+queralba   88  74
+querprin   54  74
+querrubr   54  74
+sassalbi   54
+
+MapCode   366
+querprin   69  70
+querrubr   70  97
+
+MapCode   367
+pinurigi   83
+queralba   83
+querprin   83
+querrubr   83
+quervelu   83
+
+MapCode   368
+pinuvirg   82
+acerrubr   82
+queralba   82
+quercocc   82
+querprin   82
+quervelu   82
+
+MapCode   369
+acerrubr   29
+acersacc   29
+caryglab   45
+nysssylv   29
+queralba   29  45  80
+quercocc   29
+querprin   29  45  80
+
+MapCode   370
+acersacc   75
+caryglab   75
+queralba   75
+querprin   75
+querrubr   75
+quervelu   75
+
+MapCode   371
+queralba   77
+querrubr   77
+quervelu   75  77
+
+MapCode   372
+acerrubr   59
+querprin   70
+querrubr   59  70
+quervelu   59  70
+
+MapCode   373
+caryglab   65
+queralba   65
+quercocc   65
+querprin   65
+querrubr   65
+quervelu   65
+
+MapCode   374
+acerrubr   72
+caryglab   72  84
+nysssylv   72  84 104
+queralba   72  84 104
+querprin   84 104
+querrubr   84 104
+quervelu   84 104
+
+MapCode   375
+nysssylv   67
+queralba   67
+quercocc   67
+querprin   67
+
+MapCode   376
+pinuvirg   57
+acerrubr   65
+acersacc   57
+queralba   57  65
+quercocc   65  68
+querrubr   65  68
+quervelu   65  68
+sassalbi   57  65
+
+MapCode   377
+pinurigi   70
+pinuvirg   80
+nysssylv   70
+quercocc   80  84
+querprin   70  80  84
+quervelu   80  84
+
+MapCode   378
+pinustro   80
+acerrubr   80
+acersacc   80
+caryglab   80
+nysssylv   80
+prunsero   80
+queralba   80
+querrubr   80
+
+MapCode   379
+pinurigi   65
+caryglab   65
+nysssylv   65
+queralba   65
+quercocc   65
+querprin   65
+querrubr   65
+quervelu   65
+
+MapCode   380
+pinuvirg   76
+caryglab   76
+queralba   76
+querprin   76
+quervelu   76
+
+MapCode   381
+caryglab   67  76
+juglnigr   67  76
+prunsero   67
+queralba   76
+querprin   67  76
+querrubr   67  76  80
+
+MapCode   382
+pinuvirg   62
+caryglab   62
+queralba   62
+quercocc   62
+querrubr   62
+
+MapCode   384
+pinuvirg   89
+caryglab   85
+queralba   85  89
+querprin   85
+querrubr   85
+
+MapCode   385
+pinustro   90 114 119
+pinuvirg   90 114 119
+caryglab  114
+queralba   90 114 119
+querprin   90 114
+querrubr  114
+
+MapCode   386
+acerrubr   78
+acersacc   78
+fraxamer   78
+prunsero   78
+quervelu   78
+sassalbi   78
+
+MapCode   387
+pinuvirg   41  43
+acerrubr   41  43
+caryglab   41  43
+fraxamer   41
+queralba   41
+quervelu   41  43
+sassalbi   41  43
+
+MapCode   389
+pinuvirg   76  80
+caryglab   76
+queralba   76  80
+querprin   76  80
+quervelu   76  80
+
+MapCode   390
+caryglab   83
+queralba   83
+querprin   83
+
+MapCode   391
+pinurigi   82
+pinuvirg   69  82
+acerrubr   69
+queralba   69  82
+quercocc   82
+
+MapCode   392
+pinuvirg   42
+acerrubr   42
+caryglab   42
+queralba   42
+querprin   42
+querrubr   42
+quervelu   42
+
+MapCode   393
+pinurigi   52
+pinuvirg   52
+juglnigr   52
+queralba   52
+sassalbi   52
+
+MapCode   394
+caryglab   88
+queralba   88  89  59
+querprin   88  89  59
+querrubr   88  59
+
+MapCode   395
+pinuvirg   74
+caryglab   74
+queralba   83
+quercocc   74  83
+querprin   74  83
+querrubr   74  83
+ulmuamer   74  83
+
+MapCode   396
+pinustro   69
+caryglab   69
+queralba   69
+querprin   69
+querrubr   69
+
+MapCode   397
+pinuvirg   66
+nysssylv   66
+sassalbi   66
+
+MapCode   398
+pinustro   20
+pinuvirg   20  23  31
+fraxamer   20
+juglnigr   20
+lirituli   20
+prunsero   20  23
+robipseu   20  23
+
+MapCode   399
+pinustro   21  26  28
+nysssylv   21
+queralba   21  26
+quervelu   21  26
+
+MapCode   400
+pinuvirg   68  74
+acerrubr   68  72  74
+caryglab   68  72
+queralba   72
+quercocc   68  72
+querprin   72  74
+querrubr   72  74
+
+MapCode   401
+pinustro  122
+tsugcana  122
+acerrubr   74
+queralba  122
+querprin  122
+querrubr   74 122 125
+
+MapCode   403
+queralba   55
+querprin   55
+
+MapCode   404
+pinurigi   71
+pinuvirg   71
+acerrubr   71
+nysssylv   71
+prunsero   71
+robipseu   71
+sassalbi   71
+ulmuamer   71
+
+MapCode   405
+pinustro   75  88 136
+acerrubr   75
+nysssylv   75
+queralba   75  88
+querprin   75  88 136
+
+MapCode   406
+acerrubr   82
+nysssylv   82
+queralba   79  82 130
+querprin   82 130
+quervelu   82 130
+
+MapCode   407
+pinuvirg   91
+prunsero   91
+queralba   91
+querprin   91
+quervelu   91
+
+MapCode   408
+pinuvirg   95 105
+queralba   95 105
+quercocc   95 105
+querprin   95 105
+quervelu   95
+
+MapCode   409
+acersacc   68  73  87
+querprin   73  87
+
+MapCode   410
+pinustro   82
+pinuvirg   79
+querprin   70  79  82
+querrubr   70  79  82
+
+MapCode   411
+acersacc   82
+caryglab   82
+fraxamer   41  82
+juglnigr   82  87
+querprin   41  82
+querrubr   82  87
+ulmuamer   41  82  87
+
+MapCode   412
+acerrubr   62
+acersacc   62
+caryglab   64
+fraxamer   62  64
+queralba   64  69
+querrubr   64
+
+MapCode   413
+pinuvirg   85
+acerrubr   85
+acersacc   85
+queralba   85
+quercocc   85
+querrubr   85
+
+MapCode   414
+pinustro  119 128
+caryglab  119
+queralba  119 128 130
+quercocc  119 128
+
+MapCode   415
+pinustro   52  55
+queralba   52  55
+
+MapCode   416
+pinurigi  103
+pinustro   72 102 103
+acerrubr   72
+caryglab  102
+queralba   72 102
+quercocc   72 102 103
+querrubr   72 102
+
+MapCode   417
+pinuvirg   71  74
+acersacc   71
+caryglab   71  74
+queralba   71  74
+quercocc   71  74
+querrubr   71  74
+
+MapCode   418
+pinustro   44  46  66
+pinuvirg   44  46
+acerrubr   46
+caryglab   46
+queralba   44  46  66
+querrubr   44  46
+quervelu   46
+
+MapCode   419
+acersacc   68
+caryglab   68
+juglnigr   68
+querprin   68
+querrubr   68
+quervelu   68
+ulmuamer   68
+
+MapCode   420
+pinurigi   89
+acerrubr   89
+queralba   89
+querprin   89
+querrubr   89
+quervelu   89
+
+MapCode   421
+pinupung   60
+pinuvirg   59  60
+acerrubr   59
+acersacc   60
+fraxamer   59
+prunsero   59  60
+querrubr   59  60
+quervelu   59
+
+MapCode   422
+acersacc   49
+fraxamer   49
+juglnigr   49
+prunsero   49
+queralba   49
+querprin   49
+querrubr   49
+
+MapCode   424
+caryglab   79
+querprin   79
+querrubr   79
+
+MapCode   425
+querprin  104
+quervelu  104
+
+MapCode   426
+acerrubr   60
+acersacc   60
+caryglab   63
+queralba   63  73
+querprin   60  63  73
+querrubr   63  73
+quervelu   73
+
+MapCode   427
+acerrubr   64
+acersacc   64
+caryglab   64
+querprin   64
+querrubr   64
+quervelu   64
+
+MapCode   428
+acersacc   61
+caryglab   61
+fraxamer   61
+prunsero   61
+querrubr   61
+robipseu   61
+
+MapCode   429
+pinustro  109 110 114
+pinuvirg  109 110
+queralba  109 110 114
+querprin  109 110 114
+querrubr  109 110
+
+MapCode   430
+pinustro   61
+pinuvirg   61
+caryglab   61
+queralba   61
+querprin   61
+querrubr   61
+quervelu   61
+
+MapCode   431
+pinustro   79
+pinuvirg   63  79
+caryglab   79
+querprin   63  79  99
+
+MapCode   432
+acerrubr   91
+acersacc   82  91
+caryglab   82  91
+queralba   82  95
+querprin   82  95
+querrubr   82  95
+quervelu   91  95
+
+MapCode   433
+pinustro   53
+pinuvirg   53  58
+caryglab   53
+queralba   53
+querprin   53  58
+querrubr   53
+
+MapCode    505
+pinuvirg   5  8
+queralba   5
+quercocc   5  
+querprin   5
+quervelu   5
+
+MapCode    510
+pinuvirg   5  10
+queralba   5
+quercocc   5  
+querprin   5
+quervelu   5
+
+MapCode    515
+pinuvirg   10  15
+queralba   5
+quercocc   5 10
+querprin   5
+quervelu   5
+
+MapCode   520
+pinupung   24  25
+caryglab   24
+quercocc   24
+querrubr   24
+quervelu   24  25
+
+MapCode    525
+pinuvirg   24  26
+queralba   26
+quercocc   24  26
+querprin   26
+quervelu   26
+
+MapCode   530
+pinuvirg   30
+quercocc   30  32
+querprin   30  32
+quervelu   30  32
+
+MapCode   535
+pinupung   32
+pinurigi   32
+pinuvirg   32  33
+acerrubr   32
+acersacc   33
+queralba   32  33
+quercocc   32  35
+querrubr   32  33
+quervelu   32
+robipseu   32
+
+MapCode    605
+caryglab   5
+queralba   5
+quercocc   5
+querprin   5 
+querrubr   5
+quervelu   5 
+
+MapCode    610
+caryglab   5
+queralba   5
+quercocc   5 10
+querprin   5 7 10
+querrubr   5
+quervelu   5  10
+
+MapCode    615
+caryglab   10
+queralba   5
+quercocc   5 15
+querprin   5 10 15
+querrubr   10
+quervelu   10  15
+
+MapCode    620
+caryglab   15
+queralba   5
+quercocc   20
+querprin   15 20
+querrubr   15
+quervelu   15  20
+
+MapCode    625
+caryglab   20
+queralba   5
+quercocc   5 25
+querprin   5 20 25
+querrubr   20
+quervelu   20  25
+
+MapCode    630
+caryglab   25
+queralba   10
+quercocc   10 30
+querprin   10 25 30
+querrubr   25
+quervelu   25  30
+
+MapCode    635
+caryglab   30
+queralba   15
+quercocc   15 35
+querprin   15 30 35
+querrubr   30
+quervelu   30  35
+
+MapCode    705
+pinuvirg   5
+prunsero   1
+queralba   1  5
+quercocc   1  5
+querrubr   5
+
+MapCode    710
+pinuvirg   10
+prunsero   5
+queralba   5  10
+quercocc   5  10
+querrubr   10
+
+MapCode    715
+pinuvirg   15
+prunsero   10
+queralba   10  15
+quercocc   10  15
+querrubr   15
+
+MapCode    720
+pinuvirg   20
+prunsero   15
+queralba   15  20
+quercocc   15  20
+querrubr   20
+
+MapCode    725
+pinuvirg   25
+prunsero   24
+queralba   24  25
+quercocc   24  25
+querrubr   25
+
+MapCode   730
+pinuvirg   29
+acerrubr   29
+caryglab   29
+queralba   29  33
+quercocc   29  33
+quervelu   29  33
+
+MapCode   735
+queralba   33
+quercocc   33  35
+querprin   33  35
+querrubr   33  35
+quervelu   33  35
+
+MapCode     805
+pinurigi   1  5
+nysssylv   5
+prunsero   5
+
+
+
+
+
+MapCode     810
+pinurigi   5  10
+nysssylv   10
+prunsero   10
+
+MapCode     815
+pinurigi   10  15
+nysssylv   15
+prunsero   15
+
+MapCode     820
+pinurigi   15  20
+nysssylv   20
+prunsero   20
+
+MapCode     825
+pinurigi   20  25
+nysssylv   25
+prunsero   25
+
+MapCode     830
+pinurigi   25  30
+nysssylv   30
+prunsero   30
+
+MapCode     835
+pinurigi   30  35
+nysssylv   35
+prunsero   35
+
+MapCode   905
+caryglab    5
+queralba    5
+querrubr    5   
+quervelu    5  
+
+MapCode   910
+caryglab    9
+queralba    9
+querrubr    9   
+quervelu    9   
+
+MapCode   915
+caryglab    15
+queralba    15
+querrubr    15  
+quervelu    15   
+
+MapCode   920
+querprin   20
+querrubr   20  21
+
+MapCode   925
+querprin   25
+querrubr   25  27
+
+MapCode   930
+acerrubr   25  30
+queralba   25  30
+quercocc   30
+querprin   25  30
+querrubr   25  30
+quervelu   25  30
+
+MapCode   935
+acerrubr   32  35
+queralba   32  35
+quercocc   35
+querprin   32  35
+querrubr   32  35
+quervelu   32  35
+
+MapCode   1005
+pinuvirg   5
+caryglab   5
+queralba   5 10
+querprin   5
+querrubr   5
+
+MapCode   1010
+pinuvirg   10
+caryglab   10
+queralba   10 15
+querprin   10
+querrubr   10
+
+MapCode   1015
+pinuvirg   15
+caryglab   15
+queralba   15 20
+querprin   15
+querrubr   15
+
+MapCode   1020
+pinuvirg   20
+caryglab   20
+queralba   20 25
+querprin   20
+querrubr   20
+
+MapCode   1025
+pinuvirg   25
+caryglab   25
+queralba   25 
+querprin   25
+querrubr   25
+
+MapCode   1030
+pinuvirg   30
+caryglab   30
+queralba   30 35 
+querprin   30
+querrubr   30
+
+MapCode   1035
+pinuvirg   35
+caryglab   35
+queralba   35 40 
+querprin   35
+querrubr   35
+
+MapCode    1105
+acersacc    6
+caryglab    6
+querprin    6
+
+MapCode   1110
+fraxamer    6
+querprin    6
+querrubr    6
+
+MapCode   1115
+caryglab   10
+queralba   10
+querprin   10
+
+MapCode   1120
+pinuvirg   33
+caryglab   15
+nysssylv   15
+queralba   15  33
+querprin   15  33
+quervelu   33
+
+MapCode    1125
+pinustro   15  20  25
+acersacc   25
+caryglab   25
+querprin   20  25
+
+MapCode    1130
+pinustro   20  30
+acersacc   30
+caryglab   30
+querprin   20  30
+
+MapCode    1135
+pinustro   25  35
+acersacc   35
+caryglab   35
+querprin   25  35
+
+MapCode   1205
+acerrubr   5 
+nysssylv   5
+quercocc   1  5  
+querprin   5  
+querrubr   5  
+quervelu   1  5  
+sassalbi   1  
+
+MapCode   1210
+acerrubr   5  10
+nysssylv   5
+quercocc   1  5  10
+querprin   5  10
+querrubr   5  10
+quervelu   1  5  10
+sassalbi   1  10
+
+MapCode   1215
+pinuvirg   5  15
+acerrubr   5  10  15
+caryglab   5  10
+queralba   10
+quercocc   5  10
+querprin   10  15
+querrubr   10  15
+
+
+MapCode   1220
+acerrubr   15  20
+nysssylv   15
+quercocc   10  15  20
+querprin   15  20
+querrubr   15  20
+quervelu   10  15  20
+sassalbi   10  20
+
+MapCode   1225
+pinuvirg   15  25
+acerrubr   15  20  25
+caryglab   15  20
+queralba   20
+quercocc   15  20
+querprin   20  25
+querrubr   20  25
+
+
+MapCode   1230
+acerrubr   25  30
+nysssylv   25
+quercocc   20  25  30
+querprin   25  30
+querrubr   25  30
+quervelu   20  25  30
+sassalbi   20  30
+
+MapCode   1235
+pinuvirg   25  35
+acerrubr   25  30  35
+caryglab   25  30
+queralba   30
+quercocc   25  30
+querprin   30  35
+querrubr   30  35
+
+
+MapCode   1405
+acerrubr    1
+prunsero    1   5
+querprin    1   5
+
+MapCode   1410
+acerrubr    8
+prunsero    8   10
+querprin    8   10
+
+MapCode   1415
+acerrubr    10
+prunsero    10   15
+querprin    10   15
+
+MapCode   1420
+acerrubr    15
+prunsero    15   20
+querprin    15   20
+
+MapCode   1425
+queralba   22
+querprin   22
+querrubr   22
+robipseu   22
+
+MapCode   1430
+queralba   30
+querprin   30
+querrubr   30
+robipseu   30
+
+MapCode   1435
+queralba   35
+querprin   35
+querrubr   35
+robipseu   35
+
+MapCode   2005
+caryglab   1  5
+juglnigr   1  5
+prunsero   1
+queralba   5
+querprin   1  5
+querrubr   1  5  10
+
+MapCode   2010
+caryglab   5  10
+juglnigr   5  10
+prunsero   5
+queralba   10
+querprin   5  10
+querrubr   5  10  15
+
+MapCode   2015
+caryglab   10  15
+juglnigr   10  15
+prunsero   10
+queralba   15
+querprin   10  15
+querrubr   10  15  20
+
+MapCode   2020
+caryglab   10  20
+juglnigr   10  20
+prunsero   10
+queralba   20
+querprin   10  20
+querrubr   10  20  25
+
+MapCode   2025
+acersacc   20
+caryglab   20
+fraxamer   20  25
+queralba   20  25
+querrubr   25  30
+quervelu   20  30
+ulmuamer   20  30
+
+MapCode   2030
+acersacc   25
+caryglab   25
+fraxamer   25  30
+queralba   25  30
+querrubr   30  35
+quervelu   25  35
+ulmuamer   25  35
+
+MapCode   2035
+acersacc   30
+caryglab   30
+fraxamer   30  35
+queralba   30  35
+querrubr   35  40
+quervelu   30  40
+ulmuamer   30  40
+
+MapCode    4005
+juglnigr   5
+queralba   5
+querrubr   5
+quervelu   5
+robipseu   5
+
+MapCode    4010
+juglnigr   10
+queralba   10
+querrubr   10
+quervelu   10
+robipseu   10
+
+MapCode    4015
+juglnigr   15
+queralba   15
+querrubr   15
+quervelu   15
+robipseu   15
+
+MapCode    4020
+juglnigr   20
+queralba   20
+querrubr   20
+quervelu   20
+robipseu   20
+
+MapCode    4025
+juglnigr   25
+queralba   25
+querrubr   25
+quervelu   25
+robipseu   25
+
+MapCode    4030
+juglnigr   30
+queralba   30
+querrubr   30
+quervelu   30
+robipseu   30
+
+MapCode    4035
+juglnigr   35
+queralba   35
+querrubr   35
+quervelu   35
+robipseu   35
+
+MapCode   4205
+acerrubr   1
+caryglab   1  5
+fraxamer   1  5
+quervelu   1
+
+
+MapCode   4210
+pinuvirg   5
+acersacc   10
+fraxamer   5
+queralba   5  10  12
+querprin   5  10  12
+querrubr   5  10  12
+
+MapCode   4215
+acerrubr   10
+caryglab   10  15
+fraxamer   10  15
+quervelu   10
+
+MapCode   4220
+pinuvirg   10
+acersacc   15
+fraxamer   10
+queralba   10  15  20
+querprin   10  15  20
+querrubr   10  15  20
+
+MapCode   4225
+acerrubr   20
+caryglab   20  25
+fraxamer   20  25
+quervelu   20
+
+MapCode   4230
+pinuvirg   25
+acersacc   30
+fraxamer   25
+queralba   25  30  35
+querprin   25  30  35
+querrubr   25  30  35
+
+MapCode   4235
+acerrubr   30
+caryglab   30  35
+fraxamer   30  35
+quervelu   30
+
+MapCode   4305
+caryglab    8
+quercocc    10
+
+MapCode   4310
+caryglab    8
+quercocc    10
+
+MapCode   4315
+pinustro   16
+caryglab   16
+
+MapCode   4320
+pinustro   16
+acerrubr   16
+caryglab   16  20
+
+MapCode   4325
+acersacc   28
+caryglab   28  
+queralba   28  
+tiliamer   28  
+
+MapCode   4330
+pinuvirg   36  39
+caryglab   36  39
+queralba   36  39
+querprin   36  39
+
+MapCode   4335
+pinuvirg   36  39
+caryglab   36  39
+queralba   36  39
+querprin   36  39
+
+MapCode   4405
+acersacc   5 
+fraxamer   5
+juglnigr   5  
+prunsero   1
+queralba   5
+querprin   1   
+querrubr   5
+
+MapCode    4410
+acerrubr   1
+acersacc   5
+fraxamer   1  5  10
+prunsero   1  5
+quercocc   1  5  10
+querrubr   1  5  10
+robipseu   1  5
+ulmuamer   1  5  10
+
+MapCode   4415
+acersacc   5  10  15
+fraxamer   5  10
+juglnigr   5  10  15
+prunsero   5
+queralba   5  10
+querprin   5  10  15
+querrubr   5  10
+
+MapCode    4420
+acerrubr   10
+acersacc   15
+fraxamer   10  15  20
+prunsero   10  15
+quercocc   10  15  20
+querrubr   10  15  20
+robipseu   10  15
+ulmuamer   10  15  20
+
+MapCode   4425
+acersacc   15  20  25
+fraxamer   15  20
+juglnigr   15  20  25
+prunsero   15
+queralba   15  20
+querprin   15  20  25
+querrubr   15  20
+
+MapCode    4430
+acerrubr   20
+acersacc   25
+fraxamer   20  25  30
+prunsero   20  25
+quercocc   20  25  30
+querrubr   20  25  30
+robipseu   20  25
+ulmuamer   20  25  30
+
+MapCode   4435
+acersacc   25  30  35
+fraxamer   25  30
+juglnigr   25  30  35
+prunsero   25
+queralba   25  30
+querprin   25  30  35
+querrubr   25  30
+
+MapCode   4905
+pinustro   1  5
+queralba   1
+
+MapCode   4910
+pinustro   5  10
+queralba   5
+
+MapCode   4915
+pinustro   15  
+queralba   15
+quercocc   15  17
+querprin   15  17
+quervelu   15  17
+
+MapCode    4920
+pinustro   15  20
+queralba   15
+quercocc   15  20
+
+MapCode    4925
+pinustro   20  25
+queralba   20
+quercocc   20  25
+
+MapCode    4930
+pinustro   25  30
+queralba   25
+quercocc   25  30
+
+MapCode    4935
+pinustro   30  35
+queralba   30
+quercocc   30  35
+
+MapCode   5005
+pinustro   1  5
+acerrubr   1
+fraxamer   1
+prunsero   1
+quercocc   1
+robipseu   1
+
+MapCode   5010
+pinustro   5  10
+acerrubr   5
+fraxamer   5
+prunsero   5
+quercocc   5
+robipseu   5
+
+MapCode   5015
+pinustro   10  15
+acerrubr   10
+fraxamer   10
+prunsero   10
+quercocc   10
+robipseu   10
+
+MapCode   5020
+pinustro   15  20
+acerrubr   15
+fraxamer   15
+prunsero   15
+quercocc   15
+robipseu   15
+
+MapCode   5025
+acerrubr   26
+fraxamer   26
+prunsero   26
+quercocc   26
+robipseu   26
+ulmuamer   26
+
+MapCode   5030
+pinustro   20  30
+acerrubr   20
+fraxamer   20
+prunsero   20
+quercocc   20
+robipseu   20
+
+MapCode   5035
+pinustro   30  35
+acerrubr   30
+fraxamer   30
+prunsero   30
+quercocc   30
+robipseu   30
+
+MapCode   5205
+tsugcana   5  7
+acersacc   5  
+lirituli   5  
+magnacum   5  
+nysssylv   5  
+querrubr   5  
+tiliamer   5
+
+MapCode   5210
+pinustro  5
+tsugcana  5 10
+acerrubr  5
+acersacc  5
+queralba  5
+querprin  5
+
+MapCode   5215
+tsugcana   5  10  15
+acersacc   5  10
+lirituli   5  10  15
+magnacum   5  10
+nysssylv   5  10  15
+querrubr   5  10
+tiliamer   10
+
+MapCode   5220
+pinustro  10
+tsugcana  10 15 20
+acerrubr  10
+acersacc  10
+queralba  10
+querprin  10
+
+MapCode   5225
+tsugcana   5  15  25
+acersacc   5  15
+lirituli   5  15  25
+magnacum   5  15
+nysssylv   5  15  25
+querrubr   5  15
+tiliamer   15
+
+MapCode   5230
+pinustro  20
+tsugcana  20 25 30
+acerrubr  20
+acersacc  20
+queralba  20
+querprin  20
+
+MapCode   5235
+tsugcana   15  25  35
+acersacc   15  25
+lirituli   15  25  35
+magnacum   15  25
+nysssylv   15  25  35
+querrubr   15  25
+tiliamer   25
+
+MapCode   5605
+acersacc   5  6
+lirituli   5  6  7
+querprin   5  6
+querrubr   5  6
+robipseu   5  6
+
+MapCode   5610
+pinustro   5
+acersacc   5  10
+caryglab   5
+fraxamer   5  10
+queralba   5  10
+
+MapCode   5615
+acersacc   10  15
+lirituli   5  10  15
+querprin   5  10
+querrubr   10  15
+robipseu   10  15
+
+MapCode   5620
+pinustro   15
+acersacc   15  20
+caryglab   15
+fraxamer   15  20
+queralba   15  20
+
+MapCode   5625
+acersacc   20  25
+lirituli   15  20  25
+querprin   15  20
+querrubr   20  25
+robipseu   20  25
+
+MapCode   5630
+pinustro   25
+acersacc   25  30
+caryglab   25
+fraxamer   25  30
+queralba   25  30
+
+MapCode   5635
+acersacc   30  35
+lirituli   25  30  35
+querprin   25  30
+querrubr   30  35
+robipseu   30  35
+
+MapCode   6005
+pinustro   5  7
+acerrubr   5
+acersacc   5
+caryglab   5  7
+querprin   5
+querrubr   5  7
+robipseu   5  7
+
+MapCode   6010
+pinustro   10  12
+acerrubr   10
+acersacc   10
+caryglab   10  12
+querprin   10
+querrubr   10  12
+robipseu   10  12
+
+MapCode   6015
+pinustro   15  17
+acerrubr   15
+acersacc   15
+caryglab   15  17
+querprin   15
+querrubr   15  17
+robipseu   15  17
+
+MapCode   6020
+pinustro   20  22
+acerrubr   20
+acersacc   20
+caryglab   20  22
+querprin   20
+querrubr   20  22
+robipseu   20  22
+
+MapCode   6025
+pinustro   25  27
+acerrubr   25
+acersacc   25
+caryglab   25  27
+querprin   25
+querrubr   25  27
+robipseu   25  27
+
+MapCode   6030
+pinustro   30  32
+acerrubr   30
+acersacc   30
+caryglab   30  32
+querprin   30
+querrubr   30  32
+robipseu   30  32
+
+MapCode   6035
+pinustro   35  36
+acerrubr   35
+acersacc   35
+caryglab   35  36
+querprin   35
+querrubr   35  36
+robipseu   35  36
+
+MapCode   8005
+pinustro   5
+pinuvirg   5  
+queralba   5  
+querprin   5  
+
+MapCode   8010
+pinustro   10
+pinuvirg   10 
+queralba   10 
+querprin   10 
+
+MapCode   8015
+pinustro   15
+pinuvirg   15 
+queralba   15 
+querprin   15 
+
+MapCode   8020
+pinustro   20
+pinuvirg   20 
+queralba   20 
+querprin   20  
+
+MapCode   8025
+pinustro   25
+pinuvirg   25  
+queralba   25  
+querprin   25  
+
+MapCode   8030
+pinustro   30
+pinuvirg   30  
+queralba   30 
+querprin   30 
+
+MapCode   8035
+pinustro   34
+pinuvirg   34 
+queralba   34 
+querprin   34 
+

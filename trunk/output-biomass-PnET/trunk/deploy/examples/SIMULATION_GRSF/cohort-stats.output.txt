@@ -1,0 +1,34 @@
+LandisData  "Output Cohort Statistics"
+			
+			
+Timestep   10			
+			
+SpeciesAgeStats			
+			
+MapNames   output/spp-age-stats/{species}-{statistic}-{timestep}.img			
+			
+MIN 	queralba quercocc querelli querpalu querprin querrubr quervelu  << minimum age for each species	
+MAX 	queralba quercocc querelli querpalu querprin querrubr quervelu	<< maximum age for each species
+MED	queralba quercocc querelli querpalu querprin querrubr quervelu	<< median age for each species
+SD	queralba quercocc querelli querpalu querprin querrubr quervelu	<< standard deviation age for each species
+AVG	queralba quercocc querelli querpalu querprin querrubr quervelu	<< average age for each species
+			
+			
+SiteAgeStats			
+			
+MapNames   spp-age-stats/AGE-{statistic}-{timestep}.img			
+			
+MIN 			<< minimum age across all species on site
+MAX			<< maximum age across all species on site
+MED			<< median age across all species on site
+AVG			<< average age across all species on site
+RICH   			<< number of age classes across all species on site
+EVEN   			<< evenness 
+COUNT   		<< count of cohorts	
+			
+			
+SiteSpeciesStats			
+			
+MapNames   spp-age-stats/SPP-{statistic}-{timestep}.img			
+			
+RICH   			<<count of species

@@ -1,0 +1,31 @@
+LandisData	Species									
+										
+>>							Seed 			
+>>				Sexual	Shade	Fire	Dispersal Dist  Vegetative	Sprout	Age	Post-Fire
+>>	Name	Longevity	MaturityTol.	Tol.	EffectiveMaximumReprod Prob	Min	Max	Regen		
+>>	----	---------	-------------	----	---------	-------		-----------	----------	--------
+acerrubr	300	10	4	1	100	200	0.5	0	100	resprout
+acersacc	300	40	5	1	100	200	0.1	0	60	none		<<Longevity =  154
+caryglab	300	30	2	1	30	120	0.5	0	300	resprout
+fraxamer	300	30	4	1	70	140	0.1	0	70	none
+juglnigr	154	30	1	2	30	120	0.4	0	60	resprout
+lirituli	250	30	1	2	60	200	0.5	20	250	resprout
+magnacum	250	30	1	1	60	200	0.5	0	100	resprout
+nysssylv	250	30	1	1	60	100	0.5	20	50	resprout
+pinuechi	200	20	2	4	20	100	0	0	0	none
+pinupung	300	5	1	3	20	100	0	0	0	serotiny  
+pinurigi	675	15	2	4	20	100	0	20	60	resprout
+pinustro	450	40	3	3	60	210	0	0	0	none
+pinuvirg	200	20	1	3	20	100	0	0	0	none
+prunsero	250	30	1	1	30	200	0.75	0	50	resprout
+queralba	600	50	3	2	30	100	0.5	20	300	resprout
+quercocc	200	20	1	3	30	100	0.5	20	180	resprout
+querprin	400	20	3	3	30	100	0.5	20	280	resprout
+querrubr	400	25	3	2	30	100	0.5	20	200	resprout
+quervelu	225	20	2	2	30	100	0.4	20	200	resprout
+robipseu 	100	6	1	1	30	100	0.75	5	60	resprout
+sassalbi	500	10	2	2	30	100	0.75	5	115	resprout
+tiliamer	140	30	4	2	30	120	0.1	0	139	none
+tsugcana	800	30	5	2	30	100	0	0	0	none
+ulmuamer	300	40	3	1	30	400	0.4	0	60	resprout
+castdent	350	10	4	1	100	200	0.5	0	100	resprout
