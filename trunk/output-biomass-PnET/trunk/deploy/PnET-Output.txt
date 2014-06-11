@@ -1,0 +1,10 @@
+LandisData   Extension
+
+Name         "Output-PnET"
+Version      1.0
+Type         output
+Assembly     Landis.Extension.Output.BiomassPnET
+Class        Landis.Extension.Output.BiomassPnET.PlugIn
+Description  "Output-PnET"
+UserGuide    "PnETBiomass Succession v1 output User Guide.pdf"
+CoreVersion  6.0
