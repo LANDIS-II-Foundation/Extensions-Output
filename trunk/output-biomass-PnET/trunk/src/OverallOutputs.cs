@@ -18,13 +18,13 @@ namespace Landis.Extension.Output.BiomassPnET
             FileName = FileNames.MakeValueTableName(Template,"Overall"); 
              
             FileContent = new List<string>();
-            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "AverageAge" + "\t" + "#DeadCohorts" + "\t" + "#NewCohorts" + "\t" + "AverageB(kg/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "#DeadCohorts" + "\t" + "#NewCohorts" + "\t" + "AverageAge" + "\t" + "AverageB(kg/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)");
         }
         public static void WriteNrOfCohortsBalance()
         {
             try
             {
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + Math.Round(SiteVars.CohortAge_av, 1) + "\t" + SiteVars.Deadcohorts_sum + "\t" + SiteVars.NewCohorts_sum + "\t" + Math.Round(SiteVars.Biomass_av, 1) + "\t" + SiteVars.Lai_av + "\t" + SiteVars.Water_av + "\t" + SiteVars.Subcanopypar_av + "\t" + SiteVars.LitterAv + "\t" + SiteVars.WoodyDebrisAv);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + SiteVars.Deadcohorts_sum + "\t" + SiteVars.NewCohorts_sum + "\t" + Math.Round(SiteVars.CohortAge_av, 1) + "\t" + Math.Round(SiteVars.Biomass_av, 1) + "\t" + SiteVars.Lai_av + "\t" + SiteVars.Water_av + "\t" + SiteVars.Subcanopypar_av + "\t" + SiteVars.LitterAv + "\t" + SiteVars.WoodyDebrisAv);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
