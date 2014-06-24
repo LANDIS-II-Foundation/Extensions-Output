@@ -7,7 +7,7 @@ using Landis.Extension.Succession.BiomassPnET;
 using System.Collections.Generic;
 using Landis.SpatialModeling;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     /// <summary>
     /// The pools of dead biomass for the landscape's sites.

@@ -5,7 +5,7 @@ using System.Text;
 using Landis.Core;
 using Landis.SpatialModeling;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
 
     public class OutputTableSpecies

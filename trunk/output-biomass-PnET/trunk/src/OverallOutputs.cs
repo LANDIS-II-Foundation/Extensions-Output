@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Edu.Wisc.Forest.Flel.Util;
 using System.IO;
 using System;
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     
     class OverallOutputs

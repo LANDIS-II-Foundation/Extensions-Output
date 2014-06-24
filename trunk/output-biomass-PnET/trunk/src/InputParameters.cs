@@ -5,7 +5,7 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     /// <summary>
     /// The input parameters for the plug-in.

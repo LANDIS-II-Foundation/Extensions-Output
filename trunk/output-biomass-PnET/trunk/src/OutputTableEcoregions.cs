@@ -7,7 +7,7 @@ using Landis.Extension.Succession.BiomassPnET;
 using System;
 using System.Collections.Generic;
 using System.IO;
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     class OutputTableEcoregions
     {

@@ -9,7 +9,7 @@ using Landis.SpatialModeling;
 using Landis.Extension.Succession.BiomassPnET;
 using System.IO;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     public class OutputMapSiteVar
     {

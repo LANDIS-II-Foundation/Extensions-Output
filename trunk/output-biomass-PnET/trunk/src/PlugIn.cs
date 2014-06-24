@@ -11,13 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
     public class PlugIn
         : ExtensionMain
     {
         public static readonly ExtensionType Type = new ExtensionType("output");
-        public static readonly string ExtensionName = "Output Biomass PnET";
+        public static readonly string ExtensionName = "Output-PnET";
 
         private static int tstep;
         public static int TStep

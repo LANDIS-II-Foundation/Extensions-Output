@@ -4,7 +4,7 @@
 using Landis.Core;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Output.BiomassPnET
+namespace Landis.Extension.Output.PnET
 {
 	/// <summary>
 	/// The parameters for the plug-in.
