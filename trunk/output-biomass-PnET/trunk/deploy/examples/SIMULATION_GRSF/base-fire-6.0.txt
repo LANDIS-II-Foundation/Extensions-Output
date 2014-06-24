@@ -1,0 +1,76 @@
+LandisData  "Base Fire"
+
+Timestep  1
+
+>> Fire        Map	___ Event Size ___   Ignition  
+>> region      Code	 Mean  Min    Max    Prob.     k
+>> ---------   ------	----   ----   ----   --------  --------
+>>DYNAMICFIREREGIONSTABLE 
+eco1	1	64.95754	65.91112	65.91112	0.0186639	37	
+eco2	2	9.389428	21.7561	21.7561	0.02024212	41	
+eco4	4	67.22468	13.12279	76.60109	0.04794161	32	
+eco8	8	27.45358	16.24767	32.44608	0.02564109	87	
+eco12	12	81.46077	71.09266	87.29106	0.003340583	90	
+eco13	13	10.21728	26.93764	26.93764	0.02285906	46	
+eco17	17	28.43415	81.78263	81.78263	0.0005585451	2	
+eco19	19	29.86984	21.42921	37.62762	0.02825803	40	
+eco25	25	67.18955	40.7525	76.27419	0.005957522	95	
+eco28	28	81.19414	32.11918	95.59749	0.007535744	51	
+>>END_DYNAMICFIREREGIONSTABLE
+
+InitialFireRegionsMap	ecoregion.img
+
+DynamicFireRegionTable  << Optional parameter
+
+>>Year	FileName  (this line always commented out)
+  20	ecoregion.img  << If table is not active, comment out this line
+
+
+FuelCurveTable
+
+>>             Severities (in increasing order)
+>> Ecoregion   S1   S2   S3   S4   S5
+>> ------------------------------------
+    eco1       10   20   50   70   120
+    eco2       10   20   50   70   120
+   eco4        10   20   50   70   120
+    eco8       10   20   50   70   120
+    eco12      10   20   50   70   120
+    eco13      10   20   50   70   120
+    eco17      10   20   50   70   120
+    eco19      10   20   50   70   120
+    eco25      10   20   50   70   120
+    eco28      10   20   50   70   120
+
+
+WindCurveTable
+
+>>             Severities (in decreasing order)
+>> Ecoregion   S5   S4   S3   S2   S1
+>> ------------------------------------
+    eco1        -1   -1    1   10   20
+    eco2        -1   -1    1   10   20
+    eco4       -1   -1    1   10   20
+    eco8       -1   -1    1   10   20
+    eco12      -1   -1    1   10   20
+    eco13       -1   -1    1   10   20
+    eco17      -1   -1    1   10   20
+    eco19       -1   -1    1   10   20
+    eco25       -1   -1    1   10   20
+    eco28       -1   -1    1   10   20
+
+
+FireDamageTable
+
+>> Cohort Age       FireSeverity - 
+>> % of longevity   FireTolerance
+>> --------------   --------------
+     20%               -2
+     50%               -1
+     85%                0
+    100%                1
+
+
+MapNames  output/fire/severity-{timestep}.img
+LogFile   output/fire/fire-log.csv
+SummaryLogFile output/fire/summary-log.csv
