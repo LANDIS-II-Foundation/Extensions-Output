@@ -1,5 +1,5 @@
 PnETSpeciesParameters																														
-SpeciesName	GrMstSens	FolN	TOfol	FolRet	TOroot	TOwood	GDDFolSt	CDDFolEnd	KWdLit	KNWdLit	AmaxA	AmaxB	HalfSat	BFolResp	WltPnt	PsnAgeRed	Q10	PsnTMin	PsnTOpt	SLWmax	SLWDel	k	DVPD1	DVPD2	WUEcnst	MaintResp	DNSC	RtStRatio	EstMoist	EstRad
+SpeciesName	GrMstSens	FolN	TOfol	FolRet	TOroot	TOwood	GDDFolSt	CDDFolEnd	KWdLit	FolLignin	AmaxA	AmaxB	HalfSat	BFolResp	WltPnt	PsnAgeRed	Q10	PsnTMin	PsnTOpt	SLWmax	SLWDel	k	DVPD1	DVPD2	WUEcnst	MaintResp	DNSC	RtStRatio	EstMoist	EstRad
 acerrubr	4	2.39	1	0.7	0.05	0.01	2	10	0.001	0.01	5.3	21.5	250	0.1	0.1	100	2	3	24	170	0.2	0.58	0.05	2	10.9	0.005	0.02	0.35	4	20
 acersacc	4	2.39	1	0.7	0.05	0.01	2	10	0.001	0.01	5.3	21.5	250	0.1	0.1	100	2	3	24	170	0.2	0.58	0.05	2	10.9	0.005	0.02	0.35	10	10
 caryglab	4	2.55	1	0.7	0.05	0.01	2	10	0.001	0.01	5.3	21.5	250	0.1	0.1	100	2	3	24	170	0.2	0.58	0.05	2	10.9	0.005	0.02	0.35	10	10

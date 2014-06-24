@@ -342,10 +342,7 @@ namespace Landis.Extension.Output.PnET
                     foreach (ISpecies spc in PlugIn.ModelCore.Species)
                     {
                         deadcohortages[site][spc] = siteconditions[site].DeadCohortAges[spc].ToArray();
-                        if (deadcohortages[site][spc].Length > 0)
-                        {
-                            double t = 0.0;
-                        }
+                       
                     }
                 }
 
