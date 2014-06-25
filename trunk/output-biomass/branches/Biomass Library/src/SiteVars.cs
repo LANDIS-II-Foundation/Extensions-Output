@@ -3,7 +3,7 @@
 
 using Landis.Core;
 using Landis.Library.BiomassCohorts;
-using Landis.Extension.Succession.Biomass;
+//using Landis.Extension.Succession.Biomass;
 using System.Collections.Generic;
 using Landis.SpatialModeling;
 using Landis.Library.Biomass;
