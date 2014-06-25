@@ -10,16 +10,16 @@
 LicenseFile={#LandisSDK}\licenses\LANDIS-II_Binary_license.rtf
 
 [Files]
-Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions
+Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions; Flags: replacesameversion
 
 #define UserGuideSrc "LANDIS-II " + ExtensionName + " vX.Y User Guide.pdf"
 #define UserGuide    StringChange(UserGuideSrc, "X.Y", MajorMinor)
-Source: docs\{#UserGuide}; DestDir: {app}\docs; DestName: {#UserGuide}
+Source: docs\{#UserGuide}; DestDir: {app}\docs; DestName: {#UserGuide}; Flags: replacesameversion
 
-Source: examples\*; DestDir: {app}\examples\{#ExtensionName}; Flags: recursesubdirs
+Source: examples\*; DestDir: {app}\examples\{#ExtensionName}; Flags: recursesubdirs replacesameversion
 
 #define ExtensionInfo  ExtensionName + " " + MajorMinor + ".txt"
-Source: {#ExtInfoFile}; DestDir: {#LandisExtInfoDir}; DestName: {#ExtensionInfo}
+Source: {#ExtInfoFile}; DestDir: {#LandisExtInfoDir}; DestName: {#ExtensionInfo}; Flags: replacesameversion
 
 [Run]
 Filename: {#ExtAdminTool}; Parameters: "remove ""{#ExtensionName}"" "; WorkingDir: {#LandisExtInfoDir}
