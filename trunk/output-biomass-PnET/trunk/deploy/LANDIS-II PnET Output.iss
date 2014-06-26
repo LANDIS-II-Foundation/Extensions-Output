@@ -10,7 +10,7 @@
 LicenseFile={#LandisSDK}\licenses\LANDIS-II_Binary_license.rtf
 
 [Files]
-Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions
+Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions; Flags: replacesameversion 
 
 
 #define UserGuideSrc "LANDIS-II " + ExtensionName + " vX.Y User Guide.pdf"
