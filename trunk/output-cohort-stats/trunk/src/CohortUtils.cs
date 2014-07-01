@@ -35,7 +35,7 @@ namespace Landis.Extension.Output.CohortStats
         {
             if (SiteVars.Cohorts[site] == null)
             {
-                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                PlugIn.ModelCore.UI.WriteLine("Cohort are null.");
                 return 0;
             }
             int max = 0;
@@ -85,7 +85,7 @@ namespace Landis.Extension.Output.CohortStats
         {
             if (SiteVars.Cohorts[site] == null)
             {
-                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                PlugIn.ModelCore.UI.WriteLine("Cohort are null.");
                 return 0;
             }
             int min = 32767;//maxof uint

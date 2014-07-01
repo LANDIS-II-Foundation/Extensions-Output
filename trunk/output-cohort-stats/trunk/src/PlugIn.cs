@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.CohortStats
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly ExtensionType ExtType = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Cohort Statistics";
         
         private static ICore modelCore;
@@ -28,7 +28,7 @@ namespace Landis.Extension.Output.CohortStats
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(ExtensionName, Type)
+            : base(ExtensionName, ExtType)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Landis.Extension.Output.CohortStats
             modelCore = mCore;
             SiteVars.Initialize();
             InputParameterParser parser = new InputParameterParser();
-            parameters = mCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
             
         }
         //---------------------------------------------------------------------
@@ -106,7 +106,7 @@ namespace Landis.Extension.Output.CohortStats
                 foreach (ISpecies species in sppAgeStatIter.Value)
                 {
                     string path = SpeciesMapNames.ReplaceTemplateVars(sppagestats_mapNames, species.Name, sppAgeStatIter.Key, modelCore.CurrentTime);
-                    ModelCore.Log.WriteLine("   Writing {0} map for {1} to {2} ...", sppAgeStatIter.Key, species.Name, path);
+                    ModelCore.UI.WriteLine("   Writing {0} map for {1} to {2} ...", sppAgeStatIter.Key, species.Name, path);
                     using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                     {
                         IntPixel pixel = outputRaster.BufferPixel;
@@ -164,7 +164,7 @@ namespace Landis.Extension.Output.CohortStats
                 }
 
                 string path = SiteMapNames.ReplaceTemplateVars(siteagestats_mapNames, ageStatIter, modelCore.CurrentTime);
-                ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", ageStatIter, path);
+                ModelCore.UI.WriteLine("   Writing {0} site map to {1} ...", ageStatIter, path);
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     IntPixel pixel = outputRaster.BufferPixel;
@@ -198,7 +198,7 @@ namespace Landis.Extension.Output.CohortStats
                 }
 
                 string path = SiteMapNames.ReplaceTemplateVars(sitesppstats_mapNames, sppStatIter, modelCore.CurrentTime);
-                ModelCore.Log.WriteLine("   Writing {0} site map to {1} ...", sppStatIter, path);
+                ModelCore.UI.WriteLine("   Writing {0} site map to {1} ...", sppStatIter, path);
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     IntPixel pixel = outputRaster.BufferPixel;

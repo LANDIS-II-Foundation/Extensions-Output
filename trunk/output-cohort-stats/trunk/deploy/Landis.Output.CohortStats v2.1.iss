@@ -1,24 +1,27 @@
 #define PackageName      "Output Cohort Statistics"
 #define PackageNameLong  "Output Cohort Statistics"
-#define Version          "2.1.1"
+#define Version          "2.1.2"
 #define ReleaseType      "official"
 #define ReleaseNumber    ""
 
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
-
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6\"
 
 [Files]
 
 ; Output Biomass Ageclass v1.0 plug-in
 ;
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.CohortStats.dll; DestDir: {app}\bin; Flags: replacesameversion
-Source: docs\LANDIS-II Age Cohort Statistics v2.1 User Guide.pdf; DestDir: {app}\docs
-Source: examples\*; DestDir: {app}\examples\age-cohort-stats
+Source: ..\src\bin\debug\Landis.Extension.Output.CohortStats.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
-;Source: docs\LANDIS-II Dynamic Biomass Fuel System v1.0 User Guide.pdf; DestDir: {app}\doc
+Source: docs\LANDIS-II Age Cohort Statistics v2.1 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\*.txt; DestDir: {#AppDir}\examples\base-wind
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\base-wind
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\base-wind
+Source: examples\*.bat; DestDir: {#AppDir}\examples\base-wind
 
 #define CohortStats "Output Age Cohort Stats 2.1.txt"
 Source: {#CohortStats}; DestDir: {#LandisPlugInDir}
@@ -37,7 +40,7 @@ Filename: {#PlugInAdminTool}; Parameters: "add ""{#CohortStats}"" "; WorkingDir:
 ;; Run plug-in admin tool to remove entries for each plug-in
 
 [Code]
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 

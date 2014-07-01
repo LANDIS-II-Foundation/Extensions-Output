@@ -15,6 +15,13 @@ namespace Landis.Extension.Output.CohortStats
     public class InputParameterParser
         : TextParser<IInputParameters>
     {
+        public override string LandisDataValue
+        {
+            get
+            {
+                return PlugIn.ExtensionName;
+            }
+        }
         //---------------------------------------------------------------------
 
         public InputParameterParser()
