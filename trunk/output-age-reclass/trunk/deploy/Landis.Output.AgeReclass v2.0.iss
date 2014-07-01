@@ -1,6 +1,6 @@
 #define PackageName      "Age Reclass Output"
 #define PackageNameLong  "Age Reclass Output"
-#define Version          "2.0"
+#define Version          "2.0.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    ""
 
@@ -34,7 +34,7 @@ Filename: {#PlugInAdminTool}; Parameters: "add ""{#AgeReclassOutput}"" "; Workin
 ;; Run plug-in admin tool to remove entries for each plug-in
 
 [Code]
-#include AddBackslash(GetEnv("LANDIS_DEPLOY"))  + "package (Code section) v3.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 

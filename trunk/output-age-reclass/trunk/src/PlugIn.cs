@@ -135,13 +135,12 @@ namespace Landis.Extension.Output.AgeReclass
             forTypeCnt = 0;
             foreach(IForestType ftype in forestTypes)
             {
-                //System.Console.WriteLine("ForestTypeNum={0}, Value={1}.",forTypeCnt,forTypValue[forTypeCnt]);
                 if(forTypValue[forTypeCnt] > maxValue)
                 {
                     maxValue = forTypValue[forTypeCnt];
                     finalForestType = forTypeCnt+1;
                 }
-                ModelCore.UI.WriteLine("ftype={0}, value={1}.", ftype.Name, forTypValue[forTypeCnt]);
+                //ModelCore.UI.WriteLine("ftype={0}, value={1}.", ftype.Name, forTypValue[forTypeCnt]);
                 forTypeCnt++;
             }
             return (byte) finalForestType;
