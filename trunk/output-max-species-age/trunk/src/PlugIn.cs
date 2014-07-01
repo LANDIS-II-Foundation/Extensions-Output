@@ -13,8 +13,8 @@ namespace Landis.Extension.Output.MaxSpeciesAge
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
-        public static readonly string PlugInName = "Output Max Species Age";
+        public static readonly ExtensionType ExtType = new ExtensionType("output");
+        public static readonly string ExtensionName = "Output Max Species Age";
 
         private string mapNameTemplate;
         private IEnumerable<ISpecies> selectedSpecies;
@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(PlugInName, Type)
+            : base(PlugIn.ExtensionName, ExtType)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
 
             InputParametersParser.SpeciesDataset = modelCore.Species;
             InputParametersParser parser = new InputParametersParser();
-            parameters = modelCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
 
         }
 
@@ -71,7 +71,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
             //if keyword == maxage
             foreach (ISpecies species in selectedSpecies) {
                 string path = MapNameTemplates.ReplaceTemplateVars(mapNameTemplate, species.Name, modelCore.CurrentTime);
-                modelCore.Log.WriteLine("   Writing maximum age map for {0} to {1} ...", species.Name, path);
+                modelCore.UI.WriteLine("   Writing maximum age map for {0} to {1} ...", species.Name, path);
                 using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     ShortPixel pixel = outputRaster.BufferPixel;
@@ -96,7 +96,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
         {
             //    Maximum age map for all species
             string path = MapNameTemplates.ReplaceTemplateVars(mapNameTemplate, "AllSppMaxAge", modelCore.CurrentTime);
-            modelCore.Log.WriteLine("   Writing maximum age map for all species to {0} ...", path);
+            modelCore.UI.WriteLine("   Writing maximum age map for all species to {0} ...", path);
             using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path, modelCore.Landscape.Dimensions))
             {
                 ShortPixel pixel = outputRaster.BufferPixel;

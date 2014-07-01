@@ -32,7 +32,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
         {
             if (SiteVars.Cohorts[site] == null)
             {
-                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                PlugIn.ModelCore.UI.WriteLine("Cohort are null.");
                 return 0;
             }
             short max = 0;
@@ -53,7 +53,7 @@ namespace Landis.Extension.Output.MaxSpeciesAge
         {
             if (SiteVars.Cohorts[site] == null)
             {
-                PlugIn.ModelCore.Log.WriteLine("Cohort are null.");
+                PlugIn.ModelCore.UI.WriteLine("Cohort are null.");
                 return 0;
             }
             short max = 0;

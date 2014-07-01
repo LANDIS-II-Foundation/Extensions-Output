@@ -17,13 +17,13 @@ namespace Landis.Extension.Output.MaxSpeciesAge
 
         //---------------------------------------------------------------------
 
-        /*
+        
         public override string LandisDataValue
         {
             get {
-                return "Max Species Age";
+                return PlugIn.ExtensionName;
             }
-        }*/
+        }
 
         //---------------------------------------------------------------------
 
@@ -39,8 +39,8 @@ namespace Landis.Extension.Output.MaxSpeciesAge
 
             InputVar<string> landisData = new InputVar<string>("LandisData");
             ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.PlugInName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.PlugInName);
+            if (landisData.Value.Actual != PlugIn.ExtensionName)
+                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
 
             InputParameters parameters = new InputParameters();
 
