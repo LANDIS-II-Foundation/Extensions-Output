@@ -18,10 +18,10 @@
 Source: ..\src\bin\debug\Landis.Extension.Output.CohortStats.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 Source: docs\LANDIS-II Age Cohort Statistics v2.1 User Guide.pdf; DestDir: {#AppDir}\docs
-Source: examples\*.txt; DestDir: {#AppDir}\examples\base-wind
-Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\base-wind
-Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\base-wind
-Source: examples\*.bat; DestDir: {#AppDir}\examples\base-wind
+Source: examples\*.txt; DestDir: {#AppDir}\examples\output-cohort-stats
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\output-cohort-stats
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\output-cohort-stats
+Source: examples\*.bat; DestDir: {#AppDir}\examples\output-cohort-stats
 
 #define CohortStats "Output Age Cohort Stats 2.1.txt"
 Source: {#CohortStats}; DestDir: {#LandisPlugInDir}
