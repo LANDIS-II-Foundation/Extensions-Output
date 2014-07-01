@@ -8,14 +8,14 @@
 #define CoreReleaseAbbr  ""
 
 #include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
-#define BuildDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
 #define AppDir "C:\Program Files\LANDIS-II\v6"
 
 [Files]
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: ..\src\bin\debug\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir: {#BuildDir}; Flags: replacesameversion
-Source: ..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#BuildDir}; Flags: replacesameversion uninsneveruninstall
+Source: ..\src\bin\debug\Landis.Extension.Output.LeafBiomassReclass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags: replacesameversion uninsneveruninstall
 
 ; All the example input-files for the in examples
 Source: docs\LANDIS-II Leaf Biomass Reclass Output v1.1 User Guide.pdf; DestDir: {#AppDir}\docs
@@ -40,7 +40,7 @@ Filename: {#PlugInAdminTool}; Parameters: "add ""{#BioLeaf}"" "; WorkingDir: {#L
 ; Filename: {#PlugInAdminTool}; Parameters: "remove ""Output Leaf Biomass"" "; WorkingDir: {#LandisPlugInDir}
 
 [Code]
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 
