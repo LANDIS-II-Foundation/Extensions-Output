@@ -5,13 +5,10 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.BiomassCohorts;
 using Landis.SpatialModeling;
-//using Landis.Extension.Succession.Biomass;
 using Landis.Library.Biomass;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 
 namespace Landis.Extension.Output.Biomass
 {
@@ -19,7 +16,7 @@ namespace Landis.Extension.Output.Biomass
         : ExtensionMain
     {
         public static readonly ExtensionType Type = new ExtensionType("output");
-        public static readonly string ExtensionName = "Output Biomass";
+        public static readonly string ExtensionName = "Biomass Output";
 
         private IEnumerable<ISpecies> selectedSpecies;
         private string speciesMapNameTemplate;
@@ -52,7 +49,7 @@ namespace Landis.Extension.Output.Biomass
         {
             modelCore = mCore;
             InputParametersParser parser = new InputParametersParser();
-            parameters = mCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
 
         //---------------------------------------------------------------------
@@ -97,7 +94,7 @@ namespace Landis.Extension.Output.Biomass
         {
             foreach (ISpecies species in selectedSpecies) {
                 string path = MakeSpeciesMapName(species.Name);
-                PlugIn.ModelCore.Log.WriteLine("   Writing {0} biomass map to {1} ...", species.Name, path);
+                PlugIn.ModelCore.UI.WriteLine("   Writing {0} biomass map to {1} ...", species.Name, path);
 
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
@@ -122,7 +119,7 @@ namespace Landis.Extension.Output.Biomass
         {
             // Biomass map for all species
             string path = MakeSpeciesMapName("TotalBiomass");
-            PlugIn.ModelCore.Log.WriteLine("   Writing total biomass map to {0} ...", path);
+            PlugIn.ModelCore.UI.WriteLine("   Writing total biomass map to {0} ...", path);
             using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
             {
                 IntPixel pixel = outputRaster.BufferPixel;
@@ -169,7 +166,7 @@ namespace Landis.Extension.Output.Biomass
                                                            PlugIn.ModelCore.CurrentTime);
             if(poolSiteVar != null)
             {
-                PlugIn.ModelCore.Log.WriteLine("   Writing {0} biomass map to {1} ...", poolName, path);
+                PlugIn.ModelCore.UI.WriteLine("   Writing {0} biomass map to {1} ...", poolName, path);
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                 {
                     IntPixel pixel = outputRaster.BufferPixel;
@@ -190,10 +187,10 @@ namespace Landis.Extension.Output.Biomass
         {
 
             string logFileName = "spp-biomass-log.csv";
-            PlugIn.ModelCore.Log.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
+            PlugIn.ModelCore.UI.WriteLine("   Opening species biomass log file \"{0}\" ...", logFileName);
             try
             {
-                log = ModelCore.CreateTextFile(logFileName);
+                log = Landis.Data.CreateTextFile(logFileName);
             }
             catch (Exception err)
             {
