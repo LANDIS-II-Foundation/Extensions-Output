@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.PnET
     /// </summary>
     public static class SiteVars
     {
-        private static ISiteVar<SiteConditions> siteconditions;
+        private static ISiteVar<Landis.Extension.Succession.BiomassPnET.SiteCohorts> siteconditions;
          
         
          
@@ -643,7 +643,7 @@ namespace Landis.Extension.Output.PnET
         /// </summary>
         public static void Initialize()
         {
-            siteconditions = PlugIn.ModelCore.GetSiteVar<SiteConditions>("Succession.SiteConditionsPnET");
+            siteconditions = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.BiomassPnET.SiteCohorts>("Succession.SiteConditionsPnET");
 
             if (siteconditions == null)
             {
