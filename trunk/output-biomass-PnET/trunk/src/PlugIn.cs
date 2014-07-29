@@ -29,6 +29,7 @@ namespace Landis.Extension.Output.PnET
         }
         IInputParameters parameters;
         static ICore modelCore;
+
         static IEnumerable<ISpecies> selectedspecies;
         static  OutputVariable Biomass;
         static  OutputVariable CohortsPerSpc;
@@ -113,90 +114,90 @@ namespace Landis.Extension.Output.PnET
             if (BelowGround != null)
             {
                 System.Console.WriteLine("Updating output variable: BelowGround");
-                BelowGround.UpVarDateiable(SiteVars.BelowGroundBiomass);
+                BelowGround.UpdateVariable(SiteVars.BelowGroundBiomass);
             }
             if (LAI != null)
             {
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
-                LAI.UpVarDateiable(SiteVars.Lai);
+                LAI.UpdateVariable(SiteVars.Lai);
 
-                LAI.UpVarDateiable(SiteVars.AverageLAIperEcoRegion);
+                LAI.UpdateVariable(SiteVars.AverageLAIperEcoRegion);
             }
             
             if (CohortsPerSpc != null)
             {
                 System.Console.WriteLine("Updating output variable: CohortsPerSpc");
                 // Nr of Cohorts per site and per species
-                CohortsPerSpc.UpVarDateiable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
+                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
 
                 // Nr of cohorts per species
-                CohortsPerSpc.UpVarDateiable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg , 0));
+                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
             }
             if (Biomass != null)
             {
                 System.Console.WriteLine("Updating output variable: Biomass");
 
                 // write maps biomass per species per pixel
-                Biomass.UpVarDateiable(SiteVars.Biomass);
+                Biomass.UpdateVariable(SiteVars.Biomass);
 
                 // overview table 
                 // Biomass_spc
-                Biomass.UpVarDateiable(SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
+                Biomass.UpdateVariable(SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
             }
             if (Water != null)
             {
                 System.Console.WriteLine("Updating output variable: Water");
-                Water.UpVarDateiable(SiteVars.Water);
+                Water.UpdateVariable(SiteVars.Water);
 
-                Water.UpVarDateiable(SiteVars.AverageWaterPerEcoregion);
+                Water.UpdateVariable(SiteVars.AverageWaterPerEcoregion);
             }
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
-                SpeciesEstablishment.UpVarDateiable(SiteVars.Establishments);
+                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
 
-                SpeciesEstablishment.UpVarDateiable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
+                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
 
             
             }
             if (AnnualTranspiration != null)
             {
                 System.Console.WriteLine("Updating output variable: AnnualTranspiration");
-                 AnnualTranspiration.UpVarDateiable(SiteVars.AnnualTranspiration);
+                AnnualTranspiration.UpdateVariable(SiteVars.AnnualTranspiration);
             }
             if (SubCanopyPAR != null)
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
-                SubCanopyPAR.UpVarDateiable(SiteVars.SubCanopyPARmax);
+                SubCanopyPAR.UpdateVariable(SiteVars.SubCanopyPARmax);
             }
             if (NonWoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
-                NonWoodyDebris.UpVarDateiable(SiteVars.Litter);
+                NonWoodyDebris.UpdateVariable(SiteVars.Litter);
             }
             if (WoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
-                WoodyDebris.UpVarDateiable(SiteVars.WoodyDebris);
+                WoodyDebris.UpdateVariable(SiteVars.WoodyDebris);
             }
             if (DeadCohortAges != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortAges");
-                DeadCohortAges.UpVarDateiable(SiteVars.DeadCohortAges, "NrOfCohortsThatDiedAtAge"   , 10);
+                DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, "NrOfCohortsThatDiedAtAge", 10);
             }
             if (DeadCohortNumbers != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortNumbers");
-                DeadCohortNumbers.UpVarDateiable(SiteVars.Deadcohorts_spc);
+                DeadCohortNumbers.UpdateVariable(SiteVars.Deadcohorts_spc);
             }
             if (AgeDistribution != null)
             {
                 System.Console.WriteLine("Updating output variable: AgeDistribution");
-                AgeDistribution.UpVarDateiable(SiteVars.CohortAges, "NrOfCohortsAtAge", 10);
+                AgeDistribution.UpdateVariable(SiteVars.CohortAges, "NrOfCohortsAtAge", 10);
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
-                AgeDistribution.UpVarDateiable(SiteVars.MaxAges);
+                AgeDistribution.UpdateVariable(SiteVars.MaxAges);
             }
             if (overalloutputs != null)
             {
