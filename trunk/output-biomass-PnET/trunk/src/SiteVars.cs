@@ -644,6 +644,16 @@ namespace Landis.Extension.Output.PnET
 
             sitecohorts = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.BiomassPnET.ISiteCohorts>("Succession.SiteCohortsPnET");
 
+            if (woodyDebris == null)
+            {
+                string mesg = string.Format("Cannot retrieve woodyDebris pool in " + PlugIn.ExtensionName);
+                throw new System.ApplicationException(mesg);
+            }
+            if (litter == null)
+            {
+                string mesg = string.Format("Cannot retrieve litter pool in "+ PlugIn.ExtensionName);
+                throw new System.ApplicationException(mesg);
+            }
             if (sitecohorts == null)
             {
                 string mesg = string.Format("Siteconditions are empty.  Please double-check that this extension is compatible with your chosen succession extension.");
