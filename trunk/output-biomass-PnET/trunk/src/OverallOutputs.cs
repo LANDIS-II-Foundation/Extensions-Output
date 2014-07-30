@@ -24,7 +24,7 @@ namespace Landis.Extension.Output.PnET
         {
             try
             {
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + SiteVars.Deadcohorts_sum + "\t" + SiteVars.NewCohorts_sum + "\t" + Math.Round(SiteVars.CohortAge_av, 1) + "\t" + Math.Round(SiteVars.Biomass_av, 1) + "\t" + SiteVars.Lai_av + "\t" + SiteVars.Water_av + "\t" + SiteVars.Subcanopypar_av + "\t" + SiteVars.LitterAv + "\t" + "SiteVars.WoodyDebrisAv");
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + SiteVars.Deadcohorts_sum + "\t" + SiteVars.NewCohorts_sum + "\t" + Math.Round(SiteVars.CohortAge_av, 1) + "\t" + Math.Round(SiteVars.Biomass_av, 1) + "\t" + SiteVars.Lai_av + "\t" + SiteVars.Water_av + "\t" + SiteVars.Subcanopypar_av + "\t" + SiteVars.LitterAv + "\t" + SiteVars.WoodyDebrisAv);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
