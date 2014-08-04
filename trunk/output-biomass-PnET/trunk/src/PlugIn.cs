@@ -16,7 +16,7 @@ namespace Landis.Extension.Output.PnET
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly new ExtensionType Type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output-PnET";
 
         private static int tstep;
@@ -120,7 +120,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
-                LAI.UpdateVariable(SiteVars.Lai);
+                LAI.UpdateVariable(SiteVars.CanopyLAImax );
 
                 LAI.UpdateVariable(SiteVars.AverageLAIperEcoRegion);
             }
@@ -155,7 +155,7 @@ namespace Landis.Extension.Output.PnET
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
-                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments);
+                SpeciesEstablishment.UpdateVariable(SiteVars.newcohortcount);
 
                 SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
 
@@ -169,7 +169,7 @@ namespace Landis.Extension.Output.PnET
             if (SubCanopyPAR != null)
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
-                SubCanopyPAR.UpdateVariable(SiteVars.SubCanopyPARmax);
+                SubCanopyPAR.UpdateVariable(SiteVars.ToInt<float>(SiteVars.SubCanopyRadiation));
             }
             if (NonWoodyDebris != null)
             {

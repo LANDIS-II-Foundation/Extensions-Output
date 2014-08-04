@@ -25,7 +25,7 @@ namespace Landis.Extension.Output.PnET
             this.label = label;
         }
 
-        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> values)
+        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
         {
             float[] extremes = new float[2];
             extremes[0] = float.MaxValue;
@@ -96,7 +96,8 @@ namespace Landis.Extension.Output.PnET
                 cat_min += cohort_width;
             }
         }
-        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> values)
+        
+        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
         {
             float[] extremes = Extremes(values);
 

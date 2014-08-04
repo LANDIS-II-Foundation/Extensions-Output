@@ -40,11 +40,11 @@ namespace Landis.Extension.Output.PnET
             // Variable per site (map)
             new OutputMapSiteVar(MapNameTemplate, ToInt(values));
         }
-
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int[]>> Values, string label, int NrOfHistogramCohorts)
+        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
         {
             new OutputHistogramCohort(MapNameTemplate, label, NrOfHistogramCohorts).WriteOutputHist(Values);
         }
+        
         public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
         {
             new OutputHistogramCohort(MapNameTemplate, label,  NrOfHistogramCohorts).WriteOutputHist(values);          
