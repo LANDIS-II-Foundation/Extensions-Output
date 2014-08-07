@@ -40,6 +40,15 @@ namespace Landis.Extension.Output.PnET
             CanopyLAImax = GetSiteVar<int>("Succession.CanopyLAImax");
 
         }
+        private static List<T> ToList<T>(ISiteVar<List<T>> values)
+        {
+            List<T> list_of_values = new List<T>();
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                list_of_values.AddRange(values[site]);
+            }
+            return list_of_values;
+        }
         private static ISiteVar<T> GetSiteVar<T>(string label)
         {
             ISiteVar<T> sitevar = PlugIn.ModelCore.GetSiteVar<T>(label);
@@ -341,7 +350,8 @@ namespace Landis.Extension.Output.PnET
         {
             get
             {
-                //List<List<Landis.Extension.Succession.BiomassPnET.Cohort>> Cohorts = ToList<List<Landis.Extension.Succession.BiomassPnET.Cohort>>(cohorts);
+                
+
                 ISiteVar<int> belowgroundbiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
@@ -375,14 +385,12 @@ namespace Landis.Extension.Output.PnET
             {
                 Landis.Library.Biomass.Species.AuxParm<int> cohorts_spc = new Library.Biomass.Species.AuxParm<int>(PlugIn.ModelCore.Species);
 
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                foreach(Landis.Extension.Succession.BiomassPnET.Cohort cohort in  ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts))
                 {
-                    foreach (Landis.Library.BiomassCohortsPnET.Cohort cohort in cohorts[site])   
-                    {
-                        cohorts_spc[cohort.Species]++;
-                    }
-                    
+                    cohorts_spc[cohort.Species]++;
                 }
+
+                
                 return cohorts_spc;
             }
         }
@@ -390,83 +398,41 @@ namespace Landis.Extension.Output.PnET
         {
             get
             {
-                double cohortage_sum = 0;
-                float n = 0;
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    foreach (Landis.Library.BiomassCohortsPnET.ICohort cohort in cohorts[site])   
-                    {
-                        cohortage_sum += cohort.Age;
-                        n++;
-                    }
-                }
-                return cohortage_sum / n;
+                return ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts).Average(o => o.Age);
+
             }
         }
         public static double Cohorts_sum
         {
             get
             {
-                float n = 0;
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    foreach (Landis.Library.BiomassCohortsPnET.ICohort cohort in cohorts[site])   
-                    {
-                        n++;
-                    }
-                     
-                }
-                return n;
+                return ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts).Count;
+                
             }
         }
         public static double Cohorts_avg
         {
             get
             {
-                float Cohorts_sum = 0;
-                float n = 0;
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    n++;
-                    foreach (Landis.Library.BiomassCohortsPnET.ICohort cohort in cohorts[site])   
-                    {
-                        Cohorts_sum++;
-                    }
-                }
-                //System.Console.WriteLine(Cohorts_sum);
-                return Cohorts_sum / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                return ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts).Count()/ (float)PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                 
             }
         }
         public static double Biomass_av
         {
             get
             {
-                // Average total biomass (kg/m2) in the landscape
-                double biomass_sum =0;
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    foreach (Landis.Library.BiomassCohortsPnET.ICohort cohort in cohorts[site])     
-                    {
-                        biomass_sum += cohort.Biomass;
-                    }
-                }
-                return biomass_sum / (float) PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                List<Landis.Extension.Succession.BiomassPnET.Cohort> mycohorts = ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts);
+                if (mycohorts.Count() > 0) return mycohorts.Average(o => o.Biomass);
+                return 0;
             }
         }
         public static double Biomass_sum
         {
             get
             {
-                // total biomass in the landscape
-                double biomass_sum = 0;
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    foreach (Landis.Library.BiomassCohortsPnET.ICohort cohort in cohorts[site])     
-                    {
-                        biomass_sum += cohort.Biomass;
-                    }
-                }
-                return biomass_sum;
+                return ToList<Landis.Extension.Succession.BiomassPnET.Cohort>(cohorts).Sum(o => o.Biomass);
+ 
             }
         }
         public static ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> Biomass
