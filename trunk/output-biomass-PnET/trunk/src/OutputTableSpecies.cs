@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Landis.Core;
 using Landis.SpatialModeling;
+using Landis.Library.Parameters.Species;
 
 namespace Landis.Extension.Output.PnET
 {
@@ -23,7 +24,7 @@ namespace Landis.Extension.Output.PnET
 
             FileContent.Add(hdr);
         }
-        public void WriteUpdate(int year, Landis.Library.Biomass.Species.AuxParm<int> values)
+        public void WriteUpdate(int year, AuxParm<int> values)
         {
             string line = year + "\t";
             foreach (ISpecies species in PlugIn.SelectedSpecies)

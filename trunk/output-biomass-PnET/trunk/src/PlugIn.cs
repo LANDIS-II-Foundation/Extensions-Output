@@ -131,9 +131,12 @@ namespace Landis.Extension.Output.PnET
                 // Nr of Cohorts per site and per species
                 CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
 
+                CohortsPerSpc.UpdateVariable(SiteVars.CohortsPerSite);
+
                 // Nr of cohorts per species
                 CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
             }
+             
             if (Biomass != null)
             {
                 System.Console.WriteLine("Updating output variable: Biomass");

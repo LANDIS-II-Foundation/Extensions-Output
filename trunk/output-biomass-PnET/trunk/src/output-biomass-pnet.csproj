@@ -56,6 +56,10 @@
     <Reference Include="Landis.Library.Cohorts">
       <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Cohorts.dll</HintPath>
     </Reference>
+    <Reference Include="Landis.Library.Parameters-v1, Version=1.0.5337.22143, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Parameters-v1.dll</HintPath>
+    </Reference>
     <Reference Include="Landis.SpatialModeling">
       <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.0\Landis.SpatialModeling.dll</HintPath>
     </Reference>

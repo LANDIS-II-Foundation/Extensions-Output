@@ -15,13 +15,13 @@ namespace Landis.Extension.Output.PnET
         ISpecies species;
         
         string FileName;
-        public OutputMapSpecies(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, ISpecies species, string MapNameTemplate)
+        public OutputMapSpecies(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values, ISpecies species, string MapNameTemplate)
         {
             this.species = species;
             FileName= FileNames.ReplaceTemplateVars(MapNameTemplate, species.Name, PlugIn.ModelCore.CurrentTime);
             WriteMap(values);
         }
-        private void WriteMap(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        private void WriteMap(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
         {
 
             Console.WriteLine("   Writing {0} map to {1} ...", species.Name, FileName);

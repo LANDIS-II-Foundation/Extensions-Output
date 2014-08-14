@@ -3,10 +3,12 @@ using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.BiomassCohortsPnET;
 using Landis.SpatialModeling;
 using Landis.Extension.Succession.BiomassPnET;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
+ 
+using Landis.Library.Parameters;
+
 namespace Landis.Extension.Output.PnET
 {
     class OutputTableEcoregions
@@ -25,7 +27,7 @@ namespace Landis.Extension.Output.PnET
 
             FileContent.Add(hdr);
         }
-        public void WriteUpdate(int year, Landis.Library.Biomass.Ecoregions.AuxParm<float> values)
+        public void WriteUpdate(int year, Landis.Library.Parameters.Ecoregions.AuxParm<float> values)
         {
             string line = year + "\t";
 

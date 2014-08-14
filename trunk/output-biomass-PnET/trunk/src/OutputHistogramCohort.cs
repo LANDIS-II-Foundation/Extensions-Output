@@ -25,7 +25,7 @@ namespace Landis.Extension.Output.PnET
             this.label = label;
         }
 
-        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
+        private static float[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> values)
         {
             float[] extremes = new float[2];
             extremes[0] = float.MaxValue;
@@ -45,7 +45,7 @@ namespace Landis.Extension.Output.PnET
             }
             return extremes;   
         }
-        private static float[] Extremes(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        private static float[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
         {
             float[] extremes = new float[2];
             extremes[0] = float.MaxValue;
@@ -97,7 +97,7 @@ namespace Landis.Extension.Output.PnET
             }
         }
         
-        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> values)
         {
             float[] extremes = Extremes(values);
 
@@ -147,7 +147,7 @@ namespace Landis.Extension.Output.PnET
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
         
         }
-        public void WriteOutputHist(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
         {
             float[] extremes = Extremes(values);
 

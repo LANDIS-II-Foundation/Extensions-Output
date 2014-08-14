@@ -3,7 +3,7 @@ using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.BiomassCohortsPnET;
 using Landis.SpatialModeling;
 using Landis.Extension.Succession.BiomassPnET;
-
+using Landis.Library.Parameters.Species;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.PnET
     {
         string FileName;
         List<string> Content;
-        public void Update(int TStep, Landis.Library.Biomass.Species.AuxParm<float> Values_spc, double sum, float avg)
+        public void Update(int TStep, AuxParm<float> Values_spc, double sum, float avg)
         {
             string line = TStep + "\t" + sum + "\t" + avg + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
@@ -24,7 +24,7 @@ namespace Landis.Extension.Output.PnET
             Content.Add(line);
             System.IO.File.WriteAllLines(FileName, Content.ToArray());
         }
-        public void Update(int TStep, Landis.Library.Biomass.Species.AuxParm<int> Values_spc, int sum, float avg)
+        public void Update(int TStep, AuxParm<int> Values_spc, int sum, float avg)
         {
             string line = TStep + "\t" + sum + "\t" + avg + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)

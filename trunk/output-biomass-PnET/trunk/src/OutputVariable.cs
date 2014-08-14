@@ -3,7 +3,7 @@ using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.BiomassCohortsPnET;
 using Landis.SpatialModeling;
 using Landis.Extension.Succession.BiomassPnET;
-
+using Landis.Library.Parameters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,21 +40,21 @@ namespace Landis.Extension.Output.PnET
             // Variable per site (map)
             new OutputMapSiteVar(MapNameTemplate, ToInt(values));
         }
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
+        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
         {
             new OutputHistogramCohort(MapNameTemplate, label, NrOfHistogramCohorts).WriteOutputHist(Values);
         }
         
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
+        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
         {
             new OutputHistogramCohort(MapNameTemplate, label,  NrOfHistogramCohorts).WriteOutputHist(values);          
         }
-        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<int> Values_spc)
+        public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<int> Values_spc)
         {
             outputtable.WriteUpdate(PlugIn.ModelCore.CurrentTime, Values_spc);
         }
 
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Species.AuxParm<int>> values)
+        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
         {
             // Variable per species and per site (multiple maps)
             foreach (ISpecies spc in PlugIn.SelectedSpecies)
@@ -62,7 +62,7 @@ namespace Landis.Extension.Output.PnET
                 new OutputMapSpecies(values, spc, MapNameTemplate);
             }
         }
-        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<float> Values_spc, double sum, float avg)
+        public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<float> Values_spc, double sum, float avg)
         {
             // Values per species each time step
 
@@ -70,7 +70,7 @@ namespace Landis.Extension.Output.PnET
 
             
         }
-        public void UpdateVariable(Landis.Library.Biomass.Species.AuxParm<int> Values_spc, int sum, float avg)
+        public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<int> Values_spc, int sum, float avg)
         {
             // Values per species each time step
 
@@ -78,7 +78,7 @@ namespace Landis.Extension.Output.PnET
 
             
         }
-        public void UpdateVariable(Library.Biomass.Ecoregions.AuxParm<float> AverageWater)
+        public void UpdateVariable(Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageWater)
         {
             // Values per species each time step
             averageperecoregion.WriteUpdate(PlugIn.ModelCore.CurrentTime, AverageWater);
