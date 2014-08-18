@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Landis.Core;
-using Landis.SpatialModeling;
 using Landis.Library.Parameters.Species;
 
 namespace Landis.Extension.Output.PnET
