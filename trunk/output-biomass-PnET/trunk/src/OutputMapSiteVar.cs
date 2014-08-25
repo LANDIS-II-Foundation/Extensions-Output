@@ -4,7 +4,7 @@ namespace Landis.Extension.Output.PnET
 {
     public class OutputMapSiteVar
     {
-        string FileName;
+        string FileName ;
         //string label;
         public OutputMapSiteVar(string MapNameTemplate, ISiteVar<int> values)
         {
