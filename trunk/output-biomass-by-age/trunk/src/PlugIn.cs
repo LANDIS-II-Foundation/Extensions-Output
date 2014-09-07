@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.BiomassByAge
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly ExtensionType extType = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Biomass-by-Age";
         
         private static ICore modelCore;
@@ -27,7 +27,7 @@ namespace Landis.Extension.Output.BiomassByAge
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(ExtensionName, Type)
+            : base(ExtensionName, extType)
         {
         }
 
@@ -47,7 +47,7 @@ namespace Landis.Extension.Output.BiomassByAge
             modelCore = mCore;
             SiteVars.Initialize();
             InputParametersParser parser = new InputParametersParser();
-            parameters = mCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
         //---------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ namespace Landis.Extension.Output.BiomassByAge
                 foreach(AgeClass ageclass in ageClasses[species.Name])
                 {
                     string path = MakeSpeciesMapName(species.Name, ageclass.Name);
-                    ModelCore.Log.WriteLine("   Writing {0} and {1} map to {2} ...", species.Name, ageclass.Name, path);
+                    ModelCore.UI.WriteLine("   Writing {0} and {1} map to {2} ...", species.Name, ageclass.Name, path);
                     using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
                     {
                         IntPixel pixel = outputRaster.BufferPixel;

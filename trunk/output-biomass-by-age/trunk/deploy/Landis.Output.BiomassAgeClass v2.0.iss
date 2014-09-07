@@ -7,18 +7,21 @@
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6"
 
 [Files]
-; Cohort Libraries
-#define BuildDir "C:\Program Files\LANDIS-II\6.0\bin"
 
 ; Output Biomass Ageclass v1.0 plug-in
-Source: {#BuildDir}\Landis.Extension.Output.BiomassByAge.dll; DestDir: {app}\bin; Flags: replacesameversion
+Source: ..\src\bin\debug\Landis.Extension.Output.BiomassByAge.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; All the example input-files for the in examples
-Source: examples\*; DestDir: {app}\examples\biomass-age-output; Flags: recursesubdirs
-Source: docs\LANDIS-II Age Biomass Output v2.0 User Guide.pdf; DestDir: {app}\docs
+Source: docs\LANDIS-II Age Biomass Output v2.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\biomass-age-output
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\biomass-age-output
+Source: examples\*.txt; DestDir: {#AppDir}\examples\biomass-age-output
+Source: examples\*.bat; DestDir: {#AppDir}\examples\biomass-age-output
 
 #define BioAgeclass "output-biomass-ageclass v2.0.txt"
 Source: {#BioAgeclass}; DestDir: {#LandisPlugInDir}
