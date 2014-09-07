@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.BiomassReclass
         : ExtensionMain
     {
 
-        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly ExtensionType extType = new ExtensionType("output");
         public static readonly string PlugInName = "Output Biomass Reclass";
 
         private string mapNameTemplate;
@@ -26,7 +26,7 @@ namespace Landis.Extension.Output.BiomassReclass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base(PlugInName, Type)
+            : base(PlugInName, extType)
         {
         }
 
@@ -47,7 +47,7 @@ namespace Landis.Extension.Output.BiomassReclass
             modelCore = mCore;
             InputParametersParser.SpeciesDataset = modelCore.Species;
             InputParametersParser parser = new InputParametersParser();
-            parameters = modelCore.Load<IInputParameters>(dataFile, parser);
+            parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
 
         }
 
@@ -81,7 +81,7 @@ namespace Landis.Extension.Output.BiomassReclass
                 List<IForestType> forestTypes = map.ForestTypes;
 
                 string path = MapFileNames.ReplaceTemplateVars(mapNameTemplate, map.Name, modelCore.CurrentTime);
-                modelCore.Log.WriteLine("   Writing Biomass Reclass map to {0} ...", path);
+                modelCore.UI.WriteLine("   Writing Biomass Reclass map to {0} ...", path);
                 using (IOutputRaster<BytePixel> outputRaster = modelCore.CreateRaster<BytePixel>(path, modelCore.Landscape.Dimensions))
                 {
                     BytePixel pixel = outputRaster.BufferPixel;

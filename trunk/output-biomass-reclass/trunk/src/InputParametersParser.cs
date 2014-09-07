@@ -15,6 +15,14 @@ namespace Landis.Extension.Output.BiomassReclass
     {
         public static ISpeciesDataset SpeciesDataset = null;
 
+        //---------------------------------------------------------------------
+        public override string LandisDataValue
+        {
+            get
+            {
+                return PlugIn.PlugInName;
+            }
+        }
 
         //---------------------------------------------------------------------
 
@@ -26,10 +34,7 @@ namespace Landis.Extension.Output.BiomassReclass
 
         protected override IInputParameters Parse()
         {
-            InputVar<string> landisData = new InputVar<string>("LandisData");
-            ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.PlugInName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.PlugInName);
+            ReadLandisDataVar();
 
             InputParameters parameters = new InputParameters(SpeciesDataset.Count);
 

@@ -7,14 +7,19 @@
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Setup section) v6.0.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
+#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
+#define AppDir "C:\Program Files\LANDIS-II\v6"
 
 [Files]
 
 ; Biomass Reclass v2.0 plug-in
-Source: C:\Program Files\LANDIS-II\6.0\bin\Landis.Extension.Output.BiomassReclass.dll; DestDir: {app}\bin; Flags: replacesameversion
-Source: docs\LANDIS-II Biomass Reclass Output v2.0 User Guide.pdf; DestDir: {app}\docs
-Source: examples\*; DestDir: {app}\examples\output-biomass-reclass
+Source: ..\src\bin\debug\Landis.Extension.Output.BiomassReclass.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: docs\LANDIS-II Biomass Reclass Output v2.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\output-biomass-reclass
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\output-biomass-reclass
+Source: examples\*.txt; DestDir: {#AppDir}\examples\output-biomass-reclass
+Source: examples\*.bat; DestDir: {#AppDir}\examples\output-biomass-reclass
 
 #define BiomassReclass "Biomass Reclass 2.0.txt"
 Source: {#BiomassReclass}; DestDir: {#LandisPlugInDir}
@@ -29,7 +34,7 @@ Filename: {#PlugInAdminTool}; Parameters: "add ""{#BiomassReclass}"" "; WorkingD
 [UninstallRun]
 
 [Code]
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 
