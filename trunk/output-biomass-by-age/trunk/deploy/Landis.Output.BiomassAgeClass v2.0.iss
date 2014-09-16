@@ -37,7 +37,7 @@ Filename: {#PlugInAdminTool}; Parameters: "add ""{#BioAgeclass}"" "; WorkingDir:
 [UninstallRun]
 
 [Code]
-#include AddBackslash(GetEnv("LANDIS_DEPLOY")) + "package (Code section) v3.iss"
+#include "J:\Scheller\LANDIS-II\deploy\package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 
