@@ -17,12 +17,9 @@ namespace Landis.Extension.Output.LeafBiomass
         public static void InitializeMetadata(int Timestep, IEnumerable<ISpecies> selectedSpecies, string sppMapNames, ICore mCore)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
-                //String outputFolder = OutputPath.ReplaceTemplateVars("", FINISH ME LATER);
-                //FolderName = System.IO.Directory.GetCurrentDirectory().Split("\\".ToCharArray()).Last(),
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
                 TimeMin = PlugIn.ModelCore.StartTime,
                 TimeMax = PlugIn.ModelCore.EndTime
-                //ProjectionFilePath = "Projection.?" //How do we get projections???
             };
 
             Extension = new ExtensionMetadata(mCore){
@@ -53,6 +50,8 @@ namespace Landis.Extension.Output.LeafBiomass
             //          map outputs:         
             //---------------------------------------
             //PlugIn.ModelCore.UI.WriteLine("   Writing biomass maps ...");
+            if(PlugIn.MakeMaps)
+            {
             foreach (ISpecies species in selectedSpecies)
             {
                 string sppMapPath = MapNames.ReplaceTemplateVars(sppMapNames, species.Name);
@@ -67,6 +66,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     Visualize = true
                 };
                 Extension.OutputMetadatas.Add(mapOut_SppBiomass);
+            }
             }
 
             string totalBioMapPath = MapNames.ReplaceTemplateVars(sppMapNames, "TotalBiomass");

@@ -18,12 +18,12 @@ namespace Landis.Extension.Output.LeafBiomass
     {
         public static readonly string ExtensionName = "Output Leaf Biomass";
         public static readonly ExtensionType type = new ExtensionType("output");
-        public static MetadataTable<SppBiomassLog> sppBiomassLog; //= new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
+        public static MetadataTable<SppBiomassLog> sppBiomassLog;
+        public static bool MakeMaps;
 
         private static ICore modelCore;
         private IEnumerable<ISpecies> selectedSpecies;
         private static string speciesMapNameTemplate;
-        private bool makeMaps;
         private IInputParameters parameters;
 
         //---------------------------------------------------------------------
@@ -60,12 +60,9 @@ namespace Landis.Extension.Output.LeafBiomass
             SiteVars.Initialize();
             this.selectedSpecies = parameters.SelectedSpecies;
             speciesMapNameTemplate = parameters.SpeciesMaps;
-            this.makeMaps = parameters.MakeMaps;
-            //this.makeTable = parameters.MakeTable;
+            MakeMaps = parameters.MakeMaps;
             MetadataHandler.InitializeMetadata(parameters.Timestep, this.selectedSpecies, parameters.SpeciesMaps, modelCore);
             
-            //if(makeTable)
-            //    InitializeLogFile();
 
         }
 
@@ -77,7 +74,7 @@ namespace Landis.Extension.Output.LeafBiomass
             
             if (selectedSpecies != null)
             {
-                if(makeMaps)
+                if(MakeMaps)
                     WriteSpeciesMaps();
             }
             WriteLogFile();
