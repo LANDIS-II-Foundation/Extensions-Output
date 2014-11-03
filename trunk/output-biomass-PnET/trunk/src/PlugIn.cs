@@ -206,7 +206,9 @@ namespace Landis.Extension.Output.PnET
             if (DeadCohortAges != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortAges");
-                DeadCohortAges.UpdateVariable(SiteVars.DeadCohortAges, "NrOfCohortsThatDiedAtAge", 10);
+
+                new OutputHistogramCohort(DeadCohortAges.MapNameTemplate, "NrOfCohortsThatDiedAtAge", 10).WriteOutputHist(SiteVars.DeadCohortAges);
+               
             }
             if (DeadCohortNumbers != null)
             {
@@ -216,7 +218,9 @@ namespace Landis.Extension.Output.PnET
             if (AgeDistribution != null)
             {
                 System.Console.WriteLine("Updating output variable: AgeDistribution");
-                AgeDistribution.UpdateVariable(SiteVars.CohortAges, "NrOfCohortsAtAge", 10);
+
+                new OutputHistogramCohort(AgeDistribution.MapNameTemplate, "NrOfCohortsAtAge", 10).WriteOutputHist(SiteVars.CohortAges);
+                 
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
 

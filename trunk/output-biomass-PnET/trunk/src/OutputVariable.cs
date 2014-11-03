@@ -15,10 +15,6 @@ namespace Landis.Extension.Output.PnET
 
          
          
-        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
-        {
-            new OutputHistogramCohort(MapNameTemplate, label, NrOfHistogramCohorts).WriteOutputHist(Values);
-        }
         
         public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
         {
