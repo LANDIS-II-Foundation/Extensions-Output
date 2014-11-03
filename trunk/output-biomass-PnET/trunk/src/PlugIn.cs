@@ -132,7 +132,7 @@ namespace Landis.Extension.Output.PnET
             if (BelowGround != null)
             {
                 System.Console.WriteLine("Updating output variable: BelowGround");
-                new OutputMapSiteVar(BelowGround.MapNameTemplate, SiteVars.BelowGroundBiomass);
+                new OutputMapSiteVar(BelowGround.MapNameTemplate, "", SiteVars.BelowGroundBiomass);
                 
             }
             if (LAI != null)
@@ -140,7 +140,7 @@ namespace Landis.Extension.Output.PnET
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
 
-                new OutputMapSiteVar(LAI.MapNameTemplate, SiteVars.CanopyLAImax);
+                new OutputMapSiteVar(LAI.MapNameTemplate,"", SiteVars.CanopyLAImax);
 
                 // Values per species each time step
                 new OutputTableEcoregions(LAI.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageLAIperEcoRegion);
@@ -155,7 +155,7 @@ namespace Landis.Extension.Output.PnET
                 
                 new OutputHistogramCohort(CohortsPerSpc.MapNameTemplate, "CohortsPerSpcPerSite", 10).WriteOutputHist(SiteVars.Cohorts);      
 
-                new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, SiteVars.CohortsPerSite);
+                new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, "",SiteVars.CohortsPerSite);
                  
                 // Nr of cohorts per species
                 new OutputFilePerTStepPerSpecies(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
@@ -176,7 +176,7 @@ namespace Landis.Extension.Output.PnET
                 }
 
                 
-                new OutputMapSiteVar(Biomass.MapNameTemplate, SpeciesSum(SiteVars.Biomass));
+                new OutputMapSiteVar(Biomass.MapNameTemplate,"Total", SpeciesSum(SiteVars.Biomass));
 
                 // overview table 
                 // Biomass_spc
@@ -188,7 +188,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: Water");
                 
-                new OutputMapSiteVar(Water.MapNameTemplate, SiteVars.Water);
+                new OutputMapSiteVar(Water.MapNameTemplate,"", SiteVars.Water);
 
                 new OutputTableEcoregions(Water.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageWaterPerEcoregion);
 
@@ -217,7 +217,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
 
-                new OutputMapSiteVar(SubCanopyPAR.MapNameTemplate, SiteVars.ToInt<float>(SiteVars.SubCanopyRadiation));
+                new OutputMapSiteVar(SubCanopyPAR.MapNameTemplate, "",SiteVars.ToInt<float>(SiteVars.SubCanopyRadiation));
 
                  
             }
@@ -225,14 +225,14 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
 
-                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, ToInt(SiteVars.Litter));
+                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, "",ToInt(SiteVars.Litter));
               
             }
             if (WoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
 
-                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, ToInt(SiteVars.WoodyDebris));
+                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, "",ToInt(SiteVars.WoodyDebris));
              
             }
             if (DeadCohortAges != null)
@@ -259,7 +259,7 @@ namespace Landis.Extension.Output.PnET
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
 
-                new OutputMapSiteVar(AgeDistribution.MapNameTemplate, SiteVars.MaxAges);
+                new OutputMapSiteVar(AgeDistribution.MapNameTemplate,"", SiteVars.MaxAges);
                  
             }
             if (overalloutputs != null)

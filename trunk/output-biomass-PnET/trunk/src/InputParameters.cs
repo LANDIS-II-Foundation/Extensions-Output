@@ -202,7 +202,8 @@ namespace Landis.Extension.Output.PnET
                 return speciesBiom;
             }
             set {
-                FileNames.CheckTemplateVars(value);
+                OutputPath.CheckTemplateVars(value, FileNames.knownVars);
+                 
                 speciesBiom = value;
             }
         }

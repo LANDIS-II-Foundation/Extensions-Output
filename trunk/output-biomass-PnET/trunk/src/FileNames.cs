@@ -16,7 +16,7 @@ namespace Landis.Extension.Output.PnET
         public const string SpeciesVar = "species";
         public const string TimestepVar = "timestep";
 
-        private static IDictionary<string, bool> knownVars;
+        public static IDictionary<string, bool> knownVars { get; private set; }
         private static IDictionary<string, string> varValues;
 
         //---------------------------------------------------------------------
@@ -43,18 +43,8 @@ namespace Landis.Extension.Output.PnET
             }
          
         }
-        public static string MakeValueTableName(string MapNameTemplate, string label)
-        {
-            return FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime).Replace(".img", ".txt");
-        }
-        public static string MakeMapName(string MapNameTemplate)
-        {
-            return ReplaceTemplateVars(MapNameTemplate, PlugIn.ModelCore.CurrentTime);
-        }
-        //public static string MakeMapName(string MapNameTemplate, string label)
-        //{
-        //    return ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
-        //}
+        
+         
         static FileNames()
         {
             knownVars = new Dictionary<string, bool>();
@@ -66,10 +56,7 @@ namespace Landis.Extension.Output.PnET
 
         //---------------------------------------------------------------------
 
-        public static void CheckTemplateVars(string template)
-        {
-            OutputPath.CheckTemplateVars(template, knownVars);
-        }
+        
 
         //---------------------------------------------------------------------
         public static string ReplaceTemplateVars(string template,
@@ -82,14 +69,8 @@ namespace Landis.Extension.Output.PnET
             MakeFolders(fn);
             return fn;
         }
-        public static string OutputHistogramCohortName(string template)
-        {
-            return ReplaceTemplateVars(template, PlugIn.ModelCore.CurrentTime).Replace(".img", "Histogram.txt");
-        }
-        public static string OutputTableSpeciesName(string template)
-        {
-            return ReplaceTemplateVars(template).Replace(".img", ".txt");
-        }
+         
+         
         public static string ReplaceTemplateVars(string template)
         {
             varValues[SpeciesVar] = "";
@@ -99,15 +80,7 @@ namespace Landis.Extension.Output.PnET
             MakeFolders(fn);
             return fn;
         }
-        public static string ReplaceTemplateVars(string template,
-                                                 int timestep)
-        {
-            varValues[SpeciesVar] = "";
-            varValues[TimestepVar] = timestep.ToString();
-            string fn = OutputPath.ReplaceTemplateVars(template, varValues);
-            MakeFolders(fn);
-            return fn;
-        }
+         
         public static string ReplaceTemplateVars(string template,
                                                  string species,
                                                  int    timestep)

@@ -6,11 +6,11 @@ namespace Landis.Extension.Output.PnET
     {
         string FileName ;
         
-        public OutputMapSiteVar(string MapNameTemplate, ISiteVar<int> values)
+        public OutputMapSiteVar(string MapNameTemplate, string label,  ISiteVar<int> values)
         {
             if (MapNameTemplate == null) throw new System.Exception("Cannot initialize maps with label " + MapNameTemplate );
 
-            FileName = FileNames.MakeMapName(MapNameTemplate);
+            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
              
             WriteMap(values);
         }

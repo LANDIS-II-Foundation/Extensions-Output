@@ -30,7 +30,7 @@ namespace Landis.Extension.Output.PnET
         }
         public OutputFilePerTStepPerSpecies(string MapNameTemplate, string units)
         {
-            FileName = FileNames.OutputTableSpeciesName(MapNameTemplate);
+            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt"); 
             FileNames.MakeFolders(FileName);
             Content = new List<string>();
             string hdr = "Time" + "\t" + "Sum" + '(' + units + ')' + "\t" + "AvgPerSite" + '(' + units + ')' + "\t";

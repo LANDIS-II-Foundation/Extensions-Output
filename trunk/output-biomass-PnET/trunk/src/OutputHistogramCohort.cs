@@ -19,7 +19,8 @@ namespace Landis.Extension.Output.PnET
         {
             FileContent = new List<string>();
             this.NrOfCohorts = NrOfCohorts;
-            FileName = FileNames.OutputHistogramCohortName(filenametemplate);
+            FileName = FileNames.ReplaceTemplateVars(filenametemplate, "", PlugIn.ModelCore.CurrentTime).Replace(".img", "Histogram.txt");
+             
             this.label = label;
         }
 
