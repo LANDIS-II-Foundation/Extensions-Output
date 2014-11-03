@@ -5,6 +5,9 @@ using Landis.Core;
 
 using System;
 using System.Collections.Generic;
+using Landis.Core;
+using Landis.SpatialModeling;
+using System;
 
 namespace Landis.Extension.Output.PnET
 {
@@ -102,7 +105,15 @@ namespace Landis.Extension.Output.PnET
             if (parameters.CohortBalance != null) overalloutputs = new OverallOutputs(parameters.CohortBalance);
             
         }
-
+        public static ISiteVar<int> ToInt(ISiteVar<Landis.Library.Biomass.Pool> v)
+        {
+            ISiteVar<int> litter = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                litter[site] += (int)System.Math.Round(v[site].Mass, 0);
+            }
+            return litter;
+        }
        
         public override void Run()
         {

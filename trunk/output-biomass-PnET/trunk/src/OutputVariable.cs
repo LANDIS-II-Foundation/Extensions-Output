@@ -13,15 +13,7 @@ namespace Landis.Extension.Output.PnET
         OutputTableSpecies outputtable;
         OutputTableEcoregions averageperecoregion;
 
-        public static ISiteVar<int> ToInt(ISiteVar<Landis.Library.Biomass.Pool> v)
-        {
-            ISiteVar<int> litter = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                litter[site] += (int)System.Math.Round(v[site].Mass, 0);
-            }
-            return litter;
-        }
+        
 
         
         public void UpdateVariable(ISiteVar<int> values)
@@ -32,7 +24,7 @@ namespace Landis.Extension.Output.PnET
         public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Pool> values)
         {
             // Variable per site (map)
-            new OutputMapSiteVar(MapNameTemplate, ToInt(values));
+            new OutputMapSiteVar(MapNameTemplate, PlugIn.ToInt(values));
         }
         public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
         {
