@@ -146,7 +146,10 @@ namespace Landis.Extension.Output.PnET
                 new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, SiteVars.CohortsPerSite);
                  
                 // Nr of cohorts per species
-                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
+                new OutputFilePerTStepPerSpecies(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
+
+
+                 
             }
              
             if (Biomass != null)
@@ -163,7 +166,9 @@ namespace Landis.Extension.Output.PnET
 
                 // overview table 
                 // Biomass_spc
-                Biomass.UpdateVariable(SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
+                new OutputFilePerTStepPerSpecies(Biomass.MapNameTemplate, Biomass.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
+
+               
             }
             if (Water != null)
             {
@@ -183,11 +188,9 @@ namespace Landis.Extension.Output.PnET
                     new OutputMapSpecies(SiteVars.newcohortcount, spc, SpeciesEstablishment.MapNameTemplate);
                 }
 
-                 
+                new OutputFilePerTStepPerSpecies(SpeciesEstablishment.MapNameTemplate, SpeciesEstablishment.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
 
-                SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
-
-            
+                
             }
             if (AnnualTranspiration != null)
             {
