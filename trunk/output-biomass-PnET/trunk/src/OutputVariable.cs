@@ -10,21 +10,10 @@ namespace Landis.Extension.Output.PnET
         public string MapNameTemplate { get; private set; }
         string units;
         OutputFilePerTStepPerSpecies pertstepperspecies;
-        OutputTableSpecies outputtable;
+         
         OutputTableEcoregions averageperecoregion;
 
          
-         
-        
-        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values, string label, int NrOfHistogramCohorts)
-        {
-            new OutputHistogramCohort(MapNameTemplate, label,  NrOfHistogramCohorts).WriteOutputHist(values);          
-        }
-        public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<int> Values_spc)
-        {
-            outputtable.WriteUpdate(PlugIn.ModelCore.CurrentTime, Values_spc);
-        }
-
         public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
         {
             // Variable per species and per site (multiple maps)
@@ -69,7 +58,7 @@ namespace Landis.Extension.Output.PnET
             this.units = units;
             pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate, units);
 
-            outputtable = new OutputTableSpecies(MapNameTemplate);
+           
 
             averageperecoregion = new OutputTableEcoregions(MapNameTemplate);
         }

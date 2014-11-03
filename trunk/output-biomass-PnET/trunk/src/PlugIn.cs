@@ -214,7 +214,10 @@ namespace Landis.Extension.Output.PnET
             if (DeadCohortNumbers != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortNumbers");
-                DeadCohortNumbers.UpdateVariable(SiteVars.Deadcohorts_spc);
+                 
+                new OutputTableSpecies(DeadCohortNumbers.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.Deadcohorts_spc);
+
+                 
             }
             if (AgeDistribution != null)
             {
