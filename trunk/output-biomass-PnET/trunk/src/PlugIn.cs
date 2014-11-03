@@ -120,13 +120,16 @@ namespace Landis.Extension.Output.PnET
             if (BelowGround != null)
             {
                 System.Console.WriteLine("Updating output variable: BelowGround");
-                BelowGround.UpdateVariable(SiteVars.BelowGroundBiomass);
+                new OutputMapSiteVar(BelowGround.MapNameTemplate, SiteVars.BelowGroundBiomass);
+                
             }
             if (LAI != null)
             {
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
-                LAI.UpdateVariable(SiteVars.CanopyLAImax );
+
+                new OutputMapSiteVar(LAI.MapNameTemplate, SiteVars.CanopyLAImax);
+                
 
                 LAI.UpdateVariable(SiteVars.AverageLAIperEcoRegion);
             }
@@ -137,8 +140,8 @@ namespace Landis.Extension.Output.PnET
                 // Nr of Cohorts per site and per species
                 CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
 
-                CohortsPerSpc.UpdateVariable(SiteVars.CohortsPerSite);
-
+                new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, SiteVars.CohortsPerSite);
+                 
                 // Nr of cohorts per species
                 CohortsPerSpc.UpdateVariable(SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
             }
@@ -157,7 +160,8 @@ namespace Landis.Extension.Output.PnET
             if (Water != null)
             {
                 System.Console.WriteLine("Updating output variable: Water");
-                Water.UpdateVariable(SiteVars.Water);
+                
+                new OutputMapSiteVar(Water.MapNameTemplate, SiteVars.Water);
 
                 Water.UpdateVariable(SiteVars.AverageWaterPerEcoregion);
             }
@@ -173,22 +177,31 @@ namespace Landis.Extension.Output.PnET
             if (AnnualTranspiration != null)
             {
                 System.Console.WriteLine("Updating output variable: AnnualTranspiration");
-                AnnualTranspiration.UpdateVariable(SiteVars.AnnualTranspiration);
+
+                new OutputMapSiteVar(AnnualTranspiration.MapNameTemplate, SiteVars.AnnualTranspiration);
+            
             }
             if (SubCanopyPAR != null)
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
-                SubCanopyPAR.UpdateVariable(SiteVars.ToInt<float>(SiteVars.SubCanopyRadiation));
+
+                new OutputMapSiteVar(SubCanopyPAR.MapNameTemplate, SiteVars.ToInt<float>(SiteVars.SubCanopyRadiation));
+
+                 
             }
             if (NonWoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
-                NonWoodyDebris.UpdateVariable(ToInt(SiteVars.Litter));
+
+                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, ToInt(SiteVars.Litter));
+              
             }
             if (WoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
-                WoodyDebris.UpdateVariable(ToInt(SiteVars.WoodyDebris));
+
+                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, ToInt(SiteVars.WoodyDebris));
+             
             }
             if (DeadCohortAges != null)
             {
@@ -206,7 +219,9 @@ namespace Landis.Extension.Output.PnET
                 AgeDistribution.UpdateVariable(SiteVars.CohortAges, "NrOfCohortsAtAge", 10);
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
-                AgeDistribution.UpdateVariable(SiteVars.MaxAges);
+
+                new OutputMapSiteVar(AgeDistribution.MapNameTemplate, SiteVars.MaxAges);
+                 
             }
             if (overalloutputs != null)
             {

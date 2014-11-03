@@ -7,17 +7,13 @@ namespace Landis.Extension.Output.PnET
 {
     public class OutputVariable
     {
-        string MapNameTemplate;
+        public string MapNameTemplate { get; private set; }
         string units;
         OutputFilePerTStepPerSpecies pertstepperspecies;
         OutputTableSpecies outputtable;
         OutputTableEcoregions averageperecoregion;
 
-        public void UpdateVariable(ISiteVar<int> values)
-        {
-            // Variable per site (map)
-            new OutputMapSiteVar(MapNameTemplate, values);
-        }
+         
          
         public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
         {
