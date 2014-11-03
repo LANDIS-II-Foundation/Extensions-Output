@@ -138,7 +138,8 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: CohortsPerSpc");
                 // Nr of Cohorts per site and per species
-                CohortsPerSpc.UpdateVariable(SiteVars.Cohorts, "CohortsPerSpcPerSite", 10);
+                
+                new OutputHistogramCohort(CohortsPerSpc.MapNameTemplate, "CohortsPerSpcPerSite", 10).WriteOutputHist(SiteVars.Cohorts);      
 
                 new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, SiteVars.CohortsPerSite);
                  
