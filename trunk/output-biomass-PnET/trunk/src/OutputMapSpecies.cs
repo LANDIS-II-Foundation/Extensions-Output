@@ -13,10 +13,6 @@ namespace Landis.Extension.Output.PnET
         {
             this.species = species;
             FileName= FileNames.ReplaceTemplateVars(MapNameTemplate, species.Name, PlugIn.ModelCore.CurrentTime);
-            WriteMap(values);
-        }
-        private void WriteMap(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
-        {
 
             Console.WriteLine("   Writing {0} map to {1} ...", species.Name, FileName);
 
@@ -35,7 +31,7 @@ namespace Landis.Extension.Output.PnET
                 }
             }
         }
-        
+       
         
     }
 }
