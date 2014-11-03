@@ -13,19 +13,12 @@ namespace Landis.Extension.Output.PnET
         OutputTableSpecies outputtable;
         OutputTableEcoregions averageperecoregion;
 
-        
-
-        
         public void UpdateVariable(ISiteVar<int> values)
         {
             // Variable per site (map)
             new OutputMapSiteVar(MapNameTemplate, values);
         }
-        public void UpdateVariable(ISiteVar<Landis.Library.Biomass.Pool> values)
-        {
-            // Variable per site (map)
-            new OutputMapSiteVar(MapNameTemplate, PlugIn.ToInt(values));
-        }
+         
         public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> Values, string label, int NrOfHistogramCohorts)
         {
             new OutputHistogramCohort(MapNameTemplate, label, NrOfHistogramCohorts).WriteOutputHist(Values);

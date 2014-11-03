@@ -183,12 +183,12 @@ namespace Landis.Extension.Output.PnET
             if (NonWoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
-                NonWoodyDebris.UpdateVariable(SiteVars.Litter);
+                NonWoodyDebris.UpdateVariable(ToInt(SiteVars.Litter));
             }
             if (WoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
-                WoodyDebris.UpdateVariable(SiteVars.WoodyDebris);
+                WoodyDebris.UpdateVariable(ToInt(SiteVars.WoodyDebris));
             }
             if (DeadCohortAges != null)
             {
