@@ -9,17 +9,13 @@ namespace Landis.Extension.Output.PnET
     {
         public string MapNameTemplate { get; private set; }
         string units;
-        OutputFilePerTStepPerSpecies pertstepperspecies;
-         
-        OutputTableEcoregions averageperecoregion;
-
-         
         
+         
         public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<float> Values_spc, double sum, float avg)
         {
             // Values per species each time step
 
-            pertstepperspecies.Update(PlugIn.ModelCore.CurrentTime, Values_spc, sum, avg);
+            new OutputFilePerTStepPerSpecies(MapNameTemplate, units).Update(PlugIn.ModelCore.CurrentTime, Values_spc, sum, avg);
 
             
         }
@@ -27,19 +23,11 @@ namespace Landis.Extension.Output.PnET
         {
             // Values per species each time step
 
-            pertstepperspecies.Update(PlugIn.ModelCore.CurrentTime, Values_spc, sum, avg);
+            new OutputFilePerTStepPerSpecies(MapNameTemplate, units).Update(PlugIn.ModelCore.CurrentTime, Values_spc, sum, avg);
 
             
         }
-        public void UpdateVariable(Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageWater)
-        {
-            // Values per species each time step
-            averageperecoregion.WriteUpdate(PlugIn.ModelCore.CurrentTime, AverageWater);
-            
-        }
-
-        
-
+       
         public OutputVariable(string MapNameTemplate, 
                               string units)
         {
@@ -49,11 +37,9 @@ namespace Landis.Extension.Output.PnET
             if (!MapNameTemplate.Contains(".img")) throw new System.Exception("MapNameTemplate " + MapNameTemplate+" does not have an extension '.img'");
             if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps, no template name available");
             
-            pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate, units);
+         
 
-           
-
-            averageperecoregion = new OutputTableEcoregions(MapNameTemplate);
+             
         }
         
     }

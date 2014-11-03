@@ -129,9 +129,11 @@ namespace Landis.Extension.Output.PnET
                 // Total LAI per site 
 
                 new OutputMapSiteVar(LAI.MapNameTemplate, SiteVars.CanopyLAImax);
-                
 
-                LAI.UpdateVariable(SiteVars.AverageLAIperEcoRegion);
+                // Values per species each time step
+                new OutputTableEcoregions(LAI.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageLAIperEcoRegion);
+
+                
             }
             
             if (CohortsPerSpc != null)
@@ -169,7 +171,9 @@ namespace Landis.Extension.Output.PnET
                 
                 new OutputMapSiteVar(Water.MapNameTemplate, SiteVars.Water);
 
-                Water.UpdateVariable(SiteVars.AverageWaterPerEcoregion);
+                new OutputTableEcoregions(Water.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageWaterPerEcoregion);
+
+                 
             }
             if (SpeciesEstablishment != null)
             {
