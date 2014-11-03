@@ -43,12 +43,12 @@ namespace Landis.Extension.Output.PnET
         public OutputVariable(string MapNameTemplate, 
                               string units)
         {
-            if (!MapNameTemplate.Contains(".img")) throw new System.Exception("MapNameTemplate " + MapNameTemplate+" does not have an extension '.img'");
-
-            if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps, no template name available");
             this.MapNameTemplate = MapNameTemplate;
-            
             this.units = units;
+
+            if (!MapNameTemplate.Contains(".img")) throw new System.Exception("MapNameTemplate " + MapNameTemplate+" does not have an extension '.img'");
+            if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps, no template name available");
+            
             pertstepperspecies = new OutputFilePerTStepPerSpecies(MapNameTemplate, units);
 
            
