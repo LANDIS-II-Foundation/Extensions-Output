@@ -40,7 +40,7 @@ namespace Landis.Extension.Output.PnET
         static  OutputVariable LAI;
         static  OutputVariable SpeciesEstablishment;
         static  OutputVariable Water;
-        static  OutputVariable AnnualTranspiration;
+        //static  OutputVariable AnnualTranspiration;
         static  OutputVariable SubCanopyPAR;
         static  OverallOutputs overalloutputs;
 
@@ -95,7 +95,7 @@ namespace Landis.Extension.Output.PnET
             if (parameters.LeafAreaIndex != null) LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
             if (parameters.SpeciesEst != null) SpeciesEstablishment = new OutputVariable(parameters.SpeciesEst, "");
             if (parameters.Water != null) Water = new OutputVariable(parameters.Water, "mm");
-            if (parameters.AnnualTranspiration != null) AnnualTranspiration = new OutputVariable(parameters.AnnualTranspiration,  "mm");
+            //if (parameters.AnnualTranspiration != null) AnnualTranspiration = new OutputVariable(parameters.AnnualTranspiration,  "mm");
             if (parameters.SubCanopyPAR != null) SubCanopyPAR = new OutputVariable(parameters.SubCanopyPAR,  "W/m2 pr mmol/m2");
             if (parameters.Litter != null) NonWoodyDebris = new OutputVariable(parameters.Litter, "g/m2");
             if (parameters.WoodyDebris != null) WoodyDebris = new OutputVariable(parameters.WoodyDebris,  "g/m2");
@@ -114,7 +114,19 @@ namespace Landis.Extension.Output.PnET
             }
             return litter;
         }
-       
+        public static ISiteVar<int> SpeciesSum(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>>  SpeciesSpecific)
+        {
+            ISiteVar<int> TotalBiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
+            foreach (ActiveSite site in PlugIn.modelCore.Landscape)
+            {
+                foreach (ISpecies species in PlugIn.modelCore.Species)
+                {
+                    TotalBiomass[site] += SpeciesSpecific[site][species];
+                }
+            }
+            return TotalBiomass;
+        }
+
         public override void Run()
         {
             if (BelowGround != null)
@@ -162,7 +174,9 @@ namespace Landis.Extension.Output.PnET
                 {
                     new OutputMapSpecies(SiteVars.Biomass, spc, Biomass.MapNameTemplate);
                 }
+
                 
+                new OutputMapSiteVar(Biomass.MapNameTemplate, SpeciesSum(SiteVars.Biomass));
 
                 // overview table 
                 // Biomass_spc
@@ -192,13 +206,13 @@ namespace Landis.Extension.Output.PnET
 
                 
             }
-            if (AnnualTranspiration != null)
-            {
-                System.Console.WriteLine("Updating output variable: AnnualTranspiration");
+            //if (AnnualTranspiration != null)
+            //{
+            //    System.Console.WriteLine("Updating output variable: AnnualTranspiration");
 
-                new OutputMapSiteVar(AnnualTranspiration.MapNameTemplate, SiteVars.AnnualTranspiration);
+           //     new OutputMapSiteVar(AnnualTranspiration.MapNameTemplate, SiteVars.AnnualTranspiration);
             
-            }
+            //}
             if (SubCanopyPAR != null)
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");

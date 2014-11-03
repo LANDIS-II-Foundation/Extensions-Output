@@ -18,7 +18,7 @@ namespace Landis.Extension.Output.PnET
         private string speciesBiom;
         private string leafareaindex;
         private string speciesEst;
-        private string annualtranspiration;
+       // private string annualtranspiration;
         private string woodydebris;
         private string litter;
         private string agedistribution;
@@ -144,15 +144,15 @@ namespace Landis.Extension.Output.PnET
             }
         }
 
-        public string AnnualTranspiration
-        {
-            get {
-                return annualtranspiration;
-            }
-            set {
-                annualtranspiration = value;
-            }
-        }
+        //public string AnnualTranspiration
+        //{
+        //    get {
+        //        return annualtranspiration;
+        //    }
+         //   set {
+        //        annualtranspiration = value;
+        //    }
+        //}
         public string SubCanopyPAR
         {
             get {

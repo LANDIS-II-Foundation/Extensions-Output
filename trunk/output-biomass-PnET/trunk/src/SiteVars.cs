@@ -23,7 +23,7 @@ namespace Landis.Extension.Output.PnET
         public static ISiteVar<float> SubCanopyRadiation;
         public static ISiteVar<Landis.Library.Biomass.Pool> WoodyDebris;
         public static ISiteVar<Landis.Library.Biomass.Pool> Litter;
-        public static ISiteVar<int> AnnualTranspiration;
+        //public static ISiteVar<int> AnnualTranspiration;
         public static ISiteVar<int> CanopyLAImax;
         public static ISiteVar<int> Water;
 
@@ -38,7 +38,7 @@ namespace Landis.Extension.Output.PnET
             DeadCohortAges = GetSiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>>("Succession.DeadCohortAges");
             cohorts = GetSiteVar<List<Landis.Library.BiomassCohortsPnET.Cohort>>("Succession.CohortsPnET");
             SubCanopyRadiation = GetSiteVar<float>("Succession.SubCanopyRadiation");
-            AnnualTranspiration = GetSiteVar<int>("Succession.AnnualTranspiration");
+            //AnnualTranspiration = GetSiteVar<int>("Succession.AnnualTranspiration");
             Water = GetSiteVar<int>("Succession.SoilWater");
             CanopyLAImax = GetSiteVar<int>("Succession.CanopyLAImax");
 

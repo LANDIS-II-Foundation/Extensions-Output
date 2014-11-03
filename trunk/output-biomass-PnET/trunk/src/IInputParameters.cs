@@ -60,10 +60,10 @@ namespace Landis.Extension.Output.PnET
         {
             get; 
         }
-        string AnnualTranspiration
-        {
-            get; 
-        }
+        //string AnnualTranspiration
+        //{
+        //    get; 
+        //}
 
         string SubCanopyPAR
         {
