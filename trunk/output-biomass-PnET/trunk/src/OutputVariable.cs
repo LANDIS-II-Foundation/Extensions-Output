@@ -14,14 +14,7 @@ namespace Landis.Extension.Output.PnET
         OutputTableEcoregions averageperecoregion;
 
          
-        public void UpdateVariable(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
-        {
-            // Variable per species and per site (multiple maps)
-            foreach (ISpecies spc in PlugIn.SelectedSpecies)
-            {
-                new OutputMapSpecies(values, spc, MapNameTemplate);
-            }
-        }
+        
         public void UpdateVariable(Landis.Library.Parameters.Species.AuxParm<float> Values_spc, double sum, float avg)
         {
             // Values per species each time step

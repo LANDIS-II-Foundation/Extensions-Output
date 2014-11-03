@@ -152,7 +152,12 @@ namespace Landis.Extension.Output.PnET
                 System.Console.WriteLine("Updating output variable: Biomass");
 
                 // write maps biomass per species per pixel
-                Biomass.UpdateVariable(SiteVars.Biomass);
+                // Variable per species and per site (multiple maps)
+                foreach (ISpecies spc in PlugIn.SelectedSpecies)
+                {
+                    new OutputMapSpecies(SiteVars.Biomass, spc, Biomass.MapNameTemplate);
+                }
+                
 
                 // overview table 
                 // Biomass_spc
@@ -169,7 +174,12 @@ namespace Landis.Extension.Output.PnET
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
-                SpeciesEstablishment.UpdateVariable(SiteVars.newcohortcount);
+                foreach (ISpecies spc in PlugIn.SelectedSpecies)
+                {
+                    new OutputMapSpecies(SiteVars.newcohortcount, spc, SpeciesEstablishment.MapNameTemplate);
+                }
+
+                 
 
                 SpeciesEstablishment.UpdateVariable(SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
 
