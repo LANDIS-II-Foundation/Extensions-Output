@@ -105,15 +105,7 @@ namespace Landis.Extension.Output.PnET
             if (parameters.CohortBalance != null) overalloutputs = new OverallOutputs(parameters.CohortBalance);
             
         }
-        public static ISiteVar<int> ToInt(ISiteVar<Landis.Library.Biomass.Pool> v)
-        {
-            ISiteVar<int> litter = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                litter[site] += (int)System.Math.Round(v[site].Mass, 0);
-            }
-            return litter;
-        }
+        
         public static ISiteVar<int> SpeciesSum(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>>  SpeciesSpecific)
         {
             ISiteVar<int> TotalBiomass = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
@@ -206,13 +198,7 @@ namespace Landis.Extension.Output.PnET
 
                 
             }
-            //if (AnnualTranspiration != null)
-            //{
-            //    System.Console.WriteLine("Updating output variable: AnnualTranspiration");
-
-           //     new OutputMapSiteVar(AnnualTranspiration.MapNameTemplate, SiteVars.AnnualTranspiration);
             
-            //}
             if (SubCanopyPAR != null)
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
@@ -225,14 +211,27 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
 
-                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, "",ToInt(SiteVars.Litter));
+                
+
+                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, "",SiteVars.ToInt(SiteVars.Litter));
               
             }
             if (WoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
 
-                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, "",ToInt(SiteVars.WoodyDebris));
+                /*
+                foreach (ActiveSite site in PlugIn.modelCore.Landscape)
+                {
+                    if (site.Location.Row == 1 && site.Location.Column == 20)
+                    {
+                        Console.WriteLine("WoodyDebris IN OUTPUT\t" + SiteVars.WoodyDebris[site].Mass);
+                    }
+                }
+                */
+                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, "",SiteVars.ToInt(SiteVars.WoodyDebris));
+
+                
              
             }
             if (DeadCohortAges != null)

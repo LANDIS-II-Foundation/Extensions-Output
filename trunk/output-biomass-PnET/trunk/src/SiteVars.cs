@@ -23,11 +23,10 @@ namespace Landis.Extension.Output.PnET
         public static ISiteVar<float> SubCanopyRadiation;
         public static ISiteVar<Landis.Library.Biomass.Pool> WoodyDebris;
         public static ISiteVar<Landis.Library.Biomass.Pool> Litter;
-        //public static ISiteVar<int> AnnualTranspiration;
         public static ISiteVar<int> CanopyLAImax;
         public static ISiteVar<int> Water;
 
-        
+       
         public static void Initialize()
         {
             WoodyDebris = GetSiteVar<Landis.Library.Biomass.Pool>("Succession.WoodyDebris");
@@ -64,7 +63,17 @@ namespace Landis.Extension.Output.PnET
 
             return sitevar;
         }
+       public static ISiteVar<int> ToInt(ISiteVar<Landis.Library.Biomass.Pool> pool)
+        {
+            ISiteVar<int> var = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
 
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                var[site] = (int)pool[site].Mass;
+            }
+            return var;
+        }
+        
         public static ISiteVar<int> ToInt<T>(ISiteVar<T> values)
         {
             ISiteVar<int> intvalues = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
@@ -107,7 +116,7 @@ namespace Landis.Extension.Output.PnET
         {
             get
             {
-                return ToList<Landis.Library.Biomass.Pool>(WoodyDebris).Average(o => o.Mass );
+                return ToList<int>(ToInt(WoodyDebris)).Average();
             }       
         }
         
@@ -221,8 +230,8 @@ namespace Landis.Extension.Output.PnET
         {
             get
             {
-                 
-                return ToList<Landis.Library.Biomass.Pool>(Litter).Average(o => o.Mass);
+
+                return ToList<int>(ToInt(Litter)).Average();
             }
         }
         public static double Lai_av
