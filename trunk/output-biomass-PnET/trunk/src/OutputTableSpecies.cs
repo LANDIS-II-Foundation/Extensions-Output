@@ -5,33 +5,37 @@ using Landis.Library.Parameters.Species;
 namespace Landis.Extension.Output.PnET
 {
 
-    public class OutputTableSpecies
+    public static class OutputTableSpecies
     {
-        List<string> FileContent = new List<string>();
-        string FileName;
-
-        public OutputTableSpecies(string MapNameTemplate)
+        static string Header
         {
-            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt").Replace(".gis", ".txt");
-            FileNames.MakeFolders(FileName);
-
-            string hdr = "time\t";
-            foreach (ISpecies species in PlugIn.ModelCore.Species) hdr += species.Name + "\t";
-
-            FileContent.Add(hdr);
+            get 
+            { 
+                string hdr = "time\t";
+                foreach (ISpecies species in PlugIn.ModelCore.Species) hdr += species.Name + "\t";
+                return hdr;
+            }
         }
-        public void WriteUpdate(int year, AuxParm<int> values)
+
+        public static void WriteUpdate(string MapNameTemplate, int year, AuxParm<int> values)
         {
+            string FileName  = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt").Replace(".gis", ".txt");
+            
+            if (year == 0)
+            {
+                FileNames.MakeFolders(FileName);
+                System.IO.File.WriteAllLines(FileName, new string[]{Header});
+            }
+             
             string line = year + "\t";
             foreach (ISpecies species in PlugIn.SelectedSpecies)
             {
                 line += values[species] + "\t";
             }
-
-            FileContent.Add(line);
-
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(FileName,true);
+            sw.WriteLine(line);
+            sw.Close();
              
-            System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
 
         }
         

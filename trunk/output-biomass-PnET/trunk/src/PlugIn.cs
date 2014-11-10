@@ -150,7 +150,7 @@ namespace Landis.Extension.Output.PnET
                 new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, "",SiteVars.CohortsPerSite);
                  
                 // Nr of cohorts per species
-                new OutputFilePerTStepPerSpecies(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
+                OutputFilePerTStepPerSpecies.Write<int>(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units, PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0));
 
 
                  
@@ -171,10 +171,8 @@ namespace Landis.Extension.Output.PnET
                 new OutputMapSiteVar(Biomass.MapNameTemplate,"Total", SpeciesSum(SiteVars.Biomass));
 
                 // overview table 
-                // Biomass_spc
-                new OutputFilePerTStepPerSpecies(Biomass.MapNameTemplate, Biomass.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc, SiteVars.Biomass_sum, (float)SiteVars.Biomass_av);
+                OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc, (int)Math.Round(SiteVars.Biomass_sum, 0), (int)Math.Round(SiteVars.Biomass_av, 0));
 
-               
             }
             if (Water != null)
             {
@@ -194,9 +192,9 @@ namespace Landis.Extension.Output.PnET
                     new OutputMapSpecies(SiteVars.newcohortcount, spc, SpeciesEstablishment.MapNameTemplate);
                 }
 
-                new OutputFilePerTStepPerSpecies(SpeciesEstablishment.MapNameTemplate, SpeciesEstablishment.units).Update(PlugIn.ModelCore.CurrentTime, SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
-
                 
+               // OutputFilePerTStepPerSpecies.Write<int>(SpeciesEstablishment.MapNameTemplate, SpeciesEstablishment.units, SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
+
             }
             
             if (SubCanopyPAR != null)
@@ -220,15 +218,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
 
-                /*
-                foreach (ActiveSite site in PlugIn.modelCore.Landscape)
-                {
-                    if (site.Location.Row == 1 && site.Location.Column == 20)
-                    {
-                        Console.WriteLine("WoodyDebris IN OUTPUT\t" + SiteVars.WoodyDebris[site].Mass);
-                    }
-                }
-                */
+                 
                 new OutputMapSiteVar(WoodyDebris.MapNameTemplate, "",SiteVars.ToInt(SiteVars.WoodyDebris));
 
                 
@@ -244,9 +234,9 @@ namespace Landis.Extension.Output.PnET
             if (DeadCohortNumbers != null)
             {
                 System.Console.WriteLine("Updating output variable: DeadCohortNumbers");
-                 
-                new OutputTableSpecies(DeadCohortNumbers.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.Deadcohorts_spc);
 
+                OutputTableSpecies.WriteUpdate(DeadCohortNumbers.MapNameTemplate, PlugIn.ModelCore.CurrentTime, SiteVars.Deadcohorts_spc);
+ 
                  
             }
             if (AgeDistribution != null)
