@@ -162,13 +162,16 @@ namespace Landis.Extension.Output.PnET
 
                 // write maps biomass per species per pixel
                 // Variable per species and per site (multiple maps)
+                
+                Landis.SpatialModeling.ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> BiomassPerSiteSpecies = SiteVars.Biomass;
+                   
                 foreach (ISpecies spc in PlugIn.SelectedSpecies)
                 {
-                    new OutputMapSpecies(SiteVars.Biomass, spc, Biomass.MapNameTemplate);
+                    new OutputMapSpecies(BiomassPerSiteSpecies, spc, Biomass.MapNameTemplate);
                 }
 
-                
-                new OutputMapSiteVar(Biomass.MapNameTemplate,"Total", SpeciesSum(SiteVars.Biomass));
+
+                new OutputMapSiteVar(Biomass.MapNameTemplate, "Total", SpeciesSum(BiomassPerSiteSpecies));
 
                 // overview table 
                 OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc, (int)Math.Round(SiteVars.Biomass_sum, 0), (int)Math.Round(SiteVars.Biomass_av, 0));
@@ -187,13 +190,13 @@ namespace Landis.Extension.Output.PnET
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
+
+                Landis.SpatialModeling.ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> NewCohorts = SiteVars.newcohortcount;
+
                 foreach (ISpecies spc in PlugIn.SelectedSpecies)
                 {
-                    new OutputMapSpecies(SiteVars.newcohortcount, spc, SpeciesEstablishment.MapNameTemplate);
+                    new OutputMapSpecies(NewCohorts, spc, SpeciesEstablishment.MapNameTemplate);
                 }
-
-                
-               // OutputFilePerTStepPerSpecies.Write<int>(SpeciesEstablishment.MapNameTemplate, SpeciesEstablishment.units, SiteVars.Establishments_spc, SiteVars.Establishments_sum, SiteVars.Establishments_avg);
 
             }
             
@@ -208,8 +211,6 @@ namespace Landis.Extension.Output.PnET
             if (NonWoodyDebris != null)
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
-
-                
 
                 new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, "",SiteVars.ToInt(SiteVars.Litter));
               
