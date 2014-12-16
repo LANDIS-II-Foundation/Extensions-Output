@@ -44,7 +44,7 @@ namespace Landis.Extension.Output.PnET
             }
             return extremes;   
         }
-        private static float[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
+        private static float[] Extremes(Landis.Library.Parameters.Species.AuxParm<ISiteVar<int>> values)
         {
             float[] extremes = new float[2];
             extremes[0] = float.MaxValue;
@@ -54,7 +54,7 @@ namespace Landis.Extension.Output.PnET
             {
                 foreach (ISpecies species in PlugIn.ModelCore.Species)
                 {
-                    int var = values[site][species];
+                    int var = values[species][site];
 
                     if (var > extremes[1]) extremes[1] = var;
                     if (var < extremes[0]) extremes[0] = var;
@@ -146,7 +146,7 @@ namespace Landis.Extension.Output.PnET
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
         
         }
-        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values)
+        public void WriteOutputHist(Landis.Library.Parameters.Species.AuxParm<ISiteVar<int>> values)
         {
             float[] extremes = Extremes(values);
 
@@ -162,7 +162,7 @@ namespace Landis.Extension.Output.PnET
                 string line = species.Name + "\t";
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    int var = values[site][species];
+                    int var = values[species][site];
 
                     for (int c = 0; c < running_cat_max.Count; c++)
                     {

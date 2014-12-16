@@ -9,7 +9,7 @@ namespace Landis.Extension.Output.PnET
         ISpecies species;
         
         string FileName;
-        public OutputMapSpecies(ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> values, ISpecies species, string MapNameTemplate)
+        public OutputMapSpecies(ISiteVar<int> values, ISpecies species, string MapNameTemplate)
         {
             this.species = species;
             FileName= FileNames.ReplaceTemplateVars(MapNameTemplate, species.Name, PlugIn.ModelCore.CurrentTime);
@@ -23,7 +23,7 @@ namespace Landis.Extension.Output.PnET
                 {
                     if (site.IsActive)
                     {
-                        pixel.MapCode.Value = (int)values[site][species];
+                        pixel.MapCode.Value = (int)values[site];
                     }
                     else pixel.MapCode.Value = 0;
 

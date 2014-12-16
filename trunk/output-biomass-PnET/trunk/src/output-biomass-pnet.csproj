@@ -71,13 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISiteVar.cs" />
+    <Compile Include="MapComparison.cs" />
     <Compile Include="OutputHistogramCohort.cs" />
     <Compile Include="OutputFilePerTStepPerSpecies.cs" />
     <Compile Include="OutputTableEcoregions.cs" />
     <Compile Include="OutputTableSpecies.cs" />
-    <Compile Include="IInputParameters.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="InputParameters.cs">
       <SubType>Code</SubType>
     </Compile>

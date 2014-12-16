@@ -11,7 +11,7 @@ namespace Landis.Extension.Output.PnET
     /// A parser that reads the plug-in's parameters from text input.
     /// </summary>
     public class InputParametersParser
-        : Edu.Wisc.Forest.Flel.Util.TextParser<IInputParameters>
+        : Edu.Wisc.Forest.Flel.Util.TextParser<InputParameters>
     {
 
         //---------------------------------------------------------------------
@@ -22,7 +22,7 @@ namespace Landis.Extension.Output.PnET
 
         //---------------------------------------------------------------------
 
-        protected override IInputParameters Parse()
+        protected override InputParameters Parse()
         {
             InputVar<string> landisData = new InputVar<string>("LandisData");
             ReadVar(landisData);
@@ -45,15 +45,12 @@ namespace Landis.Extension.Output.PnET
             InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
             InputVar<string> Establishment = new InputVar<string>("Establishment");
             InputVar<string> Water = new InputVar<string>("Water");
-            //InputVar<string> AnnualTranspiration= new InputVar<string>("AnnualTranspiration");
             InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");
             InputVar<string> BelowgroundBiomass = new InputVar<string>("BelowgroundBiomass");
             InputVar<string> CohortsPerSpecies = new InputVar<string>("CohortsPerSpecies");
             InputVar<string> WoodyDebris = new InputVar<string>("WoodyDebris");
             InputVar<string> Litter = new InputVar<string>("Litter");
             InputVar<string> AgeDistribution = new InputVar<string>("AgeDistribution");
-            InputVar<string> DeadCohortAges = new InputVar<string>("DeadCohortAges");
-            InputVar<string> DeadCohortNumbers = new InputVar<string>("DeadCohortNumbers");
             InputVar<string> CohortBalance = new InputVar<string>("CohortBalance");
            
            
@@ -157,16 +154,6 @@ namespace Landis.Extension.Output.PnET
                 if (ReadOptionalVar(AgeDistribution))
                 {
                     parameters.AgeDistribution = AgeDistribution.Value;
-                    FoundVariable = true;
-                }
-                if (ReadOptionalVar(DeadCohortAges))
-                {
-                    parameters.DeadCohortAges = DeadCohortAges.Value;
-                    FoundVariable = true;
-                }
-                if (ReadOptionalVar(DeadCohortNumbers))
-                {
-                    parameters.DeadCohortNumbers = DeadCohortNumbers.Value;
                     FoundVariable = true;
                 }
                 if (ReadOptionalVar(CohortBalance))

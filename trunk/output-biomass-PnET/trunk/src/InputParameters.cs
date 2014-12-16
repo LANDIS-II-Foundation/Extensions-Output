@@ -11,7 +11,7 @@ namespace Landis.Extension.Output.PnET
     /// The input parameters for the plug-in.
     /// </summary>
     public class InputParameters
-        : IInputParameters
+      
     {
         private int timestep;
         private IEnumerable<ISpecies> selectedSpecies;
@@ -22,8 +22,6 @@ namespace Landis.Extension.Output.PnET
         private string woodydebris;
         private string litter;
         private string agedistribution;
-        private string deadcohortages;
-        private string deadcohortnumbers;
         private string belowgroundbiomass;
         private string subcanopyPAR;
        
@@ -84,30 +82,7 @@ namespace Landis.Extension.Output.PnET
                 woodydebris = value;
             }
         }
-        public string DeadCohortNumbers
-        {
-            get
-            {
-                return deadcohortnumbers;
-            }
-            set
-            {
-                deadcohortnumbers = value;
-            }
-
-        }
-        public string DeadCohortAges
-        {
-            get
-            {
-                return deadcohortages;
-            }
-            set
-            {
-                deadcohortages = value;
-            }
-
-        }
+         
          
         public string AgeDistribution
         {
