@@ -123,7 +123,7 @@ namespace Landis.Extension.Output.PnET
             if (BelowGround != null)
             {
                 System.Console.WriteLine("Updating output variable: BelowGround");
-                new OutputMapSiteVar(BelowGround.MapNameTemplate, "", SiteVars.BelowGroundBiomass);
+                new OutputMapSiteVar<int>(BelowGround.MapNameTemplate, "", SiteVars.BelowGroundBiomass);
                 
             }
             if (LAI != null)
@@ -131,7 +131,7 @@ namespace Landis.Extension.Output.PnET
                 System.Console.WriteLine("Updating output variable: LAI");
                 // Total LAI per site 
 
-                new OutputMapSiteVar(LAI.MapNameTemplate,"", SiteVars.CanopyLAImax);
+                new OutputMapSiteVar<byte>(LAI.MapNameTemplate,"", SiteVars.CanopyLAImax);
 
                 // Values per species each time step
                 new OutputTableEcoregions(LAI.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageLAIperEcoRegion);
@@ -146,10 +146,10 @@ namespace Landis.Extension.Output.PnET
                 
                 new OutputHistogramCohort(CohortsPerSpc.MapNameTemplate, "CohortsPerSpcPerSite", 10).WriteOutputHist(SiteVars.Cohorts);      
 
-                new OutputMapSiteVar(CohortsPerSpc.MapNameTemplate, "",SiteVars.CohortsPerSite);
+                new OutputMapSiteVar<int>(CohortsPerSpc.MapNameTemplate, "",SiteVars.CohortsPerSite);
                  
                 // Nr of cohorts per species
-                OutputFilePerTStepPerSpecies.Write<int>(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units, PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc, (int)Math.Round(SiteVars.Cohorts_sum, 0), (int)Math.Round(SiteVars.Cohorts_avg, 0)); 
+                OutputFilePerTStepPerSpecies.Write<int>(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units, PlugIn.ModelCore.CurrentTime, SiteVars.Cohorts_spc); 
             }
             
             if (SpeciesEstablishment != null)
@@ -162,9 +162,15 @@ namespace Landis.Extension.Output.PnET
                 {
                     if (SpeciesWasThere[spc] != null)
                     {
-                        ISiteVar<int> comp = SpeciesWasThere[spc].Compare(SpeciesIsThere[spc].ToBool());
 
-                        new OutputMapSpecies(comp, spc, SpeciesEstablishment.MapNameTemplate);
+                        MapComparison m = new MapComparison();
+
+                        ISiteVar<int> comp = SpeciesWasThere[spc].Compare(SpeciesIsThere[spc].ToBool(), m);
+
+                        OutputMapSpecies output_map =  new OutputMapSpecies(comp, spc, SpeciesEstablishment.MapNameTemplate);
+
+                        // map label text
+                        m.PrintLabels(System.IO.Path.ChangeExtension(output_map.FileName, "mlt"));
 
                         ISiteVar<bool> SpeciesIsThereBool = SpeciesIsThere[spc].ToBool();
                     
@@ -191,17 +197,17 @@ namespace Landis.Extension.Output.PnET
                 }
 
 
-                new OutputMapSiteVar(Biomass.MapNameTemplate, "Total", SpeciesSum(BiomassPerSiteSpecies));
+                new OutputMapSiteVar<int>(Biomass.MapNameTemplate, "Total", SpeciesSum(BiomassPerSiteSpecies));
 
                 // overview table 
-                OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc, (int)Math.Round(SiteVars.Biomass_sum, 0), (int)Math.Round(SiteVars.Biomass_av, 0));
+                OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc);
 
             }
             if (Water != null)
             {
                 System.Console.WriteLine("Updating output variable: Water");
                 
-                new OutputMapSiteVar(Water.MapNameTemplate,"", SiteVars.Water);
+                new OutputMapSiteVar<ushort>(Water.MapNameTemplate,"", SiteVars.Water);
 
                 new OutputTableEcoregions(Water.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageWaterPerEcoregion);
 
@@ -212,7 +218,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
 
-                new OutputMapSiteVar(SubCanopyPAR.MapNameTemplate, "", SiteVars.SubCanopyRadiation.ToInt());
+                new OutputMapSiteVar<int>(SubCanopyPAR.MapNameTemplate, "", SiteVars.SubCanopyRadiation.ToInt());
 
                  
             }
@@ -220,7 +226,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: NonWoodyDebris");
 
-                new OutputMapSiteVar(NonWoodyDebris.MapNameTemplate, "", SiteVars.Litter.ToInt());
+                new OutputMapSiteVar<int>(NonWoodyDebris.MapNameTemplate, "", SiteVars.Litter.ToInt());
               
             }
             if (WoodyDebris != null)
@@ -228,7 +234,7 @@ namespace Landis.Extension.Output.PnET
                 System.Console.WriteLine("Updating output variable: WoodyDebris");
 
 
-                new OutputMapSiteVar(WoodyDebris.MapNameTemplate, "", SiteVars.WoodyDebris.ToInt());
+                new OutputMapSiteVar<int>(WoodyDebris.MapNameTemplate, "", SiteVars.WoodyDebris.ToInt());
 
                 
              
@@ -243,7 +249,7 @@ namespace Landis.Extension.Output.PnET
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
 
-                new OutputMapSiteVar(AgeDistribution.MapNameTemplate,"", SiteVars.MaxAges);
+                new OutputMapSiteVar<int>(AgeDistribution.MapNameTemplate,"", SiteVars.MaxAges);
                  
             }
             if (overalloutputs != null)

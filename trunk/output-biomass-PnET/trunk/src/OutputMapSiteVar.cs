@@ -2,11 +2,11 @@
 
 namespace Landis.Extension.Output.PnET
 {
-    public class OutputMapSiteVar
+    public class OutputMapSiteVar<T>
     {
         string FileName ;
-        
-        public OutputMapSiteVar(string MapNameTemplate, string label,  ISiteVar<int> values)
+
+        public OutputMapSiteVar(string MapNameTemplate, string label, ISiteVar<T> values)
         {
             if (MapNameTemplate == null) throw new System.Exception("Cannot initialize maps with label " + MapNameTemplate );
 
@@ -14,8 +14,8 @@ namespace Landis.Extension.Output.PnET
              
             WriteMap(values);
         }
-        
-        private void WriteMap(ISiteVar<int> values)
+
+        private void WriteMap(ISiteVar<T> values)
         {
              
             try
@@ -29,12 +29,12 @@ namespace Landis.Extension.Output.PnET
                         {
                             try
                             {
-                                pixel.MapCode.Value = (int)values[site];
+                                pixel.MapCode.Value = int.Parse(values[site].ToString());
+                             
                             }
                             catch (System.Exception e)
                             {
                                 System.Console.WriteLine("Cannot write " + FileName + " " + e.Message);
-                                double v = values[site];
                             }
                         }
                         else pixel.MapCode.Value = 0;

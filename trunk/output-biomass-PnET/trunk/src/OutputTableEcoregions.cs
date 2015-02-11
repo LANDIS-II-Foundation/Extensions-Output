@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.PnET
             FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", "eco.txt").Replace(".gis", "eco.txt");
             FileNames.MakeFolders(FileName);
 
-            string hdr = "time\t";
+            string hdr = "Time\t";
             foreach ( IEcoregion e in PlugIn.ModelCore.Ecoregions) hdr += e.Name + "\t";
 
             FileContent.Add(hdr);

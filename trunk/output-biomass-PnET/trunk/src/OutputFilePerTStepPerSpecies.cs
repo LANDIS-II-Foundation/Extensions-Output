@@ -8,8 +8,8 @@ namespace Landis.Extension.Output.PnET
     {
         static string Header(string units)
         {
-             
-            string hdr = "Time" + "\t" + "Sum" + '(' + units + ')' + "\t" + "AvgPerSite" + '(' + units + ')' + "\t";
+
+            string hdr = "Time" + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
                 hdr += spc.Name + "\t";
@@ -17,7 +17,7 @@ namespace Landis.Extension.Output.PnET
             return hdr;
             
         }
-        public static void Write<T>(string MapNameTemplate, string units, int TStep, AuxParm<T> Values_spc, double sum, float avg)
+        public static void Write<T>(string MapNameTemplate, string units, int TStep, AuxParm<T> Values_spc)
         {
             string FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt");
 
@@ -27,7 +27,7 @@ namespace Landis.Extension.Output.PnET
                 System.IO.File.WriteAllLines(FileName, new string[] { Header(units) });
             }
            
-            string line = TStep + "\t" + sum + "\t" + avg + "\t";
+            string line = TStep + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
                 line += Values_spc[spc] + "\t";

@@ -19,8 +19,8 @@ namespace Landis.Extension.Output.PnET
         public static ISiteVar<float> SubCanopyRadiation;
         public static ISiteVar<Landis.Library.Biomass.Pool> WoodyDebris;
         public static ISiteVar<Landis.Library.Biomass.Pool> Litter;
-        public static ISiteVar<int> CanopyLAImax;
-        public static ISiteVar<int> Water;
+        public static ISiteVar<byte> CanopyLAImax;
+        public static ISiteVar<ushort> Water;
 
        
         public static void Initialize()
@@ -29,8 +29,8 @@ namespace Landis.Extension.Output.PnET
             Litter = GetSiteVar<Landis.Library.Biomass.Pool>("Succession.Litter"); 
             cohorts = GetSiteVar<List<Landis.Library.BiomassCohortsPnET.Cohort>>("Succession.CohortsPnET");
             SubCanopyRadiation = GetSiteVar<float>("Succession.SubCanopyRadiation");
-            Water = GetSiteVar<int>("Succession.SoilWater");
-            CanopyLAImax = GetSiteVar<int>("Succession.CanopyLAImax");
+            Water = GetSiteVar<ushort>("Succession.SoilWater");
+            CanopyLAImax = GetSiteVar<byte>("Succession.CanopyLAImax");
 
         }
         private static List<T> ToList<T>(ISiteVar<List<T>> values)

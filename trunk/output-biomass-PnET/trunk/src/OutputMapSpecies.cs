@@ -7,8 +7,12 @@ namespace Landis.Extension.Output.PnET
     public class OutputMapSpecies
     {
         ISpecies species;
-        
-        string FileName;
+
+        public string FileName
+        {
+            get;
+            private set;
+        }
         public OutputMapSpecies(ISiteVar<int> values, ISpecies species, string MapNameTemplate)
         {
             this.species = species;

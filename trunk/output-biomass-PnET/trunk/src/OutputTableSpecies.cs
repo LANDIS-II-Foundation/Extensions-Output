@@ -11,7 +11,7 @@ namespace Landis.Extension.Output.PnET
         {
             get 
             { 
-                string hdr = "time\t";
+                string hdr = "Time\t";
                 foreach (ISpecies species in PlugIn.ModelCore.Species) hdr += species.Name + "\t";
                 return hdr;
             }
