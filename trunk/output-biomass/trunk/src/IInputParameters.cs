@@ -66,11 +66,10 @@ namespace Landis.Extension.Output.Biomass
 		/// <remarks>
 		/// null if no pools are selected.
 		/// </remarks>
-        string PoolMapNames
-        {
-            get;
-            set;
-        }
+		string PoolMapNames
+		{
+			get;
+		}
         bool MakeTable { get; }
     }
 }
