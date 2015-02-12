@@ -5,20 +5,18 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.BiomassCohorts;
 using Landis.SpatialModeling;
-using Landis.Extension.Succession.Biomass;
-
+using Landis.Library.Biomass;
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 
 namespace Landis.Extension.Output.Biomass
 {
     public class PlugIn
         : ExtensionMain
     {
-        public static readonly ExtensionType ExtType = new ExtensionType("output");
-        //public static readonly string ExtensionName = "Output Biomass";
+        public static readonly ExtensionType Type = new ExtensionType("output");
+        public static readonly string ExtensionName = "Biomass Output";
 
         private IEnumerable<ISpecies> selectedSpecies;
         private string speciesMapNameTemplate;
@@ -32,7 +30,7 @@ namespace Landis.Extension.Output.Biomass
         //---------------------------------------------------------------------
 
         public PlugIn()
-            : base("Output Biomass", ExtType)
+            : base(ExtensionName, Type)
         {
         }
 
@@ -141,7 +139,9 @@ namespace Landis.Extension.Output.Biomass
 
         private string MakeSpeciesMapName(string species)
         {
-            return SpeciesMapNames.ReplaceTemplateVars(speciesMapNameTemplate,species,PlugIn.ModelCore.CurrentTime);
+            return SpeciesMapNames.ReplaceTemplateVars(speciesMapNameTemplate,
+                                                       species,
+                                                       PlugIn.ModelCore.CurrentTime);
         }
 
 
@@ -149,19 +149,11 @@ namespace Landis.Extension.Output.Biomass
 
         private void WritePoolMaps()
         {
-
-
-            if (selectedPools == "woody" || selectedPools == "both")
-            {
-                PlugIn.ModelCore.UI.WriteLine("   Writing woody pools map to  ...");
+            if(selectedPools == "woody" || selectedPools == "both")
                 WritePoolMap("woody", SiteVars.WoodyDebris);
-            }
 
-            if (selectedPools == "non-woody" || selectedPools == "both")
-            {
-                PlugIn.ModelCore.UI.WriteLine("   Writing non-woody pools map to  ...");
+            if(selectedPools == "non-woody" || selectedPools == "both")
                 WritePoolMap("non-woody", SiteVars.Litter);
-            }
         }
 
         //---------------------------------------------------------------------
@@ -257,25 +249,20 @@ namespace Landis.Extension.Output.Biomass
 
             foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
             {
-
-                if (ecoregion.Active)
+                log.Write("{0}, {1}, {2}, ",
+                    ModelCore.CurrentTime,                 // 0
+                    ecoregion.Name,                         // 1
+                    activeSiteCount[ecoregion.Index]       // 2
+                    );
+                foreach (ISpecies species in ModelCore.Species)
                 {
-
-                    log.Write("{0}, {1}, {2}, ",
-                        ModelCore.CurrentTime,                 // 0
-                        ecoregion.Name,                         // 1
-                        activeSiteCount[ecoregion.Index]       // 2
+                    log.Write("{0}, ",
+                        (allSppEcos[ecoregion.Index, species.Index] / (double)activeSiteCount[ecoregion.Index])
                         );
-                    foreach (ISpecies species in ModelCore.Species)
-                    {
-                        log.Write("{0}, ",
-                            (allSppEcos[ecoregion.Index, species.Index] / (double) activeSiteCount[ecoregion.Index])
-                            );
 
-                    }
-                    log.WriteLine("");
                 }
 
+                log.WriteLine("");
             }
         }
         //---------------------------------------------------------------------
@@ -296,8 +283,6 @@ namespace Landis.Extension.Output.Biomass
             if (cohorts != null)
                 foreach (ISpeciesCohorts speciesCohorts in cohorts)
                 {
-                    //if (speciesCohorts == null)
-                    //    continue;
                     total += ComputeSpeciesBiomass(speciesCohorts);
                 }
             return total;
