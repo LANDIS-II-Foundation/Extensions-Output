@@ -9,8 +9,10 @@ namespace Landis.Extension.Output.PnET
     {
         public string MapNameTemplate { get; private set; }
         public string units { get; private set; }
-        
-        
+
+        public OutputTableEcoregions output_table_ecoregions { get; set; }
+
+
         public OutputVariable(string MapNameTemplate, 
                               string units)
         {
@@ -19,8 +21,8 @@ namespace Landis.Extension.Output.PnET
 
             if (!MapNameTemplate.Contains(".img")) throw new System.Exception("MapNameTemplate " + MapNameTemplate+" does not have an extension '.img'");
             if (MapNameTemplate.Length == 0) throw new System.Exception("Error initializing output maps, no template name available");
-            
-         
+
+           
 
              
         }

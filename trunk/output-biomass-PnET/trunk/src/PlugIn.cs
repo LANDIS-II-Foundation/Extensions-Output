@@ -89,13 +89,21 @@ namespace Landis.Extension.Output.PnET
             if (parameters.CohortsPerSpecies != null) CohortsPerSpc = new OutputVariable(parameters.CohortsPerSpecies, "#");
             if (parameters.SpeciesBiom != null) Biomass = new OutputVariable(parameters.SpeciesBiom, "g/m2");
             if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "g/m2");
-            if (parameters.LeafAreaIndex != null) LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
+            if (parameters.LeafAreaIndex != null)
+            {
+                LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
+                LAI.output_table_ecoregions = new OutputTableEcoregions(LAI.MapNameTemplate);
+            }
             if (parameters.SpeciesEst != null)
             {
                 SpeciesEstablishment = new OutputVariable(parameters.SpeciesEst, "");
                 SpeciesWasThere = new Library.Parameters.Species.AuxParm<ISiteVar<bool>>(PlugIn.modelCore.Species);
             }
-            if (parameters.Water != null) Water = new OutputVariable(parameters.Water, "mm");
+            if (parameters.Water != null)
+            {
+                Water = new OutputVariable(parameters.Water, "mm");
+                Water.output_table_ecoregions = new OutputTableEcoregions(Water.MapNameTemplate);
+            }
             if (parameters.SubCanopyPAR != null) SubCanopyPAR = new OutputVariable(parameters.SubCanopyPAR,  "W/m2 pr mmol/m2");
             if (parameters.Litter != null) NonWoodyDebris = new OutputVariable(parameters.Litter, "g/m2");
             if (parameters.WoodyDebris != null) WoodyDebris = new OutputVariable(parameters.WoodyDebris,  "g/m2");
@@ -134,9 +142,7 @@ namespace Landis.Extension.Output.PnET
                 new OutputMapSiteVar<byte>(LAI.MapNameTemplate,"", SiteVars.CanopyLAImax);
 
                 // Values per species each time step
-                new OutputTableEcoregions(LAI.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageLAIperEcoRegion);
-
-                
+                LAI.output_table_ecoregions.WriteUpdate (PlugIn.ModelCore.CurrentTime, SiteVars.CanopyLAImax);
             }
             
             if (CohortsPerSpc != null)
@@ -209,9 +215,7 @@ namespace Landis.Extension.Output.PnET
                 
                 new OutputMapSiteVar<ushort>(Water.MapNameTemplate,"", SiteVars.Water);
 
-                new OutputTableEcoregions(Water.MapNameTemplate).WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.AverageWaterPerEcoregion);
-
-                 
+                Water.output_table_ecoregions.WriteUpdate(PlugIn.ModelCore.CurrentTime, SiteVars.Water);
             }
             
             if (SubCanopyPAR != null)

@@ -54,6 +54,7 @@ namespace Landis.Extension.Output.PnET
 
             return sitevar;
         }
+        /*
         public static Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageLAIperEcoRegion
         {
             get
@@ -79,6 +80,7 @@ namespace Landis.Extension.Output.PnET
         
         
         }
+          
         public static Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageWaterPerEcoregion
         {
             get
@@ -106,7 +108,7 @@ namespace Landis.Extension.Output.PnET
                 return AverageWater;
             }
         }
-        
+        */
         public static ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> CohortAges
         {
             get
