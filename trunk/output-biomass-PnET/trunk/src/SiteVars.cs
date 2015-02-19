@@ -33,7 +33,7 @@ namespace Landis.Extension.Output.PnET
             CanopyLAImax = GetSiteVar<byte>("Succession.CanopyLAImax");
 
         }
-        private static List<T> ToList<T>(ISiteVar<List<T>> values)
+        public static List<T> ToList<T>(ISiteVar<List<T>> values)
         {
             List<T> list_of_values = new List<T>();
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
@@ -229,14 +229,7 @@ namespace Landis.Extension.Output.PnET
             }
         }
 
-        public static double CohortAge_av
-        {
-            get
-            {
-                return ToList<Landis.Library.BiomassCohortsPnET.Cohort>(cohorts).Average(o => o.Age);
-
-            }
-        }
+        
         public static double Cohorts_sum
         {
             get

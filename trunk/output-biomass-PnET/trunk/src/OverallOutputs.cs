@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
+
 namespace Landis.Extension.Output.PnET
 {
     
@@ -19,9 +21,11 @@ namespace Landis.Extension.Output.PnET
         {
             try
             {
-                string CohortAge_av = (SiteVars.Cohorts_sum >0) ? Math.Round(SiteVars.CohortAge_av, 1).ToString() : "n/a";
-
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + CohortAge_av + "\t" + SiteVars.CanopyLAImax.Average<byte>() + "\t" + SiteVars.Water.Average<ushort>() + "\t" + SiteVars.SubCanopyRadiation.Average<float>() + "\t" + SiteVars.Litter.Average() + "\t" + SiteVars.WoodyDebris.Average());
+                
+                string CohortAge_av = (SiteVars.Cohorts_sum >0) ? Math.Round(SiteVars.ToList<Landis.Library.BiomassCohortsPnET.Cohort>(SiteVars.cohorts).Average(o => o.Age), 1).ToString() : "n/a";
+                string CohortBiom_av = (SiteVars.Cohorts_sum > 0) ? Math.Round(SiteVars.ToList<Landis.Library.BiomassCohortsPnET.Cohort>(SiteVars.cohorts).Average(o => o.Biomass), 1).ToString() : "n/a";
+                
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + SiteVars.Cohorts_sum + "\t" + CohortAge_av + "\t" + CohortBiom_av +"\t" + SiteVars.CanopyLAImax.Average<byte>() + "\t" + SiteVars.Water.Average<ushort>() + "\t" + SiteVars.SubCanopyRadiation.Average<float>() + "\t" + SiteVars.Litter.Average() + "\t" + SiteVars.WoodyDebris.Average());
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
