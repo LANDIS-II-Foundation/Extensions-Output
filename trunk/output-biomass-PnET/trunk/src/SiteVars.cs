@@ -22,7 +22,6 @@ namespace Landis.Extension.Output.PnET
         public static ISiteVar<byte> CanopyLAImax;
         public static ISiteVar<ushort> Water;
 
-       
         public static void Initialize()
         {
             WoodyDebris = GetSiteVar<Landis.Library.Biomass.Pool>("Succession.WoodyDebris");
@@ -54,61 +53,26 @@ namespace Landis.Extension.Output.PnET
 
             return sitevar;
         }
-        /*
-        public static Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageLAIperEcoRegion
+
+
+
+        public static ISiteVar<int> Biomass_per_site
         {
             get
             {
-                Landis.Library.Parameters.Ecoregions.AuxParm<double> SumLAI = new Landis.Library.Parameters.Ecoregions.AuxParm<double>(PlugIn.ModelCore.Ecoregions);
-                Landis.Library.Parameters.Ecoregions.AuxParm<float> n = new Landis.Library.Parameters.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
+                ISiteVar<int> Biomass_per_site = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
 
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    SumLAI[PlugIn.ModelCore.Ecoregion[site]] += (double)CanopyLAImax[site];
-                    n[PlugIn.ModelCore.Ecoregion[site]]++;
+                    foreach (Landis.Library.BiomassCohortsPnET.Cohort c in cohorts[site])
+                    {
+                        Biomass_per_site[site] += c.Biomass;
+                    }
                 }
-
-                Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageLAI = new Landis.Library.Parameters.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
-
-                foreach (IEcoregion e in PlugIn.ModelCore.Ecoregions)
-                {
-                    AverageLAI[e] = (float)SumLAI[e] / n[e];
-                }
-                return AverageLAI;
-            }
-      
-        
-        
-        }
-          
-        public static Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageWaterPerEcoregion
-        {
-            get
-            {
-                Landis.Library.Parameters.Ecoregions.AuxParm<List<double>> SumWater = new Landis.Library.Parameters.Ecoregions.AuxParm<List<double>>(PlugIn.ModelCore.Ecoregions);
-                
-                foreach (IEcoregion e in PlugIn.ModelCore.Ecoregions)
-                {
-                    SumWater[e] = new List<double>();
-                }
-                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-                {
-                    int w = (int)System.Math.Round((double)Water[site], 0);
-                    SumWater[PlugIn.ModelCore.Ecoregion[site]].Add(w);
-                
-                }
-
-                Landis.Library.Parameters.Ecoregions.AuxParm<float> AverageWater = new Landis.Library.Parameters.Ecoregions.AuxParm<float>(PlugIn.ModelCore.Ecoregions);
-                
-                foreach (IEcoregion e in PlugIn.ModelCore.Ecoregions)
-                {
-                    if (SumWater[e].Count > 0) AverageWater[e] = (float)SumWater[e].Average();
-                    else AverageWater[e] = 0;
-                }
-                return AverageWater;
+                return Biomass_per_site;
             }
         }
-        */
+
         public static ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> CohortAges
         {
             get

@@ -208,6 +208,8 @@ namespace Landis.Extension.Output.PnET
                 // overview table 
                 OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_spc);
 
+                // Values per species each time step
+                Biomass.output_table_ecoregions.WriteUpdate<int>(PlugIn.ModelCore.CurrentTime, SiteVars.Biomass_per_site);
             }
             if (Water != null)
             {
