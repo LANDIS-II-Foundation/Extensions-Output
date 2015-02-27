@@ -1,7 +1,6 @@
 ﻿using Landis.Core;
 using System.Collections.Generic;
-using Landis.Core;
-using System.Collections.Generic;
+ 
 using Landis.SpatialModeling;
 using System.Linq;
 using Landis.Library.Parameters.Species; 
