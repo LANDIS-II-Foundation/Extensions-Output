@@ -87,7 +87,11 @@ namespace Landis.Extension.Output.PnET
             selectedspecies = parameters.SelectedSpecies;
 
             if (parameters.CohortsPerSpecies != null) CohortsPerSpc = new OutputVariable(parameters.CohortsPerSpecies, "#");
-            if (parameters.SpeciesBiom != null) Biomass = new OutputVariable(parameters.SpeciesBiom, "g/m2");
+            if (parameters.SpeciesBiom != null)
+            {
+                Biomass = new OutputVariable(parameters.SpeciesBiom, "g/m2");
+                Biomass.output_table_ecoregions = new OutputTableEcoregions(Biomass.MapNameTemplate);
+            }
             if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "g/m2");
             if (parameters.LeafAreaIndex != null)
             {
