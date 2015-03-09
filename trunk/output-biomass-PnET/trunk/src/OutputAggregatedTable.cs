@@ -22,15 +22,51 @@ namespace Landis.Extension.Output.PnET
         {
             try
             {
-                 
-                string CohortBiom_av = PlugIn.cohorts.GetIsiteVar(x => x.BiomassSum).Average().ToString();
-                string CohortAge_av = PlugIn.cohorts.GetIsiteVar(x => x.AverageAge).Average().ToString();
-                string CohortLAI_av = PlugIn.cohorts.GetIsiteVar(x => x.CanopyLAImax).Average().ToString();
-                string Water_av = PlugIn.cohorts.GetIsiteVar(x => x.Water).Average().ToString();
-                string SubCanopyRad_av = PlugIn.cohorts.GetIsiteVar(x => x.SubCanopyParMAX).Average().ToString();
-                string Litter_av = PlugIn.cohorts.GetIsiteVar(x => x.Litter).Average().ToString();
-                string Woody_debris_ave = PlugIn.cohorts.GetIsiteVar(x => x.WoodyDebris).Average().ToString();
-                string c = PlugIn.cohorts.GetIsiteVar(x => x.CohortCount).Average().ToString();
+
+
+                ISiteVar<float> CohortBiom = PlugIn.cohorts.GetIsiteVar(x => x.BiomassSum);
+                ISiteVar<int> CohortAge = PlugIn.cohorts.GetIsiteVar(x => (x.CohortCount >0) ? x.AverageAge : -1);
+                ISiteVar<byte> CohortLAI = PlugIn.cohorts.GetIsiteVar(x => x.CanopyLAImax);
+                ISiteVar<int> CohortsPerSite = PlugIn.cohorts.GetIsiteVar(x => x.CohortCount);
+                ISiteVar<ushort> WaterPerSite = PlugIn.cohorts.GetIsiteVar(x => x.Water);
+                 ISiteVar<ushort> SubCanopyRAD = PlugIn.cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
+                 ISiteVar<double> Litter = PlugIn.cohorts.GetIsiteVar(x => x.Litter);
+                 ISiteVar<double> WoodyDebris = PlugIn.cohorts.GetIsiteVar(x => x.WoodyDebris);
+
+                ushort Water_SUM = 0;
+                double CohortBiom_SUM = 0;
+                double CohortAge_SUM = 0;
+                double CohortLAI_SUM = 0;
+                int CohortCount = 0;
+                int SubCanopyRad_SUM = 0;
+                double Litter_SUM = 0;
+                double Woody_debris_SUM = 0;
+
+                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                {
+                    CohortCount += CohortsPerSite[site];
+                    CohortBiom_SUM += CohortBiom[site];
+                    Water_SUM += WaterPerSite[site];
+                    SubCanopyRad_SUM += SubCanopyRAD[site];
+                    Litter_SUM += Litter[site];
+                    Woody_debris_SUM += WoodyDebris[site];
+
+                    if (CohortsPerSite[site] > 0)
+                    {
+                        CohortAge_SUM += CohortAge[site];
+                        CohortLAI_SUM += CohortLAI[site];
+                       
+                    }
+                }
+
+                string c = CohortCount.ToString();
+                string CohortAge_av = (CohortAge_SUM / (float)CohortCount).ToString();
+                string CohortBiom_av = (CohortBiom_SUM / (float)CohortCount).ToString();
+                string CohortLAI_av = (CohortLAI_SUM / (float)CohortCount).ToString();
+                string Water_av = (Water_SUM / (float)CohortCount).ToString();
+                string SubCanopyRad_av = (SubCanopyRad_SUM / (float)CohortCount).ToString();
+                string Litter_av = (Litter_SUM / (float)CohortCount).ToString();
+                string Woody_debris_ave = (Woody_debris_SUM / (float)CohortCount).ToString();
 
                 FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + c + "\t" + CohortAge_av + "\t" + CohortBiom_av + "\t" + CohortLAI_av + "\t" + Water_av + "\t" + SubCanopyRad_av + "\t" + Litter_av + "\t" + Woody_debris_ave);
 

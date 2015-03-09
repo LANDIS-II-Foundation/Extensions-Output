@@ -19,18 +19,7 @@ namespace Landis.Extension.Output.PnET
             return d;
         }
        
-        public static double Average<T>(this ISiteVar<T> values)
-            where T : System.IComparable<T>
-        {
-            double sum = 0.0;
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                double d = double.Parse(values[site].ToString());
-                sum += d;
-            }
-            return sum / (float)PlugIn.ModelCore.Landscape.Count();
-             
-        }
+         
         
        
 
