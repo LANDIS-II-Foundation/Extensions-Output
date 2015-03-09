@@ -1,43 +1,38 @@
 ﻿using Landis.SpatialModeling;
+using System;
 
 namespace Landis.Extension.Output.PnET
 {
-    public class OutputMapSiteVar<T>
+    public class OutputMapSiteVar<T,M>
     {
         string FileName ;
 
-        public OutputMapSiteVar(string MapNameTemplate, string label, ISiteVar<T> values)
+        //public static ISiteVar<T> GetIsiteVar<T, M>(this ISiteVar<M> sitevar, Func<M, T> func)
+        public OutputMapSiteVar(string MapNameTemplate, string label, ISiteVar<T> values, Func<T, M> func)
         {
             if (MapNameTemplate == null) throw new System.Exception("Cannot initialize maps with label " + MapNameTemplate );
 
             FileName = FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
-             
-            WriteMap(values);
-        }
-
-        private void WriteMap(ISiteVar<T> values)
-        {
-             
+            
             try
             {
                 using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(FileName, PlugIn.ModelCore.Landscape.Dimensions))
                 {
-                    IntPixel pixel = outputRaster.BufferPixel;
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
                         {
                             try
                             {
-                                pixel.MapCode.Value = int.Parse(values[site].ToString());
-                             
+                                outputRaster.BufferPixel.MapCode.Value = int.Parse(func(values[site]).ToString());// int.Parse(values[site].ToString());
+
                             }
                             catch (System.Exception e)
                             {
                                 System.Console.WriteLine("Cannot write " + FileName + " " + e.Message);
                             }
                         }
-                        else pixel.MapCode.Value = 0;
+                        else outputRaster.BufferPixel.MapCode.Value = 0;
 
                         outputRaster.WriteBufferPixel();
                     }
@@ -48,8 +43,8 @@ namespace Landis.Extension.Output.PnET
                 System.Console.WriteLine("Cannot write " + FileName + " " + e.Message);
 
             }
-
         }
+
         
         
         

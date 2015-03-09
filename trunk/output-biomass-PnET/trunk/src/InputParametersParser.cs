@@ -167,7 +167,7 @@ namespace Landis.Extension.Output.PnET
 
                 if (!FoundVariable)
                 {
-                    throw new System.Exception("Error in Output PnET cannot assign variable" + new StringReader(CurrentLine).ReadToEnd());
+                    throw new System.Exception("Error in Output PnET cannot assign variable " + new StringReader(CurrentLine).ReadToEnd());
                 }
 
             }

@@ -5,13 +5,12 @@ using Landis.SpatialModeling;
 
 namespace Landis.Extension.Output.PnET
 {
-    public class OutputHistogramCohort
+    public class OutputHistogramCohort<T> where T : System.IComparable
     {
         string FileName;
         int NrOfCohorts;
         List<string> FileContent;
-        List<float> running_cat_min = new List<float>();
-        List<float> running_cat_max = new List<float>();
+        
         List<int> cat_count = new List<int>();
         List<int> cat_count_tot = new List<int>();
         string label;
@@ -24,50 +23,72 @@ namespace Landis.Extension.Output.PnET
             this.label = label;
         }
 
-        private static float[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> values)
+        private static T[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<T>> values)
         {
-            float[] extremes = new float[2];
-            extremes[0] = float.MaxValue;
-            extremes[1] = float.MinValue;
+            T[] extremes = new T[2];
+
+            if (typeof(T) == typeof(double)) { extremes[0] = (T)System.Convert.ChangeType(double.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(double.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(float)) { extremes[0] = (T)System.Convert.ChangeType(float.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(float.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(int)) { extremes[0] = (T)System.Convert.ChangeType(int.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(int.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(ushort)) { extremes[0] = (T)System.Convert.ChangeType(ushort.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(ushort.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(byte)) { extremes[0] = (T)System.Convert.ChangeType(byte.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(byte.MinValue, typeof(T)); }
+            else
+            {
+                throw new System.Exception("Cannot calculate Extremes for type " + typeof(T).ToString());
+            }
+
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                foreach (ISpecies spc in PlugIn.ModelCore.Species)
+                {
+                    if (values[site][spc] == null) continue;
+
+
+                    if (values[site][spc].CompareTo(extremes[1]) > 0) extremes[1] = values[site][spc];
+                    if (values[site][spc].CompareTo(extremes[0]) < 0) extremes[0] = values[site][spc];
+                    
+                }
+            }
+            return extremes;   
+        
+        }
+        private static T[] Extremes(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<T>>> values)
+        
+        {
+            T[] extremes = new T[2];
+
+            if (typeof(T) == typeof(double)) { extremes[0] = (T)System.Convert.ChangeType(double.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(double.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(float)) { extremes[0] = (T)System.Convert.ChangeType(float.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(float.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(int)) { extremes[0] = (T)System.Convert.ChangeType(int.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(int.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(ushort)) { extremes[0] = (T)System.Convert.ChangeType(ushort.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(ushort.MinValue, typeof(T)); }
+            else if (typeof(T) == typeof(byte)) { extremes[0] = (T)System.Convert.ChangeType(byte.MaxValue, typeof(T)); extremes[1] = (T)System.Convert.ChangeType(byte.MinValue, typeof(T)); }
+            else
+            {
+                throw new System.Exception("Cannot calculate Extremes for type " + typeof(T).ToString());
+            }
 
             foreach(ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 foreach(ISpecies spc in PlugIn.ModelCore.Species)
                 {
                     if (values[site][spc] == null) continue;
-                    foreach (int var in values[site][spc])
+                    foreach (T var in values[site][spc])
                     {
-                        if (var > extremes[1]) extremes[1] = var;
-                        if (var < extremes[0]) extremes[0] = var;
+
+                        if (var.CompareTo(extremes[1]) > 0) extremes[1] = var;
+                        if (var.CompareTo(extremes[0]) < 0) extremes[0] = var;
                     }
                 }
             }
             return extremes;   
         }
-        private static float[] Extremes(Landis.Library.Parameters.Species.AuxParm<ISiteVar<int>> values)
+        
+        private double CohortWidth(double min, double max)
         {
-            float[] extremes = new float[2];
-            extremes[0] = float.MaxValue;
-            extremes[1] = float.MinValue;
-
-            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
-            {
-                foreach (ISpecies species in PlugIn.ModelCore.Species)
-                {
-                    int var = values[species][site];
-
-                    if (var > extremes[1]) extremes[1] = var;
-                    if (var < extremes[0]) extremes[0] = var;
-                }
-            }
-            return extremes;
-        }
-        private float CohortWidth(float[] extremes)
-        {
-            float cohort_width = 1F / (float)NrOfCohorts * (extremes[1] - extremes[0]);
+            double cohort_width = 1.0 / (float)NrOfCohorts * (double.Parse(max.ToString()) - double.Parse(min.ToString()));
             return cohort_width;
         }
-        private string hdr(string HdrExplanation)
+        private string hdr(string HdrExplanation, List<double> running_cat_min, List<double> running_cat_max)
         {
             string line= HdrExplanation + "\t";
             for (int f = 0; f < running_cat_min.Count;f++ )
@@ -77,32 +98,36 @@ namespace Landis.Extension.Output.PnET
             
             return line;
         }
-        public void SetCategorieBounds(float[] extremes)
+        public List<double>[] GetCategorieBounds(T[] extremes)
         {
-            if (extremes[0] == extremes[1])
+            List<double>[] running_cat = new List<double>[2] { new List<double>(),  new List<double>() };
+            
+            double min =  (extremes[0].CompareTo(extremes[1]) == 0) ? 0.9 * double.Parse(extremes[0].ToString()) : double.Parse(extremes[0].ToString());
+            double max =  (extremes[0].CompareTo(extremes[1]) == 0) ? 1.1 * double.Parse(extremes[1].ToString()) : double.Parse(extremes[1].ToString());
+             
+            double cat_min = min;
+            double cohort_width = CohortWidth(min, max);
+            while (cat_min.CompareTo(max)<0)
             {
-                extremes[0] = 0.9F * extremes[0];
-                extremes[1] = 1.1F * extremes[1];
-            }
-            float cat_min = extremes[0];
-            float cohort_width = CohortWidth(extremes);
-            while (cat_min < extremes[1])
-            {
-                running_cat_min.Add(cat_min);
-                running_cat_max.Add(cat_min + cohort_width);
+                running_cat[0].Add(cat_min);
+
+                running_cat[1].Add(cat_min + cohort_width);
+
                 cat_count.Add(0);
                 cat_count_tot.Add(0);
-                cat_min += cohort_width;
+
+                cat_min = running_cat[1][running_cat[1].Count() - 1];
             }
+            return running_cat;
         }
         
-        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<int>>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<List<T>>> values)
         {
-            float[] extremes = Extremes(values);
+            T[] extremes = Extremes(values);
 
-            SetCategorieBounds(extremes);
+            List<double>[] categorybounds = GetCategorieBounds(extremes);
 
-            FileContent.Add(hdr(label));
+            FileContent.Add(hdr(label, categorybounds[0], categorybounds[1]));
 
             if (cat_count_tot.Count() == 0)return;
              
@@ -113,11 +138,14 @@ namespace Landis.Extension.Output.PnET
                 {
                     if (values[site][species] == null) continue;
 
-                    for (int c = 0; c < running_cat_max.Count; c++)
+                    for (int c = 0; c < categorybounds[1].Count; c++)
                     {
-                        foreach (int var in values[site][species])
+                        foreach (T var in values[site][species])
                         {
-                            if (var >= running_cat_min[c] && var < running_cat_max[c] || (var == running_cat_min[c] && var == running_cat_max[c]))
+                            T min  = (T)System.Convert.ChangeType(categorybounds[0][c], typeof(T));
+                            T max = (T)System.Convert.ChangeType(categorybounds[1][c], typeof(T));
+                            
+                            if (var.CompareTo(min) >= 0 && var.CompareTo(max) < 0 || var.CompareTo(extremes[1]) == 0)
                             {
                                 cat_count[c]++;
                                 cat_count_tot[c]++;
@@ -146,27 +174,32 @@ namespace Landis.Extension.Output.PnET
             System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
         
         }
-        public void WriteOutputHist(Landis.Library.Parameters.Species.AuxParm<ISiteVar<int>> values)
+        public void WriteOutputHist(ISiteVar<Landis.Library.Parameters.Species.AuxParm<T>> values)
         {
-            float[] extremes = Extremes(values);
+            
 
-            SetCategorieBounds(extremes);
+            T[] extremes = Extremes(values);
+
+            List<double>[] categorybounds =  GetCategorieBounds(extremes);
 
             if (cat_count_tot.Count() == 0) return;
-          
 
-            FileContent.Add(hdr(label));
+
+            FileContent.Add(hdr(label, categorybounds[0], categorybounds[1]));
 
             foreach (ISpecies species in PlugIn.ModelCore.Species)  
             {
                 string line = species.Name + "\t";
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
-                    int var = values[species][site];
+                    T var = values[site][species];
 
-                    for (int c = 0; c < running_cat_max.Count; c++)
+                    for (int c = 0; c < categorybounds[1].Count; c++)
                     {
-                        if (var >= running_cat_min[c] && var < running_cat_max[c])
+                        T min  = (T)System.Convert.ChangeType(categorybounds[0][c], typeof(T));
+                        T max = (T)System.Convert.ChangeType(categorybounds[1][c], typeof(T));
+
+                        if (var.CompareTo(min) >= 0 && var.CompareTo(max) < 0)
                         {
                             cat_count[c]++;
                         }

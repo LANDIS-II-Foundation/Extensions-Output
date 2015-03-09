@@ -6,7 +6,7 @@ namespace Landis.Extension.Output.PnET
 {
     public class OutputMapSpecies
     {
-        ISpecies species;
+        
 
         public string FileName
         {
@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.PnET
         }
         public OutputMapSpecies(ISiteVar<int> values, ISpecies species, string MapNameTemplate)
         {
-            this.species = species;
+            
             FileName= FileNames.ReplaceTemplateVars(MapNameTemplate, species.Name, PlugIn.ModelCore.CurrentTime);
 
             Console.WriteLine("   Writing {0} map to {1} ...", species.Name, FileName);
