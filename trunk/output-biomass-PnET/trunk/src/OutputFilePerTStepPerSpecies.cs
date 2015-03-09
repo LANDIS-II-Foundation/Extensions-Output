@@ -30,8 +30,6 @@ namespace Landis.Extension.Output.PnET
 
             AuxParm<int> Values_spc = new AuxParm<int>(PlugIn.ModelCore.Species);
 
-            string line = TStep + "\t";
-
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 foreach (ISpecies spc in PlugIn.ModelCore.Species)
@@ -39,6 +37,14 @@ namespace Landis.Extension.Output.PnET
                     Values_spc[spc] += Values[site][spc];
                 }
             }
+
+            string line = TStep + "\t";
+
+            foreach (ISpecies spc in PlugIn.ModelCore.Species)
+            {
+                line += Values_spc[spc] + "\t";
+            }
+
             System.IO.StreamWriter sw = new System.IO.StreamWriter(FileName, true);
             sw.WriteLine(line);
             sw.Close();
