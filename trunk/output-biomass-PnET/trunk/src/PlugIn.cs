@@ -131,9 +131,9 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: BelowGround");
 
-                ISiteVar<int> values = cohorts.GetIsiteVar(o => o.BelowGroundBiomass);
+                ISiteVar<uint> values = cohorts.GetIsiteVar(o => o.BelowGroundBiomass);
 
-                new OutputMapSiteVar<int, int>(BelowGround.MapNameTemplate, "", values, o => o);
+                new OutputMapSiteVar<uint, uint>(BelowGround.MapNameTemplate, "", values, o => o);
                 
             }
             if (LAI != null)
@@ -245,7 +245,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: Water");
 
-                ISiteVar<ushort> Water_site = cohorts.GetIsiteVar(x => x.Water);
+                ISiteVar<ushort> Water_site = cohorts.GetIsiteVar(x => x.MaxWater);
 
                 new OutputMapSiteVar<ushort, ushort>(Water.MapNameTemplate, "", Water_site, o => o);
 
