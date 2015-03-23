@@ -19,7 +19,9 @@ namespace Landis.Extension.Output.PnET
 
 
         public static ISiteVar<Landis.Extension.Succession.BiomassPnET.ISiteCohorts> cohorts;
-
+        public static ISiteVar<Landis.Library.Biomass.Pool> woodyDebris;
+        public static ISiteVar<Landis.Library.Biomass.Pool> litter;
+        
         
 
         private static int tstep;
@@ -84,12 +86,16 @@ namespace Landis.Extension.Output.PnET
         public override void Initialize()
         {
             Timestep = parameters.Timestep;
+            selectedspecies = parameters.SelectedSpecies;
 
             tstep = parameters.Timestep;
 
             cohorts = PlugIn.ModelCore.GetSiteVar<Landis.Extension.Succession.BiomassPnET.ISiteCohorts>("Succession.CohortsPnET");
+            woodyDebris = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Pool>("Succession.WoodyDebris");
+            litter = PlugIn.ModelCore.GetSiteVar<Landis.Library.Biomass.Pool>("Succession.Litter");
+             
+
             
-            selectedspecies = parameters.SelectedSpecies;
 
             if (parameters.CohortsPerSpecies != null) CohortsPerSpc = new OutputVariable(parameters.CohortsPerSpecies, "#");
             if (parameters.SpeciesBiom != null)
