@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Landis.Core;
+
 
 namespace Landis.Extension.Output.PnET
 {
@@ -14,8 +14,10 @@ namespace Landis.Extension.Output.PnET
             Discontinued_Presence = 2,
             New_Presence = 3
         }
-        public void PrintLabels(string FileName)
+        public void PrintLabels(string MapNameTemplate, ISpecies Species)
         {
+            string FileName = System.IO.Path.ChangeExtension(FileNames.ReplaceTemplateVars(MapNameTemplate.Replace("{timestep}", "Label"), Species.Name), "txt");
+
             List<string> Content = new List<string>();
 
             foreach (var value in Enum.GetValues(typeof(values)))

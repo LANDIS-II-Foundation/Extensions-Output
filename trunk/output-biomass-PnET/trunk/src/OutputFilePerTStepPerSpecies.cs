@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.PnET
             string hdr = "Time" + "\t";
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
-                hdr += spc.Name + "\t";
+                hdr += spc.Name + units + "\t";
             }
             return hdr;
             
@@ -28,13 +28,14 @@ namespace Landis.Extension.Output.PnET
                 System.IO.File.WriteAllLines(FileName, new string[] { Header(units) });
             }
 
-            AuxParm<int> Values_spc = new AuxParm<int>(PlugIn.ModelCore.Species);
-
+            AuxParm<ulong> Values_spc = new AuxParm<ulong>(PlugIn.ModelCore.Species);
+            AuxParm<ulong> Values_cnt = new AuxParm<ulong>(PlugIn.ModelCore.Species);
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 foreach (ISpecies spc in PlugIn.ModelCore.Species)
                 {
-                    Values_spc[spc] += Values[site][spc];
+                    Values_spc[spc] += (ulong)Values[site][spc];
+                    Values_cnt[spc]++;
                 }
             }
 
@@ -42,7 +43,7 @@ namespace Landis.Extension.Output.PnET
 
             foreach (ISpecies spc in PlugIn.ModelCore.Species)
             {
-                line += Values_spc[spc] + "\t";
+                line += Values_spc[spc] / (float)Values_cnt[spc] + "\t";
             }
 
             System.IO.StreamWriter sw = new System.IO.StreamWriter(FileName, true);

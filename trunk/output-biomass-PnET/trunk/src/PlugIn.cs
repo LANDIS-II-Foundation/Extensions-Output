@@ -201,7 +201,7 @@ namespace Landis.Extension.Output.PnET
                         OutputMapSpecies output_map =  new OutputMapSpecies(comp, spc, SpeciesEstablishment.MapNameTemplate);
 
                         // map label text
-                        m.PrintLabels(System.IO.Path.ChangeExtension(output_map.FileName, "mlt"));
+                        m.PrintLabels(SpeciesEstablishment.MapNameTemplate, spc);
 
                         
                     }
@@ -244,6 +244,11 @@ namespace Landis.Extension.Output.PnET
                 OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Biomass_spc);
 
                 ISiteVar<float> Biomass_site = cohorts.GetIsiteVar(x => x.BiomassSum);
+
+                //foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                //{
+                //    System.Console.WriteLine(Biomass_site[site]);
+                //}
 
                 Biomass.output_table_ecoregions.WriteUpdate<float>(PlugIn.ModelCore.CurrentTime, Biomass_site);
             }
