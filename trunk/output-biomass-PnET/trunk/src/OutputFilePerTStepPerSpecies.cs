@@ -18,7 +18,7 @@ namespace Landis.Extension.Output.PnET
             return hdr;
             
         }
-        public static void Write<T>(string MapNameTemplate, string units, int TStep, ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> Values)
+        public static void Write<T>(string MapNameTemplate, string units, int TStep, ISiteVar<Landis.Library.Parameters.Species.AuxParm<T>> Values)
         {
             string FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt");
 
@@ -34,7 +34,20 @@ namespace Landis.Extension.Output.PnET
             {
                 foreach (ISpecies spc in PlugIn.ModelCore.Species)
                 {
-                    Values_spc[spc] += (ulong)Values[site][spc];
+
+                    if (typeof(T) == typeof(bool))
+                    {
+                        if (Values[site][spc].ToString() == bool.TrueString)
+                        {
+                            Values_spc[spc] ++;
+                        }
+                    }
+                    else
+                    {
+                        ulong numeric = ulong.Parse(Values[site][spc].ToString());
+                        Values_spc[spc] += numeric;
+                    }
+
                     Values_cnt[spc]++;
                 }
             }

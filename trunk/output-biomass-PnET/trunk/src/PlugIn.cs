@@ -216,6 +216,10 @@ namespace Landis.Extension.Output.PnET
                         SpeciesWasThere[site] = new Library.Parameters.Species.AuxParm<bool>(PlugIn.modelCore.Species);
                     }
                 }
+
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<bool>> Established_spc = cohorts.GetIsiteVar(x => x.SpeciesPresent);
+
+                OutputFilePerTStepPerSpecies.Write<bool>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Established_spc);
                 
             }
             
@@ -241,7 +245,7 @@ namespace Landis.Extension.Output.PnET
                 
                 ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> Biomass_spc = cohorts.GetIsiteVar(x => x.BiomassPerSpecies);
 
-                OutputFilePerTStepPerSpecies.Write<float>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Biomass_spc);
+                OutputFilePerTStepPerSpecies.Write<int>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Biomass_spc);
 
                 ISiteVar<float> Biomass_site = cohorts.GetIsiteVar(x => x.BiomassSum);
 
@@ -256,7 +260,7 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: Water");
 
-                ISiteVar<ushort> Water_site = cohorts.GetIsiteVar(x => x.MaxWater);
+                ISiteVar<ushort> Water_site = cohorts.GetIsiteVar(x => x.WaterMax);
 
                 new OutputMapSiteVar<ushort, ushort>(Water.MapNameTemplate, "", Water_site, o => o);
 
@@ -306,7 +310,7 @@ namespace Landis.Extension.Output.PnET
 
                 System.Console.WriteLine("Updating output variable: MaxAges");
 
-                ISiteVar<int> maxage = cohorts.GetIsiteVar(x => x.MaxAge);
+                ISiteVar<int> maxage = cohorts.GetIsiteVar(x => x.AgeMax);
 
                 new OutputMapSiteVar<int, int>(AgeDistribution.MapNameTemplate, "", maxage, o => o);
                  
