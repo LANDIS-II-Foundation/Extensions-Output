@@ -32,17 +32,19 @@ namespace Landis.Extension.Output.PnET
                 ISiteVar<double> Litter = PlugIn.cohorts.GetIsiteVar(x => x.Litter);
                 ISiteVar<double> WoodyDebris = PlugIn.cohorts.GetIsiteVar(x => x.WoodyDebris);
 
-                ushort Water_SUM = 0;
+                double Water_SUM = 0;
                 double CohortBiom_SUM = 0;
                 double CohortAge_SUM = 0;
                 double CohortLAI_SUM = 0;
                 int CohortCount = 0;
+                int siteCount = 0;
                 int SubCanopyRad_SUM = 0;
                 double Litter_SUM = 0;
                 double Woody_debris_SUM = 0;
 
                 foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
                 {
+                    siteCount++;
                     CohortCount += CohortsPerSite[site];
                     CohortBiom_SUM += CohortBiom[site];
                     Water_SUM += WaterPerSite[site];
@@ -59,15 +61,15 @@ namespace Landis.Extension.Output.PnET
                 }
 
                 string c = CohortCount.ToString();
-                string CohortAge_av = (CohortAge_SUM / (float)CohortCount).ToString();
-                string CohortBiom_av = (CohortBiom_SUM / (float)CohortCount).ToString();
-                string CohortLAI_av = (CohortLAI_SUM / (float)CohortCount).ToString();
-                string Water_av = (Water_SUM / (float)CohortCount).ToString();
-                string SubCanopyRad_av = (SubCanopyRad_SUM / (float)CohortCount).ToString();
-                string Litter_av = (Litter_SUM / (float)CohortCount).ToString();
-                string Woody_debris_ave = (Woody_debris_SUM / (float)CohortCount).ToString();
+                string CohortAge_av = (CohortAge_SUM / (float)siteCount).ToString();
+                string CohortBiom_av = (CohortBiom_SUM / (float)siteCount).ToString();
+                string LAI_av = (CohortLAI_SUM / (float)siteCount).ToString();
+                string Water_av = (Water_SUM / (float)siteCount).ToString();
+                string SubCanopyRad_av = (SubCanopyRad_SUM / (float)siteCount).ToString();
+                string Litter_av = (Litter_SUM / (float)siteCount).ToString();
+                string Woody_debris_ave = (Woody_debris_SUM / (float)siteCount).ToString();
 
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + c + "\t" + CohortAge_av + "\t" + CohortBiom_av + "\t" + CohortLAI_av + "\t" + Water_av + "\t" + SubCanopyRad_av + "\t" + Litter_av + "\t" + Woody_debris_ave);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + c + "\t" + CohortAge_av + "\t" + CohortBiom_av + "\t" + LAI_av + "\t" + Water_av + "\t" + SubCanopyRad_av + "\t" + Litter_av + "\t" + Woody_debris_ave);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  

@@ -18,6 +18,28 @@ namespace Landis.Extension.Output.PnET
             return hdr;
             
         }
+        public static void Write<T>(string MapNameTemplate, string units, int TStep, Landis.Library.Parameters.Species.AuxParm<T> Values)
+        {
+            string FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt");
+
+            if (PlugIn.ModelCore.CurrentTime == 0)
+            {
+                FileNames.MakeFolders(FileName);
+                System.IO.File.WriteAllLines(FileName, new string[] { Header(units) });
+            }
+
+            string line = TStep + "\t";
+
+            foreach (ISpecies spc in PlugIn.ModelCore.Species)
+            {
+                line += Values[spc]  + "\t";
+            }
+
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(FileName, true);
+            sw.WriteLine(line);
+            sw.Close();
+        
+        }
         public static void Write<T>(string MapNameTemplate, string units, int TStep, ISiteVar<Landis.Library.Parameters.Species.AuxParm<T>> Values)
         {
             string FileName = FileNames.ReplaceTemplateVars(MapNameTemplate).Replace(".img", ".txt");

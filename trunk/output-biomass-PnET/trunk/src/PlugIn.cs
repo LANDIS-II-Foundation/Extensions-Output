@@ -219,7 +219,20 @@ namespace Landis.Extension.Output.PnET
 
                 ISiteVar<Landis.Library.Parameters.Species.AuxParm<bool>> Established_spc = cohorts.GetIsiteVar(x => x.SpeciesPresent);
 
-                OutputFilePerTStepPerSpecies.Write<bool>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Established_spc);
+                Landis.Library.Parameters.Species.AuxParm<int> Est_Sum = new Landis.Library.Parameters.Species.AuxParm<int>(PlugIn.modelCore.Species);
+
+                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                { 
+                    foreach(ISpecies spc in PlugIn.modelCore.Species)
+                    {
+                        if(Established_spc[site][spc] ==true)
+                        {
+                            Est_Sum[spc]++;
+                        }
+                    }
+                }
+
+                OutputFilePerTStepPerSpecies.Write<int>(SpeciesEstablishment.MapNameTemplate, SpeciesEstablishment.units, PlugIn.ModelCore.CurrentTime, Est_Sum);
                 
             }
             
