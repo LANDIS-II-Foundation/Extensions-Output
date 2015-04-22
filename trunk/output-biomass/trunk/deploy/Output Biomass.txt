@@ -1,6 +1,6 @@
 LandisData   Extension
 Name         "Output Biomass"
-Version      "2.1 (beta 1 release)"
+Version      "2.1"
 Type         output
 Assembly     Landis.Extension.Output.Biomass
 Class        Landis.Extension.Output.Biomass.PlugIn
