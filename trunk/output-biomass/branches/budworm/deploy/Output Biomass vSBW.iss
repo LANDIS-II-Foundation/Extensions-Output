@@ -1,6 +1,6 @@
 #include GetEnv("LANDIS_SDK") + '\packaging\initialize.iss'
 
-#define ExtInfoFile "Output Biomass.txt"
+#define ExtInfoFile "Output Biomass vSBW.txt"
 
 #include LandisSDK + '\packaging\read-ext-info.iss'
 #include LandisSDK + '\packaging\Landis-vars.iss'

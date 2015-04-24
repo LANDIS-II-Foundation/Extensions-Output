@@ -16,7 +16,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> Succession Extension     Initialization File
 >> --------------------     -------------------
-   "Biomass Succession"    biomass-succession.txt
+   "Biomass Succession vSBW"    biomass-succession.txt
 
 
 >> Disturbance Extensions   Initialization File
@@ -27,7 +27,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> Other Extensions         Initialization File
 >> ----------------         -------------------
-   "Output Biomass"	    output-biomass.txt
+   "Output Biomass vSBW"	    output-biomass.txt
 
 
 >>RandomNumberSeed  4,357  << optional parameter; default = the seed is
