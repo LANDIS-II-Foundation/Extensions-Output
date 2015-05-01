@@ -101,7 +101,7 @@ namespace Landis.Extension.Output.Biomass
             //InputVar<SelectedDeadPools> deadPools = new InputVar<SelectedDeadPools>(DeadPoolsName,
             //                                                                        SelectedDeadPoolsUtil.Parse);
 
-            InputVar<string> deadPools = new InputVar<string>("Pool");
+            InputVar<string> deadPools = new InputVar<string>("DeadPools");
 
             bool deadPoolsPresent;
             if (speciesParmPresent)

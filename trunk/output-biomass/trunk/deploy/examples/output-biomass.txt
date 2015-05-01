@@ -19,6 +19,6 @@ Species    abiebals
 
 MapNames  biomass/{species}-{timestep}.img
 
-DeadPools woody
+DeadPools both
 	  
 MapNames  biomass/{pool}-{timestep}.img
