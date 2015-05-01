@@ -1,0 +1,8 @@
+LandisData   Extension
+Name         "Output Biomass"
+Version      "2.1 (beta 1 release)"
+Type         output
+Assembly     Landis.Extension.Output.Biomass
+Class        Landis.Extension.Output.Biomass.PlugIn
+Description  "Output biomass maps"
+CoreVersion  6.0
