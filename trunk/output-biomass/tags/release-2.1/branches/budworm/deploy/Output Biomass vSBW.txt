@@ -1,8 +1,0 @@
-LandisData   Extension
-Name         "Output Biomass vSBW"
-Version      "2.2 (beta 1 release)"
-Type         output
-Assembly     Landis.Extension.Output.Biomass_vSBW
-Class        Landis.Extension.Output.Biomass.PlugIn
-Description  "Output biomass maps for budworm extension"
-CoreVersion  6.0
