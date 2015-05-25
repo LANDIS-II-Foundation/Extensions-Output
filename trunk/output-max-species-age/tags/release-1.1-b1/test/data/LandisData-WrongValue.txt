@@ -1,3 +1,0 @@
->> Example of bad input file for initialization file
-
-LandisData  "Max Age"  << Wrong value; should be "Max Species Age"

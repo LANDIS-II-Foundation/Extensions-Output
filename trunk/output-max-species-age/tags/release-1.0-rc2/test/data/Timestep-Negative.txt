@@ -1,6 +1,0 @@
->> Example of bad input file for initialization file
-
-LandisData  "Max Species Age"
-
-
-Timestep  -5  << Must be = or > 0

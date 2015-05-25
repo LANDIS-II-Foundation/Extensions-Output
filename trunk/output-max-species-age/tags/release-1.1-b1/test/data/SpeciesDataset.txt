@@ -1,9 +1,0 @@
-LandisData  Species
-
->>                      Sexual    Shade  Fire  Seed Disperal Dist  Vegetative   Sprout Age  Post-Fire
->> Name      Longevity  Maturity  Tol.   Tol.  Effective  Maximum  Reprod Prob  Min   Max   Regen
->> ----      ---------  --------  -----  ----  ---------  -------  -----------  ----------  --------
-   abiebals    200        25        5     1      130         160       0.0        0     0   none
-   betualle    300        40        4     2      100         400       0.1       10   180   none
-   poputrem    100        20        1     1    1,000       5,000       0.9       10   100   serotiny
-   querelli    300        35        2     2       30       3,000       0.75      30   280   none

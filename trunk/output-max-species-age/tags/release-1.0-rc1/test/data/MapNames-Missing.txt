@@ -1,8 +1,0 @@
->> Example of bad input file for initialization file
-
-LandisData  "Max Species Age"
-
-
-Timestep  10
-
-  << Missing MapNames parameter
