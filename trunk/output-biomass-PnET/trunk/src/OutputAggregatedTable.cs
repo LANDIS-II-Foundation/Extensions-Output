@@ -28,7 +28,7 @@ namespace Landis.Extension.Output.PnET
                 ISiteVar<int> CohortAge = PlugIn.cohorts.GetIsiteVar(x => (x.CohortCount >0) ? x.AverageAge : -1);
                 ISiteVar<byte> CohortLAI = PlugIn.cohorts.GetIsiteVar(x => x.CanopyLAImax);
                 ISiteVar<ushort> WaterPerSite = PlugIn.cohorts.GetIsiteVar(x => x.WaterMax);
-                ISiteVar<ushort> SubCanopyRAD = PlugIn.cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
+                ISiteVar<float> SubCanopyRAD = PlugIn.cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
                 ISiteVar<double> Litter = PlugIn.cohorts.GetIsiteVar(x => x.Litter);
                 ISiteVar<double> WoodyDebris = PlugIn.cohorts.GetIsiteVar(x => x.WoodyDebris);
 
@@ -38,7 +38,7 @@ namespace Landis.Extension.Output.PnET
                 double CohortLAI_SUM = 0;
                 int CohortCount = 0;
                 int siteCount = 0;
-                int SubCanopyRad_SUM = 0;
+                double SubCanopyRad_SUM = 0;
                 double Litter_SUM = 0;
                 double Woody_debris_SUM = 0;
 

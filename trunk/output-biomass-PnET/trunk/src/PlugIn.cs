@@ -284,9 +284,9 @@ namespace Landis.Extension.Output.PnET
             {
                 System.Console.WriteLine("Updating output variable: SubCanopyPAR");
 
-                ISiteVar<ushort> SubCanopyRadiation = cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
+                ISiteVar<float> SubCanopyRadiation = cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
 
-                new OutputMapSiteVar<ushort, ushort>(SubCanopyPAR.MapNameTemplate, "", SubCanopyRadiation, o=>o);
+                new OutputMapSiteVar<float, float>(SubCanopyPAR.MapNameTemplate, "", SubCanopyRadiation, o => o);
 
                  
             }
