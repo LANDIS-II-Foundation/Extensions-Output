@@ -1,9 +1,9 @@
 LandisData   Extension
 
-Name         "Output Bird Habitat"
+Name         "Output Bird Habitat Century"
 Version      "0.1 (alpha release 1)"
 Type         output:birdhabitat
-Assembly     Landis.Extension.Output.BirdHabitat
+Assembly     Landis.Extension.Output.BirdHabitatCentury
 Class        Landis.Extension.Output.BirdHabitat.PlugIn
-Description  "Ouput Bird Habitat"
+Description  "Ouput Bird Habitat Century"
 CoreVersion  6.0

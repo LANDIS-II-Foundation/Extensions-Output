@@ -1,6 +1,6 @@
 #include GetEnv("LANDIS_SDK") + '\packaging\initialize.iss'
 
-#define ExtInfoFile "Output Bird Habitat.txt"
+#define ExtInfoFile "Output Bird Habitat Century.txt"
 
 #include LandisSDK + '\packaging\read-ext-info.iss'
 #include LandisSDK + '\packaging\Landis-vars.iss'
