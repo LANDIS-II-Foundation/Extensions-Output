@@ -80,6 +80,15 @@ namespace Landis.Extension.Output.BirdHabitat
         }
         //---------------------------------------------------------------------
         /// <summary>
+        /// Template for the filenames for reclass maps.
+        /// </summary>
+        string ClimateMapFileNames
+        {
+            get;
+            set;
+        }
+        //---------------------------------------------------------------------
+        /// <summary>
         /// Template for the filenames for species output maps.
         /// </summary>
         string SpeciesMapFileNames
