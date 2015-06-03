@@ -51,7 +51,7 @@ namespace Landis.Extension.Output.BirdHabitat
             const string SpeciesModels = "SpeciesModels";
             const string LocalVarMapFileNames = "LocalVarMapFileNames";
             const string NeighborVarMapFileNames = "NeighborVarMapFileNames";
-            const string ClimateVarMapFileNames = "CliamteVarMapFileNames";
+            const string ClimateVarMapFileNames = "ClimateVarMapFileNames";
             const string SpeciesMapFileName = "SpeciesMapFileNames";
 
             if (ReadOptionalName(LocalVariables))
