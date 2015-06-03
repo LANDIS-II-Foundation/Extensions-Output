@@ -67,5 +67,5 @@ YBFL	->	intercept	int		0.005061
 
 LocalVarMapFileNames   	output/bird-habitat/{reclass-map-name}-{timestep}.img
 NeighborVarMapFileNames output/bird-habitat/{var-name}-{timestep}.img
-CliamteVarMapFileNames  output/bird-habitat/{climate-var-name}-{timestep}.img
+ClimateVarMapFileNames  output/bird-habitat/{climate-var-name}-{timestep}.img
 SpeciesMapFileNames	output/bird-habitat/habitat-{species-name}-{timestep}.img
