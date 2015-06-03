@@ -17,6 +17,7 @@ namespace Landis.Extension.Output.BirdHabitat
         private List<IMapDefinition> mapDefns;
         private string localVarMapFileNames;
         private string neighborMapFileNames;
+        private string climateMapFileNames;
         private string speciesMapFileNames;
         private List<IVariableDefinition> varDefn;
         private List<INeighborVariableDefinition> neighborVarDefn;
@@ -134,7 +135,22 @@ namespace Landis.Extension.Output.BirdHabitat
                 neighborMapFileNames = value;
             }
         }
-
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Template for the filenames for climate maps.
+        /// </summary>
+        public string ClimateMapFileNames
+        {
+            get
+            {
+                return climateMapFileNames;
+            }
+            set
+            {
+                BirdHabitat.ClimateMapFileNames.CheckTemplateVars(value);
+                climateMapFileNames = value;
+            }
+        }
         //---------------------------------------------------------------------
         /// <summary>
         /// Template for the filenames for species model results.

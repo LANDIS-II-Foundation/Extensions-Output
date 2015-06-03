@@ -51,6 +51,7 @@ namespace Landis.Extension.Output.BirdHabitat
             const string SpeciesModels = "SpeciesModels";
             const string LocalVarMapFileNames = "LocalVarMapFileNames";
             const string NeighborVarMapFileNames = "NeighborVarMapFileNames";
+            const string ClimateVarMapFileNames = "CliamteVarMapFileNames";
             const string SpeciesMapFileName = "SpeciesMapFileNames";
 
             if (ReadOptionalName(LocalVariables))
@@ -420,6 +421,14 @@ namespace Landis.Extension.Output.BirdHabitat
                 readNeighborMaps = true;
             }
 
+            InputVar<string> climateMapFileNames = new InputVar<string>(ClimateVarMapFileNames);
+            bool readClimateMaps = false;
+            if (ReadOptionalVar(climateMapFileNames))
+            {
+                parameters.ClimateMapFileNames = climateMapFileNames.Value;
+                readClimateMaps = true;
+            }
+
             InputVar<string> speciesMapFileNames = new InputVar<string>(SpeciesMapFileName);
             bool readSpeciesMaps = false;
             if (ReadOptionalVar(speciesMapFileNames))
@@ -430,6 +439,10 @@ namespace Landis.Extension.Output.BirdHabitat
             if (readSpeciesMaps)
             {
                 CheckNoDataAfter(string.Format("the {0} parameter", SpeciesMapFileName));
+            }
+            else if(readClimateMaps)
+            {
+                CheckNoDataAfter(string.Format("the {0} parameter", ClimateVarMapFileNames));
             }
             else if (readNeighborMaps)
             {
