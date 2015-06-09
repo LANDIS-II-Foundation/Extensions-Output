@@ -276,6 +276,7 @@ namespace Landis.Extension.Output.BirdHabitat
                 string climateYear = climateVar.Year;
                 int minMonth = climateVar.MinMonth;
                 int maxMonth = climateVar.MaxMonth;
+                string transform = climateVar.Transform;
 
                 int currentYear = PlugIn.ModelCore.CurrentTime;
                 int actualYear = currentYear;
@@ -377,11 +378,20 @@ namespace Landis.Extension.Output.BirdHabitat
                             monthCount++;
                         }
                         double avgValue = monthTotal / (double)monthCount;
+                        double transformValue = avgValue;
+                        if(transform == "Log10")
+                        {
+                            transformValue = Math.Log10(avgValue + 1);
+                        }
+                        else if (transform == "ln")
+                        {
+                            transformValue = Math.Log(avgValue + 1);
+                        }
                         if(!ecoClimateVars[ecoregion].ContainsKey(varName))
                         {
                             ecoClimateVars[ecoregion].Add(varName,0.0);
                         }
-                        ecoClimateVars[ecoregion][varName] = avgValue;
+                        ecoClimateVars[ecoregion][varName] = transformValue;
                     }
 
                     foreach (Site site in modelCore.Landscape.AllSites)
@@ -413,10 +423,18 @@ namespace Landis.Extension.Output.BirdHabitat
                         monthCount++;
                     }
                     double avgValue = monthTotal / (double)monthCount;
-
+                    double transformValue = avgValue;
+                    if (transform == "Log10")
+                    {
+                        transformValue = Math.Log10(avgValue + 1);
+                    }
+                    else if (transform == "ln")
+                    {
+                        transformValue = Math.Log(avgValue + 1);
+                    }
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
-                        SiteVars.ClimateVars[site][varName] = (float)avgValue;
+                        SiteVars.ClimateVars[site][varName] = (float)transformValue;
                     }
                 }
             }
@@ -443,6 +461,11 @@ namespace Landis.Extension.Output.BirdHabitat
                         else if (paramType == "climate")
                         {
                             double modelValue = SiteVars.ClimateVars[site][parameter] * paramValue;
+                            modelPredict += modelValue;
+                        }
+                        else if (paramType =="biomass")
+                        {
+                            double modelValue = Util.ComputeBiomass(SiteVars.Cohorts[site]) * paramValue;
                             modelPredict += modelValue;
                         }
 
@@ -543,7 +566,8 @@ namespace Landis.Extension.Output.BirdHabitat
                         {
                             if (site.IsActive)
                             {
-                                pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name] * 100.0);
+                                //pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name] * 100.0);
+                                pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name]);
                             }
                             else
                             {

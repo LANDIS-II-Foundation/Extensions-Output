@@ -78,6 +78,15 @@ namespace Landis.Extension.Output.BirdHabitat
             set;
         }
         //---------------------------------------------------------------------
+        /// <summary>
+        /// Transformation
+        /// </summary>
+        string Transform
+        {
+            get;
+            set;
+        }
+        //---------------------------------------------------------------------
     }
 
     /// <summary>
@@ -93,6 +102,7 @@ namespace Landis.Extension.Output.BirdHabitat
         private int minMonth;
         private int maxMonth;
         private AnnualClimate_Monthly climateData;
+        private string transform;
         //---------------------------------------------------------------------
 
         /// <summary>
@@ -205,6 +215,22 @@ namespace Landis.Extension.Output.BirdHabitat
             set
             {
                 climateData = value;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Transformation
+        /// </summary>
+        public string Transform
+        {
+            get
+            {
+                return transform;
+            }
+            set
+            {
+                transform = value;
             }
         }
 

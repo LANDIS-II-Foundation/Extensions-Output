@@ -291,6 +291,7 @@ namespace Landis.Extension.Output.BirdHabitat
                 InputVar<string> varYear = new InputVar<string>("Variable Year");
                 InputVar<int> minMonth = new InputVar<int>("Min Month");
                 InputVar<int> maxMonth = new InputVar<int>("Max Month");
+                InputVar<string> transform = new InputVar<string>("Tranformation");
 
                 IClimateVariableDefinition climateVarDefn = null;
                 while (!AtEndOfInput  && (CurrentName != SpeciesModels))
@@ -329,10 +330,8 @@ namespace Landis.Extension.Output.BirdHabitat
                     ReadValue(climateLibraryVarName, currentLine);
                     climateVarDefn.ClimateLibVariable = climateLibraryVarName.Value;
 
-                    if(climateVarDefn.SourceName != "Library")
-                    {
-
-                    }
+                    ReadValue(transform, currentLine);
+                    climateVarDefn.Transform = transform.Value;
 
                     parameters.ClimateVars.Add(climateVarDefn);
                     GetNextLine();
