@@ -9,7 +9,7 @@ InitialCommunitiesMap   "single_cell_3.img"
 
 ClimateConfigFile	climate-generator-single-cell.txt
 
-CalibrateMode 	yes
+CalibrateMode 	no
 
 SpinupMortalityFraction 0.0002
 
