@@ -4,6 +4,7 @@
 using Landis.Core;
 using Landis.Library.LeafBiomassCohorts;
 using Landis.SpatialModeling;
+using Landis.Library.Metadata;
 using System.Collections.Generic;
 using System;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ namespace Landis.Extension.Output.BirdHabitat
 
         public static readonly ExtensionType extType = new ExtensionType("output");
         public static readonly string PlugInName = "Output Bird Habitat";
+        public static MetadataTable<EventsLog> eventLog;
 
         private string localVarMapNameTemplate;
         private string speciesMapNameTemplate;
@@ -87,6 +89,8 @@ namespace Landis.Extension.Output.BirdHabitat
             this.neighborVarDefs = parameters.NeighborVars;
             this.climateVarDefs = parameters.ClimateVars;
             this.modelDefs = parameters.Models;
+            if (parameters.SpeciesMapFileNames != null)
+                MetadataHandler.InitializeMetadata(parameters.Timestep, parameters.SpeciesMapFileNames, parameters.Models, ModelCore);
         }
 
         //---------------------------------------------------------------------
