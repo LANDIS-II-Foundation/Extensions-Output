@@ -471,8 +471,10 @@ namespace Landis.Extension.Output.BirdHabitat
 
                         paramIndex++;
                     }
+                    // Back-transform model prediction
+                    float finalPredict = (float)Math.Exp(modelPredict);
                     // Write Site Variable
-                    SiteVars.SpeciesModels[site][model.Name] = (float)modelPredict;
+                    SiteVars.SpeciesModels[site][model.Name] = (float)finalPredict;
                 }
 
             }
@@ -566,8 +568,8 @@ namespace Landis.Extension.Output.BirdHabitat
                         {
                             if (site.IsActive)
                             {
-                                //pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name] * 100.0);
-                                pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name]);
+                                pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name] * 100.0);
+                                //pixel.MapCode.Value = (short)System.Math.Round(SiteVars.SpeciesModels[site][sppModel.Name]);
                             }
                             else
                             {
