@@ -1,0 +1,108 @@
+LandisData  "Output Bird Habitat"
+
+Timestep   10
+
+
+LocalVariables
+>> Map Name    	Forest Type    	AgeRange	Species
+>> --------    	-------------  	--------	-------
+>>   reclass1 ->	grass_brush	All	-All
+>>		jpine		All		pinubank
+>>		cedar		All		thujocci
+>>		tam		All		larilari
+>>		bspr		All		picemari
+>>		acidbog		All		picemari larilari
+>>		nhard		All		<<Insert species here>>		
+>>		rpine		All		pinuresi
+>>		sprfir		All		piceglau abiebals
+>>		aspenbirch	All		poputrem betupapy
+
+   reclass2 -> 	Open		All		None
+               	Regen	 	1 to 15		All
+		LowlandCon	All		larilari picemari thujocci
+		LowlandHdwd	All		acerrubr fraxnigr fraxpenn popudelt salix
+		LowlandMix	All		larilari picemari thujocci acerrubr fraxnigr fraxpenn popudelt salix
+		UplandCon	All		abiebals piceglau pinubank pinuresi pinustro
+		UplandHdwd	All		acernegu acersacc acerspic betualle betupapy celtis fraxamer ostrvirg popubals popugran poputrem prunpens prunsero prunvirg queralba querelli quermacr querrubr tiliamer ulmuamer ulmurubr
+		UplandMix	All		abiebals piceglau pinubank pinuresi pinustro acernegu acersacc acerspic betualle betupapy celtis fraxamer ostrvirg popubals popugran poputrem prunpens prunsero prunvirg queralba querelli quermacr querrubr tiliamer ulmuamer ulmurubr
+
+DerivedLocalVariables
+>> Var Name	Calc
+>> --------	--------
+  LowlandFor	->  reclass2[LowlandCon] + reclass2[LowlandHdwd] + reclass2[LowlandMix]
+  UplandFor 	->  reclass2[UplandCon] + reclass2[UplandHdwd] + reclass2[UplandMix]
+>>  Forest 	->  reclass2[LowlandCon] + reclass2[LowlandHdwd] + reclass2[LowlandMix] + reclass2[UplandCon] + reclass2[UplandHdwd] + reclass2[UplandMix]
+
+
+NeighborhoodVariables
+>> Var Name	LocalVar		NeighborRadius	Transform
+>> --------	----------		--------------	---------
+loguc200	reclass2[UplandCon]	200		log10
+uf500		UplandFor		500		none
+loglc200	reclass2[LowlandCon]	200		log10
+open1000	reclass2[Open]		1000		none
+logreg200	reclass2[Regen]		200		log10
+logopen200	reclass2[Open]		200		log10
+logreg1000	reclass2[Regen]		1000		log10
+loglf500	LowlandFor		500		log10
+loglf1000	LowlandFor		1000		log10
+
+
+ClimateVariables
+>> Var Name	Year	Months	Source				ClimateVar	Transform	
+>> --------	----	------	------				----------	---------
+temp		current	3 to 6	Library				Temp		none
+logprevprecip	prec	3 to 6	Library				Precip		log10
+>>pdsi		current	3 to 6	example_monthly_climate_1979_2013.csv	PDSI	none
+>>precip	current 3 to 6  Library				Precip		none
+>>prevprecip	prev	3 to 6  Library				Precip		none
+>>prevpdsi	prev	3 to 6 	example_monthly_climate_1979_2013.csv	PDSI	none
+>>prevtemp	prev	3 to 6	Library				Temp		none
+>>pdsi		current	3 to 6	Library				PDSI		none
+
+
+SpeciesModels
+>> Species		Parameter	Type	Value
+>> -------		---------	----	-----
+BLBW	->	intercept	int	-2.235094
+		loguc200	neighbor	0.4063549
+		open1000	neighbor	-0.0320014
+CONW	->	intercept	int	0.70589
+		loglc200	neighbor	1.25531
+		logprevprecip	climate	-1.94542
+CSWA	->	intercept	int	-1.68E+00
+		biomass	biomass	-7.87E-06
+		logreg200	neighbor	5.03E-01
+GWWA	->	intercept	int	-6.51E+00
+		biomass	biomass	-4.10E-05
+		logopen200	neighbor	9.30E-01
+		logreg1000	neighbor	8.07E-01
+		temp	climate	-2.04E-01
+OVEN	->	intercept	int	-1.58E+00
+		biomass	biomass	5.88E-06
+		loglc200	neighbor	-2.52E-01
+		logprevprecip	climate	2.73E-01
+		uf500	neighbor	2.04E-02
+>>PIWA	->	intercept	int	-5.228327
+>>		loguc200	neighbor	0.823546
+>>		pdsi	climate	-0.180834
+>>		uf500	neighbor	0.020801
+>>RBNU	->	intercept	int	-2.76635
+>>		loguc200	neighbor	0.46619
+>>		pdsi	climate	-0.16414
+REVI	->	intercept	int	0.962418
+		biomass	biomass	0.006864
+		loglc200	neighbor	-0.304662
+		loglf1000	neighrbor	-0.149744
+		loglf500	neighbor	0.10487
+SCTA	->	intercept	int	-1.81633
+		loglf500	neighbor	-0.419
+		climate	temp	0.07293
+YBFL	->	intercept	int	-5.28615
+		loglc200	neighbor	0.97475
+
+
+>>LocalVarMapFileNames   	output/bird-habitat/{reclass-map-name}-{timestep}.img
+>>NeighborVarMapFileNames output/bird-habitat/{var-name}-{timestep}.img
+>>ClimateVarMapFileNames  output/bird-habitat/{climate-var-name}-{timestep}.img
+SpeciesMapFileNames	output/bird-habitat/habitat-{species-name}-{timestep}.img
