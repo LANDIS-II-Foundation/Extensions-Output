@@ -285,9 +285,18 @@ namespace Landis.Extension.Output.BirdHabitat
                 int currentYear = PlugIn.ModelCore.CurrentTime;
                 int actualYear = currentYear;
 
+                int firstActiveEco = 0;
+                foreach (IEcoregion ecoregion in modelCore.Ecoregions)
+                {
+                    if (ecoregion.Active)
+                    {
+                        firstActiveEco = ecoregion.Index;
+                        break;
+                    }
+                }
                 if (Climate.Future_MonthlyData != null)
                 {
-                    AnnualClimate_Monthly AnnualWeather = Climate.Future_MonthlyData[Climate.Future_MonthlyData.Keys.Min()][0];
+                    AnnualClimate_Monthly AnnualWeather = Climate.Future_MonthlyData[Climate.Future_MonthlyData.Keys.Min()][firstActiveEco];
                     int maxSpinUpYear = Climate.Spinup_MonthlyData.Keys.Max();
 
                     if (PlugIn.ModelCore.CurrentTime > 0)
@@ -297,24 +306,24 @@ namespace Landis.Extension.Output.BirdHabitat
                         {
                             if (Climate.Future_MonthlyData.ContainsKey(currentYear - 1))
                             {
-                                AnnualWeather = Climate.Future_MonthlyData[currentYear - 1][0];
+                                AnnualWeather = Climate.Future_MonthlyData[currentYear - 1][firstActiveEco];
                             }
                             else
                             {
-                                AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear][0];
+                                AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear][firstActiveEco];
                             }
                         }
                         else
                         {
-                            AnnualWeather = Climate.Future_MonthlyData[currentYear][0];
+                            AnnualWeather = Climate.Future_MonthlyData[currentYear][firstActiveEco];
                         }
                     }
                     if (PlugIn.ModelCore.CurrentTime == 0)
                     {
                         if (climateYear == "prev")
-                            AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear - 1][0];
+                            AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear - 1][firstActiveEco];
                         else
-                            AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear][0];
+                            AnnualWeather = Climate.Spinup_MonthlyData[maxSpinUpYear][firstActiveEco];
                     }
                     actualYear = AnnualWeather.Year;
                 }
