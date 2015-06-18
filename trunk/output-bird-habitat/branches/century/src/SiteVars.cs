@@ -34,7 +34,7 @@ namespace Landis.Extension.Output.BirdHabitat
             climateVars = PlugIn.ModelCore.Landscape.NewSiteVar<Dictionary<string, float>>();
             speciesModels = PlugIn.ModelCore.Landscape.NewSiteVar<Dictionary<string, float>>();
 
-            foreach (Site site in PlugIn.ModelCore.Landscape)
+            foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
             {
                 SiteVars.LocalVars[site] = new Dictionary<string, int>();
                 SiteVars.DerivedVars[site] = new Dictionary<string, float>();
