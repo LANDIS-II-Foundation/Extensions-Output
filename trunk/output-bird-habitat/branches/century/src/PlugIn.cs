@@ -414,7 +414,7 @@ namespace Landis.Extension.Output.BirdHabitat
                     {
                         IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
                         double climateValue = 0;
-                        if (ecoregion.Active)
+                        if (ecoregion != null)
                         {
                             climateValue = ecoClimateVars[ecoregion][varName];
                         }
