@@ -432,6 +432,15 @@ namespace Landis.Extension.Output.BirdHabitat
                     {
                         string selectString = "Year = '" + actualYear + "' AND Month = '" + monthIndex + "'";
                         DataRow[] rows = parameters.ClimateDataTable.Select(selectString);
+                        if (rows.Length == 0)
+                        {
+                            string mesg = string.Format("Climate data is empty. No record exists for variable {0} in year {1}.",climateVar.Name,actualYear);
+                            if (actualYear == 0)
+                            {
+                                mesg = mesg + "  Note that if using the options Monthly_AverageAllYears or Daily_AverageAllYears you should provide average values for climate variables listed as Year 0.";
+                            }
+                            throw new System.ApplicationException(mesg);
+                        }
                         foreach (DataRow row in rows)
                         {
                             varValue = Convert.ToDouble(row[climateVar.ClimateLibVariable]);
