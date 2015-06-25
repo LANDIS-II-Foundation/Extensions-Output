@@ -57,7 +57,7 @@ namespace Landis.Extension.Output.BirdHabitat
                 {
                     Type = OutputType.Map,
                     Name = ("Bird Species Map: " + sppModel.Name),
-                    FilePath = @MapFileName,
+                    FilePath = @sppMapPath,
                     Map_DataType = MapDataType.Continuous,
                     //Map_Unit = FieldUnits.Severity_Rank,
                     Visualize = true,
