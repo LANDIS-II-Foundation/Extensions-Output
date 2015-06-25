@@ -50,12 +50,12 @@ namespace Landis.Extension.Output.BirdHabitat
         }
         //---------------------------------------------------------------------
 
-        public static string ReplaceTemplateVars(string template,
-                                                 string species)
-        {
-            varValues[MapNameVar] = species;
-            varValues[TimestepVar] = "{timestep}";
-            return OutputPath.ReplaceTemplateVars(template, varValues);
-        }
+        //public static string ReplaceTemplateVars(string template,
+        //                                         string species)
+        //{
+        //    varValues[MapNameVar] = species;
+        //    varValues[TimestepVar] = "{timestep}";
+        //    return OutputPath.ReplaceTemplateVars(template, varValues);
+        //}
     }
 }

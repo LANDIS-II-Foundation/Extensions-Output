@@ -51,7 +51,7 @@ namespace Landis.Extension.Output.BirdHabitat
 
             foreach (ModelDefinition sppModel in modelDefs)
             {
-                string sppMapPath = MapFileNames.ReplaceTemplateVars(MapFileName, sppModel.Name);
+                string sppMapPath = SpeciesMapFileNames.ReplaceTemplateVars(MapFileName, sppModel.Name);
 
                 OutputMetadata mapOut_Birds = new OutputMetadata()
                 {
