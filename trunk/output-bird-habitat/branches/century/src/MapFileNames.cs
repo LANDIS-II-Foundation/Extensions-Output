@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 namespace Landis.Extension.Output.BirdHabitat
 {
+
     /// <summary>
     /// Methods for working with the template for filenames of reclass maps.
     /// </summary>
     public static class MapFileNames
     {
-        public const string SpeciesVar = "species";
         public const string MapNameVar = "reclass-map-name";
         public const string TimestepVar = "timestep";
 
@@ -50,12 +50,5 @@ namespace Landis.Extension.Output.BirdHabitat
         }
         //---------------------------------------------------------------------
 
-        //public static string ReplaceTemplateVars(string template,
-        //                                         string species)
-        //{
-        //    varValues[MapNameVar] = species;
-        //    varValues[TimestepVar] = "{timestep}";
-        //    return OutputPath.ReplaceTemplateVars(template, varValues);
-        //}
     }
 }

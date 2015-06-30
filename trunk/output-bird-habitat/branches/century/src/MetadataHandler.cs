@@ -10,6 +10,7 @@ namespace Landis.Extension.Output.BirdHabitat
 {
     public static class MetadataHandler
     {
+
         
         public static ExtensionMetadata Extension {get; set;}
 
@@ -51,13 +52,12 @@ namespace Landis.Extension.Output.BirdHabitat
 
             foreach (ModelDefinition sppModel in modelDefs)
             {
-                string sppMapPath = SpeciesMapFileNames.ReplaceTemplateVars(MapFileName, sppModel.Name);
-
+                
                 OutputMetadata mapOut_Birds = new OutputMetadata()
                 {
                     Type = OutputType.Map,
-                    Name = ("Bird Species Map: " + sppModel.Name),
-                    FilePath = @sppMapPath,
+                    Name = sppModel.Name,
+                    FilePath = @MapFileName,
                     Map_DataType = MapDataType.Continuous,
                     //Map_Unit = FieldUnits.Severity_Rank,
                     Visualize = true,

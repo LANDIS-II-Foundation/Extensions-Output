@@ -13,7 +13,6 @@ namespace Landis.Extension.Output.BirdHabitat
         public const string SpeciesNameVar = "species-name";
         public const string TimestepVar = "timestep";
 
-
         private static IDictionary<string, bool> knownVars;
         private static IDictionary<string, string> varValues;
 
@@ -46,15 +45,7 @@ namespace Landis.Extension.Output.BirdHabitat
             return OutputPath.ReplaceTemplateVars(template, varValues);
         }
 
-        //---------------------------------------------------------------------
 
-        public static string ReplaceTemplateVars(string template,
-                                                 string speciesMapName)
-        {
-            varValues[SpeciesNameVar] = speciesMapName;
-            //varValues[TimestepVar] = timestep.ToString();
-            return OutputPath.ReplaceTemplateVars(template, varValues);
-        }
     
     }
 }

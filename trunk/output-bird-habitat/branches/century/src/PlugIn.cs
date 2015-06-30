@@ -253,12 +253,14 @@ namespace Landis.Extension.Output.BirdHabitat
 
                     // Calculate transformation
                     double transformValue = pctValue;
-                    if (neighborVar.Transform == "log10")
+                    if (neighborVar.Transform.Equals("log10", StringComparison.OrdinalIgnoreCase))
+                    //if (neighborVar.Transform == "log10")
                     {
 
                         transformValue = Math.Log10(pctValue + 1);
                     }
-                    else if (neighborVar.Transform == "ln")
+                    else if (neighborVar.Transform.Equals("ln", StringComparison.OrdinalIgnoreCase))
+                    //else if (neighborVar.Transform == "ln")
                     {
                         transformValue = Math.Log(pctValue + 1);
                     }
@@ -379,26 +381,35 @@ namespace Landis.Extension.Output.BirdHabitat
                                 //double monthPDSI = PDSI_Calculator.PDSI_Monthly[monthIndex-1];
                                 //   varValue = monthPDSI;
                                 //}
-                                if (climateVar.ClimateLibVariable == "Precip")
+                                if (climateVar.ClimateLibVariable.Equals("precip", StringComparison.OrdinalIgnoreCase))
+                                //if (climateVar.ClimateLibVariable == "Precip")
                                 {
                                     double monthPrecip = AnnualWeather.MonthlyPrecip[monthIndex - 1];
-                                    varValue = monthPrecip;
+                                    varValue = monthPrecip * 10.0; //Convert cm to mm
                                 }
-                                else if (climateVar.ClimateLibVariable == "Temp")
+                                else if (climateVar.ClimateLibVariable.Equals("temp", StringComparison.OrdinalIgnoreCase))
+                                //else if (climateVar.ClimateLibVariable == "Temp")
                                 {
                                     double monthTemp = AnnualWeather.MonthlyTemp[monthIndex - 1];
                                     varValue = monthTemp;
+                                }
+                                else
+                                {
+                                    string mesg = string.Format("Climate variable {0} is {1}; expected 'precip' or 'temp'.", climateVar.Name, climateVar.ClimateLibVariable);
+                                    throw new System.ApplicationException(mesg);
                                 }
                                 monthTotal += varValue;
                                 monthCount++;
                             }
                             double avgValue = monthTotal / (double)monthCount;
                             double transformValue = avgValue;
-                            if (transform == "Log10")
+                            if (transform.Equals("log10", StringComparison.OrdinalIgnoreCase))
+                            //if (transform == "Log10")
                             {
                                 transformValue = Math.Log10(avgValue + 1);
                             }
-                            else if (transform == "ln")
+                            else if (transform.Equals("ln", StringComparison.OrdinalIgnoreCase))
+                            //else if (transform == "ln")
                             {
                                 transformValue = Math.Log(avgValue + 1);
                             }
@@ -450,11 +461,13 @@ namespace Landis.Extension.Output.BirdHabitat
                     }
                     double avgValue = monthTotal / (double)monthCount;
                     double transformValue = avgValue;
-                    if (transform == "Log10")
+                    if (transform.Equals("log10", StringComparison.OrdinalIgnoreCase))
+                    //if (transform == "Log10")
                     {
                         transformValue = Math.Log10(avgValue + 1);
                     }
-                    else if (transform == "ln")
+                    else if (transform.Equals("ln", StringComparison.OrdinalIgnoreCase))
+                    //else if (transform == "ln")
                     {
                         transformValue = Math.Log(avgValue + 1);
                     }
@@ -475,24 +488,33 @@ namespace Landis.Extension.Output.BirdHabitat
                     {
                         string paramType = model.ParamTypes[paramIndex];
                         double paramValue = model.Values[paramIndex];
-                        if (paramType == "int")
+                        if (paramType.Equals("int", StringComparison.OrdinalIgnoreCase))
+                        //if (paramType == "int")
                         {
                             modelPredict += paramValue;
                         }
-                        else if (paramType == "neighbor")
+                        else if (paramType.Equals("neighbor", StringComparison.OrdinalIgnoreCase))
+                        //else if (paramType == "neighbor")
                         {
                             double modelValue = SiteVars.NeighborVars[site][parameter] * paramValue;
                             modelPredict += modelValue;
                         }
-                        else if (paramType == "climate")
+                        else if (paramType.Equals("climate", StringComparison.OrdinalIgnoreCase))
+                        //else if (paramType == "climate")
                         {
                             double modelValue = SiteVars.ClimateVars[site][parameter] * paramValue;
                             modelPredict += modelValue;
                         }
-                        else if (paramType =="biomass")
+                        else if (paramType.Equals("biomass", StringComparison.OrdinalIgnoreCase))
+                        //else if (paramType =="biomass")
                         {
                             double modelValue = Util.ComputeBiomass(SiteVars.Cohorts[site]) * paramValue;
                             modelPredict += modelValue;
+                        }
+                        else
+                        {
+                            string mesg = string.Format("For model {0}, parameter {1} has parameter type {2}; expected 'int', 'neighbor','climate' or 'biomass'.", model.Name,parameter, paramType);
+                            throw new System.ApplicationException(mesg);
                         }
 
                         paramIndex++;
