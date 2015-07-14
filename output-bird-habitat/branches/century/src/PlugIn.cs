@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Landis.Library.Climate;
 using System.Linq;
 using System.Data;
+using System.IO;
 
 
 namespace Landis.Extension.Output.BirdHabitat
@@ -21,7 +22,8 @@ namespace Landis.Extension.Output.BirdHabitat
 
         public static readonly ExtensionType extType = new ExtensionType("output");
         public static readonly string PlugInName = "Output Bird Habitat";
-        public static MetadataTable<EventsLog> eventLog;
+        //public static MetadataTable<SpeciesHabitatLog> habitatLog;
+        private StreamWriter habitatLog;
 
         private string localVarMapNameTemplate;
         private string speciesMapNameTemplate;
@@ -90,7 +92,18 @@ namespace Landis.Extension.Output.BirdHabitat
             this.climateVarDefs = parameters.ClimateVars;
             this.modelDefs = parameters.Models;
             if (parameters.SpeciesMapFileNames != null)
-                MetadataHandler.InitializeMetadata(parameters.Timestep, parameters.SpeciesMapFileNames, parameters.Models, ModelCore);
+                MetadataHandler.InitializeMetadata(parameters.Timestep, parameters.SpeciesMapFileNames, parameters.Models, ModelCore, parameters.LogFileName);
+
+            ModelCore.UI.WriteLine("   Opening species habitat log files \"{0}\" ...", parameters.LogFileName);
+            habitatLog = Landis.Data.CreateTextFile(parameters.LogFileName);
+            habitatLog.AutoFlush = true;
+            habitatLog.Write("Time, Species, Avg_Landscape");
+            foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
+            {
+                habitatLog.Write(", Avg_{0}", ecoregion.Name);
+            }
+            habitatLog.WriteLine("");
+            
         }
 
         //---------------------------------------------------------------------
@@ -477,11 +490,31 @@ namespace Landis.Extension.Output.BirdHabitat
                     }
                 }
             }
+            
+            
+            Dictionary<string, float>[] ecoregionAvgValues = new Dictionary<string,float>[ModelCore.Ecoregions.Count];
+            Dictionary<string, float> landscapeAvgValues =  new Dictionary<string,float>();
+             int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
+             foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+             {
+                 ecoregionAvgValues[ecoregion.Index] = new Dictionary<string, float>();
+                 activeSiteCount[ecoregion.Index] = 0;
+             }
+             foreach (ActiveSite site in ModelCore.Landscape)
+             {
+                 IEcoregion ecoregion = ModelCore.Ecoregion[site];
+                 activeSiteCount[ecoregion.Index]++;
+             }
+
             // Calculate Species Models
             foreach (IModelDefinition model in modelDefs)
             {
+                float [] ecoregionSum = new float[ModelCore.Ecoregions.Count];
+                float landscapeSum = 0;
+                
                 foreach (Site site in modelCore.Landscape.AllSites)
                 {
+                    IEcoregion ecoregion = ModelCore.Ecoregion[site];
                     double modelPredict = 0;
                     int paramIndex = 0;
                     foreach (string parameter in model.Parameters)
@@ -523,9 +556,49 @@ namespace Landis.Extension.Output.BirdHabitat
                     float finalPredict = (float)Math.Exp(modelPredict);
                     // Write Site Variable
                     SiteVars.SpeciesModels[site][model.Name] = (float)finalPredict;
+                    if(site.IsActive)
+                    {
+                        ecoregionSum[ecoregion.Index] += finalPredict;
+                        landscapeSum += finalPredict;
+                    }
                 }
-
+                foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+                {
+                    //ecoregionAvgValues[ecoregion.Index].Add(model.Name, 0);
+                    ecoregionAvgValues[ecoregion.Index][model.Name] = ecoregionSum[ecoregion.Index] / activeSiteCount[ecoregion.Index];
+                }
+                landscapeAvgValues[model.Name] = landscapeSum / ModelCore.Landscape.ActiveSiteCount;
             }
+
+            
+            foreach (IModelDefinition model in modelDefs)
+            {
+                habitatLog.Write("{0},", ModelCore.CurrentTime);
+                habitatLog.Write("{0},", model.Name);
+                habitatLog.Write("{0}", landscapeAvgValues[model.Name]);
+                foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+                {
+                    habitatLog.Write(",{0}", ecoregionAvgValues[ecoregion.Index][model.Name]);
+                }
+                habitatLog.WriteLine("");
+            }
+            
+
+            /*
+             foreach (IModelDefinition model in modelDefs)
+             {
+                 foreach (IEcoregion ecoregion in ModelCore.Ecoregions)
+                 {
+                     habitatLog.Clear();
+                     SpeciesHabitatLog shl = new SpeciesHabitatLog();
+                     shl.Time = ModelCore.CurrentTime;
+                     shl.Ecoregion = ecoregion.Name;
+                     shl.EcoregionIndex = ecoregion.Index;
+                     shl.NumSites = activeSiteCount[ecoregion.Index];
+                     //shl.SppHabitat[ecoregion.Index][model.Name] = avgHabitat[ecoregion.Index][;
+                 }
+             }
+             * */
 
             // Ouput Maps
             if (!(parameters.LocalVarMapFileNames == null))

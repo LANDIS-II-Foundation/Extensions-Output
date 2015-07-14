@@ -24,6 +24,7 @@ namespace Landis.Extension.Output.BirdHabitat
         private List<IClimateVariableDefinition> climateVarDefn;
         private List<IModelDefinition> modelDefn;
         private DataTable climateDataTable;
+        private string logFileName;
 
         //---------------------------------------------------------------------
 
@@ -181,6 +182,23 @@ namespace Landis.Extension.Output.BirdHabitat
             set
             {
                 climateDataTable = value;
+            }
+        }
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Filename for log file.
+        /// </summary>
+        public string LogFileName
+        {
+            get
+            {
+                return logFileName;
+            }
+            set
+            {
+                if (value == null)
+                    throw new InputValueException(value.ToString(), "Value must be a file path.");
+                logFileName = value;
             }
         }
 

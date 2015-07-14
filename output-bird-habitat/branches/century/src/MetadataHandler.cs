@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.BirdHabitat
         
         public static ExtensionMetadata Extension {get; set;}
 
-        public static void InitializeMetadata(int Timestep, string MapFileName, IEnumerable<IModelDefinition> modelDefs, ICore mCore)
+        public static void InitializeMetadata(int Timestep, string MapFileName, IEnumerable<IModelDefinition> modelDefs, ICore mCore, string LogFileName)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
@@ -29,22 +29,21 @@ namespace Landis.Extension.Output.BirdHabitat
                 ScenarioReplicationMetadata = scenRep
             };
 
+            /*
             //---------------------------------------
             //          table outputs:   
             //---------------------------------------
-
-            // NO LOG FILE PlugIn.eventLog = new MetadataTable<EventsLog>("wind-events-log.csv");
-
-            //OutputMetadata tblOut_events = new OutputMetadata()
-            //{
-            //    Type = OutputType.Table,
-            //    Name = "WindLog",
-            //    FilePath = PlugIn.eventLog.FilePath,
-            //    Visualize = false,
-            //};
-            //tblOut_events.RetriveFields(typeof(EventsLog));
-            //Extension.OutputMetadatas.Add(tblOut_events);
-
+            PlugIn.habitatLog = new MetadataTable<SpeciesHabitatLog>(LogFileName);
+            OutputMetadata tblOut_events = new OutputMetadata()
+            {
+                Type = OutputType.Table,
+                Name = "SppHabitatLog",
+                FilePath = PlugIn.habitatLog.FilePath,
+                Visualize = true,
+            };
+            tblOut_events.RetriveFields(typeof(SpeciesHabitatLog));
+            Extension.OutputMetadatas.Add(tblOut_events);
+            */
 
             //---------------------------------------            
             //          map outputs:         

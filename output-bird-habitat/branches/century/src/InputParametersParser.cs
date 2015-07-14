@@ -53,6 +53,7 @@ namespace Landis.Extension.Output.BirdHabitat
             const string NeighborVarMapFileNames = "NeighborVarMapFileNames";
             const string ClimateVarMapFileNames = "ClimateVarMapFileNames";
             const string SpeciesMapFileName = "SpeciesMapFileNames";
+            const string LogFile = "LogFile";
 
             if (ReadOptionalName(LocalVariables))
             {
@@ -435,7 +436,20 @@ namespace Landis.Extension.Output.BirdHabitat
                 parameters.SpeciesMapFileNames = speciesMapFileNames.Value;
                 readSpeciesMaps = true;
             }
-            if (readSpeciesMaps)
+
+            InputVar<string> logFile = new InputVar<string>(LogFile);
+            bool readLogFile = false;
+            if (ReadOptionalVar(logFile))
+            {
+                parameters.LogFileName = logFile.Value;
+                readLogFile = true;
+            }
+
+            if(readLogFile)
+            {
+                CheckNoDataAfter(string.Format("the {0} parameter", LogFile));
+            }
+            else if (readSpeciesMaps)
             {
                 CheckNoDataAfter(string.Format("the {0} parameter", SpeciesMapFileName));
             }

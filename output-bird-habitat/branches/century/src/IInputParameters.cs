@@ -105,5 +105,10 @@ namespace Landis.Extension.Output.BirdHabitat
             get;
             set;
         }
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// Log file name.
+        /// </summary>
+        string LogFileName { get; set; }
     }
 }

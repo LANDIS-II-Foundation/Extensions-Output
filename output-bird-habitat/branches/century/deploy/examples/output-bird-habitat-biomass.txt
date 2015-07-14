@@ -93,11 +93,11 @@ RBNU	->	intercept	int	-2.76635
 REVI	->	intercept	int	0.962418
 		biomass	biomass	0.006864
 		loglc200	neighbor	-0.304662
-		loglf1000	neighrbor	-0.149744
+		loglf1000	neighbor	-0.149744
 		loglf500	neighbor	0.10487
 SCTA	->	intercept	int	-1.81633
 		loglf500	neighbor	-0.419
-		climate	temp	0.07293
+		temp	climate	0.07293
 YBFL	->	intercept	int	-5.28615
 		loglc200	neighbor	0.97475
 
@@ -106,3 +106,5 @@ LocalVarMapFileNames   	output/bird-habitat/{reclass-map-name}-{timestep}.img
 NeighborVarMapFileNames output/bird-habitat/{var-name}-{timestep}.img
 ClimateVarMapFileNames  output/bird-habitat/{climate-var-name}-{timestep}.img
 SpeciesMapFileNames	output/bird-habitat/habitat-{species-name}-{timestep}.img
+
+LogFile		output/bird-habitat/bird_habitat_log.csv
