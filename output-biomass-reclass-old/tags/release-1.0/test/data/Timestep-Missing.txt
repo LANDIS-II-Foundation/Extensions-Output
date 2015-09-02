@@ -1,0 +1,6 @@
+>> Example of a bad input file for Reclass output plug-in
+
+LandisData  "Reclass Output"
+
+
+>> Missing Timestep parameter

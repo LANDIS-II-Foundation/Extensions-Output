@@ -1,8 +1,0 @@
-LandisData   Extension
-Name         "Output Biomass Reclass vBrowse"
-Version      "2.1 (beta 1 release)"
-Type         output
-Assembly     Landis.Extension.Output.BiomassReclass_vBrowse
-Class        Landis.Extension.Output.BiomassReclass.PlugIn
-Description  "Output forest reclassification maps using biomass for Browse extension"
-CoreVersion  6.0

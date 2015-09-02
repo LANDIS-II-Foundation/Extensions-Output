@@ -1,0 +1,6 @@
+#  project information
+
+project-name	Landis.Test.Output.BiomassReclass
+project-type	library
+version		1.0
+release		official

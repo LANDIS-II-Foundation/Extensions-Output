@@ -1,0 +1,12 @@
+>> Example of a bad input file for Reclass output plug-in
+
+LandisData  "Reclass Output"
+
+
+Timestep   20
+
+>>           Reclass
+>> Species   Coefficient
+>> --------  -----------
+   abiebals    0.5
+   tiliamer    0.e+  << Invalid number

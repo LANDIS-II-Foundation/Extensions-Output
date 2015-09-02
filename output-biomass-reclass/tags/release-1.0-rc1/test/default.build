@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<project name="Reclass Biomass - Tests">
-    <property name="Landis-core"
-              value="5.1-rc1" />
-    <include buildfile="${edu.wisc.forest.flel.build}/NUnit-project.build" />
-</project>
