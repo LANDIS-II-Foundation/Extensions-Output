@@ -19,6 +19,7 @@ namespace Landis.Extension.Output.LeafBiomass
         public static readonly string ExtensionName = "Output Leaf Biomass";
         public static readonly ExtensionType type = new ExtensionType("output");
         public static MetadataTable<SppBiomassLog> sppBiomassLog;
+        public static MetadataTable<SppBiomassLog>[] individualBiomassLog;
         public static bool MakeMaps;
 
         private static ICore modelCore;
@@ -129,7 +130,7 @@ namespace Landis.Extension.Output.LeafBiomass
         }
 
         ////---------------------------------------------------------------------
-        //public void InitializeLogFile()
+        //public void IndividualLogFile(ISpecies species, bool initialize=false)
         //{
         
         //    string logFileName   = "spp-biomass-log.csv"; 
@@ -159,11 +160,6 @@ namespace Landis.Extension.Output.LeafBiomass
         private void WriteLogFile()
         {
 
-
-            //int numSpp = 0;
-            //foreach (ISpecies species in selectedSpecies) 
-            //    numSpp++;
-            
             double[,] allSppEcos = new double[ModelCore.Ecoregions.Count, ModelCore.Species.Count];
             
             int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
@@ -227,9 +223,30 @@ namespace Landis.Extension.Output.LeafBiomass
                 sbl.Ecoregion = ecoregion.Name;
                 sbl.EcoregionIndex = ecoregion.Index;
                 sbl.NumSites = activeSiteCount[ecoregion.Index];
-                sbl.SppBiomass_ = sppBiomass;
+                sbl.SppBiomass = sppBiomass;
                 sppBiomassLog.AddObject(sbl);
                 sppBiomassLog.WriteToFile();
+
+                int selectSppCnt = 0;
+
+                foreach (ISpecies species in selectedSpecies)
+                {
+
+                    sppBiomass[species.Index] = allSppEcos[ecoregion.Index, species.Index] / (double)activeSiteCount[ecoregion.Index];
+                    
+                    individualBiomassLog[selectSppCnt].Clear();
+                    SppBiomassLog sb_individual = new SppBiomassLog();
+                    sb_individual.Time = ModelCore.CurrentTime;
+                    sb_individual.Ecoregion = ecoregion.Name;
+                    sb_individual.EcoregionIndex = ecoregion.Index;
+                    sb_individual.NumSites = activeSiteCount[ecoregion.Index];
+                    sb_individual.SppBiomass = sppBiomass;
+                    individualBiomassLog[selectSppCnt].AddObject(sb_individual);
+                    individualBiomassLog[selectSppCnt].WriteToFile();
+
+                    selectSppCnt++;
+                }
+
             }
         }
         ////---------------------------------------------------------------------

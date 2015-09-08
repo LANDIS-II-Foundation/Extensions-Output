@@ -43,8 +43,25 @@ namespace Landis.Extension.Output.LeafBiomass
             };
             tblOut_events.RetriveFields(typeof(SppBiomassLog));
             Extension.OutputMetadatas.Add(tblOut_events);
-            
 
+            PlugIn.individualBiomassLog = new MetadataTable<SppBiomassLog>[50];
+            int selectSppCnt = 0;
+
+            foreach (ISpecies species in selectedSpecies)
+            {
+                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(species.Name + "-biomass-log.csv");
+                selectSppCnt++;
+
+                tblOut_events = new OutputMetadata()
+                {
+                    Type = OutputType.Table,
+                    Name = (species.Name + "BiomassLog"),
+                    FilePath = PlugIn.sppBiomassLog.FilePath,
+                    Visualize = true
+                };
+                tblOut_events.RetriveFields(typeof(SppBiomassLog));
+                Extension.OutputMetadatas.Add(tblOut_events);
+            }
 
             //---------------------------------------            
             //          map outputs:         
@@ -52,21 +69,21 @@ namespace Landis.Extension.Output.LeafBiomass
             //PlugIn.ModelCore.UI.WriteLine("   Writing biomass maps ...");
             if(PlugIn.MakeMaps)
             {
-            foreach (ISpecies species in selectedSpecies)
-            {
-                string sppMapPath = MapNames.ReplaceTemplateVars(sppMapNames, species.Name);
-
-                OutputMetadata mapOut_SppBiomass = new OutputMetadata()
+                foreach (ISpecies species in selectedSpecies)
                 {
-                    Type = OutputType.Map,
-                    Name = ("Species Biomass Map: " + species.Name),
-                    FilePath = @sppMapPath,
-                    Map_DataType = MapDataType.Continuous,
-                    Map_Unit = FieldUnits.g_B_m2,
-                    Visualize = true
-                };
-                Extension.OutputMetadatas.Add(mapOut_SppBiomass);
-            }
+                    string sppMapPath = MapNames.ReplaceTemplateVars(sppMapNames, species.Name);
+
+                    OutputMetadata mapOut_SppBiomass = new OutputMetadata()
+                    {
+                        Type = OutputType.Map,
+                        Name = ("Species Biomass Map: " + species.Name),
+                        FilePath = @sppMapPath,
+                        Map_DataType = MapDataType.Continuous,
+                        Map_Unit = FieldUnits.g_B_m2,
+                        Visualize = true
+                    };
+                    Extension.OutputMetadatas.Add(mapOut_SppBiomass);
+                }
             }
 
             string totalBioMapPath = MapNames.ReplaceTemplateVars(sppMapNames, "TotalBiomass");
