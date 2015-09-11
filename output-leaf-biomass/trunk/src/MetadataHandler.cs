@@ -44,12 +44,12 @@ namespace Landis.Extension.Output.LeafBiomass
             tblOut_events.RetriveFields(typeof(SppBiomassLog));
             Extension.OutputMetadatas.Add(tblOut_events);
 
-            PlugIn.individualBiomassLog = new MetadataTable<SppBiomassLog>[50];
+            PlugIn.individualBiomassLog = new MetadataTable<IndividualSppBiomassLog>[50];
             int selectSppCnt = 0;
 
             foreach (ISpecies species in selectedSpecies)
             {
-                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(species.Name + "-biomass-log.csv");
+                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<IndividualSppBiomassLog>(species.Name + "-biomass-log.csv");
                 selectSppCnt++;
 
                 tblOut_events = new OutputMetadata()
@@ -59,7 +59,7 @@ namespace Landis.Extension.Output.LeafBiomass
                     FilePath = PlugIn.sppBiomassLog.FilePath,
                     Visualize = true
                 };
-                tblOut_events.RetriveFields(typeof(SppBiomassLog));
+                tblOut_events.RetriveFields(typeof(IndividualSppBiomassLog));
                 Extension.OutputMetadatas.Add(tblOut_events);
             }
 
