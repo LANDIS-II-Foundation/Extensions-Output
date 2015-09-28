@@ -48,6 +48,7 @@ namespace Landis.Extension.Output.PnET
             InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");
             InputVar<string> BelowgroundBiomass = new InputVar<string>("BelowgroundBiomass");
             InputVar<string> CohortsPerSpecies = new InputVar<string>("CohortsPerSpecies");
+            InputVar<string> AnnualPsn = new InputVar<string>("AnnualPsn");
             InputVar<string> WoodyDebris = new InputVar<string>("WoodyDebris");
             InputVar<string> Litter = new InputVar<string>("Litter");
             InputVar<string> AgeDistribution = new InputVar<string>("AgeDistribution");
@@ -130,7 +131,11 @@ namespace Landis.Extension.Output.PnET
                     parameters.SubCanopyPAR = SubCanopyPAR.Value;
                    FoundVariable = true;
                 }
-
+                if (ReadOptionalVar(AnnualPsn))
+                {
+                    parameters.AnnualPsn = AnnualPsn.Value;
+                    FoundVariable = true;
+                }
                 if (ReadOptionalVar(CohortsPerSpecies))
                 {
                     parameters.CohortsPerSpecies = CohortsPerSpecies.Value;

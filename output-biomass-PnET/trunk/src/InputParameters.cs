@@ -27,6 +27,8 @@ namespace Landis.Extension.Output.PnET
        
         private string cohortbalance;
         private string cohortsperspecies;
+        private string annualpsn;
+        
         string water;
         
         //---------------------------------------------------------------------
@@ -52,7 +54,17 @@ namespace Landis.Extension.Output.PnET
                 cohortsperspecies = value;
             }
         }
-        
+        public string AnnualPsn
+        {
+            get
+            {
+                return annualpsn;
+            }
+            set
+            {
+                annualpsn = value;
+            }
+        }
         public string CohortBalance
         {
             get {
