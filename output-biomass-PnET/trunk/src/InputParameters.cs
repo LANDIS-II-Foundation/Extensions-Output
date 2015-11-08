@@ -24,6 +24,7 @@ namespace Landis.Extension.Output.PnET
         private string agedistribution;
         private string belowgroundbiomass;
         private string subcanopyPAR;
+        private string establishmentProbability;
        
         private string cohortbalance;
         private string cohortsperspecies;
@@ -150,7 +151,15 @@ namespace Landis.Extension.Output.PnET
             }
         }
 
-
+        public string EstablishmentProbability
+        {
+            get {
+                return establishmentProbability;
+            }
+            set {
+                establishmentProbability = value;
+            }
+        }
         public string SpeciesEst
         {
             get {

@@ -45,6 +45,8 @@ namespace Landis.Extension.Output.PnET
         static  OutputVariable BelowGround;
         static  OutputVariable LAI;
         static  OutputVariable SpeciesEstablishment;
+        static OutputVariable EstablishmentProbability;
+        
         static  OutputVariable Water;
         static  OutputVariable SubCanopyPAR;
         static OutputAggregatedTable overalloutputs;
@@ -108,6 +110,12 @@ namespace Landis.Extension.Output.PnET
             {
                 LAI = new OutputVariable(parameters.LeafAreaIndex, "m2");
                 LAI.output_table_ecoregions = new OutputTableEcoregions(LAI.MapNameTemplate);
+            }
+
+            if (parameters.EstablishmentProbability != null)
+            {
+                EstablishmentProbability = new OutputVariable(parameters.EstablishmentProbability, "");
+               
             }
             if (parameters.SpeciesEst != null)
             {
@@ -173,7 +181,25 @@ namespace Landis.Extension.Output.PnET
 
                 OutputFilePerTStepPerSpecies.Write<int>(CohortsPerSpc.MapNameTemplate, CohortsPerSpc.units, PlugIn.ModelCore.CurrentTime, cps); 
             }
-            
+            if (EstablishmentProbability != null)
+            {
+                System.Console.WriteLine("Updating output variable: EstablishmentProbability");
+                 
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<byte>> pest = cohorts.GetIsiteVar(o => o.EstablishmentProbability.Probability);
+
+                foreach (ISpecies spc in PlugIn.SelectedSpecies)
+                {
+                    ISiteVar<int> _pest = modelCore.Landscape.NewSiteVar<int>();
+
+                    foreach (ActiveSite site in PlugIn.modelCore.Landscape)
+                    {
+                        _pest[site] = pest[site][spc];
+                    }
+
+                    new OutputMapSpecies(_pest, spc, EstablishmentProbability.MapNameTemplate);
+                }
+
+            }
             if (SpeciesEstablishment != null)
             {
                 System.Console.WriteLine("Updating output variable: SpeciesEstablishment");
@@ -295,10 +321,7 @@ namespace Landis.Extension.Output.PnET
                     new OutputMapSpecies(Biom_spc, spc, Biomass.MapNameTemplate);
                 }
 
-                
-                ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> Biomass_spc = cohorts.GetIsiteVar(x => x.BiomassPerSpecies);
-
-                OutputFilePerTStepPerSpecies.Write<int>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Biomass_spc);
+                OutputFilePerTStepPerSpecies.Write<int>(Biomass.MapNameTemplate, Biomass.units, PlugIn.ModelCore.CurrentTime, Biom);
 
                 ISiteVar<float> Biomass_site = cohorts.GetIsiteVar(x => x.BiomassSum);
 

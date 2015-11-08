@@ -44,6 +44,8 @@ namespace Landis.Extension.Output.PnET
             InputVar<string> biomass = new InputVar<string>("Biomass");
             InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
             InputVar<string> Establishment = new InputVar<string>("Establishment");
+            InputVar<string> EstablishmentProbability = new InputVar<string>("EstablishmentProbability");
+            
             InputVar<string> Water = new InputVar<string>("Water");
             InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");
             InputVar<string> BelowgroundBiomass = new InputVar<string>("BelowgroundBiomass");
@@ -116,16 +118,17 @@ namespace Landis.Extension.Output.PnET
                     parameters.SpeciesEst = Establishment.Value;
                     FoundVariable = true;
                 }
+                if (ReadOptionalVar(EstablishmentProbability))
+                {
+                    parameters.EstablishmentProbability = EstablishmentProbability.Value;
+                    FoundVariable = true;
+                }
                 if (ReadOptionalVar(Water))
                 {
                     parameters.Water = Water.Value;
                     FoundVariable = true;
                 }
-                //if (ReadOptionalVar(AnnualTranspiration))
-                //{
-                //    parameters.AnnualTranspiration = AnnualTranspiration.Value;
-                //    FoundVariable = true;
-                //}
+               
                 if (ReadOptionalVar(SubCanopyPAR))
                 {
                     parameters.SubCanopyPAR = SubCanopyPAR.Value;
