@@ -1,0 +1,9 @@
+diff a/output-biomass-PnET/trunk/src/InputParametersParser.cs b/output-biomass-PnET/trunk/src/InputParametersParser.cs	(rejected hunks)
+@@ -44,6 +44,7 @@
+             InputVar<string> biomass = new InputVar<string>("Biomass");
+             InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
+             InputVar<string> Establishment = new InputVar<string>("Establishment");
++            InputVar<string> EstablishmentProbability = new InputVar<string>("EstablishmentProbability");
+             
+             InputVar<string> Water = new InputVar<string>("Water");
+             InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");

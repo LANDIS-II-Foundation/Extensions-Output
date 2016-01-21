@@ -13,207 +13,47 @@ namespace Landis.Extension.Output.PnET
     public class InputParameters
       
     {
-        private int timestep;
-        private IEnumerable<ISpecies> selectedSpecies;
-        private string speciesBiom;
-        private string leafareaindex;
-        private string speciesEst;
-       // private string annualtranspiration;
-        private string woodydebris;
-        private string litter;
-        private string agedistribution;
-        private string belowgroundbiomass;
-        private string subcanopyPAR;
-        private string establishmentProbability;
-       
-        private string cohortbalance;
-        private string cohortsperspecies;
-        private string annualpsn;
-        
-        string water;
-        
-        //---------------------------------------------------------------------
+        public int Timestep;
 
-        public int Timestep
-        {
-            get {
-                return timestep;
-            }
-            set {
-                if (value < 0)
-                    throw new InputValueException(value.ToString(), "Value must be = or > 0");
-                timestep = value;
-            }
-        }
+        public string CohortsPerSpecies;
 
-        public string CohortsPerSpecies
-        {
-            get {
-                return cohortsperspecies;
-            }
-            set {
-                cohortsperspecies = value;
-            }
-        }
-        public string AnnualPsn
-        {
-            get
-            {
-                return annualpsn;
-            }
-            set
-            {
-                annualpsn = value;
-            }
-        }
-        public string CohortBalance
-        {
-            get {
-                return cohortbalance;
-            }
-            set {
-                cohortbalance = value;
-            }
-        }
-        public IEnumerable<ISpecies> SelectedSpecies
-        {
-            get {
-                return selectedSpecies;
-            }
-            set {
-                selectedSpecies = value;
-            }
-        }
-        public string WoodyDebris
-        {
-            get
-            {
-                return woodydebris;
-            }
-            set
-            {
-                woodydebris = value;
-            }
-        }
+        public string AnnualPsn;
+
+        public string CohortBalance;
+
+        public IEnumerable<ISpecies> SelectedSpecies;
+
+        public string WoodyDebris;
+
+        public string AgeDistribution;
+ 
+        public string Litter;
          
+        public string BelowgroundBiomass;
          
-        public string AgeDistribution
-        {
-            get
-            {
-                return agedistribution;
-            }
-            set
-            {
-                agedistribution = value;
-            }
-        }
+        public string SubCanopyPAR;
+         
+        public string EstablishmentProbability;
+
+        public string SpeciesEst;
+
+        public string MonthlyNetPsn;
+
+
+        public string MonthlyFolResp;
+        public string MonthlyGrossPsn;
+        public string MonthlyMaintResp;
+
+           
+
+        public string LeafAreaIndex;
+
+
+        public string Water;
+
+        public string SpeciesBiom;
+         
        
-        public string Litter
-        {
-            get
-            {
-                return litter;
-            }
-            set
-            {
-                litter = value;
-            }
-        }
-        public string BelowgroundBiomass
-        {
-            get
-            {
-                return belowgroundbiomass;
-            }
-            set
-            {
-                belowgroundbiomass = value;
-            }
-        }
-
-        //public string AnnualTranspiration
-        //{
-        //    get {
-        //        return annualtranspiration;
-        //    }
-         //   set {
-        //        annualtranspiration = value;
-        //    }
-        //}
-        public string SubCanopyPAR
-        {
-            get {
-                return subcanopyPAR;
-            }
-            set {
-                subcanopyPAR = value;
-            }
-        }
-
-        public string EstablishmentProbability
-        {
-            get {
-                return establishmentProbability;
-            }
-            set {
-                establishmentProbability = value;
-            }
-        }
-        public string SpeciesEst
-        {
-            get {
-                return speciesEst;
-            }
-            set {
-                speciesEst = value;
-            }
-        }
-        public string LeafAreaIndex
-        {
-            get {
-                return leafareaindex;
-            }
-            set {
-                //Biomass.SpeciesMapNames.CheckTemplateVars(value);
-                leafareaindex = value;
-            }
-        }
         
-        public string Water
-        {
-            get
-            {
-                return water;
-            }
-            set 
-            {
-                water = value;
-            }
-        }
-
-        public string SpeciesBiom
-        {
-            get {
-                return speciesBiom;
-            }
-            set {
-                OutputPath.CheckTemplateVars(value, FileNames.knownVars);
-                 
-                speciesBiom = value;
-            }
-        }
-
-       
-        //---------------------------------------------------------------------
-
-       
-
-        public InputParameters()
-        {
-        }
-        //---------------------------------------------------------------------
-
-      
     }
 }

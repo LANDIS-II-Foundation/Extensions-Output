@@ -45,7 +45,10 @@ namespace Landis.Extension.Output.PnET
             InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
             InputVar<string> Establishment = new InputVar<string>("Establishment");
             InputVar<string> EstablishmentProbability = new InputVar<string>("EstablishmentProbability");
-            
+            InputVar<string> MonthlyNetPsn = new InputVar<string>("MonthlyNetPsn");
+            InputVar<string> MonthlyFolResp = new InputVar<string>("MonthlyFolResp");
+            InputVar<string> MonthlyGrossPsn = new InputVar<string>("MonthlyGrossPsn");
+            InputVar<string> MonthlyMaintResp = new InputVar<string>("MonthlyMaintResp");
             InputVar<string> Water = new InputVar<string>("Water");
             InputVar<string> SubCanopyPAR = new InputVar<string>("SubCanopyPAR");
             InputVar<string> BelowgroundBiomass = new InputVar<string>("BelowgroundBiomass");
@@ -96,91 +99,102 @@ namespace Landis.Extension.Output.PnET
                 }
             }
 
-            //System.Console.WriteLine("ASSIGNING KEYWORDS OUTPUT MODULE");
-
             while (!AtEndOfInput)
             {
-                bool FoundVariable = false;
 
-                
                 if (ReadOptionalVar(biomass))
                 {
                     parameters.SpeciesBiom = biomass.Value;
-                    FoundVariable = true;
+                    continue;
                 }
+                if (ReadOptionalVar(MonthlyNetPsn))
+                {
+                    parameters.MonthlyNetPsn = MonthlyNetPsn.Value;
+                    continue;
+                }
+                
+                if (ReadOptionalVar(MonthlyFolResp))
+                {
+                    parameters.MonthlyFolResp = MonthlyFolResp.Value;
+                    continue;
+                }
+                if (ReadOptionalVar(MonthlyGrossPsn))
+                {
+                    parameters.MonthlyGrossPsn = MonthlyGrossPsn.Value;
+                    continue;
+                }
+                if (ReadOptionalVar(MonthlyMaintResp))
+                {
+                    parameters.MonthlyMaintResp = MonthlyMaintResp.Value;
+                    continue;
+                }
+       
                 if (ReadOptionalVar(LeafAreaIndex))
                 {
                     parameters.LeafAreaIndex = LeafAreaIndex.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(Establishment))
                 {
                     parameters.SpeciesEst = Establishment.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(EstablishmentProbability))
                 {
                     parameters.EstablishmentProbability = EstablishmentProbability.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(Water))
                 {
                     parameters.Water = Water.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                
                 if (ReadOptionalVar(SubCanopyPAR))
                 {
                     parameters.SubCanopyPAR = SubCanopyPAR.Value;
-                   FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(AnnualPsn))
                 {
                     parameters.AnnualPsn = AnnualPsn.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(CohortsPerSpecies))
                 {
                     parameters.CohortsPerSpecies = CohortsPerSpecies.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(BelowgroundBiomass))
                 {
                     parameters.BelowgroundBiomass = BelowgroundBiomass.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(WoodyDebris))
                 {
                     parameters.WoodyDebris  = WoodyDebris.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(Litter))
                 {
                     parameters.Litter = Litter.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(AgeDistribution))
                 {
                     parameters.AgeDistribution = AgeDistribution.Value;
-                    FoundVariable = true;
+                    continue;
                 }
                 if (ReadOptionalVar(CohortBalance))
                 {
                     parameters.CohortBalance = CohortBalance.Value;
-                    FoundVariable = true;
+                    continue;
                 }
 
-                //System.Console.WriteLine("SUCCESSFULLY ASSIGNED KEYWORD OUTPUT MODULE:" + new StringReader(CurrentLine).ReadToEnd());
-
-
-                if (!FoundVariable)
-                {
-                    throw new System.Exception("Error in Output PnET cannot assign variable " + new StringReader(CurrentLine).ReadToEnd());
-                }
+                throw new System.Exception("Error in Output PnET cannot assign variable " + new StringReader(CurrentLine).ReadToEnd());
 
             }
-            //System.Console.WriteLine("READY ASSIGNING KEYWORDS OUTPUT MODULE");
-            return parameters; //.GetComplete();
+            return parameters;  
         }
 
         //---------------------------------------------------------------------

@@ -5,15 +5,10 @@ namespace Landis.Extension.Output.PnET
 {
     public class OutputMapSiteVar<T,M>
     {
-        string FileName ;
+         
 
-        //public static ISiteVar<T> GetIsiteVar<T, M>(this ISiteVar<M> sitevar, Func<M, T> func)
-        public OutputMapSiteVar(string MapNameTemplate, string label, ISiteVar<T> values, Func<T, M> func)
+        public OutputMapSiteVar(string FileName, ISiteVar<T> values, Func<T, M> func)
         {
-            if (MapNameTemplate == null) throw new System.Exception("Cannot initialize maps with label " + MapNameTemplate );
-
-            FileName = FileNames.ReplaceTemplateVars(MapNameTemplate, label, PlugIn.ModelCore.CurrentTime);
-            
             try
             {
                 using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(FileName, PlugIn.ModelCore.Landscape.Dimensions))
