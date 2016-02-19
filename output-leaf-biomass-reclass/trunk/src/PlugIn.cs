@@ -16,6 +16,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
         public static readonly ExtensionType type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Leaf Biomass Reclass";
+        public static MetadataTable<ForestTypeLog>[] individualForestTypes;
 
         private string mapNameTemplate;
         private IEnumerable<IMapDefinition> mapDefs;

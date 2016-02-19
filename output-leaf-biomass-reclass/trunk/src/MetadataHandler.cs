@@ -27,6 +27,24 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 ScenarioReplicationMetadata = scenRep
             };
 
+            //int forestTypesCnt = 0;
+            //PlugIn.individualForestTypes = new MetadataTable<ForestTypeLog>[50];
+            //foreach (IMapDefinition map in mapDefs)
+            //{
+            //    PlugIn.individualForestTypes[forestTypesCnt] = new MetadataTable<ForestTypeLog>("output-species-biomass/" + map.Name + "-biomass-log-landscape.csv");
+            //    forestTypesCnt++;
+
+            //    tblOut_events = new OutputMetadata()
+            //    {
+            //        Type = OutputType.Table,
+            //        Name = (species.Name + "BiomassLogLandscape"),
+            //        FilePath = PlugIn.sppBiomassLog.FilePath,
+            //        Visualize = true
+            //    };
+            //    tblOut_events.RetriveFields(typeof(SppBiomassLogLandscape));
+            //    Extension.OutputMetadatas.Add(tblOut_events);
+            //}
+
             //---------------------------------------            
             //          map outputs:         
             //---------------------------------------
