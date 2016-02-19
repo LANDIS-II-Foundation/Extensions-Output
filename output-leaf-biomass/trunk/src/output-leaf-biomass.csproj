@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="SiteVars.cs" />
     <Compile Include="MapNames.cs" />
+    <Compile Include="SppBiomassLogLandscape.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
