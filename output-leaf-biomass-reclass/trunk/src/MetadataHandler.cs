@@ -31,13 +31,13 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             //PlugIn.individualForestTypes = new MetadataTable<ForestTypeLog>[50];
             //foreach (IMapDefinition map in mapDefs)
             //{
-            //    PlugIn.individualForestTypes[forestTypesCnt] = new MetadataTable<ForestTypeLog>("output-species-biomass/" + map.Name + "-biomass-log-landscape.csv");
+            //    PlugIn.individualForestTypes[forestTypesCnt] = new MetadataTable<ForestTypeLog>("output-biomass-reclass/" + map.Name + "-biomass-log-landscape.csv");
             //    forestTypesCnt++;
 
             //    tblOut_events = new OutputMetadata()
             //    {
             //        Type = OutputType.Table,
-            //        Name = (species.Name + "BiomassLogLandscape"),
+            //        Name = "LeafBiomassReclassLog",
             //        FilePath = PlugIn.sppBiomassLog.FilePath,
             //        Visualize = true
             //    };
