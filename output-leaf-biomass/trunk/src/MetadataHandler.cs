@@ -6,6 +6,8 @@ using System.Text;
 using Landis.Library.Metadata;
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Core;
+using System.IO;
+using Flel = Edu.Wisc.Forest.Flel;
 
 namespace Landis.Extension.Output.LeafBiomass
 {
@@ -32,7 +34,9 @@ namespace Landis.Extension.Output.LeafBiomass
             //          table outputs:   
             //---------------------------------------
 
-            PlugIn.sppBiomassLog = new MetadataTable<SppBiomassLog>("spp-biomass-log.csv");
+            string sppBiomassLog = ("output-species-biomass/spp-biomass-log.csv");
+            CreateDirectory(sppBiomassLog);
+            PlugIn.sppBiomassLog = new MetadataTable<SppBiomassLog>(sppBiomassLog);
 
             OutputMetadata tblOut_events = new OutputMetadata()
             {
@@ -49,8 +53,10 @@ namespace Landis.Extension.Output.LeafBiomass
 
             foreach (ISpecies species in selectedSpecies)
             {
+                string individualBiomassLog = ("output-species-biomass/" + species.Name + "-biomass-log.csv");
+                CreateDirectory(individualBiomassLog);
+                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(individualBiomassLog);
 
-                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>("output-species-biomass/" + species.Name + "-biomass-log.csv");
                 selectSppCnt++;
 
                 tblOut_events = new OutputMetadata()
@@ -68,7 +74,9 @@ namespace Landis.Extension.Output.LeafBiomass
             PlugIn.individualBiomassLogLandscape = new MetadataTable<SppBiomassLogLandscape>[50];
             foreach (ISpecies species in selectedSpecies)
             {
-                PlugIn.individualBiomassLogLandscape[selectSppCnt] = new MetadataTable<SppBiomassLogLandscape>("output-species-biomass/" + species.Name + "-biomass-log-landscape.csv");
+                string individualBiomassLogLandscape = ("output-species-biomass/" + species.Name + "-biomass-log-landscape.csv");
+                CreateDirectory(individualBiomassLogLandscape);
+                PlugIn.individualBiomassLogLandscape[selectSppCnt] = new MetadataTable<SppBiomassLogLandscape>(individualBiomassLogLandscape);
                 selectSppCnt++;
 
                 tblOut_events = new OutputMetadata()
@@ -126,5 +134,23 @@ namespace Landis.Extension.Output.LeafBiomass
 
 
         }
+
+        public static void CreateDirectory(string path)
+        {
+            //Require.ArgumentNotNull(path);
+            path = path.Trim(null);
+            if (path.Length == 0)
+                throw new ArgumentException("path is empty or just whitespace");
+
+            string dir = Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(dir))
+            {
+                Flel.Util.Directory.EnsureExists(dir);
+            }
+
+            //return new StreamWriter(path);
+            return;
+        }
     }
+
 }
