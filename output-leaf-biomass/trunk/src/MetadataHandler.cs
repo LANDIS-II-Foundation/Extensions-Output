@@ -34,7 +34,7 @@ namespace Landis.Extension.Output.LeafBiomass
             //          table outputs:   
             //---------------------------------------
 
-            string sppBiomassLog = ("output-species-biomass/spp-biomass-log.csv");
+            string sppBiomassLog = ("output-leaf-biomass/spp-biomass-log.csv");
             CreateDirectory(sppBiomassLog);
             PlugIn.sppBiomassLog = new MetadataTable<SppBiomassLog>(sppBiomassLog);
 
@@ -53,7 +53,7 @@ namespace Landis.Extension.Output.LeafBiomass
 
             foreach (ISpecies species in selectedSpecies)
             {
-                string individualBiomassLog = ("output-species-biomass/" + species.Name + "-biomass-log.csv");
+                string individualBiomassLog = ("output-leaf-biomass/" + species.Name + "-biomass-log.csv");
                 CreateDirectory(individualBiomassLog);
                 PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(individualBiomassLog);
 
@@ -74,7 +74,7 @@ namespace Landis.Extension.Output.LeafBiomass
             PlugIn.individualBiomassLogLandscape = new MetadataTable<SppBiomassLogLandscape>[50];
             foreach (ISpecies species in selectedSpecies)
             {
-                string individualBiomassLogLandscape = ("output-species-biomass/" + species.Name + "-biomass-log-landscape.csv");
+                string individualBiomassLogLandscape = ("output-leaf-biomass/" + species.Name + "-biomass-log-landscape.csv");
                 CreateDirectory(individualBiomassLogLandscape);
                 PlugIn.individualBiomassLogLandscape[selectSppCnt] = new MetadataTable<SppBiomassLogLandscape>(individualBiomassLogLandscape);
                 selectSppCnt++;
