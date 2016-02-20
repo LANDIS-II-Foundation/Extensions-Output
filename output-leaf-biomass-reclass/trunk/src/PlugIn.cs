@@ -16,7 +16,8 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
         public static readonly ExtensionType type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Leaf Biomass Reclass";
-        public static MetadataTable<ForestTypeLog>[] individualForestTypes;
+        public static MetadataTable<ForestTypeLog> forestTypeLog;
+        public static MetadataTable<ForestTypeLog>[] individualForestTypeLog;
 
         private string mapNameTemplate;
         private IEnumerable<IMapDefinition> mapDefs;
@@ -125,7 +126,12 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 int forTypeCnt = 0;
                 foreach (IForestType ftype in forestTypes)
                 {
-                    // log stuff here
+                    individualForestTypeLog[forTypeCnt].Clear();
+                    ForestTypeLog ftl = new ForestTypeLog();
+                    ftl.Time = ModelCore.CurrentTime;
+                    ftl.ForestTypeCnt = arrayOfForestTypes[forTypeCnt];
+                    individualForestTypeLog[forTypeCnt].AddObject(ftl);
+                    individualForestTypeLog[forTypeCnt].WriteToFile();
                     forTypeCnt++;
                 }
 
