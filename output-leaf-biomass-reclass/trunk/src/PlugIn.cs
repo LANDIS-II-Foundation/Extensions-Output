@@ -51,7 +51,6 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             InputParametersParser.SpeciesDataset = modelCore.Species;
             InputParametersParser parser = new InputParametersParser();
             parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
-            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, parameters.MapFileNames);
 
         }
 
