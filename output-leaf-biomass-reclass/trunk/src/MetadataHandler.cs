@@ -32,25 +32,31 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             //          table outputs:   
             //---------------------------------------
 
-            int forestTypesCnt = 0;
             PlugIn.individualForestTypeLog = new MetadataTable<ForestTypeLog>[50];
             foreach (IMapDefinition map in mapDefs)
             {
-                string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
-                CreateDirectory(forestTypeLogName);
-                PlugIn.individualForestTypeLog[forestTypesCnt] = new MetadataTable<ForestTypeLog>(forestTypeLogName);
 
-                OutputMetadata tblOut_events = new OutputMetadata()
+                int forestTypesCnt = 0;
+                List<IForestType> forestTypes = map.ForestTypes;
+                foreach (IForestType ftype in forestTypes)
                 {
-                    Type = OutputType.Table,
-                    Name = "ForestTypeCountLog",
-                    FilePath = PlugIn.individualForestTypeLog[forestTypesCnt].FilePath,
-                    Visualize = true
-                };
-                tblOut_events.RetriveFields(typeof(ForestTypeLog));
-                Extension.OutputMetadatas.Add(tblOut_events);
 
-                forestTypesCnt++;
+                    string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
+                    CreateDirectory(forestTypeLogName);
+                    PlugIn.individualForestTypeLog[forestTypesCnt] = new MetadataTable<ForestTypeLog>(forestTypeLogName);
+
+                    OutputMetadata tblOut_events = new OutputMetadata()
+                    {
+                        Type = OutputType.Table,
+                        Name = "ForestTypeCountLog",
+                        FilePath = PlugIn.individualForestTypeLog[forestTypesCnt].FilePath,
+                        Visualize = true
+                    };
+                    tblOut_events.RetriveFields(typeof(ForestTypeLog));
+                    Extension.OutputMetadatas.Add(tblOut_events);
+
+                    forestTypesCnt++;
+                }
 
                 break;  // only the first one.
 
