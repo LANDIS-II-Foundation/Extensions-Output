@@ -41,7 +41,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 foreach (IForestType ftype in forestTypes)
                 {
 
-                    string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
+                    string forestTypeLogName = ("output-leaf-biomass-reclass/" + ftype.Name + "-forest-type-log.csv");
                     CreateDirectory(forestTypeLogName);
                     PlugIn.individualForestTypeLog[forestTypesCnt] = new MetadataTable<ForestTypeLog>(forestTypeLogName);
 
