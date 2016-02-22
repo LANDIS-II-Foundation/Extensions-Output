@@ -14,7 +14,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         
         public static ExtensionMetadata Extension {get; set;}
 
-        public static void InitializeMetadata(int Timestep, IEnumerable<IMapDefinition> mapDefs, string mapNameTemplate, ICore mCore)
+        public static void InitializeMetadata(int Timestep, IEnumerable<IMapDefinition> mapDefs, string mapNameTemplate)
         {
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata() {
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
@@ -22,7 +22,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 TimeMax = PlugIn.ModelCore.EndTime,
             };
 
-            Extension = new ExtensionMetadata(mCore){
+            Extension = new ExtensionMetadata(PlugIn.ModelCore){
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, 
                 ScenarioReplicationMetadata = scenRep

@@ -51,6 +51,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             InputParametersParser.SpeciesDataset = modelCore.Species;
             InputParametersParser parser = new InputParametersParser();
             parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, parameters.MapFileNames);
 
         }
 
@@ -66,7 +67,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             SiteVars.Initialize();
             this.mapNameTemplate = parameters.MapFileNames;
             this.mapDefs = parameters.ReclassMaps;
-            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, this.mapNameTemplate, ModelCore);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, this.mapNameTemplate);
 
         }
 
