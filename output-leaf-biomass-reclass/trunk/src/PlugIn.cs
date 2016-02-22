@@ -92,7 +92,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                     foreach (Site site in modelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = CalcForestType(forestTypes, site);
+                            pixel.MapCode.Value = (byte) (CalcForestType(forestTypes, site) +  1);
                         else
                             pixel.MapCode.Value = 0;
                         
@@ -110,18 +110,20 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 foreach (ActiveSite site in ModelCore.Landscape)
                 {
                     int ftypeFinal = (int) CalcForestType(forestTypes, site);
+                    arrayOfForestTypes[ftypeFinal]++;
 
-                    int forTypeCnt2 = 0;
-                    foreach (IForestType ftype in forestTypes)
-                    {
-                        if (ftypeFinal == forTypeCnt2 -1)
-                        {
-                            arrayOfForestTypes[forTypeCnt2]++;
-                            break;
-                        }
-                        forTypeCnt2++;
-                    }
+                    //int forTypeCnt2 = 0;
+                    //foreach (IForestType ftype in forestTypes)
+                    //{
+                    //    if (ftypeFinal == forTypeCnt2)
+                    //    {
+                    //        break;
+                    //    }
+                    //    forTypeCnt2++;
+                    //}
                 }
+
+
 
                 int forTypeCnt = 0;
                 foreach (IForestType ftype in forestTypes)
@@ -143,8 +145,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
         //---------------------------------------------------------------------
 
-        private byte CalcForestType(List<IForestType> forestTypes,
-                                    Site site)
+        private int CalcForestType(List<IForestType> forestTypes, Site site)
         {
             int forTypeCnt = 0;
 
@@ -181,11 +182,11 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 if(forTypValue[forTypeCnt]>maxValue)
                 {
                     maxValue = forTypValue[forTypeCnt];
-                    finalForestType = forTypeCnt+1;
+                    finalForestType = forTypeCnt;
                 }
                 forTypeCnt++;
             }
-            return (byte) finalForestType;
+            return finalForestType;
         }
 
 
