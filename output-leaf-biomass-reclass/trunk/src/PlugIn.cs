@@ -126,6 +126,8 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
 
                 int forTypeCnt = 0;
+                PlugIn.individualForestTypeLog = new MetadataTable<ForestTypeLog>[50];
+
                 foreach (IForestType ftype in forestTypes)
                 {
                     individualForestTypeLog[forTypeCnt].Clear();
