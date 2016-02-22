@@ -52,6 +52,8 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
                 forestTypesCnt++;
 
+                break;  // only the first one.
+
             }
 
             //---------------------------------------            

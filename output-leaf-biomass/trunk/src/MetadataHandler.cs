@@ -83,7 +83,7 @@ namespace Landis.Extension.Output.LeafBiomass
                 {
                     Type = OutputType.Table,
                     Name = (species.Name + "BiomassLogLandscape"),
-                    FilePath = PlugIn.sppBiomassLog.FilePath,
+                    FilePath = PlugIn.individualBiomassLogLandscape[selectSppCnt].FilePath,
                     Visualize = true
                 };
                 tblOut_events.RetriveFields(typeof(SppBiomassLogLandscape));
