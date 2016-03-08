@@ -48,47 +48,47 @@ namespace Landis.Extension.Output.LeafBiomass
             tblOut_events.RetriveFields(typeof(SppBiomassLog));
             Extension.OutputMetadatas.Add(tblOut_events);
 
-            PlugIn.individualBiomassLog = new MetadataTable<SppBiomassLog>[50];
-            int selectSppCnt = 0;
+            //PlugIn.individualBiomassLog = new MetadataTable<SppBiomassLog>[50];
+            //int selectSppCnt = 0;
 
-            foreach (ISpecies species in selectedSpecies)
-            {
-                string individualBiomassLog = ("output-leaf-biomass/" + species.Name + "-biomass-log.csv");
-                CreateDirectory(individualBiomassLog);
-                PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(individualBiomassLog);
+            //foreach (ISpecies species in selectedSpecies)
+            //{
+            //    string individualBiomassLog = ("output-leaf-biomass/" + species.Name + "-biomass-log.csv");
+            //    CreateDirectory(individualBiomassLog);
+            //    PlugIn.individualBiomassLog[selectSppCnt] = new MetadataTable<SppBiomassLog>(individualBiomassLog);
 
-                selectSppCnt++;
+            //    selectSppCnt++;
+
+            //    tblOut_events = new OutputMetadata()
+            //    {
+            //        Type = OutputType.Table,
+            //        Name = (species.Name + "BiomassLog"),
+            //        FilePath = PlugIn.sppBiomassLog.FilePath,
+            //        Visualize = false
+            //    };
+            //    tblOut_events.RetriveFields(typeof(SppBiomassLog));
+            //    Extension.OutputMetadatas.Add(tblOut_events);
+            //}
+
+            //int selectSppCnt = 0;
+            //PlugIn.sppBiomassLogLandscape = new MetadataTable<SppBiomassLogLandscape>;
+            //foreach (ISpecies species in selectedSpecies)
+            //{
+                string sppBiomassLogLandscape = ("output-leaf-biomass/biomass-log-landscape.csv");
+                CreateDirectory(sppBiomassLogLandscape);
+                PlugIn.sppBiomassLogLandscape = new MetadataTable<SppBiomassLogLandscape>(sppBiomassLogLandscape);
+                //selectSppCnt++;
 
                 tblOut_events = new OutputMetadata()
                 {
                     Type = OutputType.Table,
-                    Name = (species.Name + "BiomassLog"),
-                    FilePath = PlugIn.sppBiomassLog.FilePath,
-                    Visualize = false
-                };
-                tblOut_events.RetriveFields(typeof(SppBiomassLog));
-                Extension.OutputMetadatas.Add(tblOut_events);
-            }
-
-            selectSppCnt = 0;
-            PlugIn.individualBiomassLogLandscape = new MetadataTable<SppBiomassLogLandscape>[50];
-            foreach (ISpecies species in selectedSpecies)
-            {
-                string individualBiomassLogLandscape = ("output-leaf-biomass/" + species.Name + "-biomass-log-landscape.csv");
-                CreateDirectory(individualBiomassLogLandscape);
-                PlugIn.individualBiomassLogLandscape[selectSppCnt] = new MetadataTable<SppBiomassLogLandscape>(individualBiomassLogLandscape);
-                selectSppCnt++;
-
-                tblOut_events = new OutputMetadata()
-                {
-                    Type = OutputType.Table,
-                    Name = (species.Name + "BiomassLogLandscape"),
-                    FilePath = PlugIn.individualBiomassLogLandscape[selectSppCnt].FilePath,
+                    Name = ("BiomassLogLandscape"),
+                    FilePath = PlugIn.sppBiomassLogLandscape.FilePath,
                     Visualize = true
                 };
                 tblOut_events.RetriveFields(typeof(SppBiomassLogLandscape));
                 Extension.OutputMetadatas.Add(tblOut_events);
-            }
+            //}
 
             //---------------------------------------            
             //          map outputs:         

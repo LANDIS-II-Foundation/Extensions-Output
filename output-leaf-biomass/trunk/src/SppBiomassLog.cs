@@ -27,7 +27,7 @@ namespace Landis.Extension.Output.LeafBiomass
         public int NumSites { set; get; }
 
         [DataFieldAttribute(Unit = FieldUnits.g_B_m2, Desc = "Species Biomass", Format = "0.0", SppList=true)]
-        public double[] SppBiomass { set; get; }
+        public double[] Biomass_ { set; get; }
 
     }
 }
