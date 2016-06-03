@@ -16,7 +16,7 @@ namespace Landis.Extension.Output.PnET
             
             FileName = FileNames.ReplaceTemplateVars(Template, "Overall", PlugIn.ModelCore.CurrentTime).Replace(".img", ".txt");
             FileContent = new List<string>();
-            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" +  "AverageAge" + "\t" + "AverageB(g/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "AverageAge" + "\t" + "AverageB(g/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)" + "\t" + "AverageBelowGround(g/m2)" + "\t" + "AverageFoliage(g/m2)" + "\t" + "AverageNSC(gC)");
         }
         public static void WriteNrOfCohortsBalance()
         {
@@ -31,9 +31,15 @@ namespace Landis.Extension.Output.PnET
                 ISiteVar<float> SubCanopyRAD = PlugIn.cohorts.GetIsiteVar(x => x.SubCanopyParMAX);
                 ISiteVar<double> Litter = PlugIn.cohorts.GetIsiteVar(x => x.Litter);
                 ISiteVar<double> WoodyDebris = PlugIn.cohorts.GetIsiteVar(x => x.WoodyDebris);
+                ISiteVar<uint> BelowGroundBiom = PlugIn.cohorts.GetIsiteVar(x => x.BelowGroundBiomass);
+                ISiteVar<float> FoliageBiom = PlugIn.cohorts.GetIsiteVar(x => x.FoliageSum);
+                ISiteVar<float> NSCBiom = PlugIn.cohorts.GetIsiteVar(x => x.NSCSum);
 
                 double Water_SUM = 0;
                 double CohortBiom_SUM = 0;
+                double BelowGroundBiom_SUM = 0;
+                double FoliageBiom_SUM = 0;
+                double NSCBiom_SUM = 0;
                 double CohortAge_SUM = 0;
                 double CohortLAI_SUM = 0;
                 int CohortCount = 0;
@@ -47,6 +53,9 @@ namespace Landis.Extension.Output.PnET
                     siteCount++;
                     CohortCount += CohortsPerSite[site];
                     CohortBiom_SUM += CohortBiom[site];
+                    BelowGroundBiom_SUM += BelowGroundBiom[site];
+                    FoliageBiom_SUM += FoliageBiom[site];
+                    NSCBiom_SUM += NSCBiom[site];
                     Water_SUM += WaterPerSite[site];
                     SubCanopyRad_SUM += SubCanopyRAD[site];
                     Litter_SUM += Litter[site];
@@ -63,13 +72,16 @@ namespace Landis.Extension.Output.PnET
                 string c = CohortCount.ToString();
                 string CohortAge_av = (CohortAge_SUM / (float)siteCount).ToString();
                 string CohortBiom_av = (CohortBiom_SUM / (float)siteCount).ToString();
+                string BelowGroundBiom_av = (BelowGroundBiom_SUM / (float)siteCount).ToString();
+                string FoliageBiom_av = (FoliageBiom_SUM / (float)siteCount).ToString();
+                string NSCBiom_av = (NSCBiom_SUM / (float)siteCount).ToString();
                 string LAI_av = (CohortLAI_SUM / (float)siteCount).ToString();
                 string Water_av = (Water_SUM / (float)siteCount).ToString();
                 string SubCanopyRad_av = (SubCanopyRad_SUM / (float)siteCount).ToString();
                 string Litter_av = (Litter_SUM / (float)siteCount).ToString();
                 string Woody_debris_ave = (Woody_debris_SUM / (float)siteCount).ToString();
 
-                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + c + "\t" + CohortAge_av + "\t" + CohortBiom_av + "\t" + LAI_av + "\t" + Water_av + "\t" + SubCanopyRad_av + "\t" + Litter_av + "\t" + Woody_debris_ave);
+                FileContent.Add(PlugIn.ModelCore.CurrentTime.ToString() + "\t" + c + "\t" + CohortAge_av + "\t" + CohortBiom_av + "\t" + LAI_av + "\t" + Water_av + "\t" + SubCanopyRad_av + "\t" + Litter_av + "\t" + Woody_debris_ave + "\t" + BelowGroundBiom_av + "\t" + FoliageBiom_av + "\t" + NSCBiom_av);
 
                 System.IO.File.WriteAllLines(FileName, FileContent.ToArray());
                  
