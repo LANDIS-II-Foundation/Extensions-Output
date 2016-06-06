@@ -17,7 +17,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         public static readonly ExtensionType type = new ExtensionType("output");
         public static readonly string ExtensionName = "Output Leaf Biomass Reclass";
         public static MetadataTable<ForestTypeLog> forestTypeLog;
-        public static MetadataTable<ForestTypeLog>[] individualForestTypeLog;
+        public static MetadataTable<MapDefLog>[] individualMapDefLog;
 
         private string mapNameTemplate;
         private IEnumerable<IMapDefinition> mapDefs;
@@ -66,7 +66,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             SiteVars.Initialize();
             this.mapNameTemplate = parameters.MapFileNames;
             this.mapDefs = parameters.ReclassMaps;
-            MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, this.mapNameTemplate);
+             MetadataHandler.InitializeMetadata(parameters.Timestep, this.mapDefs, this.mapNameTemplate);
 
         }
 
@@ -102,43 +102,37 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
             }
 
+            int mapDefCnt = 0;
             foreach (IMapDefinition map in mapDefs)
             {
                 List<IForestType> forestTypes = map.ForestTypes;
-                int[] arrayOfForestTypes = new int[50];
+                double[] arrayOfForestTypes = new double[50];
 
                 foreach (ActiveSite site in ModelCore.Landscape)
                 {
                     int ftypeFinal = (int) CalcForestType(forestTypes, site);
                     arrayOfForestTypes[ftypeFinal]++;
-
-                    //int forTypeCnt2 = 0;
-                    //foreach (IForestType ftype in forestTypes)
-                    //{
-                    //    if (ftypeFinal == forTypeCnt2)
-                    //    {
-                    //        break;
-                    //    }
-                    //    forTypeCnt2++;
-                    //}
                 }
+                //int forTypeCnt = 0;
 
+                //foreach (IForestType ftype in forestTypes)
+                //{
+                    individualMapDefLog[mapDefCnt].Clear();
+                MapDefLog mdl = new MapDefLog();
+                    mdl.Time = ModelCore.CurrentTime;
+                mdl.ForestTypeCnt = arrayOfForestTypes;
+                individualMapDefLog[mapDefCnt].AddObject(mdl);
+                individualMapDefLog[mapDefCnt].WriteToFile();
+                //ForestTypeLog ftl = new ForestTypeLog();
+                //    ftl.ForestTypeCnt = arrayOfForestTypes;
+                //individualForestTypeLog[forTypeCnt].AddObject(ftl);
+                //individualForestTypeLog[forTypeCnt].WriteToFile();
 
+                mapDefCnt++;
+                //forTypeCnt++;
+                //}
 
-                int forTypeCnt = 0;
-
-                foreach (IForestType ftype in forestTypes)
-                {
-                    individualForestTypeLog[forTypeCnt].Clear();
-                    ForestTypeLog ftl = new ForestTypeLog();
-                    ftl.Time = ModelCore.CurrentTime;
-                    ftl.ForestTypeCnt = arrayOfForestTypes[forTypeCnt];
-                    individualForestTypeLog[forTypeCnt].AddObject(ftl);
-                    individualForestTypeLog[forTypeCnt].WriteToFile();
-                    forTypeCnt++;
-                }
-
-                break; // Only do the first one.
+                //break; // Only do the first one.
             }
 
         }
