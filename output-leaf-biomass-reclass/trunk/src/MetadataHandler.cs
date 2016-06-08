@@ -61,6 +61,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
 
             // RMS 03/2016: Added dynamic column names.
             PlugIn.individualMapDefLog = new MetadataTable<MapDefLog>[50];
+            int mapDefCnt = 0;
             foreach (IMapDefinition map in mapDefs)
             {
                 int forestTypeCnt = 0;
@@ -69,26 +70,26 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 foreach (IForestType ftype in map.ForestTypes)
                 {
                     forestTypeNames[forestTypeCnt] = ftype.Name;
-                    forestTypeCnt++;
+                    //forestTypeCnt++;
                 }
 
                 ExtensionMetadata.ColumnNames = forestTypeNames;
 
                 string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
                 CreateDirectory(forestTypeLogName);
-                PlugIn.individualMapDefLog[forestTypeCnt] = new MetadataTable<MapDefLog>(forestTypeLogName);
+                PlugIn.individualMapDefLog[mapDefCnt] = new MetadataTable<MapDefLog>(forestTypeLogName);
 
                 OutputMetadata tblOut_events = new OutputMetadata()
                 {
                     Type = OutputType.Table,
                     Name = "ForestTypeCountLog",
-                    FilePath = PlugIn.individualMapDefLog[forestTypeCnt].FilePath,
+                    FilePath = PlugIn.individualMapDefLog[mapDefCnt].FilePath,
                     Visualize = true
                 };
-                tblOut_events.RetriveFields(typeof(ForestTypeLog));
+                tblOut_events.RetriveFields(typeof(MapDefLog));
                 Extension.OutputMetadatas.Add(tblOut_events);
 
-
+                mapDefCnt++;
             }
             //---------------------------------------            
             //          map outputs:         
