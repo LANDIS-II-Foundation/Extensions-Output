@@ -66,10 +66,10 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             {
                 int forestTypeCnt = 0;
                 //List<IForestType> forestTypes = ;
-                string[] forestTypeNames = new string[20];
+                List<string> forestTypeNames = new List<string>();
                 foreach (IForestType ftype in map.ForestTypes)
                 {
-                    forestTypeNames[forestTypeCnt] = ftype.Name;
+                    forestTypeNames.Add(ftype.Name);
                     forestTypeCnt++;
                 }
 
