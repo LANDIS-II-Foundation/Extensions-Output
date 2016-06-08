@@ -16,11 +16,8 @@ namespace Landis.Extension.Output.LeafBiomassReclass
         [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Simulation Year")]
         public int Time {set; get;}
 
-        //[DataFieldAttribute(Unit = FieldUnits.None, Desc = "Forest Type Name")]
-        //public string name { set; get; }
-
         [DataFieldAttribute(Unit = FieldUnits.Count, Desc = "Number of Cells", ColumnList = true)]
-        public double[] ForestTypeCnt { set; get; }
+        public double[] ForestTypeCnt_ { set; get; }
 
     }
 }
