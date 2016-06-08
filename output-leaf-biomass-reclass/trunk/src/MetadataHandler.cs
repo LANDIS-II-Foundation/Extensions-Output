@@ -70,7 +70,7 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                 foreach (IForestType ftype in map.ForestTypes)
                 {
                     forestTypeNames[forestTypeCnt] = ftype.Name;
-                    //forestTypeCnt++;
+                    forestTypeCnt++;
                 }
 
                 ExtensionMetadata.ColumnNames = forestTypeNames;
