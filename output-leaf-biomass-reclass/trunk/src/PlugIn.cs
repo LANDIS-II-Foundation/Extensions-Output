@@ -106,7 +106,11 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             foreach (IMapDefinition map in mapDefs)
             {
                 List<IForestType> forestTypes = map.ForestTypes;
-                double[] arrayOfForestTypes = new double[50];
+                //int forestTypeCnt = 0;
+                //foreach (IForestType ftype in map.ForestTypes)
+                //    forestTypeCnt++;
+
+                double[] arrayOfForestTypes = new double[forestTypes.Count];
 
                 foreach (ActiveSite site in ModelCore.Landscape)
                 {

@@ -65,7 +65,6 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             foreach (IMapDefinition map in mapDefs)
             {
                 int forestTypeCnt = 0;
-                //List<IForestType> forestTypes = ;
                 List<string> forestTypeNames = new List<string>();
                 foreach (IForestType ftype in map.ForestTypes)
                 {
