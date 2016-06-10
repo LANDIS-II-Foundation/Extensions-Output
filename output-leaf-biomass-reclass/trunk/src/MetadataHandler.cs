@@ -72,7 +72,8 @@ namespace Landis.Extension.Output.LeafBiomassReclass
                     forestTypeCnt++;
                 }
 
-                ExtensionMetadata.ColumnNames = forestTypeNames;
+                PlugIn.forestTypeNames[mapDefCnt] = forestTypeNames;
+                ExtensionMetadata.ColumnNames = PlugIn.forestTypeNames[mapDefCnt];
 
                 string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
                 CreateDirectory(forestTypeLogName);
