@@ -25,6 +25,8 @@ namespace Landis.Extension.Output.PnET
 
                 ISiteVar<int> CohortsPerSite = PlugIn.cohorts.GetIsiteVar(x => x.CohortCount);
                 ISiteVar<float> CohortBiom = PlugIn.cohorts.GetIsiteVar(x => x.BiomassSum);
+                ISiteVar<float> CohortWoodySenescence = PlugIn.cohorts.GetIsiteVar(x => x.WoodySenescenceSum);
+                ISiteVar<float> FoliageWoodySenescence = PlugIn.cohorts.GetIsiteVar(x => x.FoliageSenescenceSum);
                 ISiteVar<int> CohortAge = PlugIn.cohorts.GetIsiteVar(x => (x.CohortCount >0) ? x.AverageAge : -1);
                 ISiteVar<byte> CohortLAI = PlugIn.cohorts.GetIsiteVar(x => x.CanopyLAImax);
                 ISiteVar<ushort> WaterPerSite = PlugIn.cohorts.GetIsiteVar(x => x.WaterMax);

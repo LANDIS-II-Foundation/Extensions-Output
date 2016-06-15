@@ -37,6 +37,8 @@ namespace Landis.Extension.Output.PnET
 
         static IEnumerable<ISpecies> selectedspecies;
         static  OutputVariable Biomass;
+        static OutputVariable WoodySenescence;
+        static OutputVariable FoliageSenescence;
         static  OutputVariable CohortsPerSpc;
         static  OutputVariable NonWoodyDebris;
         static  OutputVariable WoodyDebris;
@@ -107,6 +109,16 @@ namespace Landis.Extension.Output.PnET
             {
                 Biomass = new OutputVariable(parameters.SpeciesBiom, "g/m2");
                 Biomass.output_table_ecoregions = new OutputTableEcoregions(Biomass.MapNameTemplate);
+            }
+            if (parameters.SpeciesWoodySenescence != null)
+            {
+                WoodySenescence = new OutputVariable(parameters.SpeciesWoodySenescence, "g/m2");
+                WoodySenescence.output_table_ecoregions = new OutputTableEcoregions(WoodySenescence.MapNameTemplate);
+            }
+            if (parameters.SpeciesFoliageSenescence != null)
+            {
+                FoliageSenescence = new OutputVariable(parameters.SpeciesFoliageSenescence, "g/m2");
+                FoliageSenescence.output_table_ecoregions = new OutputTableEcoregions(FoliageSenescence.MapNameTemplate);
             }
             if (parameters.BelowgroundBiomass != null) BelowGround = new OutputVariable(parameters.BelowgroundBiomass, "g/m2");
             if (parameters.LeafAreaIndex != null)
@@ -200,6 +212,54 @@ namespace Landis.Extension.Output.PnET
                 ISiteVar<float> Biomass_site = cohorts.GetIsiteVar(x => x.BiomassSum);
 
                 Biomass.output_table_ecoregions.WriteUpdate<float>(PlugIn.ModelCore.CurrentTime, Biomass_site);
+            }
+            if (WoodySenescence != null)
+            {
+                System.Console.WriteLine("Updating output variable: Woody Senescence");
+
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> Senes = cohorts.GetIsiteVar(o => o.WoodySenescencePerSpecies);
+
+                foreach (ISpecies spc in PlugIn.SelectedSpecies)
+                {
+                    ISiteVar<int> Senes_spc = modelCore.Landscape.NewSiteVar<int>();
+
+                    foreach (ActiveSite site in PlugIn.modelCore.Landscape)
+                    {
+                        Senes_spc[site] = Senes[site][spc];
+                    }
+
+                    new OutputMapSpecies(Senes_spc, spc, WoodySenescence.MapNameTemplate);
+                }
+
+                OutputFilePerTStepPerSpecies.Write<int>(WoodySenescence.MapNameTemplate, WoodySenescence.units, PlugIn.ModelCore.CurrentTime, Senes);
+
+                ISiteVar<float> Senescence_site = cohorts.GetIsiteVar(x => x.WoodySenescenceSum);
+
+                WoodySenescence.output_table_ecoregions.WriteUpdate<float>(PlugIn.ModelCore.CurrentTime, Senescence_site);
+            }
+            if (FoliageSenescence != null)
+            {
+                System.Console.WriteLine("Updating output variable: Foliage Senescence");
+
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> Senes = cohorts.GetIsiteVar(o => o.FoliageSenescencePerSpecies);
+
+                foreach (ISpecies spc in PlugIn.SelectedSpecies)
+                {
+                    ISiteVar<int> Senes_spc = modelCore.Landscape.NewSiteVar<int>();
+
+                    foreach (ActiveSite site in PlugIn.modelCore.Landscape)
+                    {
+                        Senes_spc[site] = Senes[site][spc];
+                    }
+
+                    new OutputMapSpecies(Senes_spc, spc, FoliageSenescence.MapNameTemplate);
+                }
+
+                OutputFilePerTStepPerSpecies.Write<int>(FoliageSenescence.MapNameTemplate, FoliageSenescence.units, PlugIn.ModelCore.CurrentTime, Senes);
+
+                ISiteVar<float> Senescence_site = cohorts.GetIsiteVar(x => x.FoliageSenescenceSum);
+
+                FoliageSenescence.output_table_ecoregions.WriteUpdate<float>(PlugIn.ModelCore.CurrentTime, Senescence_site);
             }
             if (MonthlyFolResp != null)
             {
