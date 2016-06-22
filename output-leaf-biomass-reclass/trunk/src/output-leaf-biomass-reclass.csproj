@@ -67,7 +67,7 @@
   <ItemGroup>
     <Compile Include="BytePixel.cs" />
     <Compile Include="ForestType.cs" />
-    <Compile Include="ForestTypeLog.cs" />
+    <Compile Include="MapDefLog.cs" />
     <Compile Include="IInputParameters.cs">
       <SubType>Code</SubType>
     </Compile>

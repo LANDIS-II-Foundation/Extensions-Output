@@ -32,36 +32,65 @@ namespace Landis.Extension.Output.LeafBiomassReclass
             //          table outputs:   
             //---------------------------------------
 
-            PlugIn.individualForestTypeLog = new MetadataTable<ForestTypeLog>[50];
+            //PlugIn.individualForestTypeLog = new MetadataTable<ForestTypeLog>[50];
+            //foreach (IMapDefinition map in mapDefs)
+            //{
+            //    int forestTypesCnt = 0;
+            //    List<IForestType> forestTypes = map.ForestTypes;
+            //    foreach (IForestType ftype in forestTypes)
+            //    {
+
+            //        string forestTypeLogName = ("output-leaf-biomass-reclass/" + ftype.Name + "-forest-type-log.csv");
+            //        CreateDirectory(forestTypeLogName);
+            //        PlugIn.individualForestTypeLog[forestTypesCnt] = new MetadataTable<ForestTypeLog>(forestTypeLogName);
+
+            //        OutputMetadata tblOut_events = new OutputMetadata()
+            //        {
+            //            Type = OutputType.Table,
+            //            Name = "ForestTypeCountLog",
+            //            FilePath = PlugIn.individualForestTypeLog[forestTypesCnt].FilePath,
+            //            Visualize = true
+            //        };
+            //        tblOut_events.RetriveFields(typeof(ForestTypeLog));
+            //        Extension.OutputMetadatas.Add(tblOut_events);
+
+            //        forestTypesCnt++;
+            //    }
+            //    break;  // only the first one.
+            //}
+
+            // RMS 03/2016: Added dynamic column names.
+            PlugIn.individualMapDefLog = new MetadataTable<MapDefLog>[50];
+            int mapDefCnt = 0;
             foreach (IMapDefinition map in mapDefs)
             {
-
-                int forestTypesCnt = 0;
-                List<IForestType> forestTypes = map.ForestTypes;
-                foreach (IForestType ftype in forestTypes)
+                int forestTypeCnt = 0;
+                List<string> forestTypeNames = new List<string>();
+                foreach (IForestType ftype in map.ForestTypes)
                 {
-
-                    string forestTypeLogName = ("output-leaf-biomass-reclass/" + ftype.Name + "-forest-type-log.csv");
-                    CreateDirectory(forestTypeLogName);
-                    PlugIn.individualForestTypeLog[forestTypesCnt] = new MetadataTable<ForestTypeLog>(forestTypeLogName);
-
-                    OutputMetadata tblOut_events = new OutputMetadata()
-                    {
-                        Type = OutputType.Table,
-                        Name = "ForestTypeCountLog",
-                        FilePath = PlugIn.individualForestTypeLog[forestTypesCnt].FilePath,
-                        Visualize = true
-                    };
-                    tblOut_events.RetriveFields(typeof(ForestTypeLog));
-                    Extension.OutputMetadatas.Add(tblOut_events);
-
-                    forestTypesCnt++;
+                    forestTypeNames.Add(ftype.Name);
+                    forestTypeCnt++;
                 }
 
-                break;  // only the first one.
+                PlugIn.forestTypeNames[mapDefCnt] = forestTypeNames;
+                ExtensionMetadata.ColumnNames = PlugIn.forestTypeNames[mapDefCnt];
 
+                string forestTypeLogName = ("output-leaf-biomass-reclass/" + map.Name + "-forest-type-log.csv");
+                CreateDirectory(forestTypeLogName);
+                PlugIn.individualMapDefLog[mapDefCnt] = new MetadataTable<MapDefLog>(forestTypeLogName);
+
+                OutputMetadata tblOut_events = new OutputMetadata()
+                {
+                    Type = OutputType.Table,
+                    Name = "ForestTypeCountLog",
+                    FilePath = PlugIn.individualMapDefLog[mapDefCnt].FilePath,
+                    Visualize = true
+                };
+                tblOut_events.RetriveFields(typeof(MapDefLog));
+                Extension.OutputMetadatas.Add(tblOut_events);
+
+                mapDefCnt++;
             }
-
             //---------------------------------------            
             //          map outputs:         
             //---------------------------------------
