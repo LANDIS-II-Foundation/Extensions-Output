@@ -1,0 +1,11 @@
+using Landis.Biomass;
+
+namespace Landis.Output.Biomass
+{
+    /// <summary>
+    /// Methods for computing biomass for groups of cohorts.
+    /// </summary>
+    public static class Util
+    {
+    }
+}

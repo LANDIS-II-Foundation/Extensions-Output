@@ -1,0 +1,11 @@
+LandisData   Extension
+
+Name         "Output Leaf Biomass"
+Version      "2.1"
+Type         output
+Assembly     Landis.Extension.Output.LeafBiomass
+Class        Landis.Extension.Output.LeafBiomass.PlugIn
+Description  "Output biomass for cohorts with separate leaf and wood biomass"
+UserGuide    "LANDIS-II Leaf Biomass Output v2.1 User Guide.pdf"
+CoreVersion  6.0
+
