@@ -1,0 +1,21 @@
+LandisData  "Output Leaf Biomass"
+
+Timestep  5
+
+MakeMaps no
+MakeTable yes
+
+Species    abiebals
+	   acerrubr
+	   acersacc
+	   betualle
+	   betupapy
+	   fraxamer
+	   pinustro
+	   poputrem
+	   querrubr
+	   thujocci
+	   tiliamer
+	   tsugcana
+
+MapNames  output-leaf-biomass/{species}-{timestep}.img
