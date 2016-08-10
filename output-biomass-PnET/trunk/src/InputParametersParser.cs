@@ -42,6 +42,7 @@ namespace Landis.Extension.Output.PnET
             //      MapNames
             InputVar<string> speciesName = new InputVar<string>("Species");
             InputVar<string> biomass = new InputVar<string>("Biomass");
+            InputVar<string> abovegroundBiomass = new InputVar<string>("AbovegroundBiomass");
             InputVar<string> woodySenescence = new InputVar<string>("WoodySenescence");
             InputVar<string> foliageSenescence = new InputVar<string>("FoliageSenescence");
             InputVar<string> LeafAreaIndex = new InputVar<string>("LeafAreaIndex");
@@ -107,6 +108,11 @@ namespace Landis.Extension.Output.PnET
                 if (ReadOptionalVar(biomass))
                 {
                     parameters.SpeciesBiom = biomass.Value;
+                    continue;
+                }
+                if (ReadOptionalVar(abovegroundBiomass))
+                {
+                    parameters.SpeciesAbovegroundBiom = abovegroundBiomass.Value;
                     continue;
                 }
                 if (ReadOptionalVar(woodySenescence))

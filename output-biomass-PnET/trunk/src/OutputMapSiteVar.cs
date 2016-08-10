@@ -24,7 +24,7 @@ namespace Landis.Extension.Output.PnET
                             }
                             catch (System.Exception e)
                             {
-                                System.Console.WriteLine("Cannot write " + FileName + " " + e.Message);
+                                System.Console.WriteLine("Cannot write " + FileName + " for site " + site.Location.ToString() + " " + e.Message);
                             }
                         }
                         else outputRaster.BufferPixel.MapCode.Value = 0;
