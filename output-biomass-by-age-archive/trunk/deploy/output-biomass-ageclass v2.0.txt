@@ -1,0 +1,11 @@
+LandisData   Extension
+
+Name         "Output Biomass-by-Age"
+Version      "2.0"
+Type         output
+Assembly     Landis.Extension.Output.BiomassByAge
+Class        Landis.Extension.Output.BiomassByAge.PlugIn
+Description  "Output biomass by ageclass by species"
+UserGuide    "LANDIS-II Age Biomass Output v2.0 User Guide.pdf"
+CoreVersion  6.0
+
