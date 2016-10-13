@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Edu.Wisc.Forest.Flel.Util">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.1\Edu.Wisc.Forest.Flel.Util.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.0\Edu.Wisc.Forest.Flel.Util.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Core">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.1\Landis.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.0\Landis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Extension.Succession.BiomassPnET">
       <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Extension.Succession.BiomassPnET.dll</HintPath>
@@ -57,7 +57,7 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Parameters-v1.dll</HintPath>
     </Reference>
     <Reference Include="Landis.SpatialModeling">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.1\Landis.SpatialModeling.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.0\Landis.SpatialModeling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

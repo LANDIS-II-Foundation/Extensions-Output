@@ -16,7 +16,7 @@ namespace Landis.Extension.Output.PnET
             
             FileName = FileNames.ReplaceTemplateVars(Template, "Overall", PlugIn.ModelCore.CurrentTime).Replace(".img", ".txt");
             FileContent = new List<string>();
-            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "AverageAge" + "\t" + "AverageB(g/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)" + "\t" + "AverageBelowGround(g/m2)" + "\t" + "AverageFoliage(g/m2)" + "\t" + "AverageNSC(gC)");
+            FileContent.Add("Time" + "\t" + "#Cohorts" + "\t" + "AverageAge" + "\t" + "AverageB(g/m2)" + "\t" + "AverageLAI(m2)" + "\t" + "AverageWater(mm)" + "\t" + "SubCanopyPAR(W/m2)" + "\t" + "Litter(kgDW/m2)" + "\t" + "WoodyDebris(kgDW/m2)" + "\t" + "AverageBelowGround(g/m2)" + "\t" + "AverageFoliage(g/m2)" + "\t" + "AverageNSC(gC/m2)");
         }
         public static void WriteNrOfCohortsBalance()
         {
