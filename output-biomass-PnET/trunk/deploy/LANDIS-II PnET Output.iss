@@ -10,7 +10,7 @@
 LicenseFile={#LandisSDK}\licenses\LANDIS-II_Binary_license.rtf
 
 [Files]
-Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions; Flags: replacesameversion 
+Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions; Flags: replacesameversion
 
 
 #define UserGuideSrc "LANDIS-II PnET-Succession vX.Y User Guide.pdf"

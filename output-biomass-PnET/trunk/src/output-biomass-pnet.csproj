@@ -96,6 +96,7 @@
     <Compile Include="OutputMapSpecies.cs" />
     <Compile Include="IntPixel.cs" />
     <Compile Include="FileNames.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
