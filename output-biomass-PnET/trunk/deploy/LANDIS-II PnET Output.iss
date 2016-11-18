@@ -13,11 +13,11 @@ LicenseFile={#LandisSDK}\licenses\LANDIS-II_Binary_license.rtf
 Source: {#LandisExtDir}\{#ExtensionAssembly}.dll; DestDir: {app}\bin\extensions; Flags: replacesameversion 
 
 
-#define UserGuideSrc "LANDIS-II " + ExtensionName + " vX.Y User Guide.pdf"
+#define UserGuideSrc "LANDIS-II PnET-Succession vX.Y User Guide.pdf"
 #define UserGuide    StringChange(UserGuideSrc, "X.Y", MajorMinor)
 Source: docs\{#UserGuide}; DestDir: {app}\docs; DestName: {#UserGuide}
 
-//Source: examples\*; DestDir: {app}\examples\{#ExtensionName}; Flags: recursesubdirs
+Source: examples\*; DestDir: {app}\examples\{#ExtensionName}\{#MajorMinor}; Flags: recursesubdirs
 
 #define ExtensionInfo  ExtensionName + " " + MajorMinor + ".txt"
 Source: {#ExtInfoFile}; DestDir: {#LandisExtInfoDir}; DestName: {#ExtensionInfo}
