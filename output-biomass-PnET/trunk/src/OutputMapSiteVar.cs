@@ -17,9 +17,10 @@ namespace Landis.Extension.Output.PnET
                     {
                         if (site.IsActive)
                         {
+   
                             try
                             {
-                                outputRaster.BufferPixel.MapCode.Value = int.Parse(func(values[site]).ToString());// int.Parse(values[site].ToString());
+                                outputRaster.BufferPixel.MapCode.Value = (int)double.Parse(func(values[site]).ToString());// int.Parse(values[site].ToString());
 
                             }
                             catch (System.Exception e)
